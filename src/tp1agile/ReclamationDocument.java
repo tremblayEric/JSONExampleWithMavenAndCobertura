@@ -128,7 +128,7 @@ public class ReclamationDocument {
         boolean estContratValide = false;
         String contrat = (String) getListNoeud("contrat").get(0);
 
-        if (contrat.charAt(0) >= 'A' && contrat.charAt(0) <= 'D') {
+        if (contrat.charAt(0) >= 'A' && contrat.charAt(0) <= 'D' && contrat.length() == 1) { //modification Boris exemple cas AAAA
             estContratValide = !estContratValide;
         }
 
@@ -141,7 +141,7 @@ public class ReclamationDocument {
 
         String mois = (String) getListNoeud("mois").get(0);
 
-        if (mois.length() == 7) {
+        if (mois.length() == 7 ) {
             moisValide = !moisValide;
         }
 
