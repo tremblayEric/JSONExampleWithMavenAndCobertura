@@ -161,36 +161,12 @@ public class ReclamationDocument {
     }
     
     private boolean estMoisValide() {
-
         boolean moisValide = false;
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
         String mois = (String) getListNoeud("mois").get(0);
-        Date d = new Date();
-        try {
-            d = sdf.parse(mois);
-            String t = sdf.format(d);
-            if(t.compareTo(mois) !=  0){
-                System.out.println("Non valide");
-            }else{
-                System.out.println("valide");
-            }
-        } catch (Exception e) {
-                System.out.println("Exception");
-        }
-        
-        
-        
-
-        
-
         if (mois.length() == 7 ) {
             moisValide = !moisValide;
         }
-
-
         return moisValide;
-
     }
     
     
