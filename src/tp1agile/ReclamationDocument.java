@@ -44,6 +44,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ReclamationDocument {
 
@@ -135,11 +137,52 @@ public class ReclamationDocument {
         return estContratValide;
     }
 
+    private boolean estDateValide( String laDate ){
+        boolean moisValide = false;
+        SimpleDateFormat dateFormat;
+        if(laDate.length() == 7){
+            dateFormat = new SimpleDateFormat("yyyy-MM");
+        }else{
+            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        }
+        Date d = new Date();
+        try {
+            d = dateFormat.parse(laDate); //
+            String format = dateFormat.format(d);
+            //System.out.println("Apres tranformation: " + format);
+            if(format.compareTo(laDate) ==  0){ 
+                moisValide = !moisValide;
+            }
+        } catch (Exception e) {
+        }
+        System.out.println( "Validité de la date: " + moisValide );
+        return moisValide;
+    
+    }
+    
     private boolean estMoisValide() {
 
         boolean moisValide = false;
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
         String mois = (String) getListNoeud("mois").get(0);
+        Date d = new Date();
+        try {
+            d = sdf.parse(mois);
+            String t = sdf.format(d);
+            if(t.compareTo(mois) !=  0){
+                System.out.println("Non valide");
+            }else{
+                System.out.println("valide");
+            }
+        } catch (Exception e) {
+                System.out.println("Exception");
+        }
+        
+        
+        
+
+        
 
         if (mois.length() == 7 ) {
             moisValide = !moisValide;
@@ -149,6 +192,8 @@ public class ReclamationDocument {
         return moisValide;
 
     }
+    
+    
 
     private boolean signeDollardPresentPartout() {
 
