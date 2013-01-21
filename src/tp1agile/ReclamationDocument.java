@@ -316,6 +316,6 @@ public class ReclamationDocument {
         
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.transform(domSource, result);         
+        transformer.transform(domSource, result);          
     }
 }
