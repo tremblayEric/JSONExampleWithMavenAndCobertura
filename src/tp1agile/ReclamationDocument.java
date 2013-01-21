@@ -46,6 +46,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 
 public class ReclamationDocument {
 
@@ -288,5 +290,32 @@ public class ReclamationDocument {
         boolean valide = false;
 
         return valide;
+    }
+    
+    /**
+     * temprairement nommée sNonValide
+     * méthode invoquée lorsqu'une erreur est détectée dans le fichier d'entrée
+     */
+    public void sNonValide() throws ParserConfigurationException, TransformerConfigurationException, TransformerException{
+        Document doc2;
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = builderFactory.newDocumentBuilder();
+        doc2 = builder.newDocument();
+        doc2.setXmlVersion("1.0");
+        Element element = doc2.createElement("remboursements");
+        doc2.appendChild(element);
+        NodeList nodeList = doc2.getElementsByTagName("remboursements");
+        element = doc2.createElement("message");
+        nodeList.item(0).appendChild(element);
+        nodeList = doc2.getElementsByTagName("message");
+        nodeList.item(0).setTextContent("Données invalides");
+        
+        Source domSource = new DOMSource(doc2);
+        File file = new File("refunds2.xml"); // args[1]
+        Result result = new StreamResult(file);
+        
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.transform(domSource, result);        
     }
 }

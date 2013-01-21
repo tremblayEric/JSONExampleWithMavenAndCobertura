@@ -37,8 +37,8 @@ public class TP1Agile {
 
         ReclamationDocument reclamation = new ReclamationDocument(args[0]);
 
-        reclamation.validerReclamation();
-
+        //reclamation.validerReclamation();
+        reclamation.sNonValide();
 
     }
 }
