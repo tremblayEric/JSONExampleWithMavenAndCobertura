@@ -26,19 +26,30 @@
  */
 package tp1agile;
 
-import javax.xml.parsers.ParserConfigurationException;
 
 public class TP1Agile {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) throws Exception {
 
-        ReclamationDocument reclamation = new ReclamationDocument(args[0]);
-
-        //reclamation.validerReclamation();
-        reclamation.sNonValide();    
+        
+        ParserXML documentXML = new ParserXML(args[0]);
+        ReclamationDocument reclamation = new ReclamationDocument(documentXML.getDocumentXMLInput());
+        SauvegardeDocumentXml persistanceDesDonnees = new SauvegardeDocumentXml ();
+        
+        ContractList listeContrats = new ContractList();
+        
+        System.out.println(listeContrats.getContractMaxValueByCareNumber( "100",  "B"));
+        System.out.println(listeContrats.getContractRatioByCareNumber("5",  "D"));
+        
+        
+        if(reclamation.validerReclamation()){
+            System.out.println("valide");
+        }else{
+            System.out.println("non-valide " + args[1]);
+            persistanceDesDonnees.saveSignalInvalidInputXML(args[1]);
+        }
+           
 
     }
 }

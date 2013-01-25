@@ -27,6 +27,27 @@
 package tp1agile;
 
 
-public class RetailRemboursement {
-    
+public class Soins {
+
+    private String numeroSoin;
+    private String categorieSoin;
+    private Contracts contracts;
+
+    Soins(String numeroSoin, String categorieSoin, Contracts contracts){
+        this.numeroSoin = numeroSoin;
+        this.categorieSoin = categorieSoin;
+        this.contracts = contracts;
+    }
+
+    public String getcareNumber() {
+       return this.numeroSoin;
+    }
+
+    public String getCareCategorie() {
+        return this.categorieSoin;
+    }
+
+    public Contracts getContract() {
+        return this.contracts;
+    }
 }

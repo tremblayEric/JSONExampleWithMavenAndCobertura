@@ -1,35 +1,35 @@
-/* Copyright 2011 Jacques Berger
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- * 
- * Modifié dans le cadre du cours : 
- * Programmation dans un environnement agile INF2015 
- * TP1
- * 
- * Par:
- * jpokou
- * pdarveau
- * sayonCisse
- * tremblayEric
- * 
- * UQAM hiver 2013
- */
 package tp1agile;
 
-/**
- *
- * @author TeninBoré
- */
+import org.w3c.dom.Document;
+
+
 public class CalculReclamation {
+    
+    
+   private Document document;
+   private String contrat;
+   private String numeroSoin;
+   private int montant;
+    
+    
+  CalculReclamation(Document docuement){
+      this.document = document;
+  }
+  
+  /**
+   * il reste a coder les methodes pour recuperer les donnees, en gros il suffit
+   * d'une methode pricipale qui parcoure le document et a chaque noeud mettre à
+   * jour les variables numeroSoinet montant et appeler la methode de calcul pour
+   * calculer le montant de la reclamation. lorsque tout ça est fait il faut 
+   * un methode qui place un nouveau noeud dans le fichier de sortie pour chaque
+   * nouveau montant calculé.Idealement ça prendrait une classe qui s'occupe de 
+   * ça et lorsque tou est finit elle le sauvegarde.
+   * 
+   */
+    
+    
+    
+
     
 }
