@@ -49,7 +49,9 @@ public class TP1Agile {
             System.out.println("non-valide " + args[1]);
             persistanceDesDonnees.saveSignalInvalidInputXML(args[1]);
         }
-           
-
+        
+        CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());
+        System.out.println(calcul.getTypeDeContrat());
+        System.out.println(calcul.getListeDesReclamations());
     }
 }

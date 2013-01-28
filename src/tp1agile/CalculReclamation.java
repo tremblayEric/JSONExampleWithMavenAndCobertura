@@ -1,7 +1,11 @@
 
 package tp1agile;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 
 public class CalculReclamation {
@@ -27,9 +31,30 @@ public class CalculReclamation {
    * ça et lorsque tou est finit elle le sauvegarde.
    * 
    */
+   public String getTypeDeContrat() {      
+        Element  typeDeContrat = (Element)document.getElementsByTagName("contrat");
+        contrat = typeDeContrat.getTextContent();
+        return contrat;
+    } 
     
-    
-    
+    public List<String> getListeDesReclamations() {
+        
+        List<String> listeReclamation = new ArrayList<String>();
+
+        NodeList reclamation = document.getElementsByTagName("reclamation");
+
+        for (int i = 0; i < reclamation.getLength(); i++) {
+            
+            Element element = (Element) reclamation.item(i);
+            
+            listeReclamation.add(element.getTextContent());
+            
+            numeroSoin = listeReclamation.get(0);
+            
+            montant = Integer.parseInt(listeReclamation.get(2));
+        }
+        return listeReclamation;
+    }
 
     
 }
