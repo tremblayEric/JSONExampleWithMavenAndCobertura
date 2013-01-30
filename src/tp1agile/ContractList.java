@@ -109,6 +109,7 @@ public class ContractList {
         int i = 0;
         boolean founded = false;
         double ratio = -1;
+        //BUG!!!!!
 
 
         while (!founded && i < contractList.size()) {
