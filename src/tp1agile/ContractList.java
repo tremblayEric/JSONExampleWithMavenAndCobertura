@@ -112,7 +112,7 @@ public class ContractList {
 
 
         while (!founded && i < contractList.size()) {
-            if (contractList.get(i).getcareNumber().compareTo(careNumber) == 1) {
+            if (contractList.get(i).getcareNumber().compareTo(careNumber) == 0) {
                 founded = !founded;
 
                 if (contract.compareTo("A") == 0) {
@@ -138,7 +138,7 @@ public class ContractList {
         int max = -1;
         
         while (!founded && i < contractList.size()) {
-            if (contractList.get(i).getcareNumber().compareTo(careNumber) == 1) {
+            if (contractList.get(i).getcareNumber().compareTo(careNumber) == 0) {
                 founded = !founded;
 
                 if (contract.compareTo("A") == 0) {
@@ -156,6 +156,15 @@ public class ContractList {
         }
         
         return max;
+    }
+    
+    
+    public boolean getContractMaxValueByCareNumberExist(String careNumber, String contract){
+        boolean exist = true;
+        if( getContractMaxValueByCareNumber( careNumber, contract ) == -1 ){
+            exist = false;
+        }
+        return exist;
     }
 
 

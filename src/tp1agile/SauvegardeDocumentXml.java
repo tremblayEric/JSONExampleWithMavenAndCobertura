@@ -56,6 +56,58 @@ public class SauvegardeDocumentXml {
         xmlTransformer.setOutputProperty(OutputKeys.INDENT, "yes");
         xmlTransformer.transform(domSource, serializationResult);
     }
+    
+    public void saveReclamation(String filePath, CalculReclamation reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+        Document document;
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = builderFactory.newDocumentBuilder();
+        document = builder.newDocument();
+        document.setXmlVersion("1.0");
+        Element element = document.createElement("remboursements");
+        document.appendChild(element);
+        
+        NodeList nodeList = document.getElementsByTagName("remboursements");
+        element = document.createElement("client");
+        nodeList.item(0).appendChild(element);
+        nodeList = document.getElementsByTagName("client");
+        nodeList.item(0).setTextContent(reclamation.getNumeroClient());
+        
+        nodeList = document.getElementsByTagName("remboursements");
+        element = document.createElement("mois");
+        nodeList.item(0).appendChild(element);
+        nodeList = document.getElementsByTagName("mois");
+        nodeList.item(0).setTextContent(reclamation.getMois());
+        
+        
+        for( int i = 0; i < reclamation.getListeDesReclamations().size(); ++i){
+            nodeList = document.getElementsByTagName("remboursements");
+            element = document.createElement("remboursement");
+            nodeList.item(0).appendChild(element);
+            
+            nodeList = document.getElementsByTagName("remboursement");
+            element = document.createElement("soin");
+            nodeList.item(i).appendChild(element);
+            nodeList = document.getElementsByTagName("soin");
+            nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
+            
+            nodeList = document.getElementsByTagName("remboursement");
+            element = document.createElement("date");
+            nodeList.item(i).appendChild(element);
+            nodeList = document.getElementsByTagName("date");
+            nodeList.item(i).setTextContent(reclamation.getListeDate().get(i));
+            
+            nodeList = document.getElementsByTagName("remboursement");
+            element = document.createElement("montant");
+            nodeList.item(i).appendChild(element);
+            nodeList = document.getElementsByTagName("montant");
+            nodeList.item(i).setTextContent(((reclamation.effectuerListCalcul()).get(i)).toString());   
+        }
+        try{
+            saveToFile( document, filePath );
+        }catch(Exception e){}
+       
+    }
+
 
     public void saveSignalInvalidInputXML(String filePath) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
 
