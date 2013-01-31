@@ -109,11 +109,15 @@ public class ContractList {
         int i = 0;
         boolean founded = false;
         double ratio = -1;
-        //BUG!!!!!
+        
+        String tempCare = roundCareNumber(careNumber);
+        
+        
+        
 
 
         while (!founded && i < contractList.size()) {
-            if (contractList.get(i).getcareNumber().compareTo(careNumber) == 0) {
+            if (contractList.get(i).getcareNumber().compareTo(tempCare) == 0) {
                 founded = !founded;
 
                 if (contract.compareTo("A") == 0) {
@@ -138,8 +142,11 @@ public class ContractList {
         boolean founded = false;
         int max = -1;
         
+        String tempCare = roundCareNumber(careNumber);
+        
+        
         while (!founded && i < contractList.size()) {
-            if (contractList.get(i).getcareNumber().compareTo(careNumber) == 0) {
+            if (contractList.get(i).getcareNumber().compareTo(tempCare) == 0) {
                 founded = !founded;
 
                 if (contract.compareTo("A") == 0) {
@@ -168,6 +175,20 @@ public class ContractList {
         return exist;
     }
 
+    
+    private String roundCareNumber(String careNumber){
+        
+        String tempCare = "";
+        
+        if(careNumber.charAt(0) == '3'){
+            tempCare = "300";
+        }else{
+            tempCare = careNumber;
+        }
+        return tempCare;
+        
+        
+    }
 
 
 }

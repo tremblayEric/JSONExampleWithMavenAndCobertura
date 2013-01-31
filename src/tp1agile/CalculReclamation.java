@@ -206,11 +206,9 @@ public class CalculReclamation {
    public List<Double> effectuerListCalcul() {
        List<Double> listRemboursement = new ArrayList<>();
        if(getListeSoins().size() == getListeMontant().size()){
-           System.out.println("Nombre de soin: " + getListeSoins().size() );
             for(int i = 0; i < getListeSoins().size(); ++i ){
                 String montant = getListeMontant().get(i);
                 montant = montant.replace('$', ' ');
-                //System.out.println("String: " + montant );
                 Double it = Double.parseDouble( montant );
                 String st = getListeSoins().get(i);
                 String st2 = getTypeDeContrat2().get(0);
@@ -229,12 +227,6 @@ public class CalculReclamation {
         if( listeContrats.getContractMaxValueByCareNumberExist( numeroSoin,  contrat ) && remboursement > listeContrats.getContractMaxValueByCareNumber( numeroSoin,  contrat )  ){
             remboursement = listeContrats.getContractMaxValueByCareNumber( numeroSoin,  contrat ); 
         }
-        //System.out.println("Contrat: " + contrat );
-        //System.out.println("Numero de soin: " + numeroSoin );
-        //System.out.println("Valeur: " + valeur );
-        //System.out.println("Max: " + listeContrats.getContractMaxValueByCareNumber( numeroSoin,  contrat ) );
-        //System.out.println("Ratio: " + listeContrats.getContractRatioByCareNumber( numeroSoin,  contrat ) );
-        //System.out.println("Remboursement: " + remboursement );
         return remboursement;
     }
     

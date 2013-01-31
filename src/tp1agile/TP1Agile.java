@@ -39,23 +39,10 @@ public class TP1Agile {
         
         ContractList listeContrats = new ContractList();
         
-        //System.out.println(listeContrats.getContractMaxValueByCareNumber( "100",  "A"));
-        System.out.println(listeContrats.getContractRatioByCareNumber("100",  "A"));
-        //System.out.println(listeContrats.getContractMaxValueByCareNumber( "200",  "A"));
-        System.out.println(listeContrats.getContractRatioByCareNumber("200",  "A"));
-        //System.out.println(listeContrats.getContractMaxValueByCareNumber( "334",  "A"));
-        System.out.println(listeContrats.getContractRatioByCareNumber("334",  "A"));
         
-        if(reclamation.validerReclamation()){
-            System.out.println("valide");
-        }else{
-            //System.out.println("non-valide " + args[1]);
-            //persistanceDesDonnees.saveSignalInvalidInputXML(args[1]);
-        }
-        
+       
         CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());
         persistanceDesDonnees.saveReclamation(args[1], calcul);
-        //System.out.println(calcul.getTypeDeContrat());
-        //System.out.println(calcul.getListeDesReclamations());
+       
     }
 }
