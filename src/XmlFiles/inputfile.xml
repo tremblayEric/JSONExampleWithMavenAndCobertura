@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
 <reclamations>
-    <client>100223</client>
+    <client>100923</client>
     <contrat>A</contrat>
     <mois>2013-01</mois>
     <reclamation>

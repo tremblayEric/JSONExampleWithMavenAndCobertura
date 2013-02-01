@@ -35,11 +35,11 @@ import org.w3c.dom.NodeList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ReclamationDocument {
+public class ReclamationDocumentValidation {
 
   private Document document;
   
-    public ReclamationDocument(Document document){
+    public ReclamationDocumentValidation(Document document){
       this.document = document;
   }
 
@@ -93,8 +93,10 @@ public class ReclamationDocument {
         boolean estContratValide = false;
         String contrat = (String) getListNoeud("contrat").get(0);
 
+        if(contrat.length() > 0){
         if (contrat.charAt(0) >= 'A' && contrat.charAt(0) <= 'D' && contrat.length() == 1) { //modification Boris exemple cas AAAA
             estContratValide = !estContratValide;
+        }
         }
 
         return estContratValide;
@@ -146,7 +148,6 @@ public class ReclamationDocument {
             ++i;
 
         }
-
         return presentPartout;
     }
 
@@ -165,17 +166,20 @@ public class ReclamationDocument {
         listSoinsValides.add("600");
         listSoinsValides.add("600");
 
-        while (valide && i < list.size()) {
+        if(list.get(i).length() != 3){
+            valide = !valide;
+        }else{
+          while (valide && i < list.size()) {
             
             if (!listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
                 valide = !valide;
             }
             ++i;
+        }  
         }
-
+        
+        
         return valide;
-
-
     }
 
     private List getListNoeud(String noeud) {

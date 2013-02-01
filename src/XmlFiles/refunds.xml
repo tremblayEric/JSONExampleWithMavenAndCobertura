@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <remboursements>
-<client>100ssss23</client>
+<client>100923</client>
 <mois>2013-01</mois>
 <remboursement>
 <soin>100</soin>
@@ -15,6 +15,6 @@
 <remboursement>
 <soin>334</soin>
 <date>2013-01-23</date>
-<montant>-125.0</montant>
+<montant>0.0</montant>
 </remboursement>
 </remboursements>

@@ -125,7 +125,7 @@ public class SauvegardeDocumentXml {
         nodeList.item(0).setTextContent("Données invalides");
 
         Source domSource = new DOMSource(doc2);
-        File file = new File(filePath); // args[1]
+        File file = new File(filePath); 
         Result result = new StreamResult(file);
 
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
