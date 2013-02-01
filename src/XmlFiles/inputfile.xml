@@ -4,8 +4,8 @@
     <contrat>A</contrat>
     <mois>2013-01</mois>
     <reclamation>
-        <soin>100</soin>
-        <date>2013-01-11</date>
+        <soin>700</soin>
+        <date>2013-02-11</date>
         <montant>234.00$</montant>
     </reclamation>
     <reclamation>
@@ -18,4 +18,25 @@
         <date>2013-01-23</date>
         <montant>125.00$</montant>
     </reclamation>
+    <reclamation>
+        <soin>400</soin>
+        <date>2013-01-23</date>
+        <montant>125.00$</montant>
+    </reclamation>
+    <reclamation>
+        <soin>500</soin>
+        <date>2013-01-23</date>
+        <montant>125.00$</montant>
+    </reclamation>
+    <reclamation>
+        <soin>600</soin>
+        <date>2013-01-23</date>
+        <montant>125.00$</montant>
+    </reclamation>
+    <reclamation>
+        <soin>500</soin>
+        <date>2013-01-23</date>
+        <montant>125.00$</montant>
+    </reclamation>
+    
 </reclamations>

@@ -114,7 +114,6 @@ public class ReclamationDocumentValidation {
         try {
             d = dateFormat.parse(laDate); //
             String format = dateFormat.format(d);
-            //System.out.println("Apres tranformation: " + format);
             if(format.compareTo(laDate) ==  0){ 
                 moisValide = !moisValide;
             }
@@ -164,7 +163,7 @@ public class ReclamationDocumentValidation {
         listSoinsValides.add("400");
         listSoinsValides.add("500");
         listSoinsValides.add("600");
-        listSoinsValides.add("600");
+        listSoinsValides.add("700");
 
         if(list.get(i).length() != 3){
             valide = !valide;
