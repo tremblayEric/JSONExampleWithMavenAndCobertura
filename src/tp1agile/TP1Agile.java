@@ -33,30 +33,21 @@ public class TP1Agile {
     public static void main(String[] args) throws Exception {
 
         
-        ParserXML documentXML = new ParserXML(args[0]);
-        ReclamationDocument reclamation = new ReclamationDocument(documentXML.getDocumentXMLInput());
+        if(args.length == 2){
+          
+        ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]  );
+        ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
         SauvegardeDocumentXml persistanceDesDonnees = new SauvegardeDocumentXml ();
-        
-        ContractList listeContrats = new ContractList();
-        
-        //System.out.println(listeContrats.getContractMaxValueByCareNumber( "100",  "A"));
-        //System.out.println(listeContrats.getContractRatioByCareNumber("100",  "A"));
-        //System.out.println(listeContrats.getContractMaxValueByCareNumber( "200",  "A"));
-        //System.out.println(listeContrats.getContractRatioByCareNumber("200",  "A"));
-        //System.out.println(listeContrats.getContractMaxValueByCareNumber( "334",  "A"));
-        //System.out.println(listeContrats.getContractRatioByCareNumber("334",  "A"));
-        
+
         if(reclamation.validerReclamation()){
-            System.out.println("valide");
+            ContractList listeContrats = new ContractList();
             CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());
-            persistanceDesDonnees.saveReclamation(args[1], calcul);
+            persistanceDesDonnees.saveReclamation( "src/XmlFiles/" + args[1], calcul);
         }else{
-            System.out.println("non-valide " + args[1]);
-            persistanceDesDonnees.saveSignalInvalidInputXML(args[1]);
+            persistanceDesDonnees.saveSignalInvalidInputXML( "src/XmlFiles/" + args[1]);
         }
-        
-        
-        //System.out.println(calcul.getTypeDeContrat());
-        //System.out.println(calcul.getListeDesReclamations());
+          
+        }
+       
     }
 }
