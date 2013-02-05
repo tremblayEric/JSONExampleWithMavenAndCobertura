@@ -165,7 +165,8 @@ public class ReclamationDocumentValidation {
         listSoinsValides.add("600");
         listSoinsValides.add("700");
 
-        if(list.get(i).length() != 3){
+        if(list.get(i).length() != 3 && list.get(i).compareTo("0") != 0){
+            System.out.println("non valide");
             valide = !valide;
         }else{
           while (valide && i < list.size()) {

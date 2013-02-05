@@ -112,10 +112,6 @@ public class ContractList {
         
         String tempCare = roundCareNumber(careNumber);
         
-        
-        
-
-
         while (!founded && i < contractList.size()) {
             if (contractList.get(i).getcareNumber().compareTo(tempCare) == 0) {
                 founded = !founded;
@@ -144,7 +140,6 @@ public class ContractList {
         
         String tempCare = roundCareNumber(careNumber);
         
-        
         while (!founded && i < contractList.size()) {
             if (contractList.get(i).getcareNumber().compareTo(tempCare) == 0) {
                 founded = !founded;
@@ -166,7 +161,6 @@ public class ContractList {
         return max;
     }
     
-    
     public boolean getContractMaxValueByCareNumberExist(String careNumber, String contract){
         boolean exist = true;
         if( getContractMaxValueByCareNumber( careNumber, contract ) == -1 ){
@@ -175,7 +169,6 @@ public class ContractList {
         return exist;
     }
 
-    
     private String roundCareNumber(String careNumber){
         
         String tempCare = "";
@@ -186,9 +179,7 @@ public class ContractList {
             tempCare = careNumber;
         }
         return tempCare;
-        
-        
+         
     }
-
-
+    
 }
