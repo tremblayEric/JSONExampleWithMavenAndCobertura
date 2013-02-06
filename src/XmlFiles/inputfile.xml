@@ -8,39 +8,4 @@
         <date>2014-01-11</date>
         <montant>100.00$</montant>
     </reclamation>
-    <reclamation>
-        <soin>301</soin>
-        <date>2013-01-11</date>
-        <montant>600.00$</montant>
-    </reclamation>	
-    <reclamation>
-        <soin>302</soin>
-        <date>2013-02-11</date>
-        <montant>500.00$</montant>
-    </reclamation>
-    <reclamation>
-        <soin>303</soin>
-        <date>2013-03-23</date>
-        <montant>300.00$</montant>
-    </reclamation>
-    <reclamation>
-        <soin>304</soin>
-        <date>2013-04-23</date>
-        <montant>200.00$</montant>
-    </reclamation>
-    <reclamation>
-        <soin>305</soin>
-        <date>2013-04-23</date>
-        <montant>100.00$</montant>
-    </reclamation>
-    <reclamation>
-        <soin>398</soin>
-        <date>2013-01-23</date>
-        <montant>50.00$</montant>
-    </reclamation>
-    <reclamation>
-        <soin>399</soin>
-        <date>2022-01-23</date>
-        <montant>1000.00$</montant>
-    </reclamation>
 </reclamations>
