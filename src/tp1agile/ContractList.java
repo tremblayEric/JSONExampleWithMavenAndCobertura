@@ -55,7 +55,7 @@ public class ContractList {
 
         //dentaires
         Contracts dentalContracts = new Contracts();
-        dentalContracts.setRatio(0.0, 5.0, 0.9, 1.0);
+        dentalContracts.setRatio(0.0, 0.5, 0.9, 1.0);
         dentalContracts.setMax(false, false, false, false);
         dentalContracts.setMaxValue(-1, -1, -1, -1);
 
@@ -75,7 +75,7 @@ public class ContractList {
         Contracts physioContracts = new Contracts();
         physioContracts.setRatio(0.4, 1.0, 0.9, 1.0);
         physioContracts.setMax(false, false, false, true);
-        physioContracts.setMaxValue(-1, 50, -1, 100);
+        physioContracts.setMaxValue(-1, -1, -1, 100);
 
         //ortho
         Contracts orthoErgoContracts = new Contracts();

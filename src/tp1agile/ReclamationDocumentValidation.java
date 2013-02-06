@@ -46,10 +46,21 @@ public class ReclamationDocumentValidation {
     public boolean validerReclamation() {
 
         boolean reclamationValide = false;
+        
+        System.out.println("numeroClientValide(): " + numeroClientValide() );
+        System.out.println("estContratValide(): " + estContratValide() );
+        System.out.println("estMoisValide(): " + estMoisValide() );
+        System.out.println("estDateValide(): " + estDateValide() );
+        System.out.println("coherenceMoisDate(): " + coherenceMoisDate() );
+        System.out.println("signeDollardPresentPartout(): " + signeDollardPresentPartout() );
+        System.out.println("soinsValide(): " + soinsValide() );
 
-        if (numeroClientValide() && estContratValide() && estMoisValide() && signeDollardPresentPartout() && soinsValide()) {
+        
+        if (numeroClientValide() && estContratValide() && estMoisValide() && estDateValide() && coherenceMoisDate() && signeDollardPresentPartout() && soinsValide()) {
             reclamationValide = !reclamationValide;
+            
         }
+  
 
         return reclamationValide;
     }
@@ -102,10 +113,10 @@ public class ReclamationDocumentValidation {
         return estContratValide;
     }
 
-    private boolean estDateValide( String laDate ){
+    private boolean estDateValide( String laDate, String type ){
         boolean moisValide = false;
         SimpleDateFormat dateFormat;
-        if(laDate.length() == 7){
+        if( type.compareTo("mois") == 0){
             dateFormat = new SimpleDateFormat("yyyy-MM");
         }else{
             dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -119,19 +130,82 @@ public class ReclamationDocumentValidation {
             }
         } catch (Exception e) {
         }
-        System.out.println( "Validité de la date: " + moisValide );
+        //System.out.println( "Validité de " + laDate + " : " + moisValide );
         return moisValide;
     
     }
     
+    private boolean estDateValide() {
+        boolean moisValide = true;
+        List<String> listedate = getListNoeud("date");
+        int i = 0;
+        //String mois = (String) getListNoeud("mois").get(0);
+        while( moisValide && i < listedate.size() ){
+            moisValide = estDateValide(listedate.get(i), "date");
+            i = i + 1;
+        }
+        return moisValide;
+    }
+    
     private boolean estMoisValide() {
-        boolean moisValide = false;
+        boolean moisValide = true;
+        List<String> listeMois = getListNoeud("mois");
+        int i = 0;
+        if(listeMois.size() == 1){
+            while( moisValide && i < listeMois.size() ){
+                moisValide = estDateValide(listeMois.get(i), "mois");
+                i = i + 1;
+            }
+        }else{
+            moisValide = false;
+        }
+        return moisValide;
+    }
+    
+    
+    private boolean coherenceMoisDate() {
+        boolean moisValide = true;
+        int i = 0;
+        List<String> listeDate = getListNoeud("date");
+        List<String> listeMois = getListNoeud("mois");
+        try {
+            
+            SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
+            Date mois = new Date();
+            mois = dateFormatMois.parse(listeMois.get(0));
+        
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+        
+            while(moisValide && i < listeDate.size()){
+                
+                date = dateFormat.parse(listeDate.get(i));
+                if( mois.after(date) ){
+                    moisValide = false;
+                }
+                i = i + 1;
+                //System.out.println("Coherence " + listeDate.get(i) + ": " + moisValide );
+            }
+        
+        } catch (Exception e) {
+            moisValide = false;
+        }
+      
+        return moisValide;
+    }
+  
+    /*boolean moisValide = false;
+        List<String> listeMois = getListNoeud("mois");
         String mois = (String) getListNoeud("mois").get(0);
+        for(int i = 0; i < list ; ++i){
+            moisValide = estDateValide( listeMois.get(i) );
+        }
+        
         if (mois.length() == 7 ) {
             moisValide = !moisValide;
         }
         return moisValide;
-    }
+    */
     
     private boolean signeDollardPresentPartout() {
 
@@ -164,29 +238,33 @@ public class ReclamationDocumentValidation {
         listSoinsValides.add("500");
         listSoinsValides.add("600");
         listSoinsValides.add("700");
+        
 
-        if(list.get(i).length() != 3){
-            valide = !valide;
-        }else{
+        //if(list.get(i).length() != 3){
+            //valide = !valide;
+        //}else{
           while (valide && i < list.size()) {
+            //System.out.println("Soin: " + list.get(i) );
+            //System.out.println("listSoinsValides.contains(list.get(i)): " + listSoinsValides.contains(list.get(i)));
+            //System.out.println("(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399): " + (Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399));
             
-            if (!listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
-                valide = !valide;
+            if ( !listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
+                valide = false;
             }
             ++i;
         }  
-        }
+        //}
         
         
         return valide;
     }
 
-    private List getListNoeud(String noeud) {
+    private List<String> getListNoeud(String noeud) {
 
         List<String> list = new ArrayList();
 
         NodeList listeNoeuds = document.getElementsByTagName(noeud);
-        for (int i = 0; i < listeNoeuds.getLength(); i++) {
+        for (int i = 0; i < listeNoeuds.getLength(); ++i) {
             Element client = (Element) listeNoeuds.item(i);
             list.add(client.getTextContent());
         }

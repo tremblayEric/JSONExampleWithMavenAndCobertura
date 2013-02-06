@@ -42,6 +42,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import java.text.*;
 
 public class SauvegardeDocumentXml {
     
@@ -59,6 +60,7 @@ public class SauvegardeDocumentXml {
     
     public void saveReclamation(String filePath, CalculReclamation reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
         Document document;
+        DecimalFormat df = new DecimalFormat("#0.00");
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         document = builder.newDocument();
@@ -100,7 +102,7 @@ public class SauvegardeDocumentXml {
             element = document.createElement("montant");
             nodeList.item(i).appendChild(element);
             nodeList = document.getElementsByTagName("montant");
-            nodeList.item(i).setTextContent(((reclamation.effectuerListCalcul()).get(i)).toString());   
+            nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString());   
         }
         try{
             saveToFile( document, filePath );
