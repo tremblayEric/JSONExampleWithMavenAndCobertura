@@ -46,22 +46,9 @@ public class ReclamationDocumentValidation {
     public boolean validerReclamation() {
 
         boolean reclamationValide = false;
-        
-        System.out.println("numeroClientValide(): " + numeroClientValide() );
-        System.out.println("estContratValide(): " + estContratValide() );
-        System.out.println("estMoisValide(): " + estMoisValide() );
-        System.out.println("estDateValide(): " + estDateValide() );
-        System.out.println("coherenceMoisDate(): " + coherenceMoisDate() );
-        System.out.println("signeDollardPresentPartout(): " + signeDollardPresentPartout() );
-        System.out.println("soinsValide(): " + soinsValide() );
-
-        
         if (numeroClientValide() && estContratValide() && estMoisValide() && estDateValide() && coherenceMoisDate() && signeDollardPresentPartout() && soinsValide()) {
             reclamationValide = !reclamationValide;
-            
         }
-  
-
         return reclamationValide;
     }
 
@@ -176,11 +163,14 @@ public class ReclamationDocumentValidation {
         
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
+            
+            SimpleDateFormat dateFormatM = new SimpleDateFormat("yyyy-MM");
         
             while(moisValide && i < listeDate.size()){
                 
                 date = dateFormat.parse(listeDate.get(i));
-                if( mois.after(date) ){
+                date = dateFormatM.parse(listeDate.get(i));
+                if( mois.after(date) || mois.before(date)){
                     moisValide = false;
                 }
                 i = i + 1;
@@ -240,20 +230,14 @@ public class ReclamationDocumentValidation {
         listSoinsValides.add("700");
         
 
-        //if(list.get(i).length() != 3){
-            //valide = !valide;
-        //}else{
+       
           while (valide && i < list.size()) {
-            //System.out.println("Soin: " + list.get(i) );
-            //System.out.println("listSoinsValides.contains(list.get(i)): " + listSoinsValides.contains(list.get(i)));
-            //System.out.println("(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399): " + (Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399));
             
             if ( !listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
                 valide = false;
             }
             ++i;
-        }  
-        //}
+        } 
         
         
         return valide;
