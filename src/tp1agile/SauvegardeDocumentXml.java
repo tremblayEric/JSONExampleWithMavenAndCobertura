@@ -102,7 +102,7 @@ public class SauvegardeDocumentXml {
             element = document.createElement("montant");
             nodeList.item(i).appendChild(element);
             nodeList = document.getElementsByTagName("montant");
-            nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString());   
+            nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString() + "$");   
         }
         try{
             saveToFile( document, filePath );
