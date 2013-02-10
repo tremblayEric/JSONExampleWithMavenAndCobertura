@@ -24,7 +24,7 @@
  * 
  * UQAM hiver 2013
  */
-package tp1agile;
+package Data;
 
 
 public class Soins {

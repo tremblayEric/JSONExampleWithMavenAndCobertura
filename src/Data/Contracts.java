@@ -24,7 +24,7 @@
  * 
  * UQAM hiver 2013
  */
-package tp1agile;
+package Data;
 
 /*ajout iteration 2 : tout ce qui est relatif au contrat E*/
 public class Contracts {

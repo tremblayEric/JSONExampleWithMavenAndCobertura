@@ -1,5 +1,6 @@
 package tp1agile;
 
+import Data.ContractList;
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Document;
