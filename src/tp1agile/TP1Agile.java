@@ -26,6 +26,7 @@
  */
 package tp1agile;
 
+import Validation.ReclamationDocumentValidation;
 import Dom.ParserXML;
 import Save.SauvegardeDocumentXml;
 
