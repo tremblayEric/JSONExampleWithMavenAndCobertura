@@ -26,7 +26,7 @@
  */
 package tp1agile;
 
-
+/*ajout iteration 2 : tout ce qui est relatif au contrat E*/
 public class Contracts {
     
     
@@ -34,40 +34,46 @@ public class Contracts {
     private double ratioB;
     private double ratioC;
     private double ratioD;
+    private double ratioE;
     
     private boolean maxA;
     private boolean maxB;
     private boolean maxC;
     private boolean maxD;
+    private boolean maxE;
     
     private int maxValueA;
     private int maxValueB;
     private int maxValueC;
     private int maxValueD;
+    private int maxValueE;
     
     public Contracts(){
       
     }
     
-    public void setRatio(double ratioA, double ratioB, double ratioC, double ratioD){
+    public void setRatio(double ratioA, double ratioB, double ratioC, double ratioD, double ratioE){
         this.ratioA = ratioA;
         this.ratioB = ratioB;
         this.ratioC = ratioC;
         this.ratioD = ratioD;
+        this.ratioD = ratioE;
     }
     
-    public void setMax(boolean maxA, boolean maxB, boolean maxC, boolean maxD){
+    public void setMax(boolean maxA, boolean maxB, boolean maxC, boolean maxD, boolean maxE){
         this.maxA = maxA;
         this.maxB = maxB;
         this.maxC = maxC;
         this.maxD = maxD;
+        this.maxD = maxE;
     }
     
-    public void setMaxValue(int maxValueA, int maxValueB, int maxValueC, int maxValueD){
+    public void setMaxValue(int maxValueA, int maxValueB, int maxValueC, int maxValueD, int maxValueE){
         this.maxValueA = maxValueA;
         this.maxValueB = maxValueB;
         this.maxValueC = maxValueC;
         this.maxValueD = maxValueD;
+        this.maxValueD = maxValueE;
     }
  
     public double getRatioA(){
@@ -82,6 +88,9 @@ public class Contracts {
     public double getRatioD(){
         return ratioD;
     }
+    public double getRatioE(){
+        return ratioE;
+    }
     
     public boolean getmaxA(){
         return maxA;
@@ -95,6 +104,9 @@ public class Contracts {
     public boolean getmaxD(){
         return maxD;
     }
+     public boolean getmaxE(){
+        return maxE;
+    }
     
     public int getMavalueA(){
         return maxValueA;
@@ -107,6 +119,9 @@ public class Contracts {
     }
     public int getMavalueD(){
         return maxValueD;
+    }
+    public int getMavalueE(){
+        return maxValueE;
     }
     
 }

@@ -37,55 +37,73 @@ public class ContractList {
 
         //masso
         Contracts massoContracts = new Contracts();
-        massoContracts.setRatio(0.25, 0.5, 0.9, 1.0);
-        massoContracts.setMax(false, true, false, true);
-        massoContracts.setMaxValue(-1, 40, -1, 85);
+        massoContracts.setRatio(0.25, 0.5, 0.9, 1.0,0.15);
+        massoContracts.setMax(false, true, false, true,false);
+        massoContracts.setMaxValue(-1, 40, -1, 85,-1);
 
-        //osteo
+        /*osteo  :: modif iteraion 2 sur le contrat B couvert a 100% sans max
+                                            contrat A couvert a 35%
+                                            contrat C couvert a 95%*/
         Contracts osteoContracts = new Contracts();
-        osteoContracts.setRatio(0.25, 0.5, 0.9, 1.0);
-        osteoContracts.setMax(false, true, false, true);
-        osteoContracts.setMaxValue(-1, 50, -1, 75);
+        osteoContracts.setRatio(0.35, 0.5, 0.95, 1.0,0.25);
+        osteoContracts.setMax(false, true, false, true,false);
+        osteoContracts.setMaxValue(-1, 50, -1, 75,-1);
+        
+        /*ajout iteration 2 : contrat de Kinesitherapie*/
+        Contracts kinesitherapieContract = new Contracts();
+        kinesitherapieContract.setRatio(0.0, 0.7, 0.85, 1.0,0.15);
+        kinesitherapieContract.setMax(false, false, false, true,false);
+        kinesitherapieContract.setMaxValue(-1, -1, -1, 150,-1);
+        
+        /*ajout iteration 2 : contrat de medecin generaliste prive*/
+        Contracts privateGeneralMedecineContract = new Contracts();
+        privateGeneralMedecineContract.setRatio(0.5, 0.75, 0.9, 0.95,0.25);
+        privateGeneralMedecineContract.setMax(false, false, false, false,true);
+        privateGeneralMedecineContract.setMaxValue(-1, -1, -1, -1,20);
 
         //psycho
         Contracts psychoContracts = new Contracts();
-        psychoContracts.setRatio(0.25, 1.0, 0.9, 1.0);
-        psychoContracts.setMax(false, true, false, true);
-        psychoContracts.setMaxValue(-1, 70, -1, 100);
+        psychoContracts.setRatio(0.25, 1.0, 0.9, 1.0,0.12);
+        psychoContracts.setMax(false, false, false, true,false);
+        psychoContracts.setMaxValue(-1, -1, -1, 100,-1);
 
         //dentaires
         Contracts dentalContracts = new Contracts();
-        dentalContracts.setRatio(0.0, 0.5, 0.9, 1.0);
-        dentalContracts.setMax(false, false, false, false);
-        dentalContracts.setMaxValue(-1, -1, -1, -1);
+        dentalContracts.setRatio(0.0, 0.5, 0.9, 1.0,0.6);
+        dentalContracts.setMax(false, false, false, false,false);
+        dentalContracts.setMaxValue(-1, -1, -1, -1,-1);
 
         //naturo et acupuncture
         Contracts naturoAcupContracts = new Contracts();
-        naturoAcupContracts.setRatio(0.0, 0.0, 0.9, 1.0);
-        naturoAcupContracts.setMax(false, false, false, true);
-        naturoAcupContracts.setMaxValue(-1, -1, -1, 65);
+        naturoAcupContracts.setRatio(0.0, 0.0, 0.9, 1.0,0.25);
+        naturoAcupContracts.setMax(false, false, false, true,true);
+        naturoAcupContracts.setMaxValue(-1, -1, -1, 65,15);
 
-        //chiro
+        //chiro modif iteration 2 contrat D remb. a 100% sans max
         Contracts chiroContracts = new Contracts();
-        chiroContracts.setRatio(0.25, 0.5, 0.9, 1.0);
-        chiroContracts.setMax(false, true, false, true);
-        chiroContracts.setMaxValue(-1, 50, -1, 75);
+        chiroContracts.setRatio(0.25, 0.5, 0.9, 1.0,0.3);
+        chiroContracts.setMax(false, true, false, false,true);
+        chiroContracts.setMaxValue(-1, 50, -1, -1,20);
 
-        //physio
+        //physio modif. iteration 2 contrat C couvert a 75%
         Contracts physioContracts = new Contracts();
-        physioContracts.setRatio(0.4, 1.0, 0.9, 1.0);
-        physioContracts.setMax(false, false, false, true);
-        physioContracts.setMaxValue(-1, -1, -1, 100);
+        physioContracts.setRatio(0.4, 1.0, 0.75, 1.0,0.15);
+        physioContracts.setMax(false, false, false, true,false);
+        physioContracts.setMaxValue(-1, -1, -1, 100,-1);
 
         //ortho
         Contracts orthoErgoContracts = new Contracts();
-        orthoErgoContracts.setRatio(0.0, 0.7, 0.9, 1.0);
-        orthoErgoContracts.setMax(false, false, false, true);
-        orthoErgoContracts.setMaxValue(-1, -1, -1, 90);
-
+        orthoErgoContracts.setRatio(0.0, 0.7, 0.9, 1.0,0.22);
+        orthoErgoContracts.setMax(false, false, false, true,false);
+        orthoErgoContracts.setMaxValue(-1, -1, -1, 90,-1);
+       
         //creation des soins 
         Soins massotherapie = new Soins("0", "Massothérapie", massoContracts);
         Soins osteopathie = new Soins("100", "Ostéopathie", osteoContracts);
+        /*ajout iteration 2 : soin 150 Kinesitherapie*/
+        Soins kinesitherapie = new Soins("150", "kinesitherapie", kinesitherapieContract);
+        /*ajout iteration 2 : soin 175 Kinesitherapie*/
+        Soins privateGeneralMedecine = new Soins("175", "Medecin generaliste prive", privateGeneralMedecineContract);
         Soins psychoIndividuelle = new Soins("200", "Psychologie individuelle", psychoContracts);
         Soins soinsDentaires = new Soins("300", "Soins dentaires", dentalContracts);
         Soins NaturoAcupuncture = new Soins("400", "Naturopathie, acuponcture", naturoAcupContracts);
@@ -96,6 +114,8 @@ public class ContractList {
         //le tout dans la liste
         contractList.add(massotherapie);
         contractList.add(osteopathie);
+        contractList.add(kinesitherapie);
+        contractList.add(privateGeneralMedecine);
         contractList.add(psychoIndividuelle);
         contractList.add(soinsDentaires);
         contractList.add(NaturoAcupuncture);

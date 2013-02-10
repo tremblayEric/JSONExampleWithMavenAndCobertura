@@ -24,7 +24,7 @@
  * 
  * UQAM hiver 2013
  */
-package tp1agile;
+package Save;
 
 import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
@@ -43,6 +43,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import java.text.*;
+import tp1agile.CalculReclamation;
 
 public class SauvegardeDocumentXml {
     
