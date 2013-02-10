@@ -24,7 +24,7 @@
  * 
  * UQAM hiver 2013
  */
-package tp1agile;
+package Dom;
 
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
