@@ -50,4 +50,10 @@ public class Soins {
     public Contracts getContract() {
         return this.contracts;
     }
+    
+    @Override
+    public String toString(){
+        return this.numeroSoin + " category = " + this.categorieSoin + "contrat = "+
+                this.contracts;
+    }
 }
