@@ -75,8 +75,11 @@ public class CalculReclamation {
         NodeList date = document.getElementsByTagName("montant");
 
         for (int i = 0; i < date.getLength(); i++) {
-            String element = date.item(i).getTextContent();
-            listeMontant.add(element);
+            String montant = date.item(i).getTextContent();
+            montant = montant.replace(',', '.');
+            montant = montant.replace('$', ' ');
+            montant = montant.trim();            
+            listeMontant.add(montant);
         }
         return listeMontant;
     }
@@ -100,7 +103,7 @@ public class CalculReclamation {
         if (getListeSoins().size() == getListeMontant().size()) {
             for (int i = 0; i < getListeSoins().size(); ++i) {
                 String montant = getListeMontant().get(i);
-                montant = montant.replace('$', ' ');
+               // montant = montant.replace('$', ' '); note : voir getListeMontant()
                 Double it = Double.parseDouble(montant);
                 String st = getListeSoins().get(i);
                 String st2 = getTypeDeContrat2().get(0);
@@ -109,7 +112,20 @@ public class CalculReclamation {
         }
         return listRemboursement;
     }
-
+      public Double addAllRefunds() {
+        Double totalRefund = 0.0;
+        if (getListeSoins().size() == getListeMontant().size()) {
+            for (int i = 0; i < getListeSoins().size(); ++i) {
+                String montant = getListeMontant().get(i);
+                Double it = Double.parseDouble(montant);
+                String st = getListeSoins().get(i);
+                String st2 = getTypeDeContrat2().get(0);
+                totalRefund += effectuerCalcul(it, st, st2);
+            }
+        }
+        return totalRefund;
+    }  
+    
     public double effectuerCalcul(double valeur, String numeroSoin, String contrat) {
         double remboursement = 0;
         ContractList listeContrats = new ContractList();
