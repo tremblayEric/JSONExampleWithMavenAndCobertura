@@ -37,7 +37,7 @@ public class SauvegardeDocumentXmlTest {
         Document document = null;
         String filePath = "";
         SauvegardeDocumentXml instance = new SauvegardeDocumentXml();
-        instance.saveToFile(document, filePath);
+        instance.saveToFile(document);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -51,7 +51,7 @@ public class SauvegardeDocumentXmlTest {
         String filePath = "";
         CalculReclamation reclamation = null;
         SauvegardeDocumentXml instance = new SauvegardeDocumentXml();
-        instance.saveReclamation(filePath, reclamation);
+        instance.saveReclamation(reclamation);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
