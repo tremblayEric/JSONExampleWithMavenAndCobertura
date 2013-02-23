@@ -43,65 +43,50 @@ public class ReclamationDocumentValidation {
       this.document = document;
   }
 
-    public boolean validerReclamation() {
-
-        boolean reclamationValide = false;
-        if (numeroClientValide() && estContratValide() && estMoisValide() && estDateValide() && coherenceMoisDate() && signeDollardPresentPartout() && soinsValide()) {
-            reclamationValide = !reclamationValide;
-        }
-        return reclamationValide;
+    public boolean validerReclamation() throws ValidationInputFileException{
+        numeroClientValide(); 
+        estContratValide(); 
+        estMoisValide();
+        estDateValide(); 
+        coherenceMoisDate();
+        signeDollardPresentPartout();
+        soinsValide();
+        return true;
     }
 
-    private boolean numeroClientValide() {
-
-        boolean numeroEstValide = false;
+    private boolean numeroClientValide() throws ValidationInputFileException{
         String numeroClient = getNumeroClient();
-
-        if (numeroClient.length() == 6 && estUnEntier(numeroClient)) {
-            numeroEstValide = !numeroEstValide;
-           
+        if (!(numeroClient.length() == 6 && estUnEntier(numeroClient))) {
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
         }
-
-        return numeroEstValide;
-
+        return true;
     }
 
     private String getNumeroClient() {
-
         return (String) getListNoeud("client").get(0);
     }
 
-    private boolean estUnEntier(String numero) {
-
+    private boolean estUnEntier(String numero) throws ValidationInputFileException{
         int i = 0;
         boolean estEntier = true;
-
         while (estEntier && i < numero.length()) {
             if (!(numero.charAt(i) >= '0' && numero.charAt(i) <= '9')) {
-                estEntier = !estEntier;
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ENTIER);
             }
             ++i;
         }
-
         return estEntier;
     }
 
-    private boolean estContratValide() {
-
-        boolean estContratValide = false;
+    private boolean estContratValide() throws ValidationInputFileException{
         String contrat = (String) getListNoeud("contrat").get(0);
-
-        if(contrat.length() > 0){
-        if (contrat.charAt(0) >= 'A' && contrat.charAt(0) <= 'D' && contrat.length() == 1) { //modification Boris exemple cas AAAA
-            estContratValide = !estContratValide;
+        if ( !(contrat.charAt(0) >= 'A' && contrat.charAt(0) <= 'D' && contrat.length() == 1) ) { //modification Boris exemple cas AAAA
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_CONTRAT);
         }
-        }
-
-        return estContratValide;
+        return true;
     }
 
-    private boolean estDateValide( String laDate, String type ){
-        boolean moisValide = false;
+    private boolean estDateValide( String laDate, String type )throws ValidationInputFileException{
         SimpleDateFormat dateFormat;
         if( type.compareTo("mois") == 0){
             dateFormat = new SimpleDateFormat("yyyy-MM");
@@ -112,51 +97,52 @@ public class ReclamationDocumentValidation {
         try {
             d = dateFormat.parse(laDate); //
             String format = dateFormat.format(d);
-            if(format.compareTo(laDate) ==  0){ 
-                moisValide = !moisValide;
+            if(!(format.compareTo(laDate) ==  0)){ 
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
             }
         } catch (Exception e) {
+           
+            throw new ValidationInputFileException(e.getMessage());
         }
-        //System.out.println( "Validité de " + laDate + " : " + moisValide );
-        return moisValide;
+        return true;
     
     }
     
-    private boolean estDateValide() {
-        boolean moisValide = true;
+    private boolean estDateValide() throws ValidationInputFileException{
         List<String> listedate = getListNoeud("date");
         int i = 0;
         //String mois = (String) getListNoeud("mois").get(0);
-        while( moisValide && i < listedate.size() ){
-            moisValide = estDateValide(listedate.get(i), "date");
-            i = i + 1;
-        }
-        return moisValide;
-    }
-    
-    private boolean estMoisValide() {
-        boolean moisValide = true;
-        List<String> listeMois = getListNoeud("mois");
-        int i = 0;
-        if(listeMois.size() == 1){
-            while( moisValide && i < listeMois.size() ){
-                moisValide = estDateValide(listeMois.get(i), "mois");
+        if(listedate.size() >= 1){
+            while( i < listedate.size() ){
+                estDateValide(listedate.get(i), "date");
                 i = i + 1;
             }
         }else{
-            moisValide = false;
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
         }
-        return moisValide;
+        return true;
+    }
+    
+    private boolean estMoisValide()throws ValidationInputFileException {
+        List<String> listeMois = getListNoeud("mois");
+        int i = 0;
+        if(listeMois.size() == 1){
+            while( i < listeMois.size() ){
+                estDateValide(listeMois.get(i), "mois");
+                i = i + 1;
+            }
+        }else{
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
+        }
+        return true;
     }
     
     
-    private boolean coherenceMoisDate() {
-        boolean moisValide = true;
+    private boolean coherenceMoisDate() throws ValidationInputFileException{
         int i = 0;
         List<String> listeDate = getListNoeud("date");
         List<String> listeMois = getListNoeud("mois");
         try {
-            
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
             Date mois = new Date();
             mois = dateFormatMois.parse(listeMois.get(0));
@@ -166,61 +152,39 @@ public class ReclamationDocumentValidation {
             
             SimpleDateFormat dateFormatM = new SimpleDateFormat("yyyy-MM");
         
-            while(moisValide && i < listeDate.size()){
+            while(i < listeDate.size()){
                 
                 date = dateFormat.parse(listeDate.get(i));
                 date = dateFormatM.parse(listeDate.get(i));
                 if( mois.after(date) || mois.before(date)){
-                    moisValide = false;
+                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
                 }
                 i = i + 1;
-                //System.out.println("Coherence " + listeDate.get(i) + ": " + moisValide );
             }
-        
         } catch (Exception e) {
-            moisValide = false;
+            throw new ValidationInputFileException(e.getMessage());
         }
       
-        return moisValide;
+        return true;
     }
   
-    /*boolean moisValide = false;
-        List<String> listeMois = getListNoeud("mois");
-        String mois = (String) getListNoeud("mois").get(0);
-        for(int i = 0; i < list ; ++i){
-            moisValide = estDateValide( listeMois.get(i) );
-        }
-        
-        if (mois.length() == 7 ) {
-            moisValide = !moisValide;
-        }
-        return moisValide;
-    */
     
-    private boolean signeDollardPresentPartout() {
-
+    private boolean signeDollardPresentPartout() throws ValidationInputFileException {
         int i = 0;
-        boolean presentPartout = true;
         List<String> listeReclamations = getListNoeud("montant");
-
-        while (presentPartout && i < listeReclamations.size()) {
-
+        while ( i < listeReclamations.size()) {
             if (listeReclamations.get(i).charAt(listeReclamations.get(i).length() - 1) != '$') {
-                presentPartout = !presentPartout;
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SIGNE_DOLLAR);
             }
             ++i;
-
         }
-        return presentPartout;
+        return true;
     }
 
-    private boolean soinsValide() {
-
+    private boolean soinsValide()throws ValidationInputFileException {
         int i = 0;
-        boolean valide = true;
         List<String> list = getListNoeud("soin");
         List<String> listSoinsValides = new ArrayList();
-
         listSoinsValides.add("0");
         listSoinsValides.add("100");
         listSoinsValides.add("200");
@@ -228,25 +192,17 @@ public class ReclamationDocumentValidation {
         listSoinsValides.add("500");
         listSoinsValides.add("600");
         listSoinsValides.add("700");
-        
-
-       
-          while (valide && i < list.size()) {
-            
+          while ( i < list.size()) {
             if ( !listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
-                valide = false;
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SOIN);
             }
             ++i;
         } 
-        
-        
-        return valide;
+        return true;
     }
 
     private List<String> getListNoeud(String noeud) {
-
         List<String> list = new ArrayList();
-
         NodeList listeNoeuds = document.getElementsByTagName(noeud);
         for (int i = 0; i < listeNoeuds.getLength(); ++i) {
             Element client = (Element) listeNoeuds.item(i);
@@ -255,6 +211,4 @@ public class ReclamationDocumentValidation {
 
         return list;
     }
-
-    
 } 

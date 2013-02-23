@@ -27,9 +27,9 @@
 package tp1agile;
 
 import Data.ContractList;
-import Validation.ReclamationDocumentValidation;
 import Dom.ParserXML;
 import Save.SauvegardeDocumentXml;
+import Validation.*;
 
 
 public class TP1Agile {
@@ -37,7 +37,7 @@ public class TP1Agile {
     
     public static void main(String[] args) throws Exception {
 
-        
+        /*
         if(args.length == 2){
           
         ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]  );
@@ -52,6 +52,20 @@ public class TP1Agile {
             persistanceDesDonnees.saveSignalInvalidInputXML( "src/XmlFiles/" + args[1]);
         }
           
+        }
+        */
+        if(args.length == 2){
+            ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]  );
+            ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
+            SauvegardeDocumentXml persistanceDesDonnees = new SauvegardeDocumentXml();
+            try{
+                reclamation.validerReclamation();
+                ContractList listeContrats = new ContractList();
+                CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());
+                persistanceDesDonnees.saveReclamation( "src/XmlFiles/" + args[1], calcul);
+            }catch(ValidationInputFileException e){
+                persistanceDesDonnees.saveSignalInvalidInputXML( "src/XmlFiles/" + args[1], e.getMessage());
+            } 
         }
        
     }
