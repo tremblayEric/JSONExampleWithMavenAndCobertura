@@ -47,10 +47,14 @@ import tp1agile.CalculReclamation;
 
 public class SauvegardeDocumentXml {
 
+    private String filePath = "refunt.xml"; 
     public SauvegardeDocumentXml() {
     }
+    public SauvegardeDocumentXml(String filePath) {
+        this.filePath = filePath;
+    }
 
-    public void saveToFile(Document document, String filePath) throws Exception {
+    public void saveToFile(Document document ) throws Exception {
         Source domSource = new DOMSource(document);
         File xmlFile = new File(filePath);
         Result serializationResult = new StreamResult(xmlFile);
@@ -59,7 +63,7 @@ public class SauvegardeDocumentXml {
         xmlTransformer.transform(domSource, serializationResult);
     }
 
-    public void saveReclamation(String filePath, CalculReclamation reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+    public void saveReclamation(CalculReclamation reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
         Document document;
         DecimalFormat df = new DecimalFormat("#0.00");
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -112,13 +116,13 @@ public class SauvegardeDocumentXml {
         nodeList.item(0).appendChild(element);
 
         try {
-            saveToFile(document, filePath);
+            saveToFile(document );
         } catch (Exception e) {
         }
 
     }
 
-    public void saveSignalInvalidInputXML(String filePath) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+    public void saveSignalInvalidInputXML() throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
 
         Document doc2;
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -142,7 +146,7 @@ public class SauvegardeDocumentXml {
         transformer.transform(domSource, result);
     }
     
-    public void saveSignalInvalidInputXML(String filePath, String message) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+    public void saveSignalInvalidInputXML(String message) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
 
         Document doc2;
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();

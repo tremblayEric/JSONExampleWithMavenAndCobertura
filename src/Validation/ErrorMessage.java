@@ -16,4 +16,5 @@ public class ErrorMessage {
     public final static String MESSAGE_ERREUR_MOIS = "LE MOIS ENTRE EST NON VALIDE"; //exigence1
     public final static String MESSAGE_ERREUR_SIGNE_DOLLAR = "LE SIGNE DE DOLLAR EST MAL PLACE OU EST MANQUANT"; //exigence1
     public final static String MESSAGE_ERREUR_SOIN = "LE SOIN ENTRE EST NON VALIDE"; //exigence1
+    public final static String MESSAGE_ERREUR_INPUT_FILE = "LE FICHIER INPUT EST MANQUANT"; //exigence1
 }
