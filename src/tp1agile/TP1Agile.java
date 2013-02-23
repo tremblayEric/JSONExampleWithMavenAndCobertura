@@ -33,42 +33,45 @@ import Save.SauvegardeDocumentXml;
 import Validation.*;
 import java.io.FileNotFoundException;
 
-
 public class TP1Agile {
 
-    
     public static void main(String[] args) throws Exception {
 
         /*
-        if(args.length == 2){
+         if(args.length == 2){
           
-        ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]  );
-        ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
-        SauvegardeDocumentXml persistanceDesDonnees = new SauvegardeDocumentXml ();
+         ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]  );
+         ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
+         SauvegardeDocumentXml persistanceDesDonnees = new SauvegardeDocumentXml ();
 
-        if(reclamation.validerReclamation()){
-            ContractList listeContrats = new ContractList();
-            CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());
-            persistanceDesDonnees.saveReclamation( "src/XmlFiles/" + args[1], calcul);
-        }else{
-            persistanceDesDonnees.saveSignalInvalidInputXML( "src/XmlFiles/" + args[1]);
-        }
+         if(reclamation.validerReclamation()){
+         ContractList listeContrats = new ContractList();
+         CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());
+         persistanceDesDonnees.saveReclamation( "src/XmlFiles/" + args[1], calcul);
+         }else{
+         persistanceDesDonnees.saveSignalInvalidInputXML( "src/XmlFiles/" + args[1]);
+         }
           
+         }
+         */
+        if (args.length == 2) {
+
+            SauvegardeDocumentXml persistanceDesDonnees = new SauvegardeDocumentXml("src/XmlFiles/" + args[1]);
+            try {
+                ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]);
+                ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
+                reclamation.validerReclamation();
+                CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());
+                persistanceDesDonnees.saveReclamation(calcul);
+            } catch (ValidationInputFileException e1) {
+                persistanceDesDonnees.saveSignalInvalidInputXML(e1.getMessage());
+            } catch (FileNotFoundException e2) {
+                persistanceDesDonnees.saveSignalInvalidInputXML(ErrorMessage.MESSAGE_ERREUR_INPUT_FILE);
+            }
+
+        } else {
+            System.out.println("Des arguments de la ligne de commande sont manquants.");
+            System.out.println("java -jar Refund.jar inputfile.xml refunds.xml\n");            
         }
-        */
-        SauvegardeDocumentXml persistanceDesDonnees = new SauvegardeDocumentXml("src/XmlFiles/" + args[1]);          
-        try{
-            ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]  );
-            ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
-            reclamation.validerReclamation();
-            CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());    
-            persistanceDesDonnees.saveReclamation(calcul);
-        }catch(ValidationInputFileException e1){
-            persistanceDesDonnees.saveSignalInvalidInputXML(e1.getMessage());    
-        } catch(FileNotFoundException e2){
-            persistanceDesDonnees.saveSignalInvalidInputXML(ErrorMessage.MESSAGE_ERREUR_INPUT_FILE);    
-        } 
-        
-       
     }
 }
