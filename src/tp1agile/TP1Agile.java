@@ -71,7 +71,8 @@ public class TP1Agile {
 
         } else {
             System.out.println("Des arguments de la ligne de commande sont manquants.");
-            System.out.println("java -jar Refund.jar inputfile.xml refunds.xml\n");            
+            System.out.println("java -jar Refund.jar inputfile.xml refunds.xml\n");   
+            
         }
     }
 }
