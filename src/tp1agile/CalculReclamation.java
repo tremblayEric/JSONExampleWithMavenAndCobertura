@@ -20,18 +20,27 @@ public class CalculReclamation {
         this.document = document;
     }
 
-    public List<String> getTypeDeContrat2() {
-        NodeList lesContrats = document.getElementsByTagName("contrat");
+    
+    public String getContractType() {
+        NodeList lesContrats = document.getElementsByTagName("dossier");
+        String contractType = lesContrats.item(0).getTextContent();
+        contractType = contractType.substring(0, 1);
+        return contractType;
+    }
+    
+    
+  /*  public List<String> getTypeDeContrat2() {
+        NodeList lesContrats = document.getElementsByTagName("dossier");
         List<String> contrats = new ArrayList<>();
-
         for (int i = 0; i < lesContrats.getLength(); i++) {
+            System.out.println("lesContrats.item(i) : " + lesContrats.item(i));
             Node contrat = lesContrats.item(i);
             Element element = (Element) contrat;
+            System.out.println("element.getTextContent : " + element.getTextContent());
             contrats.add(element.getTextContent());
         }
         return contrats;
-
-    }
+    } */
 
     public List<Element> getListeDesReclamations() {
 
@@ -78,18 +87,25 @@ public class CalculReclamation {
             String montant = date.item(i).getTextContent();
             montant = montant.replace(',', '.');
             montant = montant.replace('$', ' ');
-            montant = montant.trim();
+     //       montant = montant.trim();
             listeMontant.add(montant);
         }
         return listeMontant;
+    } 
+    
+    public String getNumeroDossier() {
+        String numeroClient;
+        NodeList date = document.getElementsByTagName("dossier");
+        numeroClient = date.item(0).getTextContent();
+        return numeroClient;
     }
 
-    public String getNumeroClient() {
+ /*   public String getNumeroClient() {
         String numeroClient;
         NodeList date = document.getElementsByTagName("client");
         numeroClient = date.item(0).getTextContent();
         return numeroClient;
-    }
+    } */
 
     public String getMois() {
         String numeroClient;
@@ -103,13 +119,15 @@ public class CalculReclamation {
         if (getListeSoins().size() == getListeMontant().size()) {
             for (int i = 0; i < getListeSoins().size(); ++i) {
                 String montant = getListeMontant().get(i);
-                // montant = montant.replace('$', ' '); note : voir getListeMontant()
                 Double it = Double.parseDouble(montant);
                 String st = getListeSoins().get(i);
-                String st2 = getTypeDeContrat2().get(0);
+                String st2 = getContractType();
                 listRemboursement.add(effectuerCalcul(it, st, st2));
             }
         }
+    //    for (Double rem : listRemboursement){
+    //        System.out.println(" rem : " + listRemboursement);
+    //    }
         return listRemboursement;
     }
 
@@ -120,7 +138,7 @@ public class CalculReclamation {
                 String montant = getListeMontant().get(i);
                 Double it = Double.parseDouble(montant);
                 String st = getListeSoins().get(i);
-                String st2 = getTypeDeContrat2().get(0);
+                String st2 = getContractType();
                 totalRefund += effectuerCalcul(it, st, st2);
             }
         }
@@ -130,7 +148,7 @@ public class CalculReclamation {
     public double effectuerCalcul(double valeur, String numeroSoin, String contrat) {
         double remboursement = 0;
         ContractList listeContrats = new ContractList();
-        remboursement = valeur * listeContrats.getContractRatioByCareNumber(numeroSoin, contrat);
+        remboursement = valeur * listeContrats.getContractRatioByCareNumber(numeroSoin, contrat);      
         if (listeContrats.getContractMaxValueByCareNumberExist(numeroSoin, contrat) && remboursement > listeContrats.getContractMaxValueByCareNumber(numeroSoin, contrat)) {
             remboursement = listeContrats.getContractMaxValueByCareNumber(numeroSoin, contrat);
         }
