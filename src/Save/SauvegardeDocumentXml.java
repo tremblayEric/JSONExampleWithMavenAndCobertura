@@ -74,10 +74,10 @@ public class SauvegardeDocumentXml {
         document.appendChild(element);
 
         NodeList nodeList = document.getElementsByTagName("remboursements");
-        element = document.createElement("client");
+        element = document.createElement("dossier");
         nodeList.item(0).appendChild(element);
-        nodeList = document.getElementsByTagName("client");
-        nodeList.item(0).setTextContent(reclamation.getNumeroClient());
+        nodeList = document.getElementsByTagName("dossier");
+        nodeList.item(0).setTextContent(reclamation.getNumeroDossier());
 
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("mois");

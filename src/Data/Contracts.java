@@ -56,7 +56,7 @@ public class Contracts {
         this.ratioB = ratioB;
         this.ratioC = ratioC;
         this.ratioD = ratioD;
-        this.ratioD = ratioE;
+        this.ratioE = ratioE;
     }
     
     public void setMax(boolean maxA, boolean maxB, boolean maxC, boolean maxD, boolean maxE){
@@ -64,7 +64,7 @@ public class Contracts {
         this.maxB = maxB;
         this.maxC = maxC;
         this.maxD = maxD;
-        this.maxD = maxE;
+        this.maxE = maxE;
     }
     
     public void setMaxValue(int maxValueA, int maxValueB, int maxValueC, int maxValueD, int maxValueE){
@@ -72,7 +72,7 @@ public class Contracts {
         this.maxValueB = maxValueB;
         this.maxValueC = maxValueC;
         this.maxValueD = maxValueD;
-        this.maxValueD = maxValueE;
+        this.maxValueE = maxValueE;
     }
  
     public double getRatioA(){

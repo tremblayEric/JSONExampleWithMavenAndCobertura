@@ -44,8 +44,9 @@ public class ReclamationDocumentValidation {
   }
 
     public boolean validerReclamation() throws ValidationInputFileException{
-        numeroClientValide(); 
-        estContratValide(); 
+//        numeroClientValide(); // client
+//        estContratValide();  // contrat
+        estDossierValide();
         estMoisValide();
         estDateValide(); 
         coherenceMoisDate();
@@ -54,16 +55,37 @@ public class ReclamationDocumentValidation {
         return true;
     }
 
-    private boolean numeroClientValide() throws ValidationInputFileException{
+    private boolean estDossierValide() throws ValidationInputFileException{
+        String numeroDossier = getNumeroDossier();
+       /* if (numeroDossier.substring(0, 1) != "A" || numeroDossier.substring(0, 1) != "B" || 
+            numeroDossier.substring(0, 1) != "C" || numeroDossier.substring(0, 1) != "D" ||
+            numeroDossier.substring(0, 1) != "E"){  */
+        if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E' )){
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_CONTRAT);
+        }else if (!(numeroDossier.length() == 7 && estUnEntier(numeroDossier.substring(1)))){
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
+        }       
+        return true;
+    }
+    
+   /* private boolean estContratValide() throws ValidationInputFileException{
+        String contrat = (String) getListNoeud("contrat").get(0);
+        if ( !(contrat.charAt(0) >= 'A' && contrat.charAt(0) <= 'D' && contrat.length() == 1) ) { //modification Boris exemple cas AAAA
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_CONTRAT);
+        }
+        return true;
+    } */
+    
+   /* private boolean numeroClientValide() throws ValidationInputFileException{
         String numeroClient = getNumeroClient();
         if (!(numeroClient.length() == 6 && estUnEntier(numeroClient))) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
         }
         return true;
-    }
+    } */
 
-    private String getNumeroClient() {
-        return (String) getListNoeud("client").get(0);
+    private String getNumeroDossier() {
+        return (String) getListNoeud("dossier").get(0);
     }
 
     private boolean estUnEntier(String numero) throws ValidationInputFileException{
@@ -78,13 +100,7 @@ public class ReclamationDocumentValidation {
         return estEntier;
     }
 
-    private boolean estContratValide() throws ValidationInputFileException{
-        String contrat = (String) getListNoeud("contrat").get(0);
-        if ( !(contrat.charAt(0) >= 'A' && contrat.charAt(0) <= 'D' && contrat.length() == 1) ) { //modification Boris exemple cas AAAA
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_CONTRAT);
-        }
-        return true;
-    }
+
 
     private boolean estDateValide( String laDate, String type )throws ValidationInputFileException{
         SimpleDateFormat dateFormat;

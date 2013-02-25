@@ -37,7 +37,7 @@ public class ContractList {
 
         //masso
         Contracts massoContracts = new Contracts();
-        massoContracts.setRatio(0.25, 0.5, 0.9, 1.0,0.15);
+        massoContracts.setRatio(0.25, 0.5, 0.9, 1.0, 0.15);
         massoContracts.setMax(false, true, false, true,false);
         massoContracts.setMaxValue(-1, 40, -1, 85,-1);
 
@@ -45,55 +45,55 @@ public class ContractList {
                                             contrat A couvert a 35%
                                             contrat C couvert a 95%*/
         Contracts osteoContracts = new Contracts();
-        osteoContracts.setRatio(0.35, 0.5, 0.95, 1.0,0.25);
+        osteoContracts.setRatio(0.35, 0.5, 0.95, 1.0, 0.25);
         osteoContracts.setMax(false, true, false, true,false);
         osteoContracts.setMaxValue(-1, 50, -1, 75,-1);
         
         /*ajout iteration 2 : contrat de Kinesitherapie*/
         Contracts kinesitherapieContract = new Contracts();
-        kinesitherapieContract.setRatio(0.0, 0.7, 0.85, 1.0,0.15);
+        kinesitherapieContract.setRatio(0.0, 0.7, 0.85, 1.0, 0.15);
         kinesitherapieContract.setMax(false, false, false, true,false);
         kinesitherapieContract.setMaxValue(-1, -1, -1, 150,-1);
         
         /*ajout iteration 2 : contrat de medecin generaliste prive*/
         Contracts privateGeneralMedecineContract = new Contracts();
-        privateGeneralMedecineContract.setRatio(0.5, 0.75, 0.9, 0.95,0.25);
+        privateGeneralMedecineContract.setRatio(0.5, 0.75, 0.9, 0.95, 0.25);
         privateGeneralMedecineContract.setMax(false, false, false, false,true);
         privateGeneralMedecineContract.setMaxValue(-1, -1, -1, -1,20);
 
         //psycho
         Contracts psychoContracts = new Contracts();
-        psychoContracts.setRatio(0.25, 1.0, 0.9, 1.0,0.12);
+        psychoContracts.setRatio(0.25, 1.0, 0.9, 1.0, 0.12);
         psychoContracts.setMax(false, false, false, true,false);
         psychoContracts.setMaxValue(-1, -1, -1, 100,-1);
 
         //dentaires
         Contracts dentalContracts = new Contracts();
-        dentalContracts.setRatio(0.0, 0.5, 0.9, 1.0,0.6);
+        dentalContracts.setRatio(0.0, 0.5, 0.9, 1.0, 0.6);
         dentalContracts.setMax(false, false, false, false,false);
         dentalContracts.setMaxValue(-1, -1, -1, -1,-1);
 
         //naturo et acupuncture
         Contracts naturoAcupContracts = new Contracts();
-        naturoAcupContracts.setRatio(0.0, 0.0, 0.9, 1.0,0.25);
+        naturoAcupContracts.setRatio(0.0, 0.0, 0.9, 1.0, 0.25);
         naturoAcupContracts.setMax(false, false, false, true,true);
         naturoAcupContracts.setMaxValue(-1, -1, -1, 65,15);
 
         //chiro modif iteration 2 contrat D remb. a 100% sans max
         Contracts chiroContracts = new Contracts();
-        chiroContracts.setRatio(0.25, 0.5, 0.9, 1.0,0.3);
+        chiroContracts.setRatio(0.25, 0.5, 0.9, 1.0, 0.3);
         chiroContracts.setMax(false, true, false, false,true);
         chiroContracts.setMaxValue(-1, 50, -1, -1,20);
 
         //physio modif. iteration 2 contrat C couvert a 75%
         Contracts physioContracts = new Contracts();
-        physioContracts.setRatio(0.4, 1.0, 0.75, 1.0,0.15);
+        physioContracts.setRatio(0.4, 1.0, 0.75, 1.0, 0.15);
         physioContracts.setMax(false, false, false, true,false);
         physioContracts.setMaxValue(-1, -1, -1, 100,-1);
 
         //ortho
         Contracts orthoErgoContracts = new Contracts();
-        orthoErgoContracts.setRatio(0.0, 0.7, 0.9, 1.0,0.22);
+        orthoErgoContracts.setRatio(0.0, 0.7, 0.9, 1.0, 0.22);
         orthoErgoContracts.setMax(false, false, false, true,false);
         orthoErgoContracts.setMaxValue(-1, -1, -1, 90,-1);
        
@@ -129,7 +129,6 @@ public class ContractList {
         int i = 0;
         boolean founded = false;
         double ratio = -1;
-        
         String tempCare = roundCareNumber(careNumber);
         
         while (!founded && i < contractList.size()) {
@@ -144,6 +143,8 @@ public class ContractList {
                     ratio = contractList.get(i).getContract().getRatioC();
                 } else if (contract.compareTo("D") == 0) {
                     ratio = contractList.get(i).getContract().getRatioD();
+                } else if (contract.compareTo("E") == 0) {
+                    ratio = contractList.get(i).getContract().getRatioE();
                 }
             }
             ++i;
@@ -172,6 +173,8 @@ public class ContractList {
                     max = contractList.get(i).getContract().getMavalueC();
                 } else if (contract.compareTo("D") == 0) {
                     max = contractList.get(i).getContract().getMavalueD();
+                } else if (contract.compareTo("E") == 0) {
+                    max = contractList.get(i).getContract().getMavalueE();
                 }
             }
             
