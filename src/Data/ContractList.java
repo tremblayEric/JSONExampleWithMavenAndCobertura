@@ -97,31 +97,19 @@ public class ContractList {
         orthoErgoContracts.setMax(false, false, false, true,false);
         orthoErgoContracts.setMaxValue(-1, -1, -1, 90,-1);
        
-        //creation des soins 
-        Soins massotherapie = new Soins("0", "Massothérapie", massoContracts);
-        Soins osteopathie = new Soins("100", "Ostéopathie", osteoContracts);
+        //creation  et ajout des soins dans la liste
+        contractList.add(new Soins("0", "Massothérapie", massoContracts));
+        contractList.add(new Soins("100", "Ostéopathie", osteoContracts));
         /*ajout iteration 2 : soin 150 Kinesitherapie*/
-        Soins kinesitherapie = new Soins("150", "kinesitherapie", kinesitherapieContract);
-        /*ajout iteration 2 : soin 175 Kinesitherapie*/
-        Soins privateGeneralMedecine = new Soins("175", "Medecin generaliste prive", privateGeneralMedecineContract);
-        Soins psychoIndividuelle = new Soins("200", "Psychologie individuelle", psychoContracts);
-        Soins soinsDentaires = new Soins("300", "Soins dentaires", dentalContracts);
-        Soins NaturoAcupuncture = new Soins("400", "Naturopathie, acuponcture", naturoAcupContracts);
-        Soins Chiro = new Soins("500", "Chiropratie", chiroContracts);
-        Soins Physio = new Soins("600", "Physiothérapie", physioContracts);
-        Soins OrthoErgo = new Soins("700", "Orthophonie, ergothérapie", orthoErgoContracts);
-
-        //le tout dans la liste
-        contractList.add(massotherapie);
-        contractList.add(osteopathie);
-        contractList.add(kinesitherapie);
-        contractList.add(privateGeneralMedecine);
-        contractList.add(psychoIndividuelle);
-        contractList.add(soinsDentaires);
-        contractList.add(NaturoAcupuncture);
-        contractList.add(Chiro);
-        contractList.add(Physio);
-        contractList.add(OrthoErgo);
+        contractList.add(new Soins("150", "kinesitherapie", kinesitherapieContract));
+        /*ajout iteration 2 : soin 175 Medecin generaliste prive*/
+        contractList.add(new Soins("175", "Medecin generaliste prive", privateGeneralMedecineContract));
+        contractList.add(new Soins("200", "Psychologie individuelle", psychoContracts));
+        contractList.add(new Soins("300", "Soins dentaires", dentalContracts));
+        contractList.add(new Soins("400", "Naturopathie, acuponcture", naturoAcupContracts));
+        contractList.add(new Soins("500", "Chiropratie", chiroContracts));
+        contractList.add(new Soins("600", "Physiothérapie", physioContracts));
+        contractList.add(new Soins("700", "Orthophonie, ergothérapie", orthoErgoContracts));
     }
 
     public double getContractRatioByCareNumber(String careNumber, String contract) {
