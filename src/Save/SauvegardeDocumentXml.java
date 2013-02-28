@@ -130,20 +130,19 @@ public class SauvegardeDocumentXml {
 
         for (int i = 0; i < reclamation.getListeDesReclamations().size(); ++i) {
 
-            nodeList = document.getElementsByTagName("remboursements");
-            element = document.createElement("remboursement");
-            nodeList.item(0).appendChild(element);
-
+            createRefundNode(reclamation, nodeList, document, element, i);
             createCareNode(reclamation, nodeList, document, element, i);
-
             createDateNode(reclamation, nodeList, document, element, i);
-
-            createAmountNode( reclamation,  nodeList,  document,  element,  i,df);
-
-
+            createAmountNode(reclamation, nodeList, document, element, i, df);
 
         }
 
+    }
+
+    private void createRefundNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
+        nodeList = document.getElementsByTagName("remboursements");
+        element = document.createElement("remboursement");
+        nodeList.item(0).appendChild(element);
 
     }
 
@@ -167,7 +166,7 @@ public class SauvegardeDocumentXml {
 
     }
 
-    private void createAmountNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i,DecimalFormat df) {
+    private void createAmountNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i, DecimalFormat df) {
 
         nodeList = document.getElementsByTagName("remboursement");
         element = document.createElement("montant");
