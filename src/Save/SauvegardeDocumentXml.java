@@ -87,13 +87,9 @@ public class SauvegardeDocumentXml {
         nodeList = document.getElementsByTagName("mois");
         nodeList.item(0).setTextContent(reclamation.getMois());
 
-
         serialyzeReclamation(reclamation, nodeList, document, element, df);
-
-        nodeList = document.getElementsByTagName("remboursements");
-        element = document.createElement("total");
-        element.setTextContent(df.format((reclamation.addAllRefunds())).toString() + "$");
-        nodeList.item(0).appendChild(element);
+        createTotalNode( reclamation,  nodeList,  document,  element, df);
+        
 
         try {
             saveToFile(document);
@@ -129,50 +125,47 @@ public class SauvegardeDocumentXml {
     private void serialyzeReclamation(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, DecimalFormat df) {
 
         for (int i = 0; i < reclamation.getListeDesReclamations().size(); ++i) {
-
             createRefundNode(reclamation, nodeList, document, element, i);
             createCareNode(reclamation, nodeList, document, element, i);
             createDateNode(reclamation, nodeList, document, element, i);
             createAmountNode(reclamation, nodeList, document, element, i, df);
-
         }
-
     }
 
     private void createRefundNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("remboursement");
         nodeList.item(0).appendChild(element);
-
     }
 
     private void createCareNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
-
         nodeList = document.getElementsByTagName("remboursement");
         element = document.createElement("soin");
         nodeList.item(i).appendChild(element);
         nodeList = document.getElementsByTagName("soin");
         nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
-
     }
 
     private void createDateNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
-
         nodeList = document.getElementsByTagName("remboursement");
         element = document.createElement("date");
         nodeList.item(i).appendChild(element);
         nodeList = document.getElementsByTagName("date");
         nodeList.item(i).setTextContent(reclamation.getListeDate().get(i));
-
     }
 
     private void createAmountNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i, DecimalFormat df) {
-
         nodeList = document.getElementsByTagName("remboursement");
         element = document.createElement("montant");
         nodeList.item(i).appendChild(element);
         nodeList = document.getElementsByTagName("montant");
         nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString() + "$");
-
+    }
+    
+    private void createTotalNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element,DecimalFormat df){
+        nodeList = document.getElementsByTagName("remboursements");
+        element = document.createElement("total");
+        element.setTextContent(df.format((reclamation.addAllRefunds())).toString() + "$");
+        nodeList.item(0).appendChild(element);
     }
 }
