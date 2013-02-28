@@ -74,12 +74,8 @@ public class SauvegardeDocumentXml {
 
         this.reclamation = reclamation;
         df = new DecimalFormat("#0.00");
-        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = builderFactory.newDocumentBuilder();
-        document = builder.newDocument();
-        document.setXmlVersion("1.0");
-        element = document.createElement("remboursements");
-        document.appendChild(element);
+        
+        XmlDocumentRefundsInitialisation();
 
         nodeList = document.getElementsByTagName("remboursements");
 
@@ -87,8 +83,7 @@ public class SauvegardeDocumentXml {
         createMonthNode();
         serialyzeReclamation();
         createTotalNode();
-
-
+        
         try {
             saveToFile(document);
         } catch (Exception e) {
@@ -118,6 +113,15 @@ public class SauvegardeDocumentXml {
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.transform(domSource, result);
+    }
+    
+    private void XmlDocumentRefundsInitialisation() throws ParserConfigurationException{
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = builderFactory.newDocumentBuilder();
+        document = builder.newDocument();
+        document.setXmlVersion("1.0");
+        element = document.createElement("remboursements");
+        document.appendChild(element);
     }
 
     private void serialyzeReclamation() {
