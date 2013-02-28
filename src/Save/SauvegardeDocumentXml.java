@@ -48,6 +48,11 @@ import tp1agile.CalculReclamation;
 public class SauvegardeDocumentXml {
 
     private String filePath = "refunt.xml";
+    private Document document;
+    private DecimalFormat df;
+    private Element element;
+    private CalculReclamation reclamation;
+    private NodeList nodeList;
 
     public SauvegardeDocumentXml() {
     }
@@ -66,21 +71,22 @@ public class SauvegardeDocumentXml {
     }
 
     public void saveReclamation(CalculReclamation reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
-        Document document;
-        DecimalFormat df = new DecimalFormat("#0.00");
+
+        this.reclamation = reclamation;
+        df = new DecimalFormat("#0.00");
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         document = builder.newDocument();
         document.setXmlVersion("1.0");
-        Element element = document.createElement("remboursements");
+        element = document.createElement("remboursements");
         document.appendChild(element);
 
-        NodeList nodeList = document.getElementsByTagName("remboursements");
+        nodeList = document.getElementsByTagName("remboursements");
 
-        createFolderNode( reclamation,  nodeList,  document,  element);
-        createMonthNode(reclamation, nodeList, document, element);
-        serialyzeReclamation(reclamation, nodeList, document, element, df);
-        createTotalNode(reclamation, nodeList, document, element, df);
+        createFolderNode();
+        createMonthNode();
+        serialyzeReclamation();
+        createTotalNode();
 
 
         try {
@@ -90,21 +96,6 @@ public class SauvegardeDocumentXml {
 
     }
 
-    public void createFolderNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element){
-        
-        element = document.createElement("dossier");
-        nodeList.item(0).appendChild(element);
-        nodeList = document.getElementsByTagName("dossier");
-        nodeList.item(0).setTextContent(reclamation.getNumeroDossier());
-    }
-    public void createMonthNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element) {
-        nodeList = document.getElementsByTagName("remboursements");
-        element = document.createElement("mois");
-        nodeList.item(0).appendChild(element);
-        nodeList = document.getElementsByTagName("mois");
-        nodeList.item(0).setTextContent(reclamation.getMois());
-    }
-
     public void saveSignalInvalidInputXML(String message) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
 
         Document doc2;
@@ -112,9 +103,9 @@ public class SauvegardeDocumentXml {
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         doc2 = builder.newDocument();
         doc2.setXmlVersion("1.0");
-        Element element = doc2.createElement("remboursements");
+        element = doc2.createElement("remboursements");
         doc2.appendChild(element);
-        NodeList nodeList = doc2.getElementsByTagName("remboursements");
+        nodeList = doc2.getElementsByTagName("remboursements");
         element = doc2.createElement("message");
         nodeList.item(0).appendChild(element);
         nodeList = doc2.getElementsByTagName("message");
@@ -129,23 +120,23 @@ public class SauvegardeDocumentXml {
         transformer.transform(domSource, result);
     }
 
-    private void serialyzeReclamation(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, DecimalFormat df) {
+    private void serialyzeReclamation() {
 
         for (int i = 0; i < reclamation.getListeDesReclamations().size(); ++i) {
-            createRefundNode(reclamation, nodeList, document, element, i);
-            createCareNode(reclamation, nodeList, document, element, i);
-            createDateNode(reclamation, nodeList, document, element, i);
-            createAmountNode(reclamation, nodeList, document, element, i, df);
+            createRefundNode(i);
+            createCareNode(i);
+            createDateNode(i);
+            createAmountNode(i);
         }
     }
 
-    private void createRefundNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
+    private void createRefundNode(int i) {
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("remboursement");
         nodeList.item(0).appendChild(element);
     }
 
-    private void createCareNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
+    private void createCareNode(int i) {
         nodeList = document.getElementsByTagName("remboursement");
         element = document.createElement("soin");
         nodeList.item(i).appendChild(element);
@@ -153,7 +144,7 @@ public class SauvegardeDocumentXml {
         nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
     }
 
-    private void createDateNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
+    private void createDateNode(int i) {
         nodeList = document.getElementsByTagName("remboursement");
         element = document.createElement("date");
         nodeList.item(i).appendChild(element);
@@ -161,7 +152,7 @@ public class SauvegardeDocumentXml {
         nodeList.item(i).setTextContent(reclamation.getListeDate().get(i));
     }
 
-    private void createAmountNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i, DecimalFormat df) {
+    private void createAmountNode(int i) {
         nodeList = document.getElementsByTagName("remboursement");
         element = document.createElement("montant");
         nodeList.item(i).appendChild(element);
@@ -169,10 +160,26 @@ public class SauvegardeDocumentXml {
         nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString() + "$");
     }
 
-    private void createTotalNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, DecimalFormat df) {
+    private void createTotalNode() {
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("total");
         element.setTextContent(df.format((reclamation.addAllRefunds())).toString() + "$");
         nodeList.item(0).appendChild(element);
+    }
+
+    private void createMonthNode() {
+        nodeList = document.getElementsByTagName("remboursements");
+        element = document.createElement("mois");
+        nodeList.item(0).appendChild(element);
+        nodeList = document.getElementsByTagName("mois");
+        nodeList.item(0).setTextContent(reclamation.getMois());
+    }
+
+    public void createFolderNode() {
+
+        element = document.createElement("dossier");
+        nodeList.item(0).appendChild(element);
+        nodeList = document.getElementsByTagName("dossier");
+        nodeList.item(0).setTextContent(reclamation.getNumeroDossier());
     }
 }
