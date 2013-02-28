@@ -74,16 +74,13 @@ public class SauvegardeDocumentXml {
 
         this.reclamation = reclamation;
         df = new DecimalFormat("#0.00");
-        
         XmlDocumentRefundsInitialisation();
-
         nodeList = document.getElementsByTagName("remboursements");
-
         createFolderNode();
         createMonthNode();
         serialyzeReclamation();
         createTotalNode();
-        
+
         try {
             saveToFile(document);
         } catch (Exception e) {
@@ -93,20 +90,11 @@ public class SauvegardeDocumentXml {
 
     public void saveSignalInvalidInputXML(String message) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
 
-        Document doc2;
-        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = builderFactory.newDocumentBuilder();
-        doc2 = builder.newDocument();
-        doc2.setXmlVersion("1.0");
-        element = doc2.createElement("remboursements");
-        doc2.appendChild(element);
-        nodeList = doc2.getElementsByTagName("remboursements");
-        element = doc2.createElement("message");
-        nodeList.item(0).appendChild(element);
-        nodeList = doc2.getElementsByTagName("message");
+        XmlDocumentRefundsInitialisation();
+        createErrorMessageNode();
         nodeList.item(0).setTextContent(message);
 
-        Source domSource = new DOMSource(doc2);
+        Source domSource = new DOMSource(document);
         File file = new File(filePath);
         Result result = new StreamResult(file);
 
@@ -114,8 +102,15 @@ public class SauvegardeDocumentXml {
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.transform(domSource, result);
     }
-    
-    private void XmlDocumentRefundsInitialisation() throws ParserConfigurationException{
+
+    private void createErrorMessageNode() {
+        nodeList = document.getElementsByTagName("remboursements");
+        element = document.createElement("message");
+        nodeList.item(0).appendChild(element);
+        nodeList = document.getElementsByTagName("message");
+    }
+
+    private void XmlDocumentRefundsInitialisation() throws ParserConfigurationException {
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         document = builder.newDocument();
