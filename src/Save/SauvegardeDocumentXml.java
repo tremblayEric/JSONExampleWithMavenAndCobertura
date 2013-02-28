@@ -47,14 +47,16 @@ import tp1agile.CalculReclamation;
 
 public class SauvegardeDocumentXml {
 
-    private String filePath = "refunt.xml"; 
+    private String filePath = "refunt.xml";
+
     public SauvegardeDocumentXml() {
     }
+
     public SauvegardeDocumentXml(String filePath) {
         this.filePath = filePath;
     }
 
-    public void saveToFile(Document document ) throws Exception {
+    public void saveToFile(Document document) throws Exception {
         Source domSource = new DOMSource(document);
         File xmlFile = new File(filePath);
         Result serializationResult = new StreamResult(xmlFile);
@@ -86,7 +88,7 @@ public class SauvegardeDocumentXml {
         nodeList.item(0).setTextContent(reclamation.getMois());
 
 
-        serialyzeReclamation ( reclamation, nodeList, document, element, df);
+        serialyzeReclamation(reclamation, nodeList, document, element, df);
 
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("total");
@@ -94,7 +96,7 @@ public class SauvegardeDocumentXml {
         nodeList.item(0).appendChild(element);
 
         try {
-            saveToFile(document );
+            saveToFile(document);
         } catch (Exception e) {
         }
 
@@ -123,41 +125,49 @@ public class SauvegardeDocumentXml {
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.transform(domSource, result);
     }
-    
-    private void serialyzeReclamation (CalculReclamation reclamation,NodeList nodeList,Document document,Element element,DecimalFormat df){
-        
+
+    private void serialyzeReclamation(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, DecimalFormat df) {
+
         for (int i = 0; i < reclamation.getListeDesReclamations().size(); ++i) {
-            
+
             nodeList = document.getElementsByTagName("remboursements");
             element = document.createElement("remboursement");
             nodeList.item(0).appendChild(element);
 
-           createCare( reclamation, nodeList, document, element,  i);
+            createCareNode(reclamation, nodeList, document, element, i);
+            
+            createDateNode( reclamation,  nodeList,  document,  element,  i);
 
-            nodeList = document.getElementsByTagName("remboursement");
-            element = document.createElement("date");
-            nodeList.item(i).appendChild(element);
-            nodeList = document.getElementsByTagName("date");
-            nodeList.item(i).setTextContent(reclamation.getListeDate().get(i));
+
 
             nodeList = document.getElementsByTagName("remboursement");
             element = document.createElement("montant");
             nodeList.item(i).appendChild(element);
             nodeList = document.getElementsByTagName("montant");
             nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString() + "$");
-            
+
         }
-        
-        
+
+
     }
-    
-   private void createCare(CalculReclamation reclamation,NodeList nodeList,Document document,Element element, int i){
-       
+
+    private void createCareNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
+
         nodeList = document.getElementsByTagName("remboursement");
-            element = document.createElement("soin");
-            nodeList.item(i).appendChild(element);
-            nodeList = document.getElementsByTagName("soin");
-            nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
-       
-   }
+        element = document.createElement("soin");
+        nodeList.item(i).appendChild(element);
+        nodeList = document.getElementsByTagName("soin");
+        nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
+
+    }
+
+    private void createDateNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, int i) {
+
+        nodeList = document.getElementsByTagName("remboursement");
+        element = document.createElement("date");
+        nodeList.item(i).appendChild(element);
+        nodeList = document.getElementsByTagName("date");
+        nodeList.item(i).setTextContent(reclamation.getListeDate().get(i));
+
+    }
 }
