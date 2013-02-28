@@ -1,3 +1,26 @@
+/* Copyright 2013
+  
+  jpokou
+  pdarveau
+  sayonCisse
+  tremblayEric
+  
+  UQAM hiver 2013
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ * 
+ * 
+ */
 package tp1agile;
 
 import Data.ContractList;
@@ -28,20 +51,6 @@ public class CalculReclamation {
         return contractType;
     }
     
-    
-  /*  public List<String> getTypeDeContrat2() {
-        NodeList lesContrats = document.getElementsByTagName("dossier");
-        List<String> contrats = new ArrayList<>();
-        for (int i = 0; i < lesContrats.getLength(); i++) {
-            System.out.println("lesContrats.item(i) : " + lesContrats.item(i));
-            Node contrat = lesContrats.item(i);
-            Element element = (Element) contrat;
-            System.out.println("element.getTextContent : " + element.getTextContent());
-            contrats.add(element.getTextContent());
-        }
-        return contrats;
-    } */
-
     public List<Element> getListeDesReclamations() {
 
         List<Element> listeReclamation = new ArrayList<>();
@@ -100,12 +109,6 @@ public class CalculReclamation {
         return numeroClient;
     }
 
- /*   public String getNumeroClient() {
-        String numeroClient;
-        NodeList date = document.getElementsByTagName("client");
-        numeroClient = date.item(0).getTextContent();
-        return numeroClient;
-    } */
 
     public String getMois() {
         String numeroClient;
@@ -125,9 +128,7 @@ public class CalculReclamation {
                 listRemboursement.add(effectuerCalcul(it, st, st2));
             }
         }
-    //    for (Double rem : listRemboursement){
-    //        System.out.println(" rem : " + listRemboursement);
-    //    }
+    
         return listRemboursement;
     }
 

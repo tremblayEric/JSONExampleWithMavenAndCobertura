@@ -1,4 +1,11 @@
-/* Copyright 2011 Jacques Berger
+/* Copyright 2013
+  
+  jpokou
+  pdarveau
+  sayonCisse
+  tremblayEric
+  
+  UQAM hiver 2013
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -12,17 +19,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  * 
- * Modifié dans le cadre du cours : 
- * Programmation dans un environnement agile INF2015 
- * TP1
  * 
- * Par:
- * jpokou
- * pdarveau
- * sayonCisse
- * tremblayEric
- * 
- * UQAM hiver 2013
  */
 package Validation;
 
