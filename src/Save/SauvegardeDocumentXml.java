@@ -132,11 +132,7 @@ public class SauvegardeDocumentXml {
             element = document.createElement("remboursement");
             nodeList.item(0).appendChild(element);
 
-            nodeList = document.getElementsByTagName("remboursement");
-            element = document.createElement("soin");
-            nodeList.item(i).appendChild(element);
-            nodeList = document.getElementsByTagName("soin");
-            nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
+           createCare( reclamation, nodeList, document, element,  i);
 
             nodeList = document.getElementsByTagName("remboursement");
             element = document.createElement("date");
@@ -154,4 +150,14 @@ public class SauvegardeDocumentXml {
         
         
     }
+    
+   private void createCare(CalculReclamation reclamation,NodeList nodeList,Document document,Element element, int i){
+       
+        nodeList = document.getElementsByTagName("remboursement");
+            element = document.createElement("soin");
+            nodeList.item(i).appendChild(element);
+            nodeList = document.getElementsByTagName("soin");
+            nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
+       
+   }
 }
