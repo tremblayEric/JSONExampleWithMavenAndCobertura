@@ -81,21 +81,25 @@ public class SauvegardeDocumentXml {
         nodeList = document.getElementsByTagName("dossier");
         nodeList.item(0).setTextContent(reclamation.getNumeroDossier());
 
-        nodeList = document.getElementsByTagName("remboursements");
-        element = document.createElement("mois");
-        nodeList.item(0).appendChild(element);
-        nodeList = document.getElementsByTagName("mois");
-        nodeList.item(0).setTextContent(reclamation.getMois());
 
+        createMonthNode(reclamation, nodeList, document, element);
         serialyzeReclamation(reclamation, nodeList, document, element, df);
-        createTotalNode( reclamation,  nodeList,  document,  element, df);
-        
+        createTotalNode(reclamation, nodeList, document, element, df);
+
 
         try {
             saveToFile(document);
         } catch (Exception e) {
         }
 
+    }
+
+    public void createMonthNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element) {
+        nodeList = document.getElementsByTagName("remboursements");
+        element = document.createElement("mois");
+        nodeList.item(0).appendChild(element);
+        nodeList = document.getElementsByTagName("mois");
+        nodeList.item(0).setTextContent(reclamation.getMois());
     }
 
     public void saveSignalInvalidInputXML(String message) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
@@ -161,8 +165,8 @@ public class SauvegardeDocumentXml {
         nodeList = document.getElementsByTagName("montant");
         nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString() + "$");
     }
-    
-    private void createTotalNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element,DecimalFormat df){
+
+    private void createTotalNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element, DecimalFormat df) {
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("total");
         element.setTextContent(df.format((reclamation.addAllRefunds())).toString() + "$");
