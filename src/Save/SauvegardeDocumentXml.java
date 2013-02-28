@@ -122,30 +122,6 @@ public class SauvegardeDocumentXml {
 
     }
 
-    public void saveSignalInvalidInputXML() throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
-
-        Document doc2;
-        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = builderFactory.newDocumentBuilder();
-        doc2 = builder.newDocument();
-        doc2.setXmlVersion("1.0");
-        Element element = doc2.createElement("remboursements");
-        doc2.appendChild(element);
-        NodeList nodeList = doc2.getElementsByTagName("remboursements");
-        element = doc2.createElement("message");
-        nodeList.item(0).appendChild(element);
-        nodeList = doc2.getElementsByTagName("message");
-        nodeList.item(0).setTextContent("Données invalides");
-
-        Source domSource = new DOMSource(doc2);
-        File file = new File(filePath);
-        Result result = new StreamResult(file);
-
-        Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.transform(domSource, result);
-    }
-    
     public void saveSignalInvalidInputXML(String message) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
 
         Document doc2;
