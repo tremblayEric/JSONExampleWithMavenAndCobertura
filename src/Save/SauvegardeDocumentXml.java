@@ -86,29 +86,7 @@ public class SauvegardeDocumentXml {
         nodeList.item(0).setTextContent(reclamation.getMois());
 
 
-        for (int i = 0; i < reclamation.getListeDesReclamations().size(); ++i) {
-            nodeList = document.getElementsByTagName("remboursements");
-            element = document.createElement("remboursement");
-            nodeList.item(0).appendChild(element);
-
-            nodeList = document.getElementsByTagName("remboursement");
-            element = document.createElement("soin");
-            nodeList.item(i).appendChild(element);
-            nodeList = document.getElementsByTagName("soin");
-            nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
-
-            nodeList = document.getElementsByTagName("remboursement");
-            element = document.createElement("date");
-            nodeList.item(i).appendChild(element);
-            nodeList = document.getElementsByTagName("date");
-            nodeList.item(i).setTextContent(reclamation.getListeDate().get(i));
-
-            nodeList = document.getElementsByTagName("remboursement");
-            element = document.createElement("montant");
-            nodeList.item(i).appendChild(element);
-            nodeList = document.getElementsByTagName("montant");
-            nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString() + "$");
-        }
+        serialyzeReclamation ( reclamation, nodeList, document, element, df);
 
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("total");
@@ -144,5 +122,36 @@ public class SauvegardeDocumentXml {
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.transform(domSource, result);
+    }
+    
+    private void serialyzeReclamation (CalculReclamation reclamation,NodeList nodeList,Document document,Element element,DecimalFormat df){
+        
+        for (int i = 0; i < reclamation.getListeDesReclamations().size(); ++i) {
+            
+            nodeList = document.getElementsByTagName("remboursements");
+            element = document.createElement("remboursement");
+            nodeList.item(0).appendChild(element);
+
+            nodeList = document.getElementsByTagName("remboursement");
+            element = document.createElement("soin");
+            nodeList.item(i).appendChild(element);
+            nodeList = document.getElementsByTagName("soin");
+            nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
+
+            nodeList = document.getElementsByTagName("remboursement");
+            element = document.createElement("date");
+            nodeList.item(i).appendChild(element);
+            nodeList = document.getElementsByTagName("date");
+            nodeList.item(i).setTextContent(reclamation.getListeDate().get(i));
+
+            nodeList = document.getElementsByTagName("remboursement");
+            element = document.createElement("montant");
+            nodeList.item(i).appendChild(element);
+            nodeList = document.getElementsByTagName("montant");
+            nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString() + "$");
+            
+        }
+        
+        
     }
 }
