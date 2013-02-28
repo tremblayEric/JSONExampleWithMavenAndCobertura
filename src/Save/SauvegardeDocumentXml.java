@@ -76,12 +76,8 @@ public class SauvegardeDocumentXml {
         document.appendChild(element);
 
         NodeList nodeList = document.getElementsByTagName("remboursements");
-        element = document.createElement("dossier");
-        nodeList.item(0).appendChild(element);
-        nodeList = document.getElementsByTagName("dossier");
-        nodeList.item(0).setTextContent(reclamation.getNumeroDossier());
 
-
+        createFolderNode( reclamation,  nodeList,  document,  element);
         createMonthNode(reclamation, nodeList, document, element);
         serialyzeReclamation(reclamation, nodeList, document, element, df);
         createTotalNode(reclamation, nodeList, document, element, df);
@@ -94,6 +90,13 @@ public class SauvegardeDocumentXml {
 
     }
 
+    public void createFolderNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element){
+        
+        element = document.createElement("dossier");
+        nodeList.item(0).appendChild(element);
+        nodeList = document.getElementsByTagName("dossier");
+        nodeList.item(0).setTextContent(reclamation.getNumeroDossier());
+    }
     public void createMonthNode(CalculReclamation reclamation, NodeList nodeList, Document document, Element element) {
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("mois");
