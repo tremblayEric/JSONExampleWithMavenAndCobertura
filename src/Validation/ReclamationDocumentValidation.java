@@ -106,9 +106,9 @@ public class ReclamationDocumentValidation {
         }else{
             dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         }
-        Date d = new Date();
+        Date d;
         try {
-            d = dateFormat.parse(laDate); //
+            d = dateFormat.parse(laDate);
             String format = dateFormat.format(d);
             if(!(format.compareTo(laDate) ==  0)){ 
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
@@ -157,17 +157,17 @@ public class ReclamationDocumentValidation {
         List<String> listeMois = getListNoeud("mois");
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
-            Date mois = new Date();
+            Date mois;
             mois = dateFormatMois.parse(listeMois.get(0));
         
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
+            //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date;
             
             SimpleDateFormat dateFormatM = new SimpleDateFormat("yyyy-MM");
         
             while(i < listeDate.size()){
                 
-                date = dateFormat.parse(listeDate.get(i));
+                //date = dateFormat.parse(listeDate.get(i));
                 date = dateFormatM.parse(listeDate.get(i));
                 if( mois.after(date) || mois.before(date)){
                     throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
@@ -197,14 +197,7 @@ public class ReclamationDocumentValidation {
     private boolean soinsValide()throws ValidationInputFileException {
         int i = 0;
         List<String> list = getListNoeud("soin");
-        List<String> listSoinsValides = new ArrayList();
-        listSoinsValides.add("0");
-        listSoinsValides.add("100");
-        listSoinsValides.add("200");
-        listSoinsValides.add("400");
-        listSoinsValides.add("500");
-        listSoinsValides.add("600");
-        listSoinsValides.add("700");
+        List<String> listSoinsValides = listSoinsValides();
           while ( i < list.size()) {
             if ( !listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SOIN);
@@ -223,5 +216,17 @@ public class ReclamationDocumentValidation {
         }
 
         return list;
+    }
+
+    private List<String> listSoinsValides() {
+        List<String> listSoinsValides = new ArrayList();
+        listSoinsValides.add("0");
+        listSoinsValides.add("100");
+        listSoinsValides.add("200");
+        listSoinsValides.add("400");
+        listSoinsValides.add("500");
+        listSoinsValides.add("600");
+        listSoinsValides.add("700");
+        return listSoinsValides;
     }
 } 
