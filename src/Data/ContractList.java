@@ -130,7 +130,6 @@ public class ContractList {
     }
     
     private Contracts massoContract(){
-        
         //masso
         Contracts massoContract = new Contracts();
         massoContract.setRatio(0.25, 0.5, 0.9, 1.0, 0.15);
@@ -138,8 +137,7 @@ public class ContractList {
         massoContract.setMaxValue(-1, 40, -1, 85,-1);
         
         return massoContract;
-        
-        
+  
     }
     
     private Contracts osteoContract(){
@@ -155,8 +153,7 @@ public class ContractList {
     }
     
     private Contracts kinesitherapieContract() {
-    
-    /*ajout iteration 2 : contrat de Kinesitherapie*/
+        /*ajout iteration 2 : contrat de Kinesitherapie*/
         Contracts kinesitherapieContract = new Contracts();
         kinesitherapieContract.setRatio(0.0, 0.7, 0.85, 1.0, 0.15);
         kinesitherapieContract.setMax(false, false, false, true,false);
@@ -165,8 +162,7 @@ public class ContractList {
         return kinesitherapieContract;
 }
     
-    private Contracts privateGeneralMedecineContract(){
-        
+    private Contracts privateGeneralMedecineContract(){    
         /*ajout iteration 2 : contrat de medecin generaliste prive*/
         Contracts privateGeneralMedecineContract = new Contracts();
         privateGeneralMedecineContract.setRatio(0.5, 0.75, 0.9, 0.95, 0.25);
@@ -187,7 +183,6 @@ public class ContractList {
     }
     
     private Contracts dentalContract(){
-        
         //dentaires
         Contracts dentalContract = new Contracts();
         dentalContract.setRatio(0.0, 0.5, 0.9, 1.0, 0.6);
