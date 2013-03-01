@@ -132,7 +132,7 @@ public class CalculReclamation {
         return listRemboursement;
     }
 
-    public Double addAllRefunds() {
+    public Double ajoutDesRefunds() {
         Double totalRefund = 0.0;
         if (getListeSoins().size() == getListeMontant().size()) {
             for (int i = 0; i < getListeSoins().size(); ++i) {

@@ -71,7 +71,6 @@ public class SauvegardeDocumentXml {
     }
 
     public void saveReclamation(CalculReclamation reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
-
         this.reclamation = reclamation;
         df = new DecimalFormat("#0.00");
         XmlDocumentRefundsInitialisation();
@@ -89,7 +88,6 @@ public class SauvegardeDocumentXml {
     }
 
     public void saveSignalInvalidInputXML(String message) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
-
         XmlDocumentRefundsInitialisation();
         createErrorMessageNode();
         nodeList.item(0).setTextContent(message);
@@ -120,7 +118,6 @@ public class SauvegardeDocumentXml {
     }
 
     private void serialyzeReclamation() {
-
         for (int i = 0; i < reclamation.getListeDesReclamations().size(); ++i) {
             createRefundNode(i);
             createCareNode(i);
@@ -162,7 +159,7 @@ public class SauvegardeDocumentXml {
     private void createTotalNode() {
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("total");
-        element.setTextContent(df.format((reclamation.addAllRefunds())).toString() + "$");
+        element.setTextContent(df.format((reclamation.ajoutDesRefunds())).toString() + "$");
         nodeList.item(0).appendChild(element);
     }
 
@@ -175,7 +172,6 @@ public class SauvegardeDocumentXml {
     }
 
     public void createFolderNode() {
-
         element = document.createElement("dossier");
         nodeList.item(0).appendChild(element);
         nodeList = document.getElementsByTagName("dossier");
