@@ -58,7 +58,7 @@ public class ReclamationDocumentValidation {
             numeroDossier.substring(0, 1) != "C" || numeroDossier.substring(0, 1) != "D" ||
             numeroDossier.substring(0, 1) != "E"){  */
         if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E' )){
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_CONTRAT);
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DOSSIER);
         }else if (!(numeroDossier.length() == 7 && estUnEntier(numeroDossier.substring(1)))){
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
         }       
