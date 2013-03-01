@@ -69,7 +69,7 @@ public class Soins {
     
     /**
      * Affiche les caracteristique du soin.
-     * @return Les caracteristique du soin..
+     * @return Les caracteristique du soin.
      */
     @Override
     public String toString(){
