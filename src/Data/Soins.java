@@ -30,50 +30,27 @@ public class Soins {
     private String categorieSoin;
     private Contracts contracts;
 
-    /**
-     * Constructeur dans lequel on donne le numero de soin la categorie de soin et le contrat 
-     * de la mise.
-     * @param numeroSoin    Le numero de soin.
-     * @param categorieSoin La categorie de soin.
-     * @param contracts Le contrat associe au soin.
-     */
     Soins(String numeroSoin, String categorieSoin, Contracts contracts){
         this.numeroSoin = numeroSoin;
         this.categorieSoin = categorieSoin;
         this.contracts = contracts;
     }
 
-    /**
-     * Retourne le numero de soin.
-     * @return Le numero du soim.
-     */
     public String getcareNumber() {
-       return this.numeroSoin;
+       return numeroSoin;
     }
 
-    /**
-     * Retourne le numero de categorie.
-     * @return Le numero de categorie.
-     */
     public String getCareCategorie() {
-        return this.categorieSoin;
+        return categorieSoin;
     }
 
-    /**
-     * Retourne le contrat du soin.
-     * @return Le contrat associe au soin.
-     */
     public Contracts getContract() {
-        return this.contracts;
+        return contracts;
     }
     
-    /**
-     * Affiche les caracteristique du soin.
-     * @return Les caracteristique du soin.
-     */
     @Override
     public String toString(){
-        return this.numeroSoin + " category = " + this.categorieSoin + "contrat = "+
-                this.contracts;
+        return numeroSoin + " category = " + categorieSoin + "contrat = "+
+                contracts;
     }
 }
