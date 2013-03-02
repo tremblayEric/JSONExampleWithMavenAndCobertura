@@ -45,7 +45,6 @@ public class ContractList {
         contractList.add(new Soins("500", "Chiropratie", chiroContract()));
         contractList.add(new Soins("600", "Physiothérapie", physioContract()));
         contractList.add(new Soins("700", "Orthophonie, ergothérapie", orthoErgoContract()));
-        
     }
 
     public double getContractRatioByCareNumber(String careNumber, String contract) {
@@ -117,16 +116,11 @@ public class ContractList {
     }
 
     private String roundCareNumber(String careNumber){
-        
-        String tempCare = "";
-        
+        String tempCare = careNumber;
         if(careNumber.charAt(0) == '3'){
             tempCare = "300";
-        }else{
-            tempCare = careNumber;
         }
         return tempCare;
-         
     }
     
     private Contracts massoContract(){
@@ -137,7 +131,6 @@ public class ContractList {
         massoContract.setMaxValue(-1, 40, -1, 85,-1);
         
         return massoContract;
-  
     }
     
     private Contracts osteoContract(){
@@ -160,7 +153,7 @@ public class ContractList {
         kinesitherapieContract.setMaxValue(-1, -1, -1, 150,-1);
         
         return kinesitherapieContract;
-}
+    }
     
     private Contracts privateGeneralMedecineContract(){    
         /*ajout iteration 2 : contrat de medecin generaliste prive*/
@@ -200,7 +193,7 @@ public class ContractList {
         naturoAcupContract.setMaxValue(-1, -1, -1, 65,15);
         
         return naturoAcupContract;
-}
+    }
     
     private Contracts chiroContract(){
         //chiro modif iteration 2 contrat D remb. a 100% sans max
@@ -223,7 +216,6 @@ public class ContractList {
     }
     
     private Contracts orthoErgoContract(){
-        
         //ortho
         Contracts orthoErgoContract = new Contracts();
         orthoErgoContract.setRatio(0.0, 0.7, 0.9, 1.0, 0.22);
