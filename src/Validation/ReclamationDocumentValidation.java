@@ -100,15 +100,12 @@ public class ReclamationDocumentValidation {
 
 
     private boolean estDateValide( String laDate, String type )throws ValidationInputFileException{
-        SimpleDateFormat dateFormat;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         if( type.compareTo("mois") == 0){
             dateFormat = new SimpleDateFormat("yyyy-MM");
-        }else{
-            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         }
-        Date d;
         try {
-            d = dateFormat.parse(laDate);
+            Date d = dateFormat.parse(laDate);
             String format = dateFormat.format(d);
             if(!(format.compareTo(laDate) ==  0)){ 
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
@@ -157,8 +154,7 @@ public class ReclamationDocumentValidation {
         List<String> listeMois = getListNoeud("mois");
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
-            Date mois;
-            mois = dateFormatMois.parse(listeMois.get(0));
+            Date mois = dateFormatMois.parse(listeMois.get(0));
         
             //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date;
@@ -177,7 +173,6 @@ public class ReclamationDocumentValidation {
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
         }
-      
         return true;
     }
   
@@ -214,7 +209,6 @@ public class ReclamationDocumentValidation {
             Element client = (Element) listeNoeuds.item(i);
             list.add(client.getTextContent());
         }
-
         return list;
     }
 
