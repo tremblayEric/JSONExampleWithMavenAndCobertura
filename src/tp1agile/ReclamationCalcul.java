@@ -116,7 +116,7 @@ public class ReclamationCalcul {
         return clientNumber;
     }
 
-    public List<Double> effectuerListCalcul() {
+    public List<Double> doCalculList() {
         List<Double> listRemboursement = new ArrayList<>();
         if (getListeSoins().size() == getListeMontant().size()) {
             for (int i = 0; i < getListeSoins().size(); ++i) {
