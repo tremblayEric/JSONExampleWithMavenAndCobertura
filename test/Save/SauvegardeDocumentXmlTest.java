@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.w3c.dom.Document;
-import tp1agile.CalculReclamation;
+import tp1agile.ReclamationCalcul;
 
 /**
  *
@@ -36,7 +36,7 @@ public class SauvegardeDocumentXmlTest {
         System.out.println("saveToFile");
         Document document = null;
         String filePath = "";
-        SauvegardeDocumentXml instance = new SauvegardeDocumentXml();
+        XMLDocumentSave instance = new XMLDocumentSave();
         instance.saveToFile(document);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -49,8 +49,8 @@ public class SauvegardeDocumentXmlTest {
     public void testSaveReclamation() throws Exception {
         System.out.println("saveReclamation");
         String filePath = "";
-        CalculReclamation reclamation = null;
-        SauvegardeDocumentXml instance = new SauvegardeDocumentXml();
+        ReclamationCalcul reclamation = null;
+        XMLDocumentSave instance = new XMLDocumentSave();
         instance.saveReclamation(reclamation);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -63,7 +63,7 @@ public class SauvegardeDocumentXmlTest {
     public void testSaveSignalInvalidInputXML() throws Exception {
         System.out.println("saveSignalInvalidInputXML");
         String filePath = "";
-        SauvegardeDocumentXml instance = new SauvegardeDocumentXml();
+        XMLDocumentSave instance = new XMLDocumentSave();
         instance.saveSignalInvalidInputXML(filePath);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

@@ -35,7 +35,7 @@ public class CalculReclamationTest {
     public void testSetDocument() {
         System.out.println("setDocument");
         Document document = null;
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         instance.setDocument(document);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -47,7 +47,7 @@ public class CalculReclamationTest {
     @Test
     public void testGetTypeDeContrat2() {
         System.out.println("getTypeDeContrat2");
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         List expResult = null;
         List result = instance.getTypeDeContrat2();
         assertEquals(expResult, result);
@@ -61,9 +61,9 @@ public class CalculReclamationTest {
     @Test
     public void testGetListeDesReclamations() {
         System.out.println("getListeDesReclamations");
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         List expResult = null;
-        List result = instance.getListeDesReclamations();
+        List result = instance.getReclamationList();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -75,9 +75,9 @@ public class CalculReclamationTest {
     @Test
     public void testGetListeSoins() {
         System.out.println("getListeSoins");
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         List expResult = null;
-        List result = instance.getListeSoins();
+        List result = instance.getCareList();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -89,9 +89,9 @@ public class CalculReclamationTest {
     @Test
     public void testGetListeDate() {
         System.out.println("getListeDate");
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         List expResult = null;
-        List result = instance.getListeDate();
+        List result = instance.getDateList();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -103,9 +103,9 @@ public class CalculReclamationTest {
     @Test
     public void testGetListeMontant() {
         System.out.println("getListeMontant");
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         List expResult = null;
-        List result = instance.getListeMontant();
+        List result = instance.getAmountList();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -117,7 +117,7 @@ public class CalculReclamationTest {
     @Test
     public void testGetNumeroClient() {
         System.out.println("getNumeroClient");
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         String expResult = "";
         String result = instance.getNumeroClient();
         assertEquals(expResult, result);
@@ -131,9 +131,9 @@ public class CalculReclamationTest {
     @Test
     public void testGetMois() {
         System.out.println("getMois");
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         String expResult = "";
-        String result = instance.getMois();
+        String result = instance.getMonth();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -145,9 +145,9 @@ public class CalculReclamationTest {
     @Test
     public void testEffectuerListCalcul() {
         System.out.println("effectuerListCalcul");
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         List expResult = null;
-        List result = instance.effectuerListCalcul();
+        List result = instance.doCalculList();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -162,9 +162,9 @@ public class CalculReclamationTest {
         double valeur = 0.0;
         String numeroSoin = "";
         String contrat = "";
-        CalculReclamation instance = null;
+        ReclamationCalcul instance = null;
         double expResult = 0.0;
-        double result = instance.effectuerCalcul(valeur, numeroSoin, contrat);
+        double result = instance.doCalcul(valeur, numeroSoin, contrat);
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

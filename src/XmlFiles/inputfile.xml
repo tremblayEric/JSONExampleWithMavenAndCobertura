@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <reclamations>
+    <dossier>B123456</dossier>
     <mois>2013-01</mois>
     <reclamation>
         <soin>600</soin>
         <date>2013-01-01</date>
         <montant>1.00$</montant>
     </reclamation>  
-    <reclamation>
-        <soin>600</soin>
-        <date>2013-01-01</date>
-        <montant>1.00$</montant>
-    </reclamation>   
-    <reclamation>
-        <soin>600</soin>
-        <date>2013-01-01</date>
-        <montant>1.00$</montant>
-    </reclamation>    
+     
+       
 </reclamations>

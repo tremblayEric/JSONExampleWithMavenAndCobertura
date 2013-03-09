@@ -47,44 +47,48 @@ public class ReclamationDocumentValidation {
         dateMonthCoherence();
         dollardSymbolCheck();
         validCare();
-        
+
     }
 
     private void checkFormXML() throws ValidationInputFileException {
 
-        element = (Element)document;
-        nodeIsUnique("reclamations",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
+        rootExist( "reclamations",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
         NodeList list = document.getElementsByTagName("reclamations");
         element = (Element) list.item(0);
-        nodeIsUnique("dossier",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DOSSIER_MANQUANT);
-        nodeIsUnique("mois",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MOIS_MANQUANT);
-        nodeExist("reclamation",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATION_MANQUANT);
+        nodeIsUnique("dossier", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DOSSIER_MANQUANT);
+        nodeIsUnique("mois", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MOIS_MANQUANT);
+        nodeExist("reclamation", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATION_MANQUANT);
         NodeList elementReclamation = element.getElementsByTagName("reclamation");
         checkReclamationForm(elementReclamation);
-        
     }
     
-    private void nodeIsUnique( String nodeName, String error) throws ValidationInputFileException{
+    private void rootExist(String rootName,String error) throws ValidationInputFileException{
+        if (document.getElementsByTagName(rootName).getLength() != 1) {
+            throw new ValidationInputFileException(error);
+        }
+    }
+    
+    private void nodeIsUnique(String nodeName, String error) throws ValidationInputFileException {
         if (element.getElementsByTagName(nodeName).getLength() != 1) {
-                throw new ValidationInputFileException(error);
-            }   
+            throw new ValidationInputFileException(error);
+        }
     }
-    
-    private void nodeExist( String nodeName, String error) throws ValidationInputFileException{
+
+    private void nodeExist(String nodeName, String error) throws ValidationInputFileException {
         if (element.getElementsByTagName(nodeName).getLength() < 1) {
-                throw new ValidationInputFileException(error);
-            }   
+            throw new ValidationInputFileException(error);
+        }
     }
-    
-    private void checkReclamationForm(NodeList list) throws ValidationInputFileException{
-        
+
+    private void checkReclamationForm(NodeList list) throws ValidationInputFileException {
+
         for (int i = 0; i < list.getLength(); ++i) {
 
             element = (Element) list.item(i);
-            
-            nodeIsUnique("soin",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
-            nodeIsUnique("date",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
-            nodeIsUnique("montant",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
+
+            nodeIsUnique("soin", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
+            nodeIsUnique("date", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
+            nodeIsUnique("montant", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
         }
     }
 
@@ -96,7 +100,7 @@ public class ReclamationDocumentValidation {
         } else if (!(numeroDossier.length() == 7 && isInteger(numeroDossier.substring(1)))) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
         }
-         
+
     }
 
     private String getNumeroDossier() {
@@ -130,7 +134,7 @@ public class ReclamationDocumentValidation {
 
             throw new ValidationInputFileException(e.getMessage());
         }
-        
+
 
     }
 
@@ -145,7 +149,7 @@ public class ReclamationDocumentValidation {
         } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
         }
-        
+
     }
 
     private void isMonthValid() throws ValidationInputFileException {
@@ -159,7 +163,7 @@ public class ReclamationDocumentValidation {
         } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
         }
-        
+
     }
 
     private void dateMonthCoherence() throws ValidationInputFileException {
@@ -185,7 +189,7 @@ public class ReclamationDocumentValidation {
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
         }
-        
+
     }
 
     private void dollardSymbolCheck() throws ValidationInputFileException {
@@ -197,7 +201,7 @@ public class ReclamationDocumentValidation {
             }
             ++i;
         }
-        
+
     }
 
     private void validCare() throws ValidationInputFileException {
@@ -210,7 +214,7 @@ public class ReclamationDocumentValidation {
             }
             ++i;
         }
-        
+
     }
 
     private List<String> getListNoeud(String noeud) {
