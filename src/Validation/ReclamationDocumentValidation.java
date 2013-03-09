@@ -46,7 +46,7 @@ public class ReclamationDocumentValidation {
         isDateValid();
         dateMonthCoherence();
         dollardSymbolCheck();
-        soinsValide();
+        validCare();
         
     }
 
@@ -200,7 +200,7 @@ public class ReclamationDocumentValidation {
         
     }
 
-    private void soinsValide() throws ValidationInputFileException {
+    private void validCare() throws ValidationInputFileException {
         int i = 0;
         List<String> list = getListNoeud("soin");
         List<String> listSoinsValides = listSoinsValides();
