@@ -51,7 +51,7 @@ public class ReclamationCalcul {
         return contractType;
     }
     
-    public List<Element> getListeDesReclamations() {
+    public List<Element> getReclamationList() {
 
         List<Element> reclamationList = new ArrayList<>();
         NodeList reclamation = document.getElementsByTagName("reclamation");
