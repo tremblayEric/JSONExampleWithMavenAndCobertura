@@ -45,7 +45,7 @@ public class ReclamationDocumentValidation {
         isMonthValid();
         isDateValid();
         dateMonthCoherence();
-        signeDollardPresentPartout();
+        dollardSymbolCheck();
         soinsValide();
         
     }
@@ -188,7 +188,7 @@ public class ReclamationDocumentValidation {
         
     }
 
-    private void signeDollardPresentPartout() throws ValidationInputFileException {
+    private void dollardSymbolCheck() throws ValidationInputFileException {
         int i = 0;
         List<String> listeReclamations = getListNoeud("montant");
         while (i < listeReclamations.size()) {
