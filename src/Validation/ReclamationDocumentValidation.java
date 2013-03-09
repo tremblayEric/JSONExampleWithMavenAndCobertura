@@ -38,7 +38,7 @@ public class ReclamationDocumentValidation {
         this.document = document;
     }
 
-    public boolean validerReclamation() throws ValidationInputFileException {
+    public void validerReclamation() throws ValidationInputFileException {
 
         checkFormXML();
         estDossierValide();
@@ -47,7 +47,7 @@ public class ReclamationDocumentValidation {
         coherenceMoisDate();
         signeDollardPresentPartout();
         soinsValide();
-        return true;
+        
     }
 
     private void checkFormXML() throws ValidationInputFileException {
@@ -80,16 +80,15 @@ public class ReclamationDocumentValidation {
         
         for (int i = 0; i < list.getLength(); ++i) {
 
-             element = (Element) list.item(i);
+            element = (Element) list.item(i);
             
             nodeIsUnique("soin",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
             nodeIsUnique("date",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
             nodeIsUnique("montant",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
-
         }
     }
 
-    private boolean estDossierValide() throws ValidationInputFileException {
+    private void estDossierValide() throws ValidationInputFileException {
         String numeroDossier = getNumeroDossier();
 
         if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
@@ -97,7 +96,7 @@ public class ReclamationDocumentValidation {
         } else if (!(numeroDossier.length() == 7 && estUnEntier(numeroDossier.substring(1)))) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
         }
-        return true;
+         
     }
 
     private String getNumeroDossier() {
@@ -116,7 +115,7 @@ public class ReclamationDocumentValidation {
         return estEntier;
     }
 
-    private boolean estDateValide(String laDate, String type) throws ValidationInputFileException {
+    private void estDateValide(String laDate, String type) throws ValidationInputFileException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         if (type.compareTo("mois") == 0) {
             dateFormat = new SimpleDateFormat("yyyy-MM");
@@ -131,11 +130,11 @@ public class ReclamationDocumentValidation {
 
             throw new ValidationInputFileException(e.getMessage());
         }
-        return true;
+        
 
     }
 
-    private boolean estDateValide() throws ValidationInputFileException {
+    private void estDateValide() throws ValidationInputFileException {
         List<String> listedate = getListNoeud("date");
         int i = 0;
         if (listedate.size() >= 1) {
@@ -146,10 +145,10 @@ public class ReclamationDocumentValidation {
         } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
         }
-        return true;
+        
     }
 
-    private boolean estMoisValide() throws ValidationInputFileException {
+    private void estMoisValide() throws ValidationInputFileException {
         List<String> listeMois = getListNoeud("mois");
         int i = 0;
         if (listeMois.size() == 1) {
@@ -160,10 +159,10 @@ public class ReclamationDocumentValidation {
         } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
         }
-        return true;
+        
     }
 
-    private boolean coherenceMoisDate() throws ValidationInputFileException {
+    private void coherenceMoisDate() throws ValidationInputFileException {
         int i = 0;
         List<String> listeDate = getListNoeud("date");
         List<String> listeMois = getListNoeud("mois");
@@ -186,10 +185,10 @@ public class ReclamationDocumentValidation {
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
         }
-        return true;
+        
     }
 
-    private boolean signeDollardPresentPartout() throws ValidationInputFileException {
+    private void signeDollardPresentPartout() throws ValidationInputFileException {
         int i = 0;
         List<String> listeReclamations = getListNoeud("montant");
         while (i < listeReclamations.size()) {
@@ -198,10 +197,10 @@ public class ReclamationDocumentValidation {
             }
             ++i;
         }
-        return true;
+        
     }
 
-    private boolean soinsValide() throws ValidationInputFileException {
+    private void soinsValide() throws ValidationInputFileException {
         int i = 0;
         List<String> list = getListNoeud("soin");
         List<String> listSoinsValides = listSoinsValides();
@@ -211,7 +210,7 @@ public class ReclamationDocumentValidation {
             }
             ++i;
         }
-        return true;
+        
     }
 
     private List<String> getListNoeud(String noeud) {
