@@ -225,15 +225,15 @@ public class ReclamationDocumentValidation {
     }
 
     private List<String> validCareList() {
-        List<String> listSoinsValides = new ArrayList();
-        listSoinsValides.add("0");
-        listSoinsValides.add("100");
-        listSoinsValides.add("175");//ajout du soins 175 a la validation
-        listSoinsValides.add("200");
-        listSoinsValides.add("400");
-        listSoinsValides.add("500");
-        listSoinsValides.add("600");
-        listSoinsValides.add("700");
-        return listSoinsValides;
+        List<String> validCareList = new ArrayList();
+        validCareList.add("0");
+        validCareList.add("100");
+        validCareList.add("175");//ajout du soins 175 a la validation
+        validCareList.add("200");
+        validCareList.add("400");
+        validCareList.add("500");
+        validCareList.add("600");
+        validCareList.add("700");
+        return validCareList;
     }
 }
