@@ -149,11 +149,11 @@ public class ReclamationDocumentValidation {
     }
 
     private void isMonthValid() throws ValidationInputFileException {
-        List<String> listeMois = getListNoeud("mois");
+        List<String> monthList = getListNoeud("mois");
         int i = 0;
-        if (listeMois.size() == 1) {
-            while (i < listeMois.size()) {
-                isDateValid(listeMois.get(i), "mois");
+        if (monthList.size() == 1) {
+            while (i < monthList.size()) {
+                isDateValid(monthList.get(i), "mois");
                 i = i + 1;
             }
         } else {
