@@ -38,7 +38,7 @@ public class ReclamationDocumentValidation {
         this.document = document;
     }
 
-    public void validerReclamation() throws ValidationInputFileException {
+    public void reclamationValidation() throws ValidationInputFileException {
 
         checkFormXML();
         ifValidFolder();
