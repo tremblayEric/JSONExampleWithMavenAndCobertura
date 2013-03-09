@@ -45,7 +45,7 @@ public class TP1Agile {
                 ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]);
                 ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
                 reclamation.reclamationValidation();
-                CalculReclamation calcul = new CalculReclamation(documentXML.getDocumentXMLInput());
+                ReclamationCalcul calcul = new ReclamationCalcul(documentXML.getDocumentXMLInput());
                 persistanceDesDonnees.saveReclamation(calcul);
             } catch (ValidationInputFileException e1) {
                 persistanceDesDonnees.saveSignalInvalidInputXML(e1.getMessage());

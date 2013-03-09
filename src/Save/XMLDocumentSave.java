@@ -43,7 +43,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import java.text.*;
-import tp1agile.CalculReclamation;
+import tp1agile.ReclamationCalcul;
 
 public class XMLDocumentSave {
 
@@ -51,7 +51,7 @@ public class XMLDocumentSave {
     private Document document;
     private DecimalFormat df;
     private Element element;
-    private CalculReclamation reclamation;
+    private ReclamationCalcul reclamation;
     private NodeList nodeList;
 
     public XMLDocumentSave() {
@@ -70,7 +70,7 @@ public class XMLDocumentSave {
         xmlTransformer.transform(domSource, serializationResult);
     }
 
-    public void saveReclamation(CalculReclamation reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+    public void saveReclamation(ReclamationCalcul reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
         this.reclamation = reclamation;
         df = new DecimalFormat("#0.00");
         XmlDocumentRefundsInitialisation();
