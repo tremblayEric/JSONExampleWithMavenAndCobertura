@@ -45,8 +45,8 @@ public class ReclamationCalcul {
 
     
     public String getContractType() {
-        NodeList lesContrats = document.getElementsByTagName("dossier");
-        String contractType = lesContrats.item(0).getTextContent();
+        NodeList contracts = document.getElementsByTagName("dossier");
+        String contractType = contracts.item(0).getTextContent();
         contractType = contractType.substring(0, 1);
         return contractType;
     }
