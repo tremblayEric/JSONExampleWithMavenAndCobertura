@@ -43,7 +43,7 @@ public class ReclamationDocumentValidation {
         checkFormXML();
         ifValidFolder();
         estMoisValide();
-        estDateValide();
+        isDateValid();
         coherenceMoisDate();
         signeDollardPresentPartout();
         soinsValide();
@@ -134,7 +134,7 @@ public class ReclamationDocumentValidation {
 
     }
 
-    private void estDateValide() throws ValidationInputFileException {
+    private void isDateValid() throws ValidationInputFileException {
         List<String> listedate = getListNoeud("date");
         int i = 0;
         if (listedate.size() >= 1) {
