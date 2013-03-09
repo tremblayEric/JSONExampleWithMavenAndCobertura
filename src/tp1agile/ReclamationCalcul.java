@@ -63,7 +63,7 @@ public class ReclamationCalcul {
         return reclamationList;
     }
 
-    public List<String> getListeSoins() {
+    public List<String> getCareList() {
 
         List<String> careList = new ArrayList<>();
         NodeList soin = document.getElementsByTagName("soin");
@@ -118,11 +118,11 @@ public class ReclamationCalcul {
 
     public List<Double> doCalculList() {
         List<Double> refundList = new ArrayList<>();
-        if (getListeSoins().size() == getListeMontant().size()) {
-            for (int i = 0; i < getListeSoins().size(); ++i) {
+        if (getCareList().size() == getListeMontant().size()) {
+            for (int i = 0; i < getCareList().size(); ++i) {
                 String montant = getListeMontant().get(i);
                 Double it = Double.parseDouble(montant);
-                String st = getListeSoins().get(i);
+                String st = getCareList().get(i);
                 String st2 = getContractType();
                 refundList.add(effectuerCalcul(it, st, st2));
             }
@@ -133,11 +133,11 @@ public class ReclamationCalcul {
 
     public Double ajoutDesRefunds() {
         Double totalRefund = 0.0;
-        if (getListeSoins().size() == getListeMontant().size()) {
-            for (int i = 0; i < getListeSoins().size(); ++i) {
+        if (getCareList().size() == getListeMontant().size()) {
+            for (int i = 0; i < getCareList().size(); ++i) {
                 String montant = getListeMontant().get(i);
                 Double it = Double.parseDouble(montant);
-                String st = getListeSoins().get(i);
+                String st = getCareList().get(i);
                 String st2 = getContractType();
                 totalRefund += effectuerCalcul(it, st, st2);
             }
