@@ -42,7 +42,7 @@ public class ReclamationDocumentValidation {
 
         checkFormXML();
         ifValidFolder();
-        estMoisValide();
+        isMonthValid();
         isDateValid();
         coherenceMoisDate();
         signeDollardPresentPartout();
@@ -148,7 +148,7 @@ public class ReclamationDocumentValidation {
         
     }
 
-    private void estMoisValide() throws ValidationInputFileException {
+    private void isMonthValid() throws ValidationInputFileException {
         List<String> listeMois = getListNoeud("mois");
         int i = 0;
         if (listeMois.size() == 1) {
