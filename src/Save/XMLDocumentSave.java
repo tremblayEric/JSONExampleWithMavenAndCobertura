@@ -118,7 +118,7 @@ public class XMLDocumentSave {
     }
 
     private void serialyzeReclamation() {
-        for (int i = 0; i < reclamation.getListeDesReclamations().size(); ++i) {
+        for (int i = 0; i < reclamation.getReclamationList().size(); ++i) {
             createRefundNode(i);
             createCareNode(i);
             createDateNode(i);
@@ -137,7 +137,7 @@ public class XMLDocumentSave {
         element = document.createElement("soin");
         nodeList.item(i).appendChild(element);
         nodeList = document.getElementsByTagName("soin");
-        nodeList.item(i).setTextContent(reclamation.getListeSoins().get(i));
+        nodeList.item(i).setTextContent(reclamation.getCareList().get(i));
     }
 
     private void createDateNode(int i) {
@@ -145,7 +145,7 @@ public class XMLDocumentSave {
         element = document.createElement("date");
         nodeList.item(i).appendChild(element);
         nodeList = document.getElementsByTagName("date");
-        nodeList.item(i).setTextContent(reclamation.getListeDate().get(i));
+        nodeList.item(i).setTextContent(reclamation.getDateList().get(i));
     }
 
     private void createAmountNode(int i) {
@@ -153,13 +153,13 @@ public class XMLDocumentSave {
         element = document.createElement("montant");
         nodeList.item(i).appendChild(element);
         nodeList = document.getElementsByTagName("montant");
-        nodeList.item(i).setTextContent(df.format(((reclamation.effectuerListCalcul()).get(i))).toString() + "$");
+        nodeList.item(i).setTextContent(df.format(((reclamation.doCalculList()).get(i))).toString() + "$");
     }
 
     private void createTotalNode() {
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("total");
-        element.setTextContent(df.format((reclamation.ajoutDesRefunds())).toString() + "$");
+        element.setTextContent(df.format((reclamation.addRefunds())).toString() + "$");
         nodeList.item(0).appendChild(element);
     }
 
@@ -168,13 +168,13 @@ public class XMLDocumentSave {
         element = document.createElement("mois");
         nodeList.item(0).appendChild(element);
         nodeList = document.getElementsByTagName("mois");
-        nodeList.item(0).setTextContent(reclamation.getMois());
+        nodeList.item(0).setTextContent(reclamation.getMonth());
     }
 
     public void createFolderNode() {
         element = document.createElement("dossier");
         nodeList.item(0).appendChild(element);
         nodeList = document.getElementsByTagName("dossier");
-        nodeList.item(0).setTextContent(reclamation.getNumeroDossier());
+        nodeList.item(0).setTextContent(reclamation.getFolderNumber());
     }
 }
