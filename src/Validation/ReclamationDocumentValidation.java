@@ -190,9 +190,9 @@ public class ReclamationDocumentValidation {
 
     private void dollardSymbolCheck() throws ValidationInputFileException {
         int i = 0;
-        List<String> listeReclamations = getListNoeud("montant");
-        while (i < listeReclamations.size()) {
-            if (listeReclamations.get(i).charAt(listeReclamations.get(i).length() - 1) != '$') {
+        List<String> reclamationsList = getListNoeud("montant");
+        while (i < reclamationsList.size()) {
+            if (reclamationsList.get(i).charAt(reclamationsList.get(i).length() - 1) != '$') {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SIGNE_DOLLAR);
             }
             ++i;
