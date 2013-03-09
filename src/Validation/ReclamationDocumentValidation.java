@@ -216,9 +216,9 @@ public class ReclamationDocumentValidation {
     private List<String> getListNoeud(String noeud) {
 
         List<String> list = new ArrayList();
-        NodeList listeNoeuds = document.getElementsByTagName(noeud);
-        for (int i = 0; i < listeNoeuds.getLength(); ++i) {
-            Element client = (Element) listeNoeuds.item(i);
+        NodeList nodeList = document.getElementsByTagName(noeud);
+        for (int i = 0; i < nodeList.getLength(); ++i) {
+            Element client = (Element) nodeList.item(i);
             list.add(client.getTextContent());
         }
         return list;
