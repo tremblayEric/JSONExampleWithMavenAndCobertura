@@ -89,7 +89,7 @@ public class ReclamationCalcul {
 
     public List<String> getListeMontant() {
 
-        List<String> listeMontant = new ArrayList<>();
+        List<String> amountList = new ArrayList<>();
         NodeList date = document.getElementsByTagName("montant");
 
         for (int i = 0; i < date.getLength(); i++) {
@@ -97,9 +97,9 @@ public class ReclamationCalcul {
             montant = montant.replace(',', '.');
             montant = montant.replace('$', ' ');
      //       montant = montant.trim();
-            listeMontant.add(montant);
+            amountList.add(montant);
         }
-        return listeMontant;
+        return amountList;
     } 
     
     public String getNumeroDossier() {
