@@ -168,7 +168,7 @@ public class ReclamationDocumentValidation {
         List<String> monthList = getListNoeud("mois");
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
-            Date mois = dateFormatMois.parse(monthList.get(0));
+            Date month = dateFormatMois.parse(monthList.get(0));
 
             Date date;
 
@@ -177,7 +177,7 @@ public class ReclamationDocumentValidation {
             while (i < dateList.size()) {
 
                 date = dateFormatM.parse(dateList.get(i));
-                if (mois.after(date) || mois.before(date)) {
+                if (month.after(date) || month.before(date)) {
                     throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
                 }
                 i = i + 1;
