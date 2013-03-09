@@ -32,6 +32,7 @@ import java.util.Date;
 public class ReclamationDocumentValidation {
 
     private Document document;
+    private Element element;
 
     public ReclamationDocumentValidation(Document document) {
         this.document = document;
@@ -51,24 +52,25 @@ public class ReclamationDocumentValidation {
 
     private void checkFormXML() throws ValidationInputFileException {
 
-        nodeIsUnique((Element)document,"reclamations",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
+        element = (Element)document;
+        nodeIsUnique("reclamations",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
         NodeList list = document.getElementsByTagName("reclamations");
-        Element elementReclamations = (Element) list.item(0);
-        nodeIsUnique(elementReclamations,"dossier",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DOSSIER_MANQUANT);
-        nodeIsUnique(elementReclamations,"mois",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MOIS_MANQUANT);
-        nodeExist(elementReclamations,"reclamation",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATION_MANQUANT);
-        NodeList elementReclamation = elementReclamations.getElementsByTagName("reclamation");
+        element = (Element) list.item(0);
+        nodeIsUnique("dossier",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DOSSIER_MANQUANT);
+        nodeIsUnique("mois",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MOIS_MANQUANT);
+        nodeExist("reclamation",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATION_MANQUANT);
+        NodeList elementReclamation = element.getElementsByTagName("reclamation");
         checkReclamationForm(elementReclamation);
         
     }
     
-    private void nodeIsUnique(Element element, String nodeName, String error) throws ValidationInputFileException{
+    private void nodeIsUnique( String nodeName, String error) throws ValidationInputFileException{
         if (element.getElementsByTagName(nodeName).getLength() != 1) {
                 throw new ValidationInputFileException(error);
             }   
     }
     
-    private void nodeExist(Element element, String nodeName, String error) throws ValidationInputFileException{
+    private void nodeExist( String nodeName, String error) throws ValidationInputFileException{
         if (element.getElementsByTagName(nodeName).getLength() < 1) {
                 throw new ValidationInputFileException(error);
             }   
@@ -78,11 +80,11 @@ public class ReclamationDocumentValidation {
         
         for (int i = 0; i < list.getLength(); ++i) {
 
-            Element element = (Element) list.item(i);
+             element = (Element) list.item(i);
             
-            nodeIsUnique(element,"soin",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
-            nodeIsUnique(element,"date",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
-            nodeIsUnique(element,"montant",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
+            nodeIsUnique("soin",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
+            nodeIsUnique("date",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
+            nodeIsUnique("montant",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
 
         }
     }
