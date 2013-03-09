@@ -165,10 +165,10 @@ public class ReclamationDocumentValidation {
     private void dateMonthCoherence() throws ValidationInputFileException {
         int i = 0;
         List<String> dateList = getListNoeud("date");
-        List<String> listeMois = getListNoeud("mois");
+        List<String> monthList = getListNoeud("mois");
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
-            Date mois = dateFormatMois.parse(listeMois.get(0));
+            Date mois = dateFormatMois.parse(monthList.get(0));
 
             Date date;
 
