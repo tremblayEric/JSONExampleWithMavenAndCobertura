@@ -28,23 +28,23 @@ import java.util.List;
 
 public class ContractList {
 
-    private List<Soins> contractList = new ArrayList<>();
+    private List<Care> contractList = new ArrayList<>();
 
     public ContractList() {
         
         //creation  et ajout des soins dans la liste
-        contractList.add(new Soins("0", "Massothérapie", massoContract()));
-        contractList.add(new Soins("100", "Ostéopathie", osteoContract()));
+        contractList.add(new Care("0", "Massothérapie", massoContract()));
+        contractList.add(new Care("100", "Ostéopathie", osteoContract()));
         /*ajout iteration 2 : soin 150 Kinesitherapie*/
-        contractList.add(new Soins("150", "kinesitherapie", kinesitherapieContract()));
+        contractList.add(new Care("150", "kinesitherapie", kinesitherapieContract()));
         /*ajout iteration 2 : soin 175 Medecin generaliste prive*/
-        contractList.add(new Soins("175", "Medecin generaliste prive", privateGeneralMedecineContract()));
-        contractList.add(new Soins("200", "Psychologie individuelle", PsychoContract()));
-        contractList.add(new Soins("300", "Soins dentaires", dentalContract()));
-        contractList.add(new Soins("400", "Naturopathie, acuponcture", naturoAcupContract()));
-        contractList.add(new Soins("500", "Chiropratie", chiroContract()));
-        contractList.add(new Soins("600", "Physiothérapie", physioContract()));
-        contractList.add(new Soins("700", "Orthophonie, ergothérapie", orthoErgoContract()));
+        contractList.add(new Care("175", "Medecin generaliste prive", privateGeneralMedecineContract()));
+        contractList.add(new Care("200", "Psychologie individuelle", PsychoContract()));
+        contractList.add(new Care("300", "Soins dentaires", dentalContract()));
+        contractList.add(new Care("400", "Naturopathie, acuponcture", naturoAcupContract()));
+        contractList.add(new Care("500", "Chiropratie", chiroContract()));
+        contractList.add(new Care("600", "Physiothérapie", physioContract()));
+        contractList.add(new Care("700", "Orthophonie, ergothérapie", orthoErgoContract()));
     }
 
     public double getContractRatioByCareNumber(String careNumber, String contract) {
