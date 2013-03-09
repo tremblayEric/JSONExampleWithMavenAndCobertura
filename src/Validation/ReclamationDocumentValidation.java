@@ -203,9 +203,9 @@ public class ReclamationDocumentValidation {
     private void validCare() throws ValidationInputFileException {
         int i = 0;
         List<String> list = getListNoeud("soin");
-        List<String> listSoinsValides = listSoinsValides();
+        List<String> validCareList = listSoinsValides();
         while (i < list.size()) {
-            if (!listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
+            if (!validCareList.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SOIN);
             }
             ++i;
