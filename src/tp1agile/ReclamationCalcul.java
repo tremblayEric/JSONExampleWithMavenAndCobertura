@@ -75,7 +75,7 @@ public class ReclamationCalcul {
         return careList;
     }
 
-    public List<String> getListeDate() {
+    public List<String> getDateList() {
 
         List<String> dateList = new ArrayList<>();
         NodeList date = document.getElementsByTagName("date");
