@@ -102,10 +102,10 @@ public class ReclamationCalcul {
     } 
     
     public String getFolderNumber() {
-        String numeroClient;
+        String clientNumber;
         NodeList date = document.getElementsByTagName("dossier");
-        numeroClient = date.item(0).getTextContent();
-        return numeroClient;
+        clientNumber = date.item(0).getTextContent();
+        return clientNumber;
     }
 
 
