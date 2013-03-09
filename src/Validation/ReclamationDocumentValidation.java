@@ -41,7 +41,7 @@ public class ReclamationDocumentValidation {
     public void validerReclamation() throws ValidationInputFileException {
 
         checkFormXML();
-        estDossierValide();
+        ifValidFolder();
         estMoisValide();
         estDateValide();
         coherenceMoisDate();
@@ -88,7 +88,7 @@ public class ReclamationDocumentValidation {
         }
     }
 
-    private void estDossierValide() throws ValidationInputFileException {
+    private void ifValidFolder() throws ValidationInputFileException {
         String numeroDossier = getNumeroDossier();
 
         if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
