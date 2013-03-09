@@ -40,17 +40,17 @@ public class TP1Agile {
        
         if (args.length == 2) {
 
-            XMLDocumentSave persistanceDesDonnees = new XMLDocumentSave("src/XmlFiles/" + args[1]);
+            XMLDocumentSave dataPersistance = new XMLDocumentSave("src/XmlFiles/" + args[1]);
             try {
                 ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]);
                 ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
                 reclamation.reclamationValidation();
                 ReclamationCalcul calcul = new ReclamationCalcul(documentXML.getDocumentXMLInput());
-                persistanceDesDonnees.saveReclamation(calcul);
+                dataPersistance.saveReclamation(calcul);
             } catch (ValidationInputFileException e1) {
-                persistanceDesDonnees.saveSignalInvalidInputXML(e1.getMessage());
+                dataPersistance.saveSignalInvalidInputXML(e1.getMessage());
             } catch (FileNotFoundException e2) {
-                persistanceDesDonnees.saveSignalInvalidInputXML(ErrorMessage.MESSAGE_ERREUR_INPUT_FILE);
+                dataPersistance.saveSignalInvalidInputXML(ErrorMessage.MESSAGE_ERREUR_INPUT_FILE);
             }
 
         } else {
