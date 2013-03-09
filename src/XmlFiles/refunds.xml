@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <remboursements>
-<dossier>A100323</dossier>
-<mois>2013-01</mois>
-<remboursement>
-<soin>100</soin>
-<date>2013-01-01</date>
-<montant>81,90$</montant>
-</remboursement>
-<total>81,90$</total>
+<message>L'ELEMENT DOSSIER DU FICHIER XML D'ENTRE EST MANQUANT</message>
 </remboursements>

@@ -1,11 +1,11 @@
 /* Copyright 2013
   
-  jpokou
-  pdarveau
-  sayonCisse
-  tremblayEric
+ jpokou
+ pdarveau
+ sayonCisse
+ tremblayEric
   
-  UQAM hiver 2013
+ UQAM hiver 2013
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
  */
 package Validation;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Document;
@@ -32,96 +31,78 @@ import java.util.Date;
 
 public class ReclamationDocumentValidation {
 
-  private Document document;
-  
-    public ReclamationDocumentValidation(Document document){
-      this.document = document;
-  }
+    private Document document;
 
-    public boolean validerReclamation() throws ValidationInputFileException{
+    public ReclamationDocumentValidation(Document document) {
+        this.document = document;
+    }
+
+    public boolean validerReclamation() throws ValidationInputFileException {
 
         checkFormXML();
         estDossierValide();
         estMoisValide();
-        estDateValide(); 
+        estDateValide();
         coherenceMoisDate();
         signeDollardPresentPartout();
         soinsValide();
         return true;
     }
 
-    private boolean checkFormXML() throws ValidationInputFileException{
-        
-        boolean valide = false;
+    private void checkFormXML() throws ValidationInputFileException {
+
+        nodeIsUnique((Element)document,"reclamations",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
         NodeList list = document.getElementsByTagName("reclamations");
+        Element elementReclamations = (Element) list.item(0);
+        nodeIsUnique(elementReclamations,"dossier",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DOSSIER_MANQUANT);
+        nodeIsUnique(elementReclamations,"mois",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MOIS_MANQUANT);
+        nodeExist(elementReclamations,"reclamation",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATION_MANQUANT);
+        NodeList elementReclamation = elementReclamations.getElementsByTagName("reclamation");
+        checkReclamationForm(elementReclamation);
         
-        
-        if(list.getLength() != 1){
-            valide = !valide;
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
-        }
-        
-        
-            Element elementDossier = (Element)list.item(0);
-            if(elementDossier.getElementsByTagName("dossier").getLength() != 1){
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DOSSIER_MANQUANT);
-            }
-            
-            if(elementDossier.getElementsByTagName("mois").getLength() != 1){
-                System.out.println("nombre de dat incorect");
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MOIS_MANQUANT);
-
-            }
-        
-            
-            if(elementDossier.getElementsByTagName("reclamation").getLength() < 1){
-                System.out.println("nombre de reclamation incorect");
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATION_MANQUANT);
-
-            }
-            
-            NodeList elementReclamation = elementDossier.getElementsByTagName("reclamation");
-            
-            for(int i = 0; i < elementReclamation.getLength();++i){
-                
-                Element element = (Element)elementReclamation.item(i);
-                if(element.getElementsByTagName("soin").getLength() != 1){
-                    System.out.println("nombre de soins pas correct");
-                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
-
-                }
-                
-                if(element.getElementsByTagName("date").getLength() != 1){
-                    
-                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
-                }
-                
-                if(element.getElementsByTagName("montant").getLength() != 1){
-                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
-                }
-            }
-        
-        return valide;
     }
     
+    private void nodeIsUnique(Element element, String nodeName, String error) throws ValidationInputFileException{
+        if (element.getElementsByTagName(nodeName).getLength() != 1) {
+                throw new ValidationInputFileException(error);
+            }   
+    }
     
+    private void nodeExist(Element element, String nodeName, String error) throws ValidationInputFileException{
+        if (element.getElementsByTagName(nodeName).getLength() < 1) {
+                throw new ValidationInputFileException(error);
+            }   
+    }
     
-    private boolean estDossierValide() throws ValidationInputFileException{
+    private void checkReclamationForm(NodeList list) throws ValidationInputFileException{
+        
+        for (int i = 0; i < list.getLength(); ++i) {
+
+            Element element = (Element) list.item(i);
+            
+            nodeIsUnique(element,"soin",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
+            nodeIsUnique(element,"date",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
+            nodeIsUnique(element,"montant",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
+
+        }
+    }
+
+    private boolean estDossierValide() throws ValidationInputFileException {
         String numeroDossier = getNumeroDossier();
-       
-        if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E' )){
+
+        if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DOSSIER);
-        }else if (!(numeroDossier.length() == 7 && estUnEntier(numeroDossier.substring(1)))){
+        } else if (!(numeroDossier.length() == 7 && estUnEntier(numeroDossier.substring(1)))) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
-        }       
+        }
         return true;
     }
-    
+
     private String getNumeroDossier() {
         return (String) getListNoeud("dossier").get(0);
     }
 
-    private boolean estUnEntier(String numero) throws ValidationInputFileException{
+    private boolean estUnEntier(String numero) throws ValidationInputFileException {
         int i = 0;
         boolean estEntier = true;
         while (estEntier && i < numero.length()) {
@@ -133,69 +114,69 @@ public class ReclamationDocumentValidation {
         return estEntier;
     }
 
-    private boolean estDateValide( String laDate, String type )throws ValidationInputFileException{
+    private boolean estDateValide(String laDate, String type) throws ValidationInputFileException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        if( type.compareTo("mois") == 0){
+        if (type.compareTo("mois") == 0) {
             dateFormat = new SimpleDateFormat("yyyy-MM");
         }
         try {
             Date d = dateFormat.parse(laDate);
             String format = dateFormat.format(d);
-            if(!(format.compareTo(laDate) ==  0)){ 
+            if (!(format.compareTo(laDate) == 0)) {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
             }
         } catch (Exception e) {
-           
+
             throw new ValidationInputFileException(e.getMessage());
         }
         return true;
-    
+
     }
-    
-    private boolean estDateValide() throws ValidationInputFileException{
+
+    private boolean estDateValide() throws ValidationInputFileException {
         List<String> listedate = getListNoeud("date");
         int i = 0;
-        if(listedate.size() >= 1){
-            while( i < listedate.size() ){
+        if (listedate.size() >= 1) {
+            while (i < listedate.size()) {
                 estDateValide(listedate.get(i), "date");
                 i = i + 1;
             }
-        }else{
+        } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
         }
         return true;
     }
-    
-    private boolean estMoisValide()throws ValidationInputFileException {
+
+    private boolean estMoisValide() throws ValidationInputFileException {
         List<String> listeMois = getListNoeud("mois");
         int i = 0;
-        if(listeMois.size() == 1){
-            while( i < listeMois.size() ){
+        if (listeMois.size() == 1) {
+            while (i < listeMois.size()) {
                 estDateValide(listeMois.get(i), "mois");
                 i = i + 1;
             }
-        }else{
+        } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
         }
         return true;
     }
-    
-    private boolean coherenceMoisDate() throws ValidationInputFileException{
+
+    private boolean coherenceMoisDate() throws ValidationInputFileException {
         int i = 0;
         List<String> listeDate = getListNoeud("date");
         List<String> listeMois = getListNoeud("mois");
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
             Date mois = dateFormatMois.parse(listeMois.get(0));
-        
+
             Date date;
-            
+
             SimpleDateFormat dateFormatM = new SimpleDateFormat("yyyy-MM");
-        
-            while(i < listeDate.size()){
-                
+
+            while (i < listeDate.size()) {
+
                 date = dateFormatM.parse(listeDate.get(i));
-                if( mois.after(date) || mois.before(date)){
+                if (mois.after(date) || mois.before(date)) {
                     throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
                 }
                 i = i + 1;
@@ -205,11 +186,11 @@ public class ReclamationDocumentValidation {
         }
         return true;
     }
-  
+
     private boolean signeDollardPresentPartout() throws ValidationInputFileException {
         int i = 0;
         List<String> listeReclamations = getListNoeud("montant");
-        while ( i < listeReclamations.size()) {
+        while (i < listeReclamations.size()) {
             if (listeReclamations.get(i).charAt(listeReclamations.get(i).length() - 1) != '$') {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SIGNE_DOLLAR);
             }
@@ -218,21 +199,21 @@ public class ReclamationDocumentValidation {
         return true;
     }
 
-    private boolean soinsValide()throws ValidationInputFileException {
+    private boolean soinsValide() throws ValidationInputFileException {
         int i = 0;
         List<String> list = getListNoeud("soin");
         List<String> listSoinsValides = listSoinsValides();
-          while ( i < list.size()) {
-            if ( !listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
+        while (i < list.size()) {
+            if (!listSoinsValides.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SOIN);
             }
             ++i;
-        } 
+        }
         return true;
     }
 
     private List<String> getListNoeud(String noeud) {
-        
+
         List<String> list = new ArrayList();
         NodeList listeNoeuds = document.getElementsByTagName(noeud);
         for (int i = 0; i < listeNoeuds.getLength(); ++i) {
@@ -254,4 +235,4 @@ public class ReclamationDocumentValidation {
         listSoinsValides.add("700");
         return listSoinsValides;
     }
-} 
+}
