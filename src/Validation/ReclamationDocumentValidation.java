@@ -105,14 +105,14 @@ public class ReclamationDocumentValidation {
 
     private boolean isInteger(String numero) throws ValidationInputFileException {
         int i = 0;
-        boolean estEntier = true;
-        while (estEntier && i < numero.length()) {
+        boolean isInteger = true;
+        while (isInteger && i < numero.length()) {
             if (!(numero.charAt(i) >= '0' && numero.charAt(i) <= '9')) {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ENTIER);
             }
             ++i;
         }
-        return estEntier;
+        return isInteger;
     }
 
     private void estDateValide(String laDate, String type) throws ValidationInputFileException {
