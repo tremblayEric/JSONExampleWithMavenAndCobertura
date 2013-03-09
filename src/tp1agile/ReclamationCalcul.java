@@ -96,7 +96,6 @@ public class ReclamationCalcul {
             String amount = date.item(i).getTextContent();
             amount = amount.replace(',', '.');
             amount = amount.replace('$', ' ');
-     //       montant = montant.trim();
             amountList.add(amount);
         }
         return amountList;
