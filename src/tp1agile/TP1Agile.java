@@ -29,7 +29,7 @@ package tp1agile;
 import MockData.ContractList;
 
 import Dom.ParserXML;
-import Save.SauvegardeDocumentXml;
+import Save.XMLDocumentSave;
 import Validation.*;
 import java.io.FileNotFoundException;
 
@@ -40,7 +40,7 @@ public class TP1Agile {
        
         if (args.length == 2) {
 
-            SauvegardeDocumentXml persistanceDesDonnees = new SauvegardeDocumentXml("src/XmlFiles/" + args[1]);
+            XMLDocumentSave persistanceDesDonnees = new XMLDocumentSave("src/XmlFiles/" + args[1]);
             try {
                 ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]);
                 ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
