@@ -110,10 +110,10 @@ public class ReclamationCalcul {
 
 
     public String getMonth() {
-        String numeroClient;
+        String clientNumber;
         NodeList date = document.getElementsByTagName("mois");
-        numeroClient = date.item(0).getTextContent();
-        return numeroClient;
+        clientNumber = date.item(0).getTextContent();
+        return clientNumber;
     }
 
     public List<Double> effectuerListCalcul() {
