@@ -27,12 +27,12 @@ package Data;
 public class Care {
 
     private String careNumber;
-    private String categorieSoin;
+    private String careCategory;
     private Contracts contracts;
 
     Care(String numeroSoin, String categorieSoin, Contracts contracts){
         this.careNumber = numeroSoin;
-        this.categorieSoin = categorieSoin;
+        this.careCategory = categorieSoin;
         this.contracts = contracts;
     }
 
@@ -41,7 +41,7 @@ public class Care {
     }
 
     public String getCareCategorie() {
-        return categorieSoin;
+        return careCategory;
     }
 
     public Contracts getContract() {
@@ -50,7 +50,7 @@ public class Care {
     
     @Override
     public String toString(){
-        return careNumber + " category = " + categorieSoin + "contrat = "+
+        return careNumber + " category = " + careCategory + "contrat = "+
                 contracts;
     }
 }
