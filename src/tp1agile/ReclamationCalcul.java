@@ -65,14 +65,14 @@ public class ReclamationCalcul {
 
     public List<String> getListeSoins() {
 
-        List<String> listeReclamation = new ArrayList<>();
+        List<String> careList = new ArrayList<>();
         NodeList soin = document.getElementsByTagName("soin");
 
         for (int i = 0; i < soin.getLength(); i++) {
             String element = soin.item(i).getTextContent();
-            listeReclamation.add(element);
+            careList.add(element);
         }
-        return listeReclamation;
+        return careList;
     }
 
     public List<String> getListeDate() {
