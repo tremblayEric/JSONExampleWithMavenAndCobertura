@@ -25,6 +25,8 @@
  * UQAM hiver 2013
  */
 package Data;
+import MockData.Contracts;
+import MockData.Care;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -33,18 +35,18 @@ import static org.junit.Assert.*;
  * @author SayonCissé
  */
 public class SoinsTest {
-    Soins instance, instance2;
+    Care instance, instance2;
     String careNumber, expectedCareNumber;
     String careCategory, expectedCareCategory;
     Contracts contract;
            
     @Before
     public void setUp() throws Exception{
-        instance = new Soins(null, null, null) ;
+        instance = new Care(null, null, null) ;
         contract = new Contracts();
         expectedCareNumber = "100";
 	expectedCareCategory = "Ostéopathie"; 
-        instance2 = new Soins(expectedCareNumber, expectedCareCategory, contract);
+        instance2 = new Care(expectedCareNumber, expectedCareCategory, contract);
     }
     
     @After

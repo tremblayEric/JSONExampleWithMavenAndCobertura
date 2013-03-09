@@ -21,7 +21,7 @@
  * 
  * 
  */
-package Data;
+package MockData;
 
 /*ajout iteration 2 : tout ce qui est relatif au contrat E*/
 public class Contracts {

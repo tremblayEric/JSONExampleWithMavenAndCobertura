@@ -26,7 +26,7 @@
  */
 package tp1agile;
 
-import Data.ContractList;
+import MockData.ContractList;
 
 import Dom.ParserXML;
 import Save.SauvegardeDocumentXml;

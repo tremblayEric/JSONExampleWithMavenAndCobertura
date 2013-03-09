@@ -4,6 +4,7 @@
  */
 package Data;
 
+import MockData.ContractList;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
