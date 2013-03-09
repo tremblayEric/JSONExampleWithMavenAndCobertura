@@ -40,6 +40,7 @@ public class ReclamationDocumentValidation {
 
     public boolean validerReclamation() throws ValidationInputFileException{
 
+        checkFormXML();
         estDossierValide();
         estMoisValide();
         estDateValide(); 
@@ -49,6 +50,62 @@ public class ReclamationDocumentValidation {
         return true;
     }
 
+    private boolean checkFormXML() throws ValidationInputFileException{
+        
+        boolean valide = false;
+        NodeList list = document.getElementsByTagName("reclamations");
+        
+        
+        if(list.getLength() != 1){
+            valide = !valide;
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
+        }
+        
+        
+            Element elementDossier = (Element)list.item(0);
+            if(elementDossier.getElementsByTagName("dossier").getLength() != 1){
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DOSSIER_MANQUANT);
+            }
+            
+            if(elementDossier.getElementsByTagName("mois").getLength() != 1){
+                System.out.println("nombre de dat incorect");
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MOIS_MANQUANT);
+
+            }
+        
+            
+            if(elementDossier.getElementsByTagName("reclamation").getLength() < 1){
+                System.out.println("nombre de reclamation incorect");
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATION_MANQUANT);
+
+            }
+            
+            NodeList elementReclamation = elementDossier.getElementsByTagName("reclamation");
+            
+            for(int i = 0; i < elementReclamation.getLength();++i){
+                
+                Element element = (Element)elementReclamation.item(i);
+                if(element.getElementsByTagName("soin").getLength() != 1){
+                    System.out.println("nombre de soins pas correct");
+                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
+
+                }
+                
+                if(element.getElementsByTagName("date").getLength() != 1){
+                    
+                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
+                }
+                
+                if(element.getElementsByTagName("montant").getLength() != 1){
+                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
+                }
+            }
+        
+        return valide;
+    }
+    
+    
+    
     private boolean estDossierValide() throws ValidationInputFileException{
         String numeroDossier = getNumeroDossier();
        
@@ -123,7 +180,6 @@ public class ReclamationDocumentValidation {
         return true;
     }
     
-    
     private boolean coherenceMoisDate() throws ValidationInputFileException{
         int i = 0;
         List<String> listeDate = getListNoeud("date");
@@ -176,6 +232,7 @@ public class ReclamationDocumentValidation {
     }
 
     private List<String> getListNoeud(String noeud) {
+        
         List<String> list = new ArrayList();
         NodeList listeNoeuds = document.getElementsByTagName(noeud);
         for (int i = 0; i < listeNoeuds.getLength(); ++i) {
