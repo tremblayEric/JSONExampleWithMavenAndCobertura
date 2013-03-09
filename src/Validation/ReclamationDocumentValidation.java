@@ -115,7 +115,7 @@ public class ReclamationDocumentValidation {
         return isInteger;
     }
 
-    private void estDateValide(String laDate, String type) throws ValidationInputFileException {
+    private void isDateValid(String laDate, String type) throws ValidationInputFileException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         if (type.compareTo("mois") == 0) {
             dateFormat = new SimpleDateFormat("yyyy-MM");
@@ -139,7 +139,7 @@ public class ReclamationDocumentValidation {
         int i = 0;
         if (listedate.size() >= 1) {
             while (i < listedate.size()) {
-                estDateValide(listedate.get(i), "date");
+                isDateValid(listedate.get(i), "date");
                 i = i + 1;
             }
         } else {
@@ -153,7 +153,7 @@ public class ReclamationDocumentValidation {
         int i = 0;
         if (listeMois.size() == 1) {
             while (i < listeMois.size()) {
-                estDateValide(listeMois.get(i), "mois");
+                isDateValid(listeMois.get(i), "mois");
                 i = i + 1;
             }
         } else {
