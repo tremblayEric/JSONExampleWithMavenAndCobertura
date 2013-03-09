@@ -87,7 +87,7 @@ public class ReclamationCalcul {
         return dateList;
     }
 
-    public List<String> getListeMontant() {
+    public List<String> getAmountList() {
 
         List<String> amountList = new ArrayList<>();
         NodeList date = document.getElementsByTagName("montant");
@@ -118,9 +118,9 @@ public class ReclamationCalcul {
 
     public List<Double> doCalculList() {
         List<Double> refundList = new ArrayList<>();
-        if (getCareList().size() == getListeMontant().size()) {
+        if (getCareList().size() == getAmountList().size()) {
             for (int i = 0; i < getCareList().size(); ++i) {
-                String montant = getListeMontant().get(i);
+                String montant = getAmountList().get(i);
                 Double it = Double.parseDouble(montant);
                 String st = getCareList().get(i);
                 String st2 = getContractType();
@@ -133,9 +133,9 @@ public class ReclamationCalcul {
 
     public Double ajoutDesRefunds() {
         Double totalRefund = 0.0;
-        if (getCareList().size() == getListeMontant().size()) {
+        if (getCareList().size() == getAmountList().size()) {
             for (int i = 0; i < getCareList().size(); ++i) {
-                String montant = getListeMontant().get(i);
+                String montant = getAmountList().get(i);
                 Double it = Double.parseDouble(montant);
                 String st = getCareList().get(i);
                 String st2 = getContractType();
