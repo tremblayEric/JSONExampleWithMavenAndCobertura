@@ -66,10 +66,10 @@ public class ReclamationCalcul {
     public List<String> getCareList() {
 
         List<String> careList = new ArrayList<>();
-        NodeList soin = document.getElementsByTagName("soin");
+        NodeList care = document.getElementsByTagName("soin");
 
-        for (int i = 0; i < soin.getLength(); i++) {
-            String element = soin.item(i).getTextContent();
+        for (int i = 0; i < care.getLength(); i++) {
+            String element = care.item(i).getTextContent();
             careList.add(element);
         }
         return careList;
