@@ -93,11 +93,11 @@ public class ReclamationCalcul {
         NodeList date = document.getElementsByTagName("montant");
 
         for (int i = 0; i < date.getLength(); i++) {
-            String montant = date.item(i).getTextContent();
-            montant = montant.replace(',', '.');
-            montant = montant.replace('$', ' ');
+            String amount = date.item(i).getTextContent();
+            amount = amount.replace(',', '.');
+            amount = amount.replace('$', ' ');
      //       montant = montant.trim();
-            amountList.add(montant);
+            amountList.add(amount);
         }
         return amountList;
     } 
