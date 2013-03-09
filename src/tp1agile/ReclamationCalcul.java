@@ -109,7 +109,7 @@ public class ReclamationCalcul {
     }
 
 
-    public String getMois() {
+    public String getMonth() {
         String numeroClient;
         NodeList date = document.getElementsByTagName("mois");
         numeroClient = date.item(0).getTextContent();
