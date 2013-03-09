@@ -131,7 +131,7 @@ public class ReclamationCalcul {
         return refundList;
     }
 
-    public Double ajoutDesRefunds() {
+    public Double addRefunds() {
         Double totalRefund = 0.0;
         if (getCareList().size() == getAmountList().size()) {
             for (int i = 0; i < getCareList().size(); ++i) {
