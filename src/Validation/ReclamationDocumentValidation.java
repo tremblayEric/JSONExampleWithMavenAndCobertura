@@ -18,8 +18,6 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- * 
- * 
  */
 package Validation;
 
@@ -41,8 +39,7 @@ public class ReclamationDocumentValidation {
   }
 
     public boolean validerReclamation() throws ValidationInputFileException{
-//        numeroClientValide(); // client
-//        estContratValide();  // contrat
+
         estDossierValide();
         estMoisValide();
         estDateValide(); 
@@ -54,9 +51,7 @@ public class ReclamationDocumentValidation {
 
     private boolean estDossierValide() throws ValidationInputFileException{
         String numeroDossier = getNumeroDossier();
-       /* if (numeroDossier.substring(0, 1) != "A" || numeroDossier.substring(0, 1) != "B" || 
-            numeroDossier.substring(0, 1) != "C" || numeroDossier.substring(0, 1) != "D" ||
-            numeroDossier.substring(0, 1) != "E"){  */
+       
         if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E' )){
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DOSSIER);
         }else if (!(numeroDossier.length() == 7 && estUnEntier(numeroDossier.substring(1)))){
@@ -65,22 +60,6 @@ public class ReclamationDocumentValidation {
         return true;
     }
     
-   /* private boolean estContratValide() throws ValidationInputFileException{
-        String contrat = (String) getListNoeud("contrat").get(0);
-        if ( !(contrat.charAt(0) >= 'A' && contrat.charAt(0) <= 'D' && contrat.length() == 1) ) { //modification Boris exemple cas AAAA
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_CONTRAT);
-        }
-        return true;
-    } */
-    
-   /* private boolean numeroClientValide() throws ValidationInputFileException{
-        String numeroClient = getNumeroClient();
-        if (!(numeroClient.length() == 6 && estUnEntier(numeroClient))) {
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
-        }
-        return true;
-    } */
-
     private String getNumeroDossier() {
         return (String) getListNoeud("dossier").get(0);
     }
@@ -96,8 +75,6 @@ public class ReclamationDocumentValidation {
         }
         return estEntier;
     }
-
-
 
     private boolean estDateValide( String laDate, String type )throws ValidationInputFileException{
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -121,7 +98,6 @@ public class ReclamationDocumentValidation {
     private boolean estDateValide() throws ValidationInputFileException{
         List<String> listedate = getListNoeud("date");
         int i = 0;
-        //String mois = (String) getListNoeud("mois").get(0);
         if(listedate.size() >= 1){
             while( i < listedate.size() ){
                 estDateValide(listedate.get(i), "date");
@@ -156,14 +132,12 @@ public class ReclamationDocumentValidation {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
             Date mois = dateFormatMois.parse(listeMois.get(0));
         
-            //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date;
             
             SimpleDateFormat dateFormatM = new SimpleDateFormat("yyyy-MM");
         
             while(i < listeDate.size()){
                 
-                //date = dateFormat.parse(listeDate.get(i));
                 date = dateFormatM.parse(listeDate.get(i));
                 if( mois.after(date) || mois.before(date)){
                     throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
@@ -176,7 +150,6 @@ public class ReclamationDocumentValidation {
         return true;
     }
   
-    
     private boolean signeDollardPresentPartout() throws ValidationInputFileException {
         int i = 0;
         List<String> listeReclamations = getListNoeud("montant");
