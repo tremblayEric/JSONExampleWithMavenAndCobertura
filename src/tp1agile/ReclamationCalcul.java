@@ -101,7 +101,7 @@ public class ReclamationCalcul {
         return amountList;
     } 
     
-    public String getNumeroDossier() {
+    public String getFolderNumber() {
         String numeroClient;
         NodeList date = document.getElementsByTagName("dossier");
         numeroClient = date.item(0).getTextContent();
