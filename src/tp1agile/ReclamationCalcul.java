@@ -120,8 +120,8 @@ public class ReclamationCalcul {
         List<Double> refundList = new ArrayList<>();
         if (getCareList().size() == getAmountList().size()) {
             for (int i = 0; i < getCareList().size(); ++i) {
-                String montant = getAmountList().get(i);
-                Double it = Double.parseDouble(montant);
+                String amount = getAmountList().get(i);
+                Double it = Double.parseDouble(amount);
                 String st = getCareList().get(i);
                 String st2 = getContractType();
                 refundList.add(doCalcul(it, st, st2));
