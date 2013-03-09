@@ -117,18 +117,18 @@ public class ReclamationCalcul {
     }
 
     public List<Double> doCalculList() {
-        List<Double> listRemboursement = new ArrayList<>();
+        List<Double> refundList = new ArrayList<>();
         if (getListeSoins().size() == getListeMontant().size()) {
             for (int i = 0; i < getListeSoins().size(); ++i) {
                 String montant = getListeMontant().get(i);
                 Double it = Double.parseDouble(montant);
                 String st = getListeSoins().get(i);
                 String st2 = getContractType();
-                listRemboursement.add(effectuerCalcul(it, st, st2));
+                refundList.add(effectuerCalcul(it, st, st2));
             }
         }
     
-        return listRemboursement;
+        return refundList;
     }
 
     public Double ajoutDesRefunds() {
