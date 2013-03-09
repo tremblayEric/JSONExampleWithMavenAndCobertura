@@ -77,14 +77,14 @@ public class ReclamationCalcul {
 
     public List<String> getListeDate() {
 
-        List<String> listeDate = new ArrayList<>();
+        List<String> dateList = new ArrayList<>();
         NodeList date = document.getElementsByTagName("date");
 
         for (int i = 0; i < date.getLength(); i++) {
             String element = date.item(i).getTextContent();
-            listeDate.add(element);
+            dateList.add(element);
         }
-        return listeDate;
+        return dateList;
     }
 
     public List<String> getListeMontant() {
