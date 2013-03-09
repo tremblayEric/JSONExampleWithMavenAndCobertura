@@ -124,7 +124,7 @@ public class ReclamationCalcul {
                 Double it = Double.parseDouble(montant);
                 String st = getCareList().get(i);
                 String st2 = getContractType();
-                refundList.add(effectuerCalcul(it, st, st2));
+                refundList.add(doCalcul(it, st, st2));
             }
         }
     
@@ -139,13 +139,13 @@ public class ReclamationCalcul {
                 Double it = Double.parseDouble(montant);
                 String st = getCareList().get(i);
                 String st2 = getContractType();
-                totalRefund += effectuerCalcul(it, st, st2);
+                totalRefund += doCalcul(it, st, st2);
             }
         }
         return totalRefund;
     }
 
-    public double effectuerCalcul(double valeur, String numeroSoin, String contrat) {
+    public double doCalcul(double valeur, String numeroSoin, String contrat) {
         double remboursement = 0;
         ContractList listeContrats = new ContractList();
         remboursement = valeur * listeContrats.getContractRatioByCareNumber(numeroSoin, contrat);      
