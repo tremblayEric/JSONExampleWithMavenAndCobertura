@@ -164,7 +164,7 @@ public class ReclamationDocumentValidation {
 
     private void dateMonthCoherence() throws ValidationInputFileException {
         int i = 0;
-        List<String> listeDate = getListNoeud("date");
+        List<String> dateList = getListNoeud("date");
         List<String> listeMois = getListNoeud("mois");
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
@@ -174,9 +174,9 @@ public class ReclamationDocumentValidation {
 
             SimpleDateFormat dateFormatM = new SimpleDateFormat("yyyy-MM");
 
-            while (i < listeDate.size()) {
+            while (i < dateList.size()) {
 
-                date = dateFormatM.parse(listeDate.get(i));
+                date = dateFormatM.parse(dateList.get(i));
                 if (mois.after(date) || mois.before(date)) {
                     throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
                 }
