@@ -44,7 +44,7 @@ public class ReclamationDocumentValidation {
         ifValidFolder();
         isMonthValid();
         isDateValid();
-        coherenceMoisDate();
+        dateMonthCoherence();
         signeDollardPresentPartout();
         soinsValide();
         
@@ -162,7 +162,7 @@ public class ReclamationDocumentValidation {
         
     }
 
-    private void coherenceMoisDate() throws ValidationInputFileException {
+    private void dateMonthCoherence() throws ValidationInputFileException {
         int i = 0;
         List<String> listeDate = getListNoeud("date");
         List<String> listeMois = getListNoeud("mois");
