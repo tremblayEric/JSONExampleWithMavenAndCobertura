@@ -53,14 +53,14 @@ public class ReclamationCalcul {
     
     public List<Element> getListeDesReclamations() {
 
-        List<Element> listeReclamation = new ArrayList<>();
+        List<Element> reclamationList = new ArrayList<>();
         NodeList reclamation = document.getElementsByTagName("reclamation");
 
         for (int i = 0; i < reclamation.getLength(); i++) {
             Element element = (Element) reclamation.item(i);
-            listeReclamation.add(element);
+            reclamationList.add(element);
         }
-        return listeReclamation;
+        return reclamationList;
     }
 
     public List<String> getListeSoins() {
