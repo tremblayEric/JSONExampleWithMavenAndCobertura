@@ -1,0 +1,37 @@
+Norme de Codification:
+
+S'inspire de la norme java suivre l'ideologie du livre : Coder proprement
+
+la nomenclature doit etre representative de ce qui se passe et en anglais.
+nomenclature des variables et des methodes  : camelCase
+nomenclature des classes : pascal case
+
+methode courte : 10 lignes maximum, (commenter les cas d'exceptions)
+
+minimiser les commentaires, ceux-ci seront utilise pour mentionner les ajouts et 
+modification qui seront apporte au logiciel entre d'une iteration a l'autre, 
+pas de java doc car ca risque de creer de la confusion si on omet de la tenir a 
+jour.
+
+
+License : au debut de chaque fichier
+
+indentation (une indentation = 4 espaces): 
+
+import, package et nom de classe sur la marge gauche ( 0 espace )
+variables de classe et methodes : 4 espaces(de la marge gauche)
+contenu de methode ( variable, boucles, if etc ) 4 espaces a partir de 
+l'indentation de sa methode. 
+contenu des boucles, if , switch etc : 4 espace a partir de l'indentation de 
+sa boucle if ou switch etc ...
+
+
+
+
+
+
+
+
+
+
+
