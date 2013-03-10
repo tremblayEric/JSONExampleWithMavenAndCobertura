@@ -2,7 +2,8 @@ Norme de Codification:
 
 S'inspire de la norme java suivre l'ideologie du livre : Coder proprement
 
-la nomenclature doit etre representative de ce qui se passe et en anglais.
+la nomenclature doit etre representative de ce qui se passe et en anglais et 
+sans caractere accentues.
 nomenclature des variables et des methodes  : camelCase
 nomenclature des classes : pascal case
 
