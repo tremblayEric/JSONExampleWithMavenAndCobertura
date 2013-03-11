@@ -149,7 +149,8 @@ public class ReclamationCalcul {
         double refund = 0;
         ContractList contractsList = new ContractList();
         refund = valeur * contractsList.getContractRatioByCareNumber(numeroSoin, contrat);      
-        if (contractsList.getContractMaxValueByCareNumberExist(numeroSoin, contrat) && refund > contractsList.getContractMaxValueByCareNumber(numeroSoin, contrat)) {
+        if (contractsList.getContractMaxValueByCareNumberExist(numeroSoin, contrat) 
+                && refund > contractsList.getContractMaxValueByCareNumber(numeroSoin, contrat)) {
             refund = contractsList.getContractMaxValueByCareNumber(numeroSoin, contrat);
         }
         return refund;
