@@ -44,8 +44,7 @@ public class Contracts {
     private int maxValueD;
     private int maxValueE;
     
-    public Contracts(){
-      
+    public Contracts(){  
     }
     
     public void setRatio(double ratioA, double ratioB, double ratioC, double ratioD, double ratioE){
@@ -75,49 +74,58 @@ public class Contracts {
     public double getRatioA(){
         return ratioA;
     }
+    
     public double getRatioB(){
         return ratioB;
     }
+    
     public double getRatioC(){
         return ratioC;
     }
+    
     public double getRatioD(){
         return ratioD;
     }
+    
     public double getRatioE(){
         return ratioE;
     }
     
-    public boolean getmaxA(){
+    public boolean getMaxA(){
         return maxA;
     }
-    public boolean getmaxB(){
+    
+    public boolean getMaxB(){
         return maxB;
     }
-    public boolean getmaxC(){
+    
+    public boolean getMaxC(){
         return maxC;
     }
-    public boolean getmaxD(){
+    public boolean getMaxD(){
         return maxD;
     }
-     public boolean getmaxE(){
+     public boolean getMaxE(){
         return maxE;
     }
     
-    public int getMavalueA(){
+    public int getMaxValueA(){
         return maxValueA;
     }
-    public int getMavalueB(){
+    
+    public int getMaxValueB(){
         return maxValueB;
     }
-    public int getMavalueC(){
+    
+    public int getMaxValueC(){
         return maxValueC;
     }
-    public int getMavalueD(){
+    
+    public int getMaxValueD(){
         return maxValueD;
     }
-    public int getMavalueE(){
+    
+    public int getMaxValueE(){
         return maxValueE;
     }
-    
 }
