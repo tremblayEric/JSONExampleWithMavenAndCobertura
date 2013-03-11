@@ -24,7 +24,7 @@
 package MockData;
 
 /*ajout iteration 2 : tout ce qui est relatif au contrat E*/
-public class Contracts {
+public class Contracts{
       
     private double ratioA;
     private double ratioB;
