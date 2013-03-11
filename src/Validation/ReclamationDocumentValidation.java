@@ -39,7 +39,6 @@ public class ReclamationDocumentValidation {
     }
 
     public void reclamationValidation() throws ValidationInputFileException {
-
         checkFormXML();
         ifValidFolder();
         isMonthValid();
@@ -47,11 +46,9 @@ public class ReclamationDocumentValidation {
         dateMonthCoherence();
         dollardSymbolCheck();
         validCare();
-
     }
 
     private void checkFormXML() throws ValidationInputFileException {
-
         rootExist( "reclamations",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
         NodeList list = document.getElementsByTagName("reclamations");
         element = (Element) list.item(0);
@@ -84,11 +81,8 @@ public class ReclamationDocumentValidation {
 
     private void checkReclamationForm(NodeList list) 
             throws ValidationInputFileException {
-
         for (int i = 0; i < list.getLength(); ++i) {
-
             element = (Element) list.item(i);
-
             nodeIsUnique("soin", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
             nodeIsUnique("date", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
             nodeIsUnique("montant", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
@@ -98,13 +92,11 @@ public class ReclamationDocumentValidation {
     private void ifValidFolder() 
             throws ValidationInputFileException {
         String numeroDossier = getNumeroDossier();
-
         if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DOSSIER);
         } else if (!(numeroDossier.length() == 7 && isInteger(numeroDossier.substring(1)))) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
         }
-
     }
 
     private String getNumeroDossier() {
@@ -137,11 +129,8 @@ public class ReclamationDocumentValidation {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
             }
         } catch (Exception e) {
-
             throw new ValidationInputFileException(e.getMessage());
         }
-
-
     }
 
     private void isDateValid() 
@@ -156,7 +145,6 @@ public class ReclamationDocumentValidation {
         } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
         }
-
     }
 
     private void isMonthValid() 
@@ -171,7 +159,6 @@ public class ReclamationDocumentValidation {
         } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
         }
-
     }
 
     private void dateMonthCoherence() 
@@ -182,13 +169,9 @@ public class ReclamationDocumentValidation {
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
             Date month = dateFormatMois.parse(monthList.get(0));
-
             Date date;
-
             SimpleDateFormat dateFormatM = new SimpleDateFormat("yyyy-MM");
-
             while (i < dateList.size()) {
-
                 date = dateFormatM.parse(dateList.get(i));
                 if (month.after(date) || month.before(date)) {
                     throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
@@ -198,7 +181,6 @@ public class ReclamationDocumentValidation {
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
         }
-
     }
 
     private void dollardSymbolCheck() 
@@ -211,7 +193,6 @@ public class ReclamationDocumentValidation {
             }
             ++i;
         }
-
     }
 
     private void validCare() 
@@ -225,11 +206,9 @@ public class ReclamationDocumentValidation {
             }
             ++i;
         }
-
     }
 
     private List<String> getListNoeud(String noeud) {
-
         List<String> list = new ArrayList();
         NodeList nodeList = document.getElementsByTagName(noeud);
         for (int i = 0; i < nodeList.getLength(); ++i) {
