@@ -35,7 +35,8 @@ import java.io.FileNotFoundException;
 
 public class TP1Agile {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) 
+            throws Exception {
 
        
         if (args.length == 2) {
