@@ -243,6 +243,7 @@ public class ReclamationDocumentValidation {
         List<String> validCareList = new ArrayList();
         validCareList.add("0");
         validCareList.add("100");
+        validCareList.add("150");//ajout du soins 150 a la validation
         validCareList.add("175");//ajout du soins 175 a la validation
         validCareList.add("200");
         validCareList.add("400");

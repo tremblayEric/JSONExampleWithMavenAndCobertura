@@ -3,7 +3,7 @@
     <dossier>B123456</dossier>
     <mois>2013-01</mois>
     <reclamation>
-        <soin>600</soin>
+        <soin>150</soin>
         <date>2013-01-01</date>
         <montant>1.00$</montant>
     </reclamation>  
