@@ -148,7 +148,7 @@ public class ContractList {
     private Contracts kinesitherapieContract() {
         /*ajout iteration 2 : contrat de Kinesitherapie*/
         Contracts kinesitherapieContract = new Contracts();
-        kinesitherapieContract.setRatio(0.0, 0.7, 0.85, 1.0, 0.15);
+        kinesitherapieContract.setRatio(0.0, 0.0, 0.85, 1.0, 0.15);
         kinesitherapieContract.setMax(false, false, false, true,false);
         kinesitherapieContract.setMaxValue(-1, -1, -1, 150,-1);
         
