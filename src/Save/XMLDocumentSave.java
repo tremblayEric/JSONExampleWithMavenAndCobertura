@@ -75,30 +75,26 @@ public class XMLDocumentSave {
             throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
         this.reclamation = reclamation;
         df = new DecimalFormat("#0.00");
-        XmlDocumentRefundsInitialisation();
+        xmlDocumentRefundsInitialisation();
         nodeList = document.getElementsByTagName("remboursements");
         createFolderNode();
         createMonthNode();
         serialyzeReclamation();
         createTotalNode();
-
         try {
             saveToFile(document);
         } catch (Exception e) {
         }
-
     }
 
     public void saveSignalInvalidInputXML(String message) 
             throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
-        XmlDocumentRefundsInitialisation();
+        xmlDocumentRefundsInitialisation();
         createErrorMessageNode();
         nodeList.item(0).setTextContent(message);
-
         Source domSource = new DOMSource(document);
         File file = new File(filePath);
         Result result = new StreamResult(file);
-
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.transform(domSource, result);
@@ -111,7 +107,7 @@ public class XMLDocumentSave {
         nodeList = document.getElementsByTagName("message");
     }
 
-    private void XmlDocumentRefundsInitialisation() 
+    private void xmlDocumentRefundsInitialisation() 
             throws ParserConfigurationException {
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
@@ -123,14 +119,23 @@ public class XMLDocumentSave {
 
     private void serialyzeReclamation() {
         for (int i = 0; i < reclamation.getReclamationList().size(); ++i) {
-            createRefundNode(i);
+            //createRefundNode(i);
+            createRefundNode();
             createCareNode(i);
             createDateNode(i);
             createAmountNode(i);
         }
     }
-
+    
+    /*
     private void createRefundNode(int i) {
+        nodeList = document.getElementsByTagName("remboursements");
+        element = document.createElement("remboursement");
+        nodeList.item(0).appendChild(element);
+    }
+    */
+    
+    private void createRefundNode() {
         nodeList = document.getElementsByTagName("remboursements");
         element = document.createElement("remboursement");
         nodeList.item(0).appendChild(element);
