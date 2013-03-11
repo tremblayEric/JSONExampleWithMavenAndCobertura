@@ -12,6 +12,7 @@ la nomenclature doit etre representative de ce qui se passe et en anglais et
 sans caractere accentues.
 nomenclature des variables et des methodes: camelCase
 nomenclature des classes: pascal case
+nomenclature des Constantes: mots en majuscule separe par des underscore
 
 methode courte : 10 lignes maximum, (commenter les cas d'exceptions)
 
