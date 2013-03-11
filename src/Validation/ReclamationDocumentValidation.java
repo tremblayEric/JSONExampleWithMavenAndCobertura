@@ -68,19 +68,22 @@ public class ReclamationDocumentValidation {
         }
     }
     
-    private void nodeIsUnique(String nodeName, String error) throws ValidationInputFileException {
+    private void nodeIsUnique(String nodeName, String error) 
+            throws ValidationInputFileException {
         if (element.getElementsByTagName(nodeName).getLength() != 1) {
             throw new ValidationInputFileException(error);
         }
     }
 
-    private void nodeExist(String nodeName, String error) throws ValidationInputFileException {
+    private void nodeExist(String nodeName, String error) 
+            throws ValidationInputFileException {
         if (element.getElementsByTagName(nodeName).getLength() < 1) {
             throw new ValidationInputFileException(error);
         }
     }
 
-    private void checkReclamationForm(NodeList list) throws ValidationInputFileException {
+    private void checkReclamationForm(NodeList list) 
+            throws ValidationInputFileException {
 
         for (int i = 0; i < list.getLength(); ++i) {
 
@@ -92,7 +95,8 @@ public class ReclamationDocumentValidation {
         }
     }
 
-    private void ifValidFolder() throws ValidationInputFileException {
+    private void ifValidFolder() 
+            throws ValidationInputFileException {
         String numeroDossier = getNumeroDossier();
 
         if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
@@ -107,7 +111,8 @@ public class ReclamationDocumentValidation {
         return (String) getListNoeud("dossier").get(0);
     }
 
-    private boolean isInteger(String numero) throws ValidationInputFileException {
+    private boolean isInteger(String numero) 
+            throws ValidationInputFileException {
         int i = 0;
         boolean isInteger = true;
         while (isInteger && i < numero.length()) {
@@ -119,7 +124,8 @@ public class ReclamationDocumentValidation {
         return isInteger;
     }
 
-    private void isDateValid(String laDate, String type) throws ValidationInputFileException {
+    private void isDateValid(String laDate, String type) 
+            throws ValidationInputFileException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         if (type.compareTo("mois") == 0) {
             dateFormat = new SimpleDateFormat("yyyy-MM");
@@ -138,7 +144,8 @@ public class ReclamationDocumentValidation {
 
     }
 
-    private void isDateValid() throws ValidationInputFileException {
+    private void isDateValid() 
+            throws ValidationInputFileException {
         List<String> listedate = getListNoeud("date");
         int i = 0;
         if (listedate.size() >= 1) {
@@ -152,7 +159,8 @@ public class ReclamationDocumentValidation {
 
     }
 
-    private void isMonthValid() throws ValidationInputFileException {
+    private void isMonthValid() 
+            throws ValidationInputFileException {
         List<String> monthList = getListNoeud("mois");
         int i = 0;
         if (monthList.size() == 1) {
@@ -166,7 +174,8 @@ public class ReclamationDocumentValidation {
 
     }
 
-    private void dateMonthCoherence() throws ValidationInputFileException {
+    private void dateMonthCoherence() 
+            throws ValidationInputFileException {
         int i = 0;
         List<String> dateList = getListNoeud("date");
         List<String> monthList = getListNoeud("mois");
@@ -192,7 +201,8 @@ public class ReclamationDocumentValidation {
 
     }
 
-    private void dollardSymbolCheck() throws ValidationInputFileException {
+    private void dollardSymbolCheck() 
+            throws ValidationInputFileException {
         int i = 0;
         List<String> reclamationsList = getListNoeud("montant");
         while (i < reclamationsList.size()) {
@@ -204,7 +214,8 @@ public class ReclamationDocumentValidation {
 
     }
 
-    private void validCare() throws ValidationInputFileException {
+    private void validCare() 
+            throws ValidationInputFileException {
         int i = 0;
         List<String> list = getListNoeud("soin");
         List<String> validCareList = validCareList();
