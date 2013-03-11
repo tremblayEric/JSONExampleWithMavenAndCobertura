@@ -3,15 +3,15 @@ Norme de Codification:
 S'inspire de la norme java suivre l'ideologie du livre : Coder proprement
 
 respecter le princtipe d'encapsulation:
-variable et methode de classe sont prives.
+variable et methode de classe sont prives et defini au debut de la classe.
 mis a part ses methode publiques une classe doit etre opaque a celles qui l'utilise
 une ligne doit avoir au maximum environ 100 caractere (+ ou - 10 caracteres)
 
 
 la nomenclature doit etre representative de ce qui se passe et en anglais et 
 sans caractere accentues.
-nomenclature des variables et des methodes  : camelCase
-nomenclature des classes : pascal case
+nomenclature des variables et des methodes: camelCase
+nomenclature des classes: pascal case
 
 methode courte : 10 lignes maximum, (commenter les cas d'exceptions)
 
@@ -27,13 +27,29 @@ License : au debut de chaque fichier
 indentation (une indentation = 4 espaces): 
 
 import, package et nom de classe sur la marge gauche ( 0 espace )
+
 variables de classe et methodes : 4 espaces(de la marge gauche)
+
 contenu de methode ( variable, boucles, if etc ) 4 espaces a partir de 
 l'indentation de sa methode. 
+
 contenu des boucles, if , switch etc : 4 espace a partir de l'indentation de 
 sa boucle if ou switch etc ...
 les throw seront sur la ligne suivant la declaration de la fonction
 indente de 8 espace a partir du debut de la declaration de la foncton.
+
+Saut de ligne entre le different type de declaration dans une classe:
+ex:
+import librairie;
+
+class exemple{
+
+    variables de classe ou d'instance;
+
+    constructeurs;
+
+    methodes de classe ou d'instance;
+}
 
 
 
