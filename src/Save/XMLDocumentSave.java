@@ -61,7 +61,8 @@ public class XMLDocumentSave {
         this.filePath = filePath;
     }
 
-    public void saveToFile(Document document) throws Exception {
+    public void saveToFile(Document document) 
+            throws Exception {
         Source domSource = new DOMSource(document);
         File xmlFile = new File(filePath);
         Result serializationResult = new StreamResult(xmlFile);
@@ -70,7 +71,8 @@ public class XMLDocumentSave {
         xmlTransformer.transform(domSource, serializationResult);
     }
 
-    public void saveReclamation(ReclamationCalcul reclamation) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+    public void saveReclamation(ReclamationCalcul reclamation) 
+            throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
         this.reclamation = reclamation;
         df = new DecimalFormat("#0.00");
         XmlDocumentRefundsInitialisation();
@@ -87,7 +89,8 @@ public class XMLDocumentSave {
 
     }
 
-    public void saveSignalInvalidInputXML(String message) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+    public void saveSignalInvalidInputXML(String message) 
+            throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
         XmlDocumentRefundsInitialisation();
         createErrorMessageNode();
         nodeList.item(0).setTextContent(message);
@@ -108,7 +111,8 @@ public class XMLDocumentSave {
         nodeList = document.getElementsByTagName("message");
     }
 
-    private void XmlDocumentRefundsInitialisation() throws ParserConfigurationException {
+    private void XmlDocumentRefundsInitialisation() 
+            throws ParserConfigurationException {
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         document = builder.newDocument();
