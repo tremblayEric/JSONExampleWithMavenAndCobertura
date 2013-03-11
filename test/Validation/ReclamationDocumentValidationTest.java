@@ -34,8 +34,8 @@ public class ReclamationDocumentValidationTest {
         System.out.println("validerReclamation");
         ReclamationDocumentValidation instance = null;
         boolean expResult = false;
-        boolean result = instance.reclamationValidation();
-        assertEquals(expResult, result);
+        //boolean result = instance.reclamationValidation();
+       // assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

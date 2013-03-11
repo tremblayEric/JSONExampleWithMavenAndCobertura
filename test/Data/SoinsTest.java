@@ -25,8 +25,8 @@
  * UQAM hiver 2013
  */
 package Data;
-import MockData.Contracts;
 import MockData.Care;
+import MockData.Contracts;
 import org.junit.*;
 import static org.junit.Assert.*;
 

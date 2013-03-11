@@ -30,7 +30,7 @@ public class Care {
     private String careCategory;
     private Contracts contracts;
 
-    Care(String numeroSoin, String categorieSoin, Contracts contracts){
+    public Care(String numeroSoin, String categorieSoin, Contracts contracts){
         this.careNumber = numeroSoin;
         this.careCategory = categorieSoin;
         this.contracts = contracts;
