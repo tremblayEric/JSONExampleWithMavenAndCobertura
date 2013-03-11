@@ -42,7 +42,6 @@ public class ReclamationCalcul {
     public void setDocument(Document document) {
         this.document = document;
     }
-
     
     public String getContractType() {
         NodeList contracts = document.getElementsByTagName("dossier");
@@ -52,10 +51,8 @@ public class ReclamationCalcul {
     }
     
     public List<Element> getReclamationList() {
-
         List<Element> reclamationList = new ArrayList<>();
         NodeList reclamation = document.getElementsByTagName("reclamation");
-
         for (int i = 0; i < reclamation.getLength(); i++) {
             Element element = (Element) reclamation.item(i);
             reclamationList.add(element);
@@ -64,10 +61,8 @@ public class ReclamationCalcul {
     }
 
     public List<String> getCareList() {
-
         List<String> careList = new ArrayList<>();
         NodeList care = document.getElementsByTagName("soin");
-
         for (int i = 0; i < care.getLength(); i++) {
             String element = care.item(i).getTextContent();
             careList.add(element);
@@ -76,10 +71,8 @@ public class ReclamationCalcul {
     }
 
     public List<String> getDateList() {
-
         List<String> dateList = new ArrayList<>();
         NodeList date = document.getElementsByTagName("date");
-
         for (int i = 0; i < date.getLength(); i++) {
             String element = date.item(i).getTextContent();
             dateList.add(element);
@@ -88,10 +81,8 @@ public class ReclamationCalcul {
     }
 
     public List<String> getAmountList() {
-
         List<String> amountList = new ArrayList<>();
         NodeList date = document.getElementsByTagName("montant");
-
         for (int i = 0; i < date.getLength(); i++) {
             String amount = date.item(i).getTextContent();
             amount = amount.replace(',', '.');
@@ -107,7 +98,6 @@ public class ReclamationCalcul {
         clientNumber = date.item(0).getTextContent();
         return clientNumber;
     }
-
 
     public String getMonth() {
         String clientNumber;
@@ -127,7 +117,6 @@ public class ReclamationCalcul {
                 refundList.add(doCalcul(it, st, st2));
             }
         }
-    
         return refundList;
     }
 
