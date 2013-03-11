@@ -23,7 +23,6 @@
  */
 package MockData;
 
-
 public class Care {
 
     private String careNumber;
@@ -36,7 +35,7 @@ public class Care {
         this.contracts = contracts;
     }
 
-    public String getcareNumber() {
+    public String getCareNumber() {
        return careNumber;
     }
 
