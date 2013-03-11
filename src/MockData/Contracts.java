@@ -102,9 +102,11 @@ public class Contracts{
     public boolean getMaxC(){
         return maxC;
     }
+    
     public boolean getMaxD(){
         return maxD;
     }
+    
      public boolean getMaxE(){
         return maxE;
     }
