@@ -92,9 +92,10 @@ public class ReclamationDocumentValidation {
     private void ifValidFolder() 
             throws ValidationInputFileException {
         String numeroDossier = getNumeroDossier();
-        if (!(numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
+        if (!(numeroDossier.length() == 7 && numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DOSSIER);
-        } else if (!(numeroDossier.length() == 7 && isInteger(numeroDossier.substring(1)))) {
+        }
+        if (!(isInteger(numeroDossier.substring(1)))) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
         }
     }
