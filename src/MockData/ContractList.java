@@ -39,7 +39,7 @@ public class ContractList {
         contractList.add(new Care("150", "kinesitherapie", kinesitherapieContract()));
         /*ajout iteration 2 : soin 175 Medecin generaliste prive*/
         contractList.add(new Care("175", "Medecin generaliste prive", privateGeneralMedecineContract()));
-        contractList.add(new Care("200", "Psychologie individuelle", PsychoContract()));
+        contractList.add(new Care("200", "Psychologie individuelle", psychoContract()));
         contractList.add(new Care("300", "Soins dentaires", dentalContract()));
         contractList.add(new Care("400", "Naturopathie, acuponcture", naturoAcupContract()));
         contractList.add(new Care("500", "Chiropratie", chiroContract()));
@@ -165,7 +165,7 @@ public class ContractList {
         return privateGeneralMedecineContract;
     }
     
-    private Contracts PsychoContract(){
+    private Contracts psychoContract(){
         //psycho
         Contracts psychoContract = new Contracts();
         psychoContract.setRatio(0.25, 1.0, 0.9, 1.0, 0.12);
