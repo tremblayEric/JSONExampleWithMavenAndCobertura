@@ -190,7 +190,7 @@ public class ReclamationDocumentValidation {
             while (i < dateList.size()) {
                 date = dateFormatM.parse(dateList.get(i));
                 if (month.after(date) || month.before(date)) {
-                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTH);
+                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_DATE);
                 }
                 i = i + 1;
             }
@@ -217,7 +217,8 @@ public class ReclamationDocumentValidation {
         List<String> list = getListNoeud("soin");
         List<String> validCareList = validCareList();
         while (i < list.size()) {
-            if (!validCareList.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
+            if (!validCareList.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 
+                    && Integer.parseInt(list.get(i)) <= 399)) {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SOIN);
             }
             ++i;
