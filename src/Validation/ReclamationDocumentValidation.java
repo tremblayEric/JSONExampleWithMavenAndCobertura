@@ -110,27 +110,41 @@ public class ReclamationDocumentValidation {
         if (!(numeroDossier.length() == 7 && numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
-        if (!(isInteger(numeroDossier.substring(1)))) {
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_NUMERO_CLIENT);
-        }
+        isInteger(numeroDossier.substring(1), ErrorMessage.MESSAGE_ERROR_FOLDER);
+        //if (!(isInteger(numeroDossier.substring(1)))) {
+            //throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_NUMERO_CLIENT);
+        //}
     }
 
     private String getNumeroDossier() {
         return (String) getListNoeud("dossier").get(0);
     }
-
-    private boolean isInteger(String numero) 
+    
+    private void isInteger(String numero, String message) 
+            throws ValidationInputFileException {
+        int i = 0;
+        while (i < numero.length()) {
+            if (!(numero.charAt(i) >= '0' && numero.charAt(i) <= '9')) {
+                throw new ValidationInputFileException(message);
+            }
+            ++i;
+        }
+    }
+    
+    /*
+    private boolean isInteger(String numero ) 
             throws ValidationInputFileException {
         int i = 0;
         boolean isInteger = true;
         while (isInteger && i < numero.length()) {
             if (!(numero.charAt(i) >= '0' && numero.charAt(i) <= '9')) {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_INTEGER);
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_NUMERO_CLIENT);
             }
             ++i;
         }
         return isInteger;
     }
+    */
 
     private void isDateValid(String laDate, String type) 
             throws ValidationInputFileException {
