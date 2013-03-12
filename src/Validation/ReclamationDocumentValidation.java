@@ -49,12 +49,14 @@ public class ReclamationDocumentValidation {
     }
 
     private void checkFormXML() throws ValidationInputFileException {
-        rootExist( "reclamations",ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATIONS_MANQUANT);
+        rootExist( "reclamations",ErrorMessage.MESSAGE_ERROR_ELEMENT_XML_RECLAMATIONS_MISSING);
         NodeList list = document.getElementsByTagName("reclamations");
         element = (Element) list.item(0);
-        nodeIsUnique("dossier", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DOSSIER_MANQUANT);
-        nodeIsUnique("mois", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MOIS_MANQUANT);
-        nodeExist("reclamation", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_RECLAMATION_MANQUANT);
+        nodeIsUnique("dossier", ErrorMessage.MESSAGE_ERROR_ELEMENT_XML_FOLDER_MISSING);
+        nodeValueisNotEmpty("dossier", ErrorMessage.MESSAGE_ERROR_FOLDER);
+        nodeIsUnique("mois", ErrorMessage.MESSAGE_ERROR_ELEMENT_XML_MONTH_MISSING);
+        nodeValueisNotEmpty("mois", ErrorMessage.MESSAGE_ERROR_MONTH);
+        nodeExist("reclamation", ErrorMessage.MESSAGE_ERROR_ELEMENT_XML_RECLAMATION_MISSING);
         NodeList elementReclamation = element.getElementsByTagName("reclamation");
         checkReclamationForm(elementReclamation);
     }
@@ -78,14 +80,27 @@ public class ReclamationDocumentValidation {
             throw new ValidationInputFileException(error);
         }
     }
+    
+    private void nodeValueisNotEmpty(String nodeName, String error) 
+            throws ValidationInputFileException {
+        for(int i = 0; i < element.getElementsByTagName(nodeName).getLength(); ++i) {
+            String value = element.getElementsByTagName(nodeName).item(i).getTextContent();
+            if(value.isEmpty()) {
+                throw new ValidationInputFileException(error);
+            }
+        }
+    }
 
     private void checkReclamationForm(NodeList list) 
             throws ValidationInputFileException {
         for (int i = 0; i < list.getLength(); ++i) {
             element = (Element) list.item(i);
-            nodeIsUnique("soin", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_SOIN_MANQUANT);
-            nodeIsUnique("date", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_DATE_MANQUANT);
-            nodeIsUnique("montant", ErrorMessage.MESSAGE_ERREUR_ELEMENT_XML_MONTANT_MANQUANT);
+            nodeIsUnique("soin", ErrorMessage.MESSAGE_ERROR_ELEMENT_XML_SOIN_MISSING);
+            nodeValueisNotEmpty("soin", ErrorMessage.MESSAGE_ERROR_SOIN);
+            nodeIsUnique("date", ErrorMessage.MESSAGE_ERROR_ELEMENT_XML_DATE_MISSING);
+            nodeValueisNotEmpty("date", ErrorMessage.MESSAGE_ERROR_DATE);
+            nodeIsUnique("montant", ErrorMessage.MESSAGE_ERROR_ELEMENT_XML_MONTANT_MISSING);
+            nodeValueisNotEmpty("montant", ErrorMessage.MESSAGE_ERROR_MONTANT);
         }
     }
 
@@ -93,10 +108,10 @@ public class ReclamationDocumentValidation {
             throws ValidationInputFileException {
         String numeroDossier = getNumeroDossier();
         if (!(numeroDossier.length() == 7 && numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DOSSIER);
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
         if (!(isInteger(numeroDossier.substring(1)))) {
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_NUMERO_CLIENT);
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_NUMERO_CLIENT);
         }
     }
 
@@ -110,7 +125,7 @@ public class ReclamationDocumentValidation {
         boolean isInteger = true;
         while (isInteger && i < numero.length()) {
             if (!(numero.charAt(i) >= '0' && numero.charAt(i) <= '9')) {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_ENTIER);
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_INTEGER);
             }
             ++i;
         }
@@ -127,7 +142,7 @@ public class ReclamationDocumentValidation {
             Date d = dateFormat.parse(laDate);
             String format = dateFormat.format(d);
             if (!(format.compareTo(laDate) == 0)) {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_DATE);
             }
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
@@ -144,7 +159,7 @@ public class ReclamationDocumentValidation {
                 i = i + 1;
             }
         } else {
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_DATE);
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_DATE);
         }
     }
 
@@ -158,7 +173,7 @@ public class ReclamationDocumentValidation {
                 i = i + 1;
             }
         } else {
-            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTH);
         }
     }
 
@@ -175,7 +190,7 @@ public class ReclamationDocumentValidation {
             while (i < dateList.size()) {
                 date = dateFormatM.parse(dateList.get(i));
                 if (month.after(date) || month.before(date)) {
-                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_MOIS);
+                    throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTH);
                 }
                 i = i + 1;
             }
@@ -190,7 +205,7 @@ public class ReclamationDocumentValidation {
         List<String> reclamationsList = getListNoeud("montant");
         while (i < reclamationsList.size()) {
             if (reclamationsList.get(i).charAt(reclamationsList.get(i).length() - 1) != '$') {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SIGNE_DOLLAR);
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
             }
             ++i;
         }
@@ -203,7 +218,7 @@ public class ReclamationDocumentValidation {
         List<String> validCareList = validCareList();
         while (i < list.size()) {
             if (!validCareList.contains(list.get(i)) && !(Integer.parseInt(list.get(i)) >= 300 && Integer.parseInt(list.get(i)) <= 399)) {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERREUR_SOIN);
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SOIN);
             }
             ++i;
         }
