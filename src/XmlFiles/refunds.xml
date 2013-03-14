@@ -3,9 +3,9 @@
 <dossier>B123456</dossier>
 <mois>2013-01</mois>
 <remboursement>
-<soin>600</soin>
+<soin>150</soin>
 <date>2013-01-01</date>
-<montant>1,00$</montant>
+<montant>0,70$</montant>
 </remboursement>
-<total>1,00$</total>
+<total>0,70$</total>
 </remboursements>

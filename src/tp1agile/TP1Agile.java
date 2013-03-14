@@ -51,7 +51,7 @@ public class TP1Agile {
             } catch (ValidationInputFileException e1) {
                 dataPersistance.saveSignalInvalidInputXML(e1.getMessage());
             } catch (FileNotFoundException e2) {
-                dataPersistance.saveSignalInvalidInputXML(ErrorMessage.MESSAGE_ERREUR_INPUT_FILE);
+                dataPersistance.saveSignalInvalidInputXML(ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
             }
 
         } else {
