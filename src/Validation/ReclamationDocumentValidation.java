@@ -111,9 +111,7 @@ public class ReclamationDocumentValidation {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
         isInteger(numeroDossier.substring(1), ErrorMessage.MESSAGE_ERROR_FOLDER);
-        //if (!(isInteger(numeroDossier.substring(1)))) {
-            //throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_NUMERO_CLIENT);
-        //}
+        
     }
 
     private String getNumeroDossier() {
@@ -131,21 +129,6 @@ public class ReclamationDocumentValidation {
         }
     }
     
-    /*
-    private boolean isInteger(String numero ) 
-            throws ValidationInputFileException {
-        int i = 0;
-        boolean isInteger = true;
-        while (isInteger && i < numero.length()) {
-            if (!(numero.charAt(i) >= '0' && numero.charAt(i) <= '9')) {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_NUMERO_CLIENT);
-            }
-            ++i;
-        }
-        return isInteger;
-    }
-    */
-
     private void isDateValid(String laDate, String type) 
             throws ValidationInputFileException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
