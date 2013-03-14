@@ -119,21 +119,12 @@ public class XMLDocumentSave {
 
     private void serialyzeReclamation() {
         for (int i = 0; i < reclamation.getReclamationList().size(); ++i) {
-            //createRefundNode(i);
             createRefundNode();
             createCareNode(i);
             createDateNode(i);
             createAmountNode(i);
         }
     }
-    
-    /*
-    private void createRefundNode(int i) {
-        nodeList = document.getElementsByTagName("remboursements");
-        element = document.createElement("remboursement");
-        nodeList.item(0).appendChild(element);
-    }
-    */
     
     private void createRefundNode() {
         nodeList = document.getElementsByTagName("remboursements");
