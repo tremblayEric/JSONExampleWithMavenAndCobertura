@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <remboursements>
-<dossier>B123456</dossier>
-<mois>2013-01</mois>
-<remboursement>
-<soin>150</soin>
-<date>2013-01-01</date>
-<montant>0,70$</montant>
-</remboursement>
-<total>0,70$</total>
+<message>UN ELEMENT RECLAMATION NE CONTIENT PAS D'ELEMENT SOIN</message>
 </remboursements>
