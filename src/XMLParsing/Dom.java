@@ -24,7 +24,7 @@
  * 
  * UQAM hiver 2013
  */
-package Dom;
+package XMLParsing;
 
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
@@ -33,11 +33,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-public class ParserXML {
+public class Dom {
 
     private Document document;
 
-    public ParserXML(String documentFilePath)
+    public Dom(String documentFilePath)
             throws ParserConfigurationException, SAXException, IOException {
         parseXmlDocument(documentFilePath);
     }

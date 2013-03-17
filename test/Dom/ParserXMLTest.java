@@ -4,6 +4,7 @@
  */
 package Dom;
 
+import XMLParsing.Dom;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,7 +34,7 @@ public class ParserXMLTest {
     @Test
     public void testGetDocumentXMLInput() {
         System.out.println("getDocumentXMLInput");
-        ParserXML instance = null;
+        Dom instance = null;
         Document expResult = null;
         Document result = instance.getDocumentXMLInput();
         assertEquals(expResult, result);

@@ -24,6 +24,7 @@
 package Validation;
 
 public class ErrorMessage {
+    public final static String MESSAGE_ERROR_LOADING_FILE = "LE FICHIER N'A PAS PU ETRE CHARGE EN MEMOIRE";
     public final static String MESSAGE_ERROR_NUMERO_CLIENT = "LE NUMERO DE CLIENT ENTRE EST NON VALIDE";
     public final static String MESSAGE_ERROR_FOLDER = "LE DOSSIER ENTRE EST NON VALIDE";
     public final static String MESSAGE_ERROR_INTEGER = "LE NOMBRE ENTRER DOIT ETRE UN ENTIER";

@@ -26,9 +26,10 @@
  */
 package tp1agile;
 
+import JSONParsing.JSONReclamationsParsing;
 import MockData.ContractList;
 
-import Dom.ParserXML;
+import XMLParsing.Dom;
 import Save.XMLDocumentSave;
 import Validation.*;
 import java.io.FileNotFoundException;
@@ -37,13 +38,15 @@ public class TP1Agile {
 
     public static void main(String[] args) 
             throws Exception {
+        
+        JSONReclamationsParsing test = new JSONReclamationsParsing();
 
-       
+        /*
         if (args.length == 2) {
 
             XMLDocumentSave dataPersistance = new XMLDocumentSave("src/XmlFiles/" + args[1]);
             try {
-                ParserXML documentXML = new ParserXML("src/XmlFiles/" + args[0]);
+                Dom documentXML = new Dom("src/XmlFiles/" + args[0]);
                 ReclamationDocumentValidation reclamation = new ReclamationDocumentValidation(documentXML.getDocumentXMLInput());
                 reclamation.reclamationValidation();
                 ReclamationCalcul calcul = new ReclamationCalcul(documentXML.getDocumentXMLInput());
@@ -58,6 +61,6 @@ public class TP1Agile {
             System.out.println("Des arguments de la ligne de commande sont manquants.");
             System.out.println("java -jar Refund.jar inputfile.xml refunds.xml\n");   
             
-        }
+        }*/
     }
 }
