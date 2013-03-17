@@ -29,24 +29,65 @@ package JSONParsing;
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 public class JSONReclamationsParsing {
     
+    private JavaObjectDossier javaDossier;
+    private JSONObject folder;
+    
     public JSONReclamationsParsing() throws IOException{
         
-        String json = FileReader.loadFileIntoString("JSONFile/inputFile.json");
-        JavaObjectDossier javaDossier = new JavaObjectDossier();
-        JSONObject dossier = JSONObject.fromObject(json);
-        
-//        JSONObject catalog = JSONObject.fromObject(json);
-        //JSONArray albums = catalog.getJSONArray("albums");
-        
+        String JSONFileContent = FileReader.loadFileIntoString("JSONFile/inputFile.json");
+        folder = JSONObject.fromObject(JSONFileContent);
+        javaDossierFabrication();
         
     }
+    
+    public JavaObjectDossier getJavaObjectDossier(){
+        return this.javaDossier;
+    }
+    
+    private void javaDossierFabrication(){
+        javaDossier = new JavaObjectDossier();
+        javaDossier.setMois(folder.getString("mois")); 
+        reclamationsFromJSONToJava();
+    }
+    
+    
+    
+    private void reclamationsFromJSONToJava(){
+        JSONArray reclamations = folder.getJSONArray("reclamations");
+        for(int i = 0; i < reclamations.size();++i){
+            javaDossier.addToReclamationList(javaReclamationCreation(reclamations.get(i)));
+        }
         
+    }
+    
+    private JavaObjectReclamation javaReclamationCreation(Object reclamation){
+        
+        JSONObject object = (JSONObject)reclamation;
+        String soin = object.getString("soin").toString().toString();
+        Date date = null;
+        try{
+         date = (new SimpleDateFormat("yyyy-MM-dd")).parse(object.getString("date").toString());
+        }catch (Exception e){
+            System.out.println("date pas correcte");
+        }
+        String montant = object.getString("montant").toString();
+        
+        
+        return new JavaObjectReclamation(soin,date,montant);
+        
+    }
+    
+    private void displayReclamationList(){
+        javaDossier.displayReclamationList();
+    }    
     
     
 }

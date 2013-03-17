@@ -27,6 +27,7 @@
 package tp1agile;
 
 import JSONParsing.JSONReclamationsParsing;
+import JSONParsing.JavaObjectDossier;
 import MockData.ContractList;
 
 import XMLParsing.Dom;
@@ -39,8 +40,18 @@ public class TP1Agile {
     public static void main(String[] args) 
             throws Exception {
         
+        /*******************************
+         * Nouveau code 
+         /******************************/
         JSONReclamationsParsing test = new JSONReclamationsParsing();
-
+        JavaObjectDossier testDossier = test.getJavaObjectDossier();
+        
+        System.out.println("Dossier # " + testDossier.getFolderNumber() + " en date du :  "+ testDossier.getFolderDate() +"\n" );
+        testDossier.displayReclamationList();
+       /********************************/
+        
+        
+        
         /*
         if (args.length == 2) {
 
