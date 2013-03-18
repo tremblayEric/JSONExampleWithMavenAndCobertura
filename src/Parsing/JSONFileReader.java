@@ -1,5 +1,5 @@
 
-package JSONParsing;
+package Parsing;
 
 /*
  * Copyright 2011 Jacques Berger.
@@ -23,7 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.apache.commons.io.IOUtils;
 
-public class FileReader {
+public class JSONFileReader {
 
     public static String loadFileIntoString(String filePath) throws FileNotFoundException, IOException {
         byte[] fullSizeBuffer = new byte[(int) new File(filePath).length()];

@@ -1,5 +1,5 @@
 
-package JSONParsing;
+package Parsing;
 
 import ProjetAgile.Dollar;
 import java.text.DecimalFormat;

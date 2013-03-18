@@ -24,7 +24,7 @@
  * UQAM
  * Session d'hiver 2013
  */
-package JSONParsing;
+package Parsing;
 
 
 
@@ -42,7 +42,7 @@ public class JSONReclamationsParsing {
     
     public JSONReclamationsParsing() throws IOException{
         
-        String JSONFileContent = FileReader.loadFileIntoString("JSONFile/inputFile.json");
+        String JSONFileContent = JSONFileReader.loadFileIntoString("JSONFile/inputFile.json");
         folder = JSONObject.fromObject(JSONFileContent);
         javaDossierFabrication();
         

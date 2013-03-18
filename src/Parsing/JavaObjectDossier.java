@@ -1,5 +1,5 @@
 
-package JSONParsing;
+package Parsing;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

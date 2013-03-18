@@ -26,9 +26,9 @@
  */
 package ProjetAgile;
 
-import JSONParsing.JSONReclamationsParsing;
-import JSONParsing.JavaObjectDossier;
-import JSONParsing.JavaObjectReclamation;
+import Parsing.JSONReclamationsParsing;
+import Parsing.JavaObjectDossier;
+import Parsing.JavaObjectReclamation;
 import MockData.ContractList;
 
 import XMLParsing.Dom;
@@ -62,6 +62,7 @@ public class TP1Agile {
                 
         System.out.println(" devrait egaler 6.21: " + Dollar.fromStringtoConformCashAmount("6,21"));
         System.out.println(" devrait egaler 10.29$: " + Dollar.fromIntegerToConformStringAmount(1029));
+        Dollar.calculReclamation();
        /********************************/
         
         /*
