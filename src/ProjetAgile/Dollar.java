@@ -33,6 +33,10 @@ public  class Dollar {
     /*
      * Metode qui test la sauvegarde avec un JSONObject bidon peut etre modifie
      * pour les calcul et aussi utilisee pour generer un test.
+     * JE CROIS QUE CETTE METHODE OFFRE UNE EXELLENT EXEMPLE D'UTILISATION DU 
+     * CODE FAIT EN FIN DE SEMAINE, JE CROIS QU'AVEC CA IL SERA ASSEZ SIMPLE DE 
+     * MODIFIER QUELQUE METHODE DE CALCUL DE L'ITERATION 2 AFIN DE FAIRE CEUX DE
+     * CELLE-CI.
      */
     public static void calculReclamation(){
         
