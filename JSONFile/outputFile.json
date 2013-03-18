@@ -3,16 +3,16 @@
     "mois":"2013-03",
     "remboursements":[{
         "soin":"100",
-        "date":"2013-03-02",
-        "montant":"65.00"
+        "date":"Sat Mar 02 00:00:00 EST 2013",
+        "montant":6500
     },{
-        "soin":"200",
-        "date":"2013-03-11",
-        "montant":"54.00"
+        "soin":"100",
+        "date":"Mon Mar 11 00:00:00 EDT 2013",
+        "montant":5000
     },{
-        "soin":"341",
-        "date":"2013-03-23",
-        "montant":"13.00"
+        "soin":"100",
+        "date":"Thu Mar 28 00:00:00 EDT 2013",
+        "montant":11100
     }],
-    "total":"132.00"
+    "total":"226.23"
 }

@@ -2,6 +2,8 @@
 package ProjetAgile;
 
 import Parsing.JSONFileWriter;
+import Parsing.JavaObjectReclamation;
+import java.text.SimpleDateFormat;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -38,20 +40,34 @@ public  class Dollar {
         folder.accumulate("dossier", "A100323");
         folder.accumulate("mois", "2013-03");
         
+        JavaObjectReclamation  javaRefund1 = null;
+        JavaObjectReclamation  javaRefund2 = null;
+        JavaObjectReclamation  javaRefund3 = null;
+        try{
+            
+           javaRefund1 = new JavaObjectReclamation("100",(new SimpleDateFormat("yyyy-MM-dd")).parse("2013-03-02"),"65.00");
+           javaRefund2 = new JavaObjectReclamation("100",(new SimpleDateFormat("yyyy-MM-dd")).parse("2013-03-11"),"50.00");
+           javaRefund3 = new JavaObjectReclamation("100",(new SimpleDateFormat("yyyy-MM-dd")).parse("2013-03-28"),"111.23");
+
+        }catch (Exception e){
+            System.out.println(" Probleme lors de la creation de reclamation bidon dans la classe Dollar");
+        }
+        
+                
         JSONObject refund1 = new JSONObject();
-        refund1.accumulate("soin", "100");
-        refund1.accumulate("date", "2013-03-02");
-        refund1.accumulate("montant", "65.00");
+        refund1.accumulate("soin", javaRefund1.getSoin());
+        refund1.accumulate("date", javaRefund1.getDate().toString());
+        refund1.accumulate("montant", javaRefund1.getMontant());
         
         JSONObject refund2 = new JSONObject();
-        refund2.accumulate("soin", "200");
-        refund2.accumulate("date", "2013-03-11");
-        refund2.accumulate("montant", "54.00");
+        refund2.accumulate("soin", javaRefund2.getSoin());
+        refund2.accumulate("date", javaRefund2.getDate().toString());
+        refund2.accumulate("montant", javaRefund2.getMontant());
         
         JSONObject refund3 = new JSONObject();
-        refund3.accumulate("soin", "341");
-        refund3.accumulate("date", "2013-03-23");
-        refund3.accumulate("montant", "13.00");
+        refund3.accumulate("soin", javaRefund3.getSoin());
+        refund3.accumulate("date", javaRefund3.getDate().toString());
+        refund3.accumulate("montant", javaRefund3.getMontant());
         
         JSONArray refunds = new JSONArray();
         refunds.add(refund1);
@@ -60,7 +76,7 @@ public  class Dollar {
         
         folder.accumulate("remboursements", refunds);
         
-        folder.accumulate("total", "132.00");
+        folder.accumulate("total", "226.23");
         
         JSONFileWriter.writeJSONObbjectToFile(folder);
 
