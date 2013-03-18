@@ -57,8 +57,11 @@ public class TP1Agile {
             List uneListe = testDossier.getFolderReclamationList();
             
            JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
-           System.out.println("\t" + uneReclamation.getMontant() + "\n");
+           System.out.println( "montant #" + i + ": " + uneReclamation.getMontant() );
         }
+                
+        System.out.println(" devrait egaler 6.21: " + Dollar.fromStringtoConformCashAmount("6,21"));
+        System.out.println(" devrait egaler 10.29$: " + Dollar.fromIntegerToConformStringAmount(1029));
        /********************************/
         
         /*

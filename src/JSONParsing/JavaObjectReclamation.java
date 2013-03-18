@@ -18,7 +18,7 @@ public class JavaObjectReclamation {
         this.date = date;
         
         try{
-          this.montant = Dollar.doubleMontantToInteger(Dollar.stringToDouble(Dollar.toConformCashAmount(montant)));  
+          this.montant = Dollar.doubleMontantToInteger(Dollar.stringToDouble(Dollar.fromStringtoConformCashAmount(montant)));  
         }catch(Exception e){
             System.out.println("plantage de conversion de string en double");
         }     

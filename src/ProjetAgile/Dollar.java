@@ -17,8 +17,17 @@ public  class Dollar {
         return 0;
     }
     
-    public static String toConformCashAmount(String amount){
+    public static String fromStringtoConformCashAmount(String amount){
         return replaceComaByDot(removeDolarSymbol(amount));
+    }
+    
+    public static String fromIntegerToConformStringAmount(int amount){
+        return Double.toString(fromIntegerToDouble(amount)) + "$";
+    }
+    
+  
+    private static double  fromIntegerToDouble(int amount){
+        return ((double)amount)/100;
     }
     
     private static String removeDolarSymbol(String amount){
