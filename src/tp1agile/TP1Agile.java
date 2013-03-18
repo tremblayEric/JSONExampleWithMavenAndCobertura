@@ -45,6 +45,7 @@ public class TP1Agile {
         /*******************************
          * Nouveau code 
          /******************************/
+        
         JSONReclamationsParsing test = new JSONReclamationsParsing();
         JavaObjectDossier testDossier = test.getJavaObjectDossier();
         
@@ -59,8 +60,6 @@ public class TP1Agile {
            System.out.println("\t" + uneReclamation.getMontant() + "\n");
         }
        /********************************/
-        
-        
         
         /*
         if (args.length == 2) {
@@ -83,5 +82,6 @@ public class TP1Agile {
             System.out.println("java -jar Refund.jar inputfile.xml refunds.xml\n");   
             
         }*/
+        
     }
 }

@@ -15,7 +15,7 @@ public class JavaObjectReclamation {
     public JavaObjectReclamation(String soin, Date date, String montant){
         this.soin = soin;
         this.date = date;
-        //this.montant = doubleMontantToInteger(Double.parseDouble(montant));
+
         String amount = montant;
         amount = amount.replace('$', ' ');
         amount = amount.replace(',', '.');
@@ -47,9 +47,6 @@ public class JavaObjectReclamation {
     }
     
     private int doubleMontantToInteger(double montant){
-        
-        
-
         return (int)montant * 100;
     }
     
