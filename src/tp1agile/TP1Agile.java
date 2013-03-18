@@ -28,12 +28,14 @@ package tp1agile;
 
 import JSONParsing.JSONReclamationsParsing;
 import JSONParsing.JavaObjectDossier;
+import JSONParsing.JavaObjectReclamation;
 import MockData.ContractList;
 
 import XMLParsing.Dom;
 import Save.XMLDocumentSave;
 import Validation.*;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class TP1Agile {
 
@@ -46,8 +48,16 @@ public class TP1Agile {
         JSONReclamationsParsing test = new JSONReclamationsParsing();
         JavaObjectDossier testDossier = test.getJavaObjectDossier();
         
-        System.out.println("Dossier # " + testDossier.getFolderNumber() + " en date du :  "+ testDossier.getFolderDate() +"\n" );
-        testDossier.displayReclamationList();
+        //System.out.println("Dossier # " + testDossier.getFolderNumber() + " en date du :  "+ testDossier.getFolderDate() +"\n" );
+        //testDossier.displayReclamationList();
+        
+        for(int i = 0; i < testDossier.getFolderReclamationList().size(); ++i){
+            
+            List uneListe = testDossier.getFolderReclamationList();
+            
+           JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
+           System.out.println("\t" + uneReclamation.getMontant() + "\n");
+        }
        /********************************/
         
         
