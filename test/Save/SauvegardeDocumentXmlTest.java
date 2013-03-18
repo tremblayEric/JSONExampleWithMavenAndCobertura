@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.w3c.dom.Document;
-import tp1agile.ReclamationCalcul;
+import ProjetAgile.ReclamationCalcul;
 
 /**
  *

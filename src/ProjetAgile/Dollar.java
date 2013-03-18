@@ -1,5 +1,5 @@
 
-package tp1agile;
+package ProjetAgile;
 
 
 public class Dollar {

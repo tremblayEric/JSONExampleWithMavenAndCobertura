@@ -24,7 +24,7 @@
  * 
  * UQAM hiver 2013
  */
-package tp1agile;
+package ProjetAgile;
 
 import JSONParsing.JSONReclamationsParsing;
 import JSONParsing.JavaObjectDossier;

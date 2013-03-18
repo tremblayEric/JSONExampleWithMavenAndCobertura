@@ -21,7 +21,7 @@
  * 
  * 
  */
-package tp1agile;
+package ProjetAgile;
 
 import MockData.ContractList;
 import java.util.ArrayList;

@@ -4,6 +4,7 @@
  */
 package tp1agile;
 
+import ProjetAgile.TP1Agile;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;

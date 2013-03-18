@@ -4,6 +4,7 @@
  */
 package tp1agile;
 
+import ProjetAgile.ReclamationCalcul;
 import java.util.List;
 import org.junit.AfterClass;
 import org.junit.Test;
