@@ -76,6 +76,9 @@ public class Contracts{
     public void setMaxMonthlyRefund(int maxMonthlyRefund){
         this.maxMonthlyRefund = maxMonthlyRefund;
     }
+    public int getMaxMonthlyRefund(){
+        return this.maxMonthlyRefund;
+    }
     
     public double getRatioA(){
         return ratioA;
