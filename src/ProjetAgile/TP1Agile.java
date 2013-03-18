@@ -49,8 +49,8 @@ public class TP1Agile {
         JSONReclamationsParsing test = new JSONReclamationsParsing();
         JavaObjectDossier testDossier = test.getJavaObjectDossier();
         
-        //System.out.println("Dossier # " + testDossier.getFolderNumber() + " en date du :  "+ testDossier.getFolderDate() +"\n" );
-        //testDossier.displayReclamationList();
+        System.out.println("Dossier # " + testDossier.getFolderNumber() + " en date du :  "+ testDossier.getFolderDate() +"\n" );
+        testDossier.displayReclamationList();
         
         for(int i = 0; i < testDossier.getFolderReclamationList().size(); ++i){
             

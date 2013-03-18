@@ -54,6 +54,7 @@ public class JSONReclamationsParsing {
     
     private void javaDossierFabrication(){
         javaDossier = new JavaObjectDossier();
+        javaDossier.setDossier(folder.getString("dossier")); 
         javaDossier.setMois(folder.getString("mois")); 
         reclamationsFromJSONToJava();
     }
