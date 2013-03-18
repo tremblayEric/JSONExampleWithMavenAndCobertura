@@ -1,6 +1,7 @@
 
 package JSONParsing;
 
+import ProjetAgile.Dollar;
 import java.text.DecimalFormat;
 import java.util.Date;
 
@@ -12,19 +13,15 @@ public class JavaObjectReclamation {
     private int montant;
     
     
-    public JavaObjectReclamation(String soin, Date date, String montant){
+   public JavaObjectReclamation(String soin, Date date, String montant){
         this.soin = soin;
         this.date = date;
-
-        String amount = montant;
-        amount = amount.replace('$', ' ');
-        amount = amount.replace(',', '.');
+        
         try{
-          this.montant = doubleMontantToInteger(Double.parseDouble(amount));  
+          this.montant = Dollar.doubleMontantToInteger(Dollar.stringToDouble(Dollar.toConformCashAmount(montant)));  
         }catch(Exception e){
             System.out.println("plantage de conversion de string en double");
-        }
-           
+        }     
     }
     
     public String getSoin(){
@@ -40,15 +37,11 @@ public class JavaObjectReclamation {
     }
     
     public String toString(){
-        
         return  "\tsoin: " + soin + "\n\t" + "Date: " + date.toString() + "\n\t" + 
                 "montant: " + montant + "\n";
-                
     }
     
-    private int doubleMontantToInteger(double montant){
-        return (int)montant * 100;
-    }
+    
     
     
     
