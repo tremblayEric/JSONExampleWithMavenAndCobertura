@@ -34,9 +34,7 @@ public class ContractList {
         //creation  et ajout des soins dans la liste
         contractList.add(new Care("0", "Massothérapie", massoContract()));
         contractList.add(new Care("100", "Ostéopathie", osteoContract()));
-        /*ajout iteration 2 : soin 150 Kinesitherapie*/
         contractList.add(new Care("150", "kinesitherapie", kinesitherapieContract()));
-        /*ajout iteration 2 : soin 175 Medecin generaliste prive*/
         contractList.add(new Care("175", "Medecin generaliste prive", privateGeneralMedecineContract()));
         contractList.add(new Care("200", "Psychologie individuelle", psychoContract()));
         contractList.add(new Care("300", "Soins dentaires", dentalContract()));
@@ -113,94 +111,92 @@ public class ContractList {
     }
     
     private Contracts massoContract(){
-        //masso
         Contracts massoContract = new Contracts();
         massoContract.setRatio(0.25, 0.5, 0.9, 1.0, 0.15);
         massoContract.setMax(false, true, false, true,false);
         massoContract.setMaxValue(-1, 40, -1, 85,-1);
+        massoContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return massoContract;
     }
     
     private Contracts osteoContract(){
-        /*osteo  :: modif iteraion 2 sur le contrat B couvert a 100% sans max
-                                            contrat A couvert a 35%
-                                            contrat C couvert a 95%*/
         Contracts osteoContract = new Contracts();
         osteoContract.setRatio(0.35, 0.5, 0.95, 1.0, 0.25);
         osteoContract.setMax(false, true, false, true,false);
         osteoContract.setMaxValue(-1, 50, -1, 75,-1);
+        osteoContract.setMaxMonthlyRefund(250);//ajout iteration #3
         return osteoContract;
     }
     
     private Contracts kinesitherapieContract() {
-        /*ajout iteration 2 : contrat de Kinesitherapie*/
         Contracts kinesitherapieContract = new Contracts();
         kinesitherapieContract.setRatio(0.0, 0.0, 0.85, 1.0, 0.15);
         kinesitherapieContract.setMax(false, false, false, true,false);
         kinesitherapieContract.setMaxValue(-1, -1, -1, 150,-1);
+        kinesitherapieContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return kinesitherapieContract;
     }
     
     private Contracts privateGeneralMedecineContract(){    
-        /*ajout iteration 2 : contrat de medecin generaliste prive*/
         Contracts privateGeneralMedecineContract = new Contracts();
         privateGeneralMedecineContract.setRatio(0.5, 0.75, 0.9, 0.95, 0.25);
         privateGeneralMedecineContract.setMax(false, false, false, false,true);
         privateGeneralMedecineContract.setMaxValue(-1, -1, -1, -1,20);
+        privateGeneralMedecineContract.setMaxMonthlyRefund(200);//ajout iteration #3
         return privateGeneralMedecineContract;
     }
     
     private Contracts psychoContract(){
-        //psycho
         Contracts psychoContract = new Contracts();
         psychoContract.setRatio(0.25, 1.0, 0.9, 1.0, 0.12);
         psychoContract.setMax(false, false, false, true,false);
         psychoContract.setMaxValue(-1, -1, -1, 100,-1);
+        psychoContract.setMaxMonthlyRefund(250);//ajout iteration #3
         return psychoContract;
     }
     
     private Contracts dentalContract(){
-        //dentaires
         Contracts dentalContract = new Contracts();
         dentalContract.setRatio(0.0, 0.5, 0.9, 1.0, 0.6);
         dentalContract.setMax(false, false, false, false,false);
         dentalContract.setMaxValue(-1, -1, -1, -1,-1);
+        dentalContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return dentalContract;
     }
     
     private Contracts naturoAcupContract(){
-        //naturo et acupuncture
         Contracts naturoAcupContract = new Contracts();
         naturoAcupContract.setRatio(0.0, 0.0, 0.9, 1.0, 0.25);
         naturoAcupContract.setMax(false, false, false, true,true);
         naturoAcupContract.setMaxValue(-1, -1, -1, 65,15);
+        naturoAcupContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return naturoAcupContract;
     }
     
     private Contracts chiroContract(){
-        //chiro modif iteration 2 contrat D remb. a 100% sans max
         Contracts chiroContract = new Contracts();
         chiroContract.setRatio(0.25, 0.5, 0.9, 1.0, 0.3);
         chiroContract.setMax(false, true, false, false,true);
         chiroContract.setMaxValue(-1, 50, -1, -1,20);
+        chiroContract.setMaxMonthlyRefund(150);//ajout iteration #3
         return chiroContract;
     }
     
     private Contracts  physioContract(){
-        //physio modif. iteration 2 contrat C couvert a 75%
         Contracts physioContract = new Contracts();
         physioContract.setRatio(0.4, 1.0, 0.75, 1.0, 0.15);
         physioContract.setMax(false, false, false, true,false);
         physioContract.setMaxValue(-1, -1, -1, 100,-1);
+        physioContract.setMaxMonthlyRefund(300);//ajout iteration #3
         return physioContract;
     }
     
     private Contracts orthoErgoContract(){
-        //ortho
         Contracts orthoErgoContract = new Contracts();
         orthoErgoContract.setRatio(0.0, 0.7, 0.9, 1.0, 0.22);
         orthoErgoContract.setMax(false, false, false, true,false);
         orthoErgoContract.setMaxValue(-1, -1, -1, 90,-1);
+        orthoErgoContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return orthoErgoContract;
     }
 }
