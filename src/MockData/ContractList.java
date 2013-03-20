@@ -114,7 +114,7 @@ public class ContractList {
         Contracts massoContract = new Contracts();
         massoContract.setRatio(0.25, 0.5, 0.9, 1.0, 0.15);
         massoContract.setMax(false, true, false, true,false);
-        massoContract.setMaxValue(-1, 40, -1, 85,-1);
+        massoContract.setMaxValue(-1, 4000, -1, 8500,-1);
         massoContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return massoContract;
     }
@@ -123,7 +123,7 @@ public class ContractList {
         Contracts osteoContract = new Contracts();
         osteoContract.setRatio(0.35, 0.5, 0.95, 1.0, 0.25);
         osteoContract.setMax(false, true, false, true,false);
-        osteoContract.setMaxValue(-1, 50, -1, 75,-1);
+        osteoContract.setMaxValue(-1, 5000, -1, 7500,-1);
         osteoContract.setMaxMonthlyRefund(250);//ajout iteration #3
         return osteoContract;
     }
@@ -132,7 +132,7 @@ public class ContractList {
         Contracts kinesitherapieContract = new Contracts();
         kinesitherapieContract.setRatio(0.0, 0.0, 0.85, 1.0, 0.15);
         kinesitherapieContract.setMax(false, false, false, true,false);
-        kinesitherapieContract.setMaxValue(-1, -1, -1, 150,-1);
+        kinesitherapieContract.setMaxValue(-1, -1, -1, 15000,-1);
         kinesitherapieContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return kinesitherapieContract;
     }
@@ -141,7 +141,7 @@ public class ContractList {
         Contracts privateGeneralMedecineContract = new Contracts();
         privateGeneralMedecineContract.setRatio(0.5, 0.75, 0.9, 0.95, 0.25);
         privateGeneralMedecineContract.setMax(false, false, false, false,true);
-        privateGeneralMedecineContract.setMaxValue(-1, -1, -1, -1,20);
+        privateGeneralMedecineContract.setMaxValue(-1, -1, -1, -1,2000);
         privateGeneralMedecineContract.setMaxMonthlyRefund(200);//ajout iteration #3
         return privateGeneralMedecineContract;
     }
@@ -150,7 +150,7 @@ public class ContractList {
         Contracts psychoContract = new Contracts();
         psychoContract.setRatio(0.25, 1.0, 0.9, 1.0, 0.12);
         psychoContract.setMax(false, false, false, true,false);
-        psychoContract.setMaxValue(-1, -1, -1, 100,-1);
+        psychoContract.setMaxValue(-1, -1, -1, 10000,-1);
         psychoContract.setMaxMonthlyRefund(250);//ajout iteration #3
         return psychoContract;
     }
@@ -168,7 +168,7 @@ public class ContractList {
         Contracts naturoAcupContract = new Contracts();
         naturoAcupContract.setRatio(0.0, 0.0, 0.9, 1.0, 0.25);
         naturoAcupContract.setMax(false, false, false, true,true);
-        naturoAcupContract.setMaxValue(-1, -1, -1, 65,15);
+        naturoAcupContract.setMaxValue(-1, -1, -1, 6500,1500);
         naturoAcupContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return naturoAcupContract;
     }
@@ -177,7 +177,7 @@ public class ContractList {
         Contracts chiroContract = new Contracts();
         chiroContract.setRatio(0.25, 0.5, 0.9, 1.0, 0.3);
         chiroContract.setMax(false, true, false, false,true);
-        chiroContract.setMaxValue(-1, 50, -1, -1,20);
+        chiroContract.setMaxValue(-1, 5000, -1, -1,2000);
         chiroContract.setMaxMonthlyRefund(150);//ajout iteration #3
         return chiroContract;
     }
@@ -186,7 +186,7 @@ public class ContractList {
         Contracts physioContract = new Contracts();
         physioContract.setRatio(0.4, 1.0, 0.75, 1.0, 0.15);
         physioContract.setMax(false, false, false, true,false);
-        physioContract.setMaxValue(-1, -1, -1, 100,-1);
+        physioContract.setMaxValue(-1, -1, -1, 10000,-1);
         physioContract.setMaxMonthlyRefund(300);//ajout iteration #3
         return physioContract;
     }
@@ -195,7 +195,7 @@ public class ContractList {
         Contracts orthoErgoContract = new Contracts();
         orthoErgoContract.setRatio(0.0, 0.7, 0.9, 1.0, 0.22);
         orthoErgoContract.setMax(false, false, false, true,false);
-        orthoErgoContract.setMaxValue(-1, -1, -1, 90,-1);
+        orthoErgoContract.setMaxValue(-1, -1, -1, 9000,-1);
         orthoErgoContract.setMaxMonthlyRefund(-1);//ajout iteration #3
         return orthoErgoContract;
     }
