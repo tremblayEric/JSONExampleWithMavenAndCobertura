@@ -96,9 +96,11 @@ public class Validation {
     }    
 
     //verification de la date
-    public static String checkDate( String date ) 
+    public static String checkDate( String date, String month ) 
             throws ValidationInputFileException {
-        return checkDateIsValid(date, "date");
+        checkDateIsValid(date, "date");
+        checkDateMonthCoherence(date, month);
+        return date;
     }
 
     //verification du month
@@ -125,7 +127,7 @@ public class Validation {
         return laDate.toString();
     }
 
-    public static void dateMonthCoherence(String dateS, String mois) 
+    public static void checkDateMonthCoherence(String dateS, String mois) 
             throws ValidationInputFileException {
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");

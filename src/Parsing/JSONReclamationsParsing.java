@@ -84,7 +84,7 @@ public class JSONReclamationsParsing {
         Date date = null;
         try{ 
          //date = (new SimpleDateFormat("yyyy-MM-dd")).parse(object.getString("date").toString());
-         date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date")).toString());
+         date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"),folder.getString("mois")).toString());
         }catch (Exception e){
             System.out.println("date pas correcte");
         }
