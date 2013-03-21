@@ -146,9 +146,24 @@ public class Validation {
     //verification du montant
     public static String checkMontant(String montant) 
             throws ValidationInputFileException {
-            if (montant.charAt(montant.length() - 1) != '$') {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
+            checkMontantNumeric(montant.substring(0, montant.length() - 2));
+            checkMontantSigneDollard(montant);
+            return montant;
+    }
+    
+    private static String checkMontantNumeric(String montant) 
+            throws ValidationInputFileException {
+            try{
+                Double.parseDouble(montant);
+            }catch(NumberFormatException e){
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTANT);
             }
-            return montant.toString();
+            return montant;
+    }
+
+    private static void checkMontantSigneDollard(String montant) throws ValidationInputFileException {
+        if (montant.charAt(montant.length() - 1) != '$') {
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
+        }
     }
 }
