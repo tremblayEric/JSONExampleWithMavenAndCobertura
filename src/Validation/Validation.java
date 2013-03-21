@@ -146,6 +146,7 @@ public class Validation {
     //verification du montant
     public static String checkMontant(String montant) 
             throws ValidationInputFileException {
+            montant = montant.replace(',', '.');
             checkMontantNumeric(montant.substring(0, montant.length() - 2));
             checkMontantSigneDollard(montant);
             return montant;
