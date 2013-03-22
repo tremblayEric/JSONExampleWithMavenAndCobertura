@@ -62,9 +62,7 @@ public class JSONReclamationsParsing {
     
     private void javaDossierFabrication() throws ValidationInputFileException{
         javaDossier = new JavaObjectDossier();
-        //javaDossier.setDossier(folder.getString("dossier"));
         javaDossier.setDossier(Validation.checkFolder(folder.getString("dossier")));
-        //javaDossier.setMois(folder.getString("mois"));
         javaDossier.setMois(Validation.checkMonth(folder.getString("mois")));
         reclamationsFromJSONToJava();
     }
@@ -79,16 +77,13 @@ public class JSONReclamationsParsing {
     
     private JavaObjectReclamation javaReclamationCreation(Object reclamation) throws ValidationInputFileException{
         JSONObject object = (JSONObject)reclamation;
-        //String soin = object.getString("soin").toString().toString();
         String soin = Validation.checkSoin(object.getString("soin"));
         Date date = null;
         try{ 
-         //date = (new SimpleDateFormat("yyyy-MM-dd")).parse(object.getString("date").toString());
-         date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"),folder.getString("mois")).toString());
+            date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"),folder.getString("mois")).toString());
         }catch (Exception e){
             System.out.println("date pas correcte");
         }
-        //String montant = object.getString("montant").toString();
         String montant = Validation.checkMontant(object.getString("montant"));
         return new JavaObjectReclamation(soin,date,montant);
     }

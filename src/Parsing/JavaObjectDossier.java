@@ -10,7 +10,7 @@ import net.sf.json.JSONObject;
 
 
 public class JavaObjectDossier {
-    
+    SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
     private String dossier;
     private Date mois;
     private List reclamationsList;
@@ -24,14 +24,13 @@ public class JavaObjectDossier {
         this.dossier = dossier;
     }
     
-    public void setMois(String mois){
+   public void setMois(String mois){
         try{
-        this.mois = (new SimpleDateFormat("MM-dd")).parse(mois);
+            this.mois = dateFormatMois.parse(mois);    
         }catch(Exception e){
             System.out.println("Erreur avec le mois");
         }
     }
-    
     public String getFolderNumber(){
         return this.dossier;
     }

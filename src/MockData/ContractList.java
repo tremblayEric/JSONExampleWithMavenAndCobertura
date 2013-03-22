@@ -44,7 +44,7 @@ public class ContractList {
         contractList.add(new Care("700", "Orthophonie, ergothérapie", orthoErgoContract()));
     }
 
-    public double getContractRatioByCareNumber(String careNumber, String contract){
+    public Double getContractRatioByCareNumber(String careNumber, String contract){
         int i = 0;
         boolean founded = false;
         double ratio = -1;
@@ -65,7 +65,7 @@ public class ContractList {
                 }
             }
             ++i;
-        }   
+        }  
         return ratio;
     }
 

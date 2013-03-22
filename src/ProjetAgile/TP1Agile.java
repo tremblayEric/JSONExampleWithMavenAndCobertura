@@ -59,10 +59,13 @@ public class TP1Agile {
            JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
            System.out.println( "montant #" + i + ": " + uneReclamation.getMontant() );
         }
-                
-        System.out.println(" devrait egaler 6.21: " + Dollar.fromStringtoConformCashAmount("6,21"));
-        System.out.println(" devrait egaler 10.29$: " + Dollar.fromIntegerToConformStringAmount(1029));
-        Dollar.calculReclamation();
+        
+       RefundCalculation calcul = new RefundCalculation(testDossier);
+       //System.out.println("getContractType : " + calcul.testRefundCalculation());
+       calcul.testRefundCalculation();
+       // System.out.println(" devrait egaler 6.21: " + Dollar.fromStringtoConformCashAmount("6,21"));
+       // System.out.println(" devrait egaler 10.29$: " + Dollar.fromIntegerToConformStringAmount(1029));
+       // Dollar.calculReclamation();
        /********************************/
         
         /*
