@@ -26,25 +26,35 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 
 public class Validation {
     
-    public static void checkElementsFolder(JSONObject folder, String element){
+    public static void checkElementsFolder(JSONObject folder, String element) throws ValidationInputFileException{
         try{
             if(element.compareTo("reclamations") == 0){
                 JSONArray reclamations = folder.getJSONArray(element);
                 for(int i = 0; i < reclamations.size();++i){
-                    ((JSONObject)reclamations.get(i)).getString("soin");
-                    ((JSONObject)reclamations.get(i)).getString("date");
-                    ((JSONObject)reclamations.get(i)).getString("montant");
+                    valueIsNotEmpty(((JSONObject)reclamations.get(i)).getString("soin"), 
+                                     ErrorMessage.MESSAGE_ERROR_SOIN);
+                    valueIsNotEmpty(((JSONObject)reclamations.get(i)).getString("date"),
+                                     ErrorMessage.MESSAGE_ERROR_DATE);
+                    valueIsNotEmpty(((JSONObject)reclamations.get(i)).getString("montant"),
+                                     ErrorMessage.MESSAGE_ERROR_MONTANT);
                 }
             }else{
-                folder.getString(element);
+                valueIsNotEmpty(folder.getString(element), ErrorMessage.MESSAGE_ERROR_FOLDER);
             }
-        }catch (Exception e){
-            System.out.println("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
+        }catch (JSONException e){
+            throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
         }
+    }
+    
+    private static void valueIsNotEmpty(String value, String error) throws ValidationInputFileException {
+        if(value.isEmpty()){
+            throw new ValidationInputFileException(error);
+        }     
     }
     
         //verification des soins
@@ -77,7 +87,8 @@ public class Validation {
     //verification du dossier
     public static String checkFolder(String numeroDossier) 
             throws ValidationInputFileException {
-        if (!(numeroDossier.length() == 7 && numeroDossier.charAt(0) >= 'A' && numeroDossier.charAt(0) <= 'E')) {
+        if (!(numeroDossier.length() == 7 && numeroDossier.charAt(0) >= 'A' 
+                && numeroDossier.charAt(0) <= 'E')) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
         isInteger2(numeroDossier.substring(1), ErrorMessage.MESSAGE_ERROR_FOLDER);
@@ -167,4 +178,6 @@ public class Validation {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
         }
     }
+
+    
 }
