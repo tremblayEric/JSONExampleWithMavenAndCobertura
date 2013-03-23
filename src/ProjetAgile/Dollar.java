@@ -86,14 +86,14 @@ public  class Dollar {
 
     }
     
-    private static double  fromIntegerToDouble(int amount){
+    protected static double  fromIntegerToDouble(int amount){
         return ((double)amount)/100;
     }
     
-    private static String removeDolarSymbol(String amount){
+    protected static String removeDolarSymbol(String amount){
         return amount.replace('$', ' ');
     }
-    private static String replaceComaByDot(String amount){
+    protected static String replaceComaByDot(String amount){
         return amount.replace(',', '.');
     }
     
