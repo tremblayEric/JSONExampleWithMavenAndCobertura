@@ -17,50 +17,26 @@ import java.util.Date;
 
 public class RefundCalculation {
     
-    JavaObjectDossier monthlyFile;
-    
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
+    private JavaObjectDossier monthlyFile;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
     
     public RefundCalculation(JavaObjectDossier monthlyFile){
         this.monthlyFile = monthlyFile;
     }
     
-    public void testRefundCalculation(){
-        
-        System.out.println("contractType : " + getContractType());
-         List uneListe = this.getReclamationList(); 
-         for(int i = 0; i < uneListe.size(); ++i){                        
-           JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
-           System.out.println( "Date #" + i + ": " + uneReclamation.getDate() );
-           System.out.println( "Soin #" + i + ": " + uneReclamation.getSoin() );
-           System.out.println( "montant #" + i + ": " + uneReclamation.getMontant() );           
-        }   
-        List uneListeSoin = this.getCareList();
-        for(int i = 0; i < uneListeSoin.size(); ++i){  
-            System.out.println("Care : " + uneListeSoin.get(i));        
-        }
-        List uneListeDate = this.getDateList();
-        for(int i = 0; i < uneListeDate.size(); ++i){  
-            System.out.println("Date : " + uneListeDate.get(i));
-        }   
-        List uneListeAmount = this.getAmountList();
-        for(int i = 0; i < uneListeAmount.size(); ++i){  
-            System.out.println("Amount : " + uneListeAmount.get(i));
-        }  
-        System.out.println("clientNumber : " + this.getFolderNumber());
-        System.out.println("Month : " + this.getMonth());
-        
+     public List<JavaObjectReclamation> getRefundList() {                  
+        List<JavaObjectReclamation> allRefundList = new ArrayList<>();                     
+        List careList = this.getCareList();
+        List dateList = this.getDateFormatList();
         List<Integer> refundList = this.doCalculList();
-        for(int i = 0; i < refundList.size(); ++i){  
-            System.out.println("Refund : " + refundList.get(i));
-        } 
-        List<String> careMaxList = new ArrayList<>();
-        careMaxList = this.findCareWithMax();
-        for(int i = 0; i < careMaxList.size(); ++i){  
-            System.out.println("Care no with max : " + careMaxList.get(i));
-        }         
-    }
+        for(int i = 0; i < careList.size(); ++i){ // est multiplié par 100 à cause de doubleMontantToInteger               
+           allRefundList.add( new JavaObjectReclamation( (String)careList.get(i) , (Date)dateList.get(i) , Integer.toString(refundList.get(i))) );  
+        }
+        this.adjustRefundForMaximum(allRefundList);
+      
+        return allRefundList; 
+    } 
     
     private String getContractType() { 
        String contractType = monthlyFile.getFolderNumber();
@@ -73,19 +49,6 @@ public class RefundCalculation {
         return uneListe; 
     }
 
-    public List<JavaObjectReclamation> getRefundList() {                  
-        List<JavaObjectReclamation> allRefundList = new ArrayList<>();                     
-        List careList = this.getCareList();
-        List dateList = this.getDateFormatList();
-        List<Integer> refundList = this.doCalculList();
-        for(int i = 0; i < careList.size(); ++i){ // est multiplié par 100 à cause de doubleMontantToInteger               
-           allRefundList.add( new JavaObjectReclamation( (String)careList.get(i) , (Date)dateList.get(i) , Integer.toString(refundList.get(i))) );  
-        }
-        this.adjustRefundForMaximum(allRefundList);
-        //List<Integer> indexList = 
-        return allRefundList; 
-    } 
-     
     private List<String> getCareList() {
         List<String> careList = new ArrayList<>();
         List uneListe = this.getReclamationList();
@@ -129,7 +92,7 @@ public class RefundCalculation {
         return amountList;
     }  
     
-    // getClientNumber()
+    //getClientNumber()
     private String getFolderNumber() {
         String clientNumber = monthlyFile.getFolderNumber();
         clientNumber = clientNumber.substring(1);   
@@ -241,5 +204,41 @@ public class RefundCalculation {
             refund = contractsList.getContractMaxValueByCareNumber(numeroSoin, contrat);
         }
         return refund;
-    }   
+    }
+    /*
+    public void testRefundCalculation(JavaObjectDossier monthlyFile){
+        
+        System.out.println("contractType : " + getContractType());
+         List uneListe = this.getReclamationList(); 
+         for(int i = 0; i < uneListe.size(); ++i){                        
+           JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
+           System.out.println( "Date #" + i + ": " + uneReclamation.getDate() );
+           System.out.println( "Soin #" + i + ": " + uneReclamation.getSoin() );
+           System.out.println( "montant #" + i + ": " + uneReclamation.getMontant() );           
+        }   
+        List uneListeSoin = this.getCareList();
+        for(int i = 0; i < uneListeSoin.size(); ++i){  
+            System.out.println("Care : " + uneListeSoin.get(i));        
+        }
+        List uneListeDate = this.getDateList();
+        for(int i = 0; i < uneListeDate.size(); ++i){  
+            System.out.println("Date : " + uneListeDate.get(i));
+        }   
+        List uneListeAmount = this.getAmountList();
+        for(int i = 0; i < uneListeAmount.size(); ++i){  
+            System.out.println("Amount : " + uneListeAmount.get(i));
+        }  
+        System.out.println("clientNumber : " + this.getFolderNumber());
+        System.out.println("Month : " + this.getMonth());
+        
+        List<Integer> refundList = this.doCalculList();
+        for(int i = 0; i < refundList.size(); ++i){  
+            System.out.println("Refund : " + refundList.get(i));
+        } 
+        List<String> careMaxList = new ArrayList<>();
+        careMaxList = this.findCareWithMax();
+        for(int i = 0; i < careMaxList.size(); ++i){  
+            System.out.println("Care no with max : " + careMaxList.get(i));
+        }         
+    }*/
 }
