@@ -55,13 +55,15 @@ public class TP1Agile {
                 JavaObjectDossier testDossier = test.getJavaObjectDossier();
                 /*Calculs*/
                 RefundCalculation calcul = new RefundCalculation(testDossier);
-                List uneListe = calcul.getRefundList();
+               // List uneListe = calcul.getRefundList();
+                List uneListe = calcul.remboursement();
                 /*Serialisation des resultats*/
                 SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
                 JSONRefundsSerialization.JSONRefundsSerialization(testDossier.getFolderNumber(), dateFormatMois.format(testDossier.getFolderDate()), uneListe);
 
 
             } catch (Exception e) {
+                System.out.println("plantage dans le main");
             }
 
         } else {

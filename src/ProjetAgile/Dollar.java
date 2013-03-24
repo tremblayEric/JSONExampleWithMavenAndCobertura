@@ -4,7 +4,7 @@ package ProjetAgile;
 public  class Dollar {
     
     public static int doubleMontantToInteger(double montant){
-        return (int)montant * 100;
+        return ((int)montant) * 100;
     }
     
     public static double stringToDouble(String amount){

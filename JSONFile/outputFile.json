@@ -4,11 +4,11 @@
     "remboursements":[{
         "soin":"100",
         "date":"2013-01-11",
-        "montant":1681000
+        "montant":"234.0$"
     },{
         "soin":"100",
         "date":"2013-01-24",
-        "montant":819000
+        "montant":"234.0$"
     }],
-    "total":2500000
+    "total":"468.0$"
 }

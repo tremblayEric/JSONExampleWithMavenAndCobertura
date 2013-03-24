@@ -16,13 +16,42 @@ import java.util.Date;
 public class RefundCalculation {
 
     private JavaObjectDossier monthlyFile;
+    private String typeContrat;
+    private ContractList contractsList;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
 
     public RefundCalculation(JavaObjectDossier monthlyFile) {
         this.monthlyFile = monthlyFile;
+        typeContrat = this.getFolderContract();
+         contractsList = new ContractList();
     }
-
+    public List<JavaObjectReclamation> remboursement(){
+        
+        List listeReclamations = new ArrayList();
+        for(int i = 0; i < monthlyFile.getFolderReclamationList().size(); ++i){
+            
+            int refund = 0;
+            JavaObjectReclamation reclamation = (JavaObjectReclamation)monthlyFile.getFolderReclamationList().get(i);
+            
+            if(contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat) == -1){
+                refund = reclamation.getMontant();
+            }else{
+                if(reclamation.getMontant() > contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat)){
+                    refund = contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat);
+                }else{
+                    refund = reclamation.getMontant();
+                }
+            }
+            JavaObjectReclamation remboursement = new JavaObjectReclamation(reclamation.getSoin(),reclamation.getDate(),refund /100 + "");
+            listeReclamations.add(remboursement);
+            
+        }
+        
+        return listeReclamations;
+        
+    }
+    
     public List<JavaObjectReclamation> getRefundList() {
         List<JavaObjectReclamation> allRefundList = new ArrayList<>();
         List careList = this.getCareList();
@@ -42,7 +71,6 @@ public class RefundCalculation {
             for (int i = 0; i < getCareList().size(); ++i) {
                 String amount = getAmountList().get(i);
                 int it = Integer.parseInt(amount);
-                System.out.println(amount);
                 String st = getCareList().get(i);
                 String st2 = getContractType();
                 refundList.add(doCalcul(it, st, st2));
@@ -53,8 +81,8 @@ public class RefundCalculation {
 
     private Integer doCalcul(int valeur, String numeroSoin, String contrat) {
         int refund;
-        ContractList contractsList = new ContractList();
-        refund = valeur * (int) (contractsList.getContractRatioByCareNumber(numeroSoin, contrat) * 100);
+        
+        refund = valeur * contractsList.getContractRatioByCareNumber(numeroSoin, contrat);
         refund = refund / 100;
         if (contractsList.getContractMaxValueByCareNumberExist(numeroSoin, contrat)
                 && refund > contractsList.getContractMaxValueByCareNumber(numeroSoin, contrat)) {
@@ -115,10 +143,8 @@ public class RefundCalculation {
         return amountList;
     }
 
-    private String getFolderNumber() {
-        String clientNumber = monthlyFile.getFolderNumber();
-        clientNumber = clientNumber.substring(1);
-        return clientNumber;
+    private String getFolderContract() {
+       return monthlyFile.getFolderNumber().substring(1);
     }
 
     private String getMonth() {
@@ -133,7 +159,7 @@ public class RefundCalculation {
         List<Integer> refundList = this.doCalculList();
         ContractList contractsList = new ContractList();
         List<Integer> indexList = new ArrayList<>();
-        List<String> careMaxList; // = new ArrayList<>();
+        List<String> careMaxList; 
         careMaxList = this.findCareWithMax();
         if (!careMaxList.isEmpty()) {
             int j = 0;

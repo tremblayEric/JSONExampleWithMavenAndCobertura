@@ -29,6 +29,7 @@ package Save;
 
 import Parsing.JSONFileWriter;
 import Parsing.JavaObjectReclamation;
+import ProjetAgile.Dollar;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import net.sf.json.JSONArray;
@@ -52,22 +53,21 @@ public class JSONRefundsSerialization {
         for(int i = 0; i < reclamationList.size(); ++i){ 
            JavaObjectReclamation refund = (JavaObjectReclamation)reclamationList.get(i);
            
-           
            JSONObject JSONRefund = new JSONObject();
            JSONRefund.accumulate("soin", refund.getSoin());
            JSONRefund.accumulate("date", dateFormatMois.format(refund.getDate()));
-           JSONRefund.accumulate("montant", refund.getMontant());
+           JSONRefund.accumulate("montant", Dollar.fromIntegerToConformStringAmount(refund.getMontant()));
+           System.out.println(refund.getMontant());
+
            total += refund.getMontant();
            
            refunds.add(JSONRefund);
         }
         
         folder.accumulate("remboursements", refunds);
-        folder.accumulate("total", total);
+        folder.accumulate("total", Dollar.fromIntegerToConformStringAmount(total));
         
         JSONFileWriter.writeJSONObbjectToFile(folder);
-        
-        
         
     }
     

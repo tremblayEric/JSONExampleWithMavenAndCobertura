@@ -23,14 +23,14 @@
  */
 package MockData;
 
-/*ajout iteration 2 : tout ce qui est relatif au contrat E*/
+
 public class Contracts{
       
-    private double ratioA;
-    private double ratioB;
-    private double ratioC;
-    private double ratioD;
-    private double ratioE;
+    private int ratioA;
+    private int ratioB;
+    private int ratioC;
+    private int ratioD;
+    private int ratioE;
     
     private boolean maxA;
     private boolean maxB;
@@ -49,7 +49,7 @@ public class Contracts{
     public Contracts(){  
     }
     
-    public void setRatio(double ratioA, double ratioB, double ratioC, double ratioD, double ratioE){
+    public void setRatio(int ratioA, int ratioB, int ratioC, int ratioD, int ratioE){
         this.ratioA = ratioA;
         this.ratioB = ratioB;
         this.ratioC = ratioC;
@@ -76,27 +76,28 @@ public class Contracts{
     public void setMaxMonthlyRefund(int maxMonthlyRefund){
         this.maxMonthlyRefund = maxMonthlyRefund;
     }
+    
     public int getMaxMonthlyRefund(){
         return this.maxMonthlyRefund;
     }
     
-    public double getRatioA(){
+    public int getRatioA(){
         return ratioA;
     }
     
-    public double getRatioB(){
+    public int getRatioB(){
         return ratioB;
     }
     
-    public double getRatioC(){
+    public int getRatioC(){
         return ratioC;
     }
     
-    public double getRatioD(){
+    public int getRatioD(){
         return ratioD;
     }
     
-    public double getRatioE(){
+    public int getRatioE(){
         return ratioE;
     }
     
