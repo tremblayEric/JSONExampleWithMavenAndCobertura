@@ -108,6 +108,7 @@ public class RefundCalculation {
         }
         return dateList;
     }  
+    
     private List<Date> getDateFormatList() {
         List<Date> dateList = new ArrayList<>();
         List uneListe = this.getReclamationList();
@@ -232,8 +233,7 @@ public class RefundCalculation {
         }
         return totalRefund;
     }   
-    
-    
+     
     private Integer doCalcul(int valeur, String numeroSoin, String contrat) {
         int refund;
         ContractList contractsList = new ContractList();

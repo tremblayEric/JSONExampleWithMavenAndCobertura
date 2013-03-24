@@ -135,6 +135,7 @@ public class ReclamationCalcul {
     }
 
     public double doCalcul(double valeur, String numeroSoin, String contrat) {
+        
         double refund = 0;
         ContractList contractsList = new ContractList();
         refund = valeur * contractsList.getContractRatioByCareNumber(numeroSoin, contrat);      
