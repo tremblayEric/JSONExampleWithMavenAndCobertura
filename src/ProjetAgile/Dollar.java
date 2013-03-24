@@ -38,6 +38,8 @@ public  class Dollar {
      * MODIFIER QUELQUE METHODE DE CALCUL DE L'ITERATION 2 AFIN DE FAIRE CEUX DE
      * CELLE-CI.
      */
+    
+    /*
     public static void calculReclamation(){
         
         JSONObject folder = new JSONObject();
@@ -85,6 +87,7 @@ public  class Dollar {
         JSONFileWriter.writeJSONObbjectToFile(folder);
 
     }
+    */
     
     protected static double  fromIntegerToDouble(int amount){
         return ((double)amount)/100;

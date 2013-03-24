@@ -81,7 +81,7 @@ public class RefundCalculation {
         List careList = this.getCareList();
         List dateList = this.getDateFormatList();
         List<Integer> refundList = this.doCalculList();
-        for(int i = 0; i < careList.size(); ++i){                                     // est multiplié par 100 à cause de doubleMontantToInteger               
+        for(int i = 0; i < careList.size(); ++i){ // est multiplié par 100 à cause de doubleMontantToInteger               
            allRefundList.add( new JavaObjectReclamation( (String)careList.get(i) , (Date)dateList.get(i) , Integer.toString(refundList.get(i))) );  
         }
         this.adjustRefundForMaximum(allRefundList);

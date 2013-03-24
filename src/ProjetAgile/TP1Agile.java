@@ -26,6 +26,7 @@
  */
 package ProjetAgile;
 
+import Save.JSONRefundsSerialization;
 import Parsing.JSONReclamationsParsing;
 import Parsing.JavaObjectDossier;
 import Parsing.JavaObjectReclamation;
@@ -35,6 +36,7 @@ import XMLParsing.Dom;
 import Save.XMLDocumentSave;
 import Validation.*;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TP1Agile {
@@ -63,13 +65,23 @@ public class TP1Agile {
        RefundCalculation calcul = new RefundCalculation(testDossier);
        //System.out.println("getContractType : " + calcul.testRefundCalculation());
        List uneListe = calcul.getRefundList();
+       /*
         for(int i = 0; i < testDossier.getFolderReclamationList().size(); ++i){ 
            JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
-           System.out.println( "\nDate2 #" + i + ": " + uneReclamation.getDate() );
+           System.out.println( "\nDate2  refund #" + i + ": " + uneReclamation.getDate() );
            System.out.println( "Soin2 #" + i + ": " + uneReclamation.getSoin() );           
            System.out.println( "montant2 #" + i + ": " + uneReclamation.getMontant() ); 
            
-        }    
+        }   
+        */
+        
+        /*
+         * Serialisation
+         */
+        SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
+        JSONRefundsSerialization.JSONRefundsSerialization( testDossier.getFolderNumber(),dateFormatMois.format(testDossier.getFolderDate()), uneListe);
+        
+        /****************/ 
        
        // System.out.println(" devrait egaler 6.21: " + Dollar.fromStringtoConformCashAmount("6,21"));
        // System.out.println(" devrait egaler 10.29$: " + Dollar.fromIntegerToConformStringAmount(1029));
