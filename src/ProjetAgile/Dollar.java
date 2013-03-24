@@ -1,13 +1,6 @@
 
 package ProjetAgile;
 
-import Parsing.JSONFileWriter;
-import Parsing.JavaObjectReclamation;
-import java.text.SimpleDateFormat;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-
 public  class Dollar {
     
     public static int doubleMontantToInteger(double montant){
