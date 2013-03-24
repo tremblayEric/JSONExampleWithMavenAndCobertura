@@ -102,6 +102,21 @@ public class ContractList {
         return exist;
     }
 
+       public int getMaxValueByCareNumber(String careNumber){
+        int i = 0;
+        boolean founded = false;
+        int max = -1;
+        String tempCare = roundCareNumber(careNumber);
+        while (!founded && i < contractList.size()) {
+            if (contractList.get(i).getCareNumber().compareTo(tempCare) == 0) {
+                founded = !founded;
+                max = contractList.get(i).getContract().getMaxMonthlyRefund();
+            }        
+            ++i;
+        }
+        return max;           
+    }  
+       
     private String roundCareNumber(String careNumber){
         String tempCare = careNumber;
         if(careNumber.charAt(0) == '3'){

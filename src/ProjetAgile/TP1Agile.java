@@ -62,17 +62,14 @@ public class TP1Agile {
         
        RefundCalculation calcul = new RefundCalculation(testDossier);
        //System.out.println("getContractType : " + calcul.testRefundCalculation());
-       calcul.testRefundCalculation();
-       
-        for(int i = 0; i < testDossier.getFolderReclamationList().size(); ++i){
-            
-           List uneListe = calcul.getRefundList();
-            
+       List uneListe = calcul.getRefundList();
+        for(int i = 0; i < testDossier.getFolderReclamationList().size(); ++i){ 
            JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
            System.out.println( "\nDate2 #" + i + ": " + uneReclamation.getDate() );
            System.out.println( "Soin2 #" + i + ": " + uneReclamation.getSoin() );           
-           System.out.println( "montant2 #" + i + ": " + uneReclamation.getMontant() );
-        }       
+           System.out.println( "montant2 #" + i + ": " + uneReclamation.getMontant() ); 
+           
+        }    
        
        // System.out.println(" devrait egaler 6.21: " + Dollar.fromStringtoConformCashAmount("6,21"));
        // System.out.println(" devrait egaler 10.29$: " + Dollar.fromIntegerToConformStringAmount(1029));
