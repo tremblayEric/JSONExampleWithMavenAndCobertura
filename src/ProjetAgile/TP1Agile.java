@@ -32,8 +32,7 @@ import Parsing.JavaObjectDossier;
 import Parsing.JavaObjectReclamation;
 import MockData.ContractList;
 
-import XMLParsing.Dom;
-import Save.XMLDocumentSave;
+
 import Validation.*;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
@@ -47,7 +46,6 @@ public class TP1Agile {
         
         if (args.length == 2) {
 
-            XMLDocumentSave dataPersistance = new XMLDocumentSave("src/XmlFiles/" + args[1]);
             try {
                 /*parsing du document en entre*/
                 JSONReclamationsParsing test = new JSONReclamationsParsing();
@@ -55,8 +53,8 @@ public class TP1Agile {
                 JavaObjectDossier testDossier = test.getJavaObjectDossier();
                 /*Calculs*/
                 RefundCalculation calcul = new RefundCalculation(testDossier);
-               // List uneListe = calcul.getRefundList();
-                List uneListe = calcul.remboursement();
+                List uneListe = calcul.getRefundList();
+                //List uneListe = calcul.remboursement();
                 /*Serialisation des resultats*/
                 SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
                 JSONRefundsSerialization.JSONRefundsSerialization(testDossier.getFolderNumber(), dateFormatMois.format(testDossier.getFolderDate()), uneListe);

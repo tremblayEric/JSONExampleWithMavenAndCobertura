@@ -25,7 +25,8 @@ public  class Dollar {
     }
 
     protected static double  fromIntegerToDouble(int amount){
-        return ((double)amount)/100;
+        //System.out.println("ici"+((double)amount)/100);
+        return ((double)amount)/10000;
     }
     
     protected static String removeDolarSymbol(String amount){

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ProjetAgile;
 
 import MockData.ContractList;
@@ -35,7 +32,7 @@ public class RefundCalculation {
             JavaObjectReclamation reclamation = (JavaObjectReclamation)monthlyFile.getFolderReclamationList().get(i);
             
             if(contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat) == -1){
-                refund = reclamation.getMontant();
+                refund = (reclamation.getMontant()/100);
             }else{
                 if(reclamation.getMontant() > contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat)){
                     refund = contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat);
