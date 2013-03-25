@@ -1,10 +1,10 @@
 {
-    "dossier":"B100323",
+    "dossier":"A100323",
     "mois":"2013-01",
     "remboursements":[{
-        "soin":"175",
+        "soin":"600",
         "date":"2013-01-11",
-        "montant":"200.0$"
+        "montant":"300.0$"
     }],
-    "total":"200.0$"
+    "total":"300.0$"
 }

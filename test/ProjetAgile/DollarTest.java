@@ -38,6 +38,14 @@ public class DollarTest {
     
     Dollar instance;
 
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
     @Before
     public void setUp() throws Exception{   
         instance = new Dollar();
