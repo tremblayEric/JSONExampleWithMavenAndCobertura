@@ -1,4 +1,3 @@
-
 package ProjetAgile;
 
 import MockData.ContractList;
@@ -21,34 +20,35 @@ public class RefundCalculation {
     public RefundCalculation(JavaObjectDossier monthlyFile) {
         this.monthlyFile = monthlyFile;
         typeContrat = this.getFolderContract();
-         contractsList = new ContractList();
+        contractsList = new ContractList();
     }
-    public List<JavaObjectReclamation> remboursement(){
-        
+
+    public List<JavaObjectReclamation> remboursement() {
+
         List listeReclamations = new ArrayList();
-        for(int i = 0; i < monthlyFile.getFolderReclamationList().size(); ++i){
-            
+        for (int i = 0; i < monthlyFile.getFolderReclamationList().size(); ++i) {
+
             int refund = 0;
-            JavaObjectReclamation reclamation = (JavaObjectReclamation)monthlyFile.getFolderReclamationList().get(i);
-            
-            if(contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat) == -1){
-                refund = (reclamation.getMontant()/100);
-            }else{
-                if(reclamation.getMontant() > contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat)){
+            JavaObjectReclamation reclamation = (JavaObjectReclamation) monthlyFile.getFolderReclamationList().get(i);
+
+            if (contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat) == -1) {
+                refund = (reclamation.getMontant() / 100);
+            } else {
+                if (reclamation.getMontant() > contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat)) {
                     refund = contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat);
-                }else{
+                } else {
                     refund = reclamation.getMontant();
                 }
             }
-            JavaObjectReclamation remboursement = new JavaObjectReclamation(reclamation.getSoin(),reclamation.getDate(),refund /100 + "");
+            JavaObjectReclamation remboursement = new JavaObjectReclamation(reclamation.getSoin(), reclamation.getDate(), refund / 100 + "");
             listeReclamations.add(remboursement);
-            
+
         }
-        
+
         return listeReclamations;
-        
+
     }
-    
+
     public List<JavaObjectReclamation> getRefundList() {
         List<JavaObjectReclamation> allRefundList = new ArrayList<>();
         List careList = this.getCareList();
@@ -78,7 +78,7 @@ public class RefundCalculation {
 
     private Integer doCalcul(int valeur, String numeroSoin, String contrat) {
         int refund;
-        
+
         refund = valeur * contractsList.getContractRatioByCareNumber(numeroSoin, contrat);
         refund = refund / 100;
         if (contractsList.getContractMaxValueByCareNumberExist(numeroSoin, contrat)
@@ -141,7 +141,7 @@ public class RefundCalculation {
     }
 
     private String getFolderContract() {
-       return monthlyFile.getFolderNumber().substring(1);
+        return monthlyFile.getFolderNumber().substring(1);
     }
 
     private String getMonth() {
@@ -151,46 +151,69 @@ public class RefundCalculation {
     }
 
     private void adjustRefundForMaximum(List<JavaObjectReclamation> allRefundList) {
-        List careList = this.getCareList();
-        List dateList = this.getDateFormatList();
-        List<Integer> refundList = this.doCalculList();
-        ContractList contractsList = new ContractList();
-        List<Integer> indexList = new ArrayList<>();
-        List<String> careMaxList; 
-        careMaxList = this.findCareWithMax();
-        if (!careMaxList.isEmpty()) {
-            int j = 0;
-            int totalRefund = 0;
-            int tmpAmount = 0;
-            int countSameCareNo = 0;
-            for (int i = 0; i < careMaxList.size(); ++i) {
-                do {
-                    JavaObjectReclamation uneReclamation = (JavaObjectReclamation) allRefundList.get(j);
-                    tmpAmount = uneReclamation.getMontant() / 100;
-                    if (careMaxList.get(i).equals(uneReclamation.getSoin())) {
-                        indexList.add(j);
-                        totalRefund += uneReclamation.getMontant() / 100;
-                        countSameCareNo++;
-                    }
-                    j++;
-                } while (j < allRefundList.size());
-                int maxValue = contractsList.getMaxValueByCareNumber(careMaxList.get(i));
 
-                j = 0;
-                int trop = totalRefund - maxValue * 100;
-                boolean valueNotReached = true;
-                while (valueNotReached && j < indexList.size()) {
-                    if (trop <= tmpAmount) {
-                        allRefundList.set(indexList.get(j), new JavaObjectReclamation((String) careList.get(indexList.get(j)), (Date) dateList.get(indexList.get(j)), Integer.toString(refundList.get(indexList.get(j)) - trop)));
-                        valueNotReached = !valueNotReached;
-                    } else {
-                        allRefundList.set(indexList.get(j), new JavaObjectReclamation((String) careList.get(indexList.get(j)), (Date) dateList.get(indexList.get(j)), Integer.toString(refundList.get(indexList.get(j)) - tmpAmount)));
-                        trop -= tmpAmount;
-                        j++;
-                    }
+        ContractList contractDetails = new ContractList();
+        int monthlyMaxOsteo = contractDetails.getCareMonthlyMaximumLimit("100");
+        int monthlyMaxGeneral = contractDetails.getCareMonthlyMaximumLimit("175");
+        int monthlyMaxPsycho = contractDetails.getCareMonthlyMaximumLimit("200");
+        int monthlyMaxChiro = contractDetails.getCareMonthlyMaximumLimit("500");
+        int monthlyMaxPhysio = contractDetails.getCareMonthlyMaximumLimit("600");
+
+        int osteoTotal = 0;
+        int general = 0;
+        int psycho = 0;
+        int chiro = 0;
+        int physio = 0;
+        int montant = 0;
+
+        for (int i = 0; i < allRefundList.size(); ++i) {
+            System.out.println("soin " + allRefundList.get(i).getSoin() + " date " + allRefundList.get(i).getDate() + " montant " + allRefundList.get(i).getMontant());
+
+            JavaObjectReclamation reclamation = allRefundList.get(i);
+
+            if (reclamation.getSoin().compareTo("100") == 0) {
+
+                montant = reclamation.getMontant() / 10000;
+
+                if ((montant + osteoTotal) >= monthlyMaxOsteo) {
+                    System.out.println(monthlyMaxOsteo + " " + osteoTotal);
+                    reclamation.setMontant((monthlyMaxOsteo - osteoTotal) * 10000);
+                    osteoTotal = monthlyMaxOsteo;
+                } else if (osteoTotal >= monthlyMaxOsteo) {
+
+                    reclamation.setMontant(0);
+                } else {
+
+                    osteoTotal += montant;
+                }
+
+
+
+            } else if (reclamation.getSoin().compareTo("175") == 0) {
+                general += reclamation.getMontant();
+                if (reclamation.getMontant() > monthlyMaxGeneral) {
+                    reclamation.setMontant(monthlyMaxGeneral);
+                }
+            } else if (reclamation.getSoin().compareTo("200") == 0) {
+                psycho += reclamation.getMontant();
+                if (reclamation.getMontant() > monthlyMaxPsycho) {
+                    reclamation.setMontant(monthlyMaxPsycho);
+                }
+            } else if (reclamation.getSoin().compareTo("500") == 0) {
+                chiro += reclamation.getMontant();
+                if (reclamation.getMontant() > monthlyMaxChiro) {
+                    reclamation.setMontant(monthlyMaxChiro);
+                }
+            } else if (reclamation.getSoin().compareTo("600") == 0) {
+                physio += reclamation.getMontant();
+                if (reclamation.getMontant() > monthlyMaxPhysio) {
+                    reclamation.setMontant(monthlyMaxPhysio);
                 }
             }
+
         }
+
+ 
     }
 
     private List<String> findCareWithMax() {
@@ -222,5 +245,4 @@ public class RefundCalculation {
         }
         return totalRefund;
     }
-    
 }

@@ -28,11 +28,13 @@ public class Care {
     private String careNumber;
     private String careCategory;
     private Contracts contracts;
+    private int maxMonthlyRefund;//ajout iteration #3
 
-    public Care(String numeroSoin, String categorieSoin, Contracts contracts){
+    public Care(String numeroSoin, String categorieSoin, Contracts contracts, int maxMonthlyRefund){
         this.careNumber = numeroSoin;
         this.careCategory = categorieSoin;
         this.contracts = contracts;
+        this.maxMonthlyRefund = maxMonthlyRefund;
     }
 
     public String getCareNumber() {
@@ -45,6 +47,10 @@ public class Care {
 
     public Contracts getContract() {
         return contracts;
+    }
+    
+    public int getMonthlyMaxLimit() {
+        return maxMonthlyRefund;
     }
     
     @Override

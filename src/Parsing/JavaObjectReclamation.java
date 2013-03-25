@@ -23,6 +23,12 @@ public class JavaObjectReclamation {
             System.out.println("plantage de conversion de string en double");
         }     
     }
+   
+   public JavaObjectReclamation(String soin, Date date, int montant){
+        this.soin = soin;
+        this.date = date;
+        this.montant = montant;   
+    }
     
     public String getSoin(){
         return this.soin;
@@ -41,10 +47,8 @@ public class JavaObjectReclamation {
                 "montant: " + montant + "\n";
     }
     
-    
-    
-    
-    
-    
-    
+    public void setMontant(int montant){
+        this.montant = montant;
+    }
+        
 }

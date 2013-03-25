@@ -44,7 +44,6 @@ public class Contracts{
     private int maxValueD;
     private int maxValueE;
     
-    private int maxMonthlyRefund;
     
     public Contracts(){  
     }
@@ -73,14 +72,6 @@ public class Contracts{
         this.maxValueE = maxValueE;
     }
  
-    public void setMaxMonthlyRefund(int maxMonthlyRefund){
-        this.maxMonthlyRefund = maxMonthlyRefund;
-    }
-    
-    public int getMaxMonthlyRefund(){
-        return this.maxMonthlyRefund;
-    }
-    
     public int getRatioA(){
         return ratioA;
     }
