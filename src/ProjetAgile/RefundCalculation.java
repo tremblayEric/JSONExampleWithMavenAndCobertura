@@ -160,23 +160,20 @@ public class RefundCalculation {
         int monthlyMaxPhysio = contractDetails.getCareMonthlyMaximumLimit("600");
 
         int osteoTotal = 0;
-        int general = 0;
-        int psycho = 0;
-        int chiro = 0;
-        int physio = 0;
+        int generalTotal = 0;
+        int psychoTotal = 0;
+        int chiroTotal = 0;
+        int physioTotal = 0;
         int montant = 0;
 
         for (int i = 0; i < allRefundList.size(); ++i) {
-            System.out.println("soin " + allRefundList.get(i).getSoin() + " date " + allRefundList.get(i).getDate() + " montant " + allRefundList.get(i).getMontant());
 
             JavaObjectReclamation reclamation = allRefundList.get(i);
 
             if (reclamation.getSoin().compareTo("100") == 0) {
-
-                montant = reclamation.getMontant() / 10000;
+                  montant = reclamation.getMontant() / 10000;
 
                 if ((montant + osteoTotal) >= monthlyMaxOsteo) {
-                    System.out.println(monthlyMaxOsteo + " " + osteoTotal);
                     reclamation.setMontant((monthlyMaxOsteo - osteoTotal) * 10000);
                     osteoTotal = monthlyMaxOsteo;
                 } else if (osteoTotal >= monthlyMaxOsteo) {
@@ -186,28 +183,61 @@ public class RefundCalculation {
 
                     osteoTotal += montant;
                 }
-
-
+                
 
             } else if (reclamation.getSoin().compareTo("175") == 0) {
-                general += reclamation.getMontant();
-                if (reclamation.getMontant() > monthlyMaxGeneral) {
-                    reclamation.setMontant(monthlyMaxGeneral);
+                
+                montant = reclamation.getMontant() / 10000;
+
+                if ((montant + generalTotal) >= monthlyMaxGeneral) {
+                    reclamation.setMontant((monthlyMaxGeneral - generalTotal) * 10000);
+                    generalTotal = monthlyMaxGeneral;
+                } else if (generalTotal >= monthlyMaxGeneral) {
+
+                    reclamation.setMontant(0);
+                } else {
+
+                    generalTotal += montant;
                 }
+                
             } else if (reclamation.getSoin().compareTo("200") == 0) {
-                psycho += reclamation.getMontant();
-                if (reclamation.getMontant() > monthlyMaxPsycho) {
-                    reclamation.setMontant(monthlyMaxPsycho);
+                montant = reclamation.getMontant() / 10000;
+
+                if ((montant + psychoTotal) >= monthlyMaxPsycho) {
+                    reclamation.setMontant((monthlyMaxPsycho - psychoTotal) * 10000);
+                    psychoTotal = monthlyMaxPsycho;
+                } else if (psychoTotal >= monthlyMaxPsycho) {
+
+                    reclamation.setMontant(0);
+                } else {
+
+                    generalTotal += montant;
                 }
             } else if (reclamation.getSoin().compareTo("500") == 0) {
-                chiro += reclamation.getMontant();
-                if (reclamation.getMontant() > monthlyMaxChiro) {
-                    reclamation.setMontant(monthlyMaxChiro);
+                montant = reclamation.getMontant() / 10000;
+
+                if ((montant + chiroTotal) >= monthlyMaxChiro) {
+                    reclamation.setMontant((monthlyMaxChiro - chiroTotal) * 10000);
+                    chiroTotal = monthlyMaxChiro;
+                } else if (chiroTotal >= monthlyMaxChiro) {
+
+                    reclamation.setMontant(0);
+                } else {
+
+                    generalTotal += montant;
                 }
             } else if (reclamation.getSoin().compareTo("600") == 0) {
-                physio += reclamation.getMontant();
-                if (reclamation.getMontant() > monthlyMaxPhysio) {
-                    reclamation.setMontant(monthlyMaxPhysio);
+               montant = reclamation.getMontant() / 10000;
+
+                if ((montant + physioTotal) >= monthlyMaxPhysio) {
+                    reclamation.setMontant((monthlyMaxPhysio - physioTotal) * 10000);
+                    physioTotal = monthlyMaxPhysio;
+                } else if (physioTotal >= monthlyMaxPhysio) {
+
+                    reclamation.setMontant(0);
+                } else {
+
+                    generalTotal += montant;
                 }
             }
 
@@ -245,4 +275,7 @@ public class RefundCalculation {
         }
         return totalRefund;
     }
+    
+    
+    
 }
