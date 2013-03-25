@@ -25,13 +25,13 @@ public  class Dollar {
     }
 
     protected static double  fromIntegerToDouble(int amount){
-        //System.out.println("ici"+((double)amount)/100);
         return ((double)amount)/10000;
     }
     
     protected static String removeDolarSymbol(String amount){
         return amount.replace('$', ' ');
     }
+    
     protected static String replaceComaByDot(String amount){
         return amount.replace(',', '.');
     }

@@ -36,26 +36,8 @@ import org.junit.BeforeClass;
 
 public class DollarTest {
     
-    Dollar instance;
+    Dollar instance = null;
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception{   
-        instance = new Dollar();
-    }
-
-    @After
-    public void tearDown() throws Exception{ 
-        instance = null;
-    }
-    
     @Test
     public void testDoubleMontantToInteger() {
         double montant = 12.0;
@@ -74,32 +56,23 @@ public class DollarTest {
 
     @Test
     public void testFromStringtoConformCashAmount() {
-        String amount = "525,55";
-        String expResult = "525.55";
+        String amount = "525,55$";
+        String expResult = "525.55 ";
         String result = instance.fromStringtoConformCashAmount(amount);
         assertEquals(expResult, result);
     }
 
     @Test
     public void testFromIntegerToConformStringAmount() {
-        int amount = 330;
+        int amount = 33000;
         String expResult = "3.3$";
         String result = instance.fromIntegerToConformStringAmount(amount);
         assertEquals(expResult, result);
     }
     
-    /**
-    @Test
-    public void testCalculReclamation() {
-        System.out.println("calculReclamation");
-        Dollar.calculReclamation();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
-    
     @Test
     public void testFromIntegerToDouble() {
-        int amount = 700;
+        int amount = 70000;
         double expResult = 7.0;
         double result = instance.fromIntegerToDouble(amount);
         assertEquals(expResult, result, 0.0);
