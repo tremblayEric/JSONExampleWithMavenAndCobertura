@@ -201,17 +201,16 @@ public class RefundCalculation {
                 }
                 
             } else if (reclamation.getSoin().compareTo("200") == 0) {
+                
                 montant = reclamation.getMontant() / 10000;
 
                 if ((montant + psychoTotal) >= monthlyMaxPsycho) {
                     reclamation.setMontant((monthlyMaxPsycho - psychoTotal) * 10000);
                     psychoTotal = monthlyMaxPsycho;
                 } else if (psychoTotal >= monthlyMaxPsycho) {
-
                     reclamation.setMontant(0);
                 } else {
-
-                    generalTotal += montant;
+                    psychoTotal += montant;
                 }
             } else if (reclamation.getSoin().compareTo("500") == 0) {
                 montant = reclamation.getMontant() / 10000;
@@ -224,7 +223,7 @@ public class RefundCalculation {
                     reclamation.setMontant(0);
                 } else {
 
-                    generalTotal += montant;
+                    chiroTotal += montant;
                 }
             } else if (reclamation.getSoin().compareTo("600") == 0) {
                montant = reclamation.getMontant() / 10000;
@@ -237,7 +236,7 @@ public class RefundCalculation {
                     reclamation.setMontant(0);
                 } else {
 
-                    generalTotal += montant;
+                    physioTotal += montant;
                 }
             }
 
