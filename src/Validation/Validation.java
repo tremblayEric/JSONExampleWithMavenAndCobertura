@@ -50,8 +50,12 @@ public class Validation {
             }
         }catch (JSONException e){
             //throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
-            throw new ValidationInputFileException(" l'un des elements(soin, date, montant) contenu dans " + element + " est manquant dans le fichier JSON d'entrée");
+            throw new ValidationInputFileException(" l'element " + removeChar(e.getMessage()) + " contenu dans " + element + " est manquant dans le fichier JSON d'entrée");
         }
+    }
+    
+    private static String removeChar(String string){
+        return string.substring(string.indexOf("\"")+1 , string.lastIndexOf("\""));
     }
     
     private static void valueIsNotEmpty(String value, String error) throws ValidationInputFileException {
