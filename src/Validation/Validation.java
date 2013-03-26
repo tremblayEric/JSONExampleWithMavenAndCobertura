@@ -126,14 +126,16 @@ public class Validation {
     public static String checkDateIsValid(String laDate, String type) 
             throws ValidationInputFileException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String messageError = ErrorMessage.MESSAGE_ERROR_DATE;
         if (type.compareTo("mois") == 0) {
             dateFormat = new SimpleDateFormat("yyyy-MM");
+            messageError = ErrorMessage.MESSAGE_ERROR_MONTH;
         }
         try {
             Date d = dateFormat.parse(laDate);
             String format = dateFormat.format(d);
             if (!(format.compareTo(laDate) == 0)) {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_DATE);
+                throw new ValidationInputFileException(messageError);
             }
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
