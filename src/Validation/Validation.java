@@ -46,10 +46,11 @@ public class Validation {
             }else if(element.compareTo("dossier") == 0 || element.compareTo("mois") == 0 ){
                 valueIsNotEmpty(folder.getString(element), ErrorMessage.MESSAGE_ERROR_FOLDER);
             }else{
-                throw new ValidationInputFileException("l'element " + element + " n est pas un element valide dans le fichier JSON d'entrée");
+                throw new ValidationInputFileException(" l'element " + element + " n est pas un element valide dans le fichier JSON d'entrée");
             }
         }catch (JSONException e){
-            throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
+            //throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
+            throw new ValidationInputFileException(" l'un des elements(soin, date, montant) contenu dans " + element + " est manquant dans le fichier JSON d'entrée");
         }
     }
     
