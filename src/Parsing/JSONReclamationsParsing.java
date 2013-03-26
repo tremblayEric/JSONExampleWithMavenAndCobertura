@@ -24,6 +24,7 @@
  * UQAM
  * Session d'hiver 2013
  */
+
 package Parsing;
 
 import Validation.ErrorMessage;
