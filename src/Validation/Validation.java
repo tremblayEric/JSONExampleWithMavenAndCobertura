@@ -43,8 +43,10 @@ public class Validation {
                     valueIsNotEmpty(((JSONObject)reclamations.get(i)).getString("montant"),
                                      ErrorMessage.MESSAGE_ERROR_MONTANT);
                 }
-            }else{
+            }else if(element.compareTo("dossier") == 0 || element.compareTo("mois") == 0 ){
                 valueIsNotEmpty(folder.getString(element), ErrorMessage.MESSAGE_ERROR_FOLDER);
+            }else{
+                throw new ValidationInputFileException("l'element " + element + " n est pas un element valide dans le fichier JSON d'entrée");
             }
         }catch (JSONException e){
             throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
