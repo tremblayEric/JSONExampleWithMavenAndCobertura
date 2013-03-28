@@ -50,7 +50,7 @@ public class TP1Agile {
             //XMLDocumentSave dataPersistance = new XMLDocumentSave("src/XmlFiles/" + args[1]);
             try {
                 /*parsing du document en entre*/
-                JSONReclamationsParsing test = new JSONReclamationsParsing();
+                JSONReclamationsParsing test = new JSONReclamationsParsing(args[0]);
                 /*recuperation des donnees pour les calculs*/
                 JavaObjectDossier testDossier = test.getJavaObjectDossier();
                 /*Calculs*/
@@ -59,16 +59,18 @@ public class TP1Agile {
                 List uneListe = calcul.remboursement();
                 /*Serialisation des resultats*/
                 SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
-                JSONRefundsSerialization.JSONRefundsSerialization(testDossier.getFolderNumber(), dateFormatMois.format(testDossier.getFolderDate()), uneListe);
+                JSONRefundsSerialization.JSONRefundsSerialization(args[1], testDossier.getFolderNumber(), dateFormatMois.format(testDossier.getFolderDate()), uneListe);
 
 
+            } catch (FileNotFoundException e) {
+                JSONRefundsSerialization.JSONRefundsSerializationError(args[1], ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
             } catch (Exception e) {
-                JSONRefundsSerialization.JSONRefundsSerializationError(e.getMessage());
+                JSONRefundsSerialization.JSONRefundsSerializationError(args[1], e.getMessage());
                 //System.out.println("plantage dans le main");
             }
 
         } else {
-            JSONRefundsSerialization.JSONRefundsSerializationError(ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
+            JSONRefundsSerialization.JSONRefundsSerializationError(args[1], ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
             //System.out.println("Des arguments de la ligne de commande sont manquants.");
         }
 

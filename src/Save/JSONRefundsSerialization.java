@@ -40,7 +40,7 @@ public class JSONRefundsSerialization {
     
     
     
-    public static void JSONRefundsSerialization(String folderNmber, String folderDate, List reclamationList){
+    public static void JSONRefundsSerialization(String path, String folderNmber, String folderDate, List reclamationList){
         
         int total = 0;
         JSONObject folder = new JSONObject();
@@ -67,14 +67,15 @@ public class JSONRefundsSerialization {
         folder.accumulate("remboursements", refunds);
         folder.accumulate("total", Dollar.fromIntegerToConformStringAmount(total));
         
-        JSONFileWriter.writeJSONObbjectToFile(folder);
-        
+        //JSONFileWriter.writeJSONObbjectToFile(folder);
+        JSONFileWriter.writeJSONObbjectToFile(path,folder);
     }
     
-    public static void JSONRefundsSerializationError(String errorMessage ){
+    public static void JSONRefundsSerializationError(String path, String errorMessage ){
         JSONObject folder = new JSONObject();
         folder.accumulate("Message", errorMessage);
-        JSONFileWriter.writeJSONObbjectToFile(folder);
+        //JSONFileWriter.writeJSONObbjectToFile(folder);
+        JSONFileWriter.writeJSONObbjectToFile(path,folder);
     }
  
 }

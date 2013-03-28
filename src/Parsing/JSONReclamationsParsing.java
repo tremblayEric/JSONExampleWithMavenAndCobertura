@@ -46,9 +46,10 @@ public class JSONReclamationsParsing {
     private JavaObjectDossier javaDossier;
     private JSONObject folder;
     
-    public JSONReclamationsParsing() throws IOException, ValidationInputFileException{
+    public JSONReclamationsParsing(String path) throws IOException, ValidationInputFileException{
         
-        String JSONFileContent = JSONFileReader.loadFileIntoString("JSONFile/inputFile.json");
+        //String JSONFileContent = JSONFileReader.loadFileIntoString("JSONFile/inputFile.json");
+        String JSONFileContent = JSONFileReader.loadFileIntoString(path);
         folder = JSONObject.fromObject(JSONFileContent);
         Validation.checkElementsFolder(folder, "dossier");
         Validation.checkElementsFolder(folder, "mois");
