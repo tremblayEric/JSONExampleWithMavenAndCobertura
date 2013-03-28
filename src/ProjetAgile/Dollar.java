@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 public  class Dollar {
     
     public static int doubleMontantToInteger(double montant){
-        return (int)(montant * 100);
+        return (int)(Math.ceil(montant * 100));
     }
     
     public static double stringToDouble(String amount) throws ValidationInputFileException{
@@ -24,15 +24,10 @@ public  class Dollar {
     }
     
     public static String fromIntegerToConformStringAmount(int amount){
-        //DecimalFormat decim = new DecimalFormat("#.00");
-        //Double price2 = Double.parseDouble(decim.format(price));
-        //return Double.toString(Double.parseDouble(decim.format(fromIntegerToDouble(amount)))) + "$";
         return Double.toString(fromIntegerToDouble(amount)) + "$";
     }
 
     protected static double  fromIntegerToDouble(int amount){
-        //DecimalFormat decim = new DecimalFormat("#.00");
-        //return Double.parseDouble(decim.format(((double)amount)/10000));
         return ((double)amount)/10000;
     }
     
