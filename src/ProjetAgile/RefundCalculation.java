@@ -154,11 +154,11 @@ public class RefundCalculation {
     private void adjustRefundForMaximum(List<JavaObjectReclamation> allRefundList) {
 
         ContractList contractDetails = new ContractList();
-        int monthlyMaxOsteo = contractDetails.getCareMonthlyMaximumLimit("100");
-        int monthlyMaxGeneral = contractDetails.getCareMonthlyMaximumLimit("175");
-        int monthlyMaxPsycho = contractDetails.getCareMonthlyMaximumLimit("200");
-        int monthlyMaxChiro = contractDetails.getCareMonthlyMaximumLimit("500");
-        int monthlyMaxPhysio = contractDetails.getCareMonthlyMaximumLimit("600");
+        int monthlyMaxOsteo = contractDetails.getCareMonthlyMaximumLimit("100")*100;
+        int monthlyMaxGeneral = contractDetails.getCareMonthlyMaximumLimit("175")*100;
+        int monthlyMaxPsycho = contractDetails.getCareMonthlyMaximumLimit("200")*100;
+        int monthlyMaxChiro = contractDetails.getCareMonthlyMaximumLimit("500")*100;
+        int monthlyMaxPhysio = contractDetails.getCareMonthlyMaximumLimit("600")*100;
 
         int osteoTotal = 0;
         int generalTotal = 0;
@@ -172,10 +172,10 @@ public class RefundCalculation {
             JavaObjectReclamation reclamation = allRefundList.get(i);
 
             if (reclamation.getSoin().compareTo("100") == 0) {
-                  montant = reclamation.getMontant() / 10000;
+                  montant = reclamation.getMontant() / 100;
 
                 if ((montant + osteoTotal) >= monthlyMaxOsteo) {
-                    reclamation.setMontant((monthlyMaxOsteo - osteoTotal) * 10000);
+                    reclamation.setMontant((monthlyMaxOsteo - osteoTotal) * 100);
                     osteoTotal = monthlyMaxOsteo;
                 } else if (osteoTotal >= monthlyMaxOsteo) {
 
@@ -188,10 +188,10 @@ public class RefundCalculation {
 
             } else if (reclamation.getSoin().compareTo("175") == 0) {
                 
-                montant = reclamation.getMontant() / 10000;
+                montant = reclamation.getMontant() / 100;
 
                 if ((montant + generalTotal) >= monthlyMaxGeneral) {
-                    reclamation.setMontant((monthlyMaxGeneral - generalTotal) * 10000);
+                    reclamation.setMontant((monthlyMaxGeneral - generalTotal) * 100);
                     generalTotal = monthlyMaxGeneral;
                 } else if (generalTotal >= monthlyMaxGeneral) {
 
@@ -203,10 +203,10 @@ public class RefundCalculation {
                 
             } else if (reclamation.getSoin().compareTo("200") == 0) {
                 
-                montant = reclamation.getMontant() / 10000;
+                montant = reclamation.getMontant() / 100;
 
                 if ((montant + psychoTotal) >= monthlyMaxPsycho) {
-                    reclamation.setMontant((monthlyMaxPsycho - psychoTotal) * 10000);
+                    reclamation.setMontant((monthlyMaxPsycho - psychoTotal) * 100);
                     psychoTotal = monthlyMaxPsycho;
                 } else if (psychoTotal >= monthlyMaxPsycho) {
                     reclamation.setMontant(0);
@@ -214,10 +214,10 @@ public class RefundCalculation {
                     psychoTotal += montant;
                 }
             } else if (reclamation.getSoin().compareTo("500") == 0) {
-                montant = reclamation.getMontant() / 10000;
+                montant = reclamation.getMontant() / 100;
 
                 if ((montant + chiroTotal) >= monthlyMaxChiro) {
-                    reclamation.setMontant((monthlyMaxChiro - chiroTotal) * 10000);
+                    reclamation.setMontant((monthlyMaxChiro - chiroTotal) * 100);
                     chiroTotal = monthlyMaxChiro;
                 } else if (chiroTotal >= monthlyMaxChiro) {
 
@@ -227,10 +227,10 @@ public class RefundCalculation {
                     chiroTotal += montant;
                 }
             } else if (reclamation.getSoin().compareTo("600") == 0) {
-               montant = reclamation.getMontant() / 10000;
+               montant = reclamation.getMontant() / 100;
 
                 if ((montant + physioTotal) >= monthlyMaxPhysio) {
-                    reclamation.setMontant((monthlyMaxPhysio - physioTotal) * 10000);
+                    reclamation.setMontant((monthlyMaxPhysio - physioTotal) * 100);
                     physioTotal = monthlyMaxPhysio;
                 } else if (physioTotal >= monthlyMaxPhysio) {
 
