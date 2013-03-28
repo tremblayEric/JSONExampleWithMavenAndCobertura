@@ -46,9 +46,10 @@ public class JSONReclamationsParsing {
     private JavaObjectDossier javaDossier;
     private JSONObject folder;
     
-    public JSONReclamationsParsing() throws IOException, ValidationInputFileException{
+    public JSONReclamationsParsing(String path) throws IOException, ValidationInputFileException{
         
-        String JSONFileContent = JSONFileReader.loadFileIntoString("JSONFile/inputFile.json");
+        //String JSONFileContent = JSONFileReader.loadFileIntoString("JSONFile/inputFile.json");
+        String JSONFileContent = JSONFileReader.loadFileIntoString(path);
         folder = JSONObject.fromObject(JSONFileContent);
         Validation.checkElementsFolder(folder, "dossier");
         Validation.checkElementsFolder(folder, "mois");
@@ -83,7 +84,7 @@ public class JSONReclamationsParsing {
         try{ 
             date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"),folder.getString("mois")).toString());
         }catch (Exception e){
-            System.out.println("date pas correcte");
+            throw new ValidationInputFileException(e.getMessage());
         }
         String montant = Validation.checkMontant(object.getString("montant"));
         return new JavaObjectReclamation(soin,date,montant);
