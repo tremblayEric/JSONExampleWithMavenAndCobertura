@@ -49,7 +49,7 @@ public class TP1Agile {
 
             try {
                 /*parsing du document en entre*/
-                JSONReclamationsParsing test = new JSONReclamationsParsing("JSONFIle/" + args[0]);
+                JSONReclamationsParsing test = new JSONReclamationsParsing("JSONFile/" + args[0]);
                
                 /*recuperation des donnees pour les calculs*/
                 JavaObjectDossier testDossier = test.getJavaObjectDossier();
@@ -59,7 +59,7 @@ public class TP1Agile {
                 List uneListe = calcul.remboursement();
                 /*Serialisation des resultats*/
                 SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
-                JSONRefundsSerialization.JSONRefundsSerialization("JSONFIle/" + args[1], testDossier.getFolderNumber(), dateFormatMois.format(testDossier.getFolderDate()), uneListe);
+                JSONRefundsSerialization.JSONRefundsSerialization("JSONFile/" + args[1], testDossier.getFolderNumber(), dateFormatMois.format(testDossier.getFolderDate()), uneListe);
 
 
             } catch (FileNotFoundException e) {
