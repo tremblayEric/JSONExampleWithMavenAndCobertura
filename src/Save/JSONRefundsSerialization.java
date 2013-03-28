@@ -57,7 +57,7 @@ public class JSONRefundsSerialization {
            JSONRefund.accumulate("soin", refund.getSoin());
            JSONRefund.accumulate("date", dateFormatMois.format(refund.getDate()));
            JSONRefund.accumulate("montant", Dollar.fromIntegerToConformStringAmount(refund.getMontant()));
-           System.out.println(refund.getMontant());
+           //System.out.println(refund.getMontant());
 
            total += refund.getMontant();
            

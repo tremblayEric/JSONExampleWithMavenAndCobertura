@@ -1,19 +1,21 @@
 /**/
 package ProjetAgile;
 
+import Validation.ErrorMessage;
+import Validation.ValidationInputFileException;
+
 public  class Dollar {
     
     public static int doubleMontantToInteger(double montant){
         return ((int)montant) * 100;
     }
     
-    public static double stringToDouble(String amount){
+    public static double stringToDouble(String amount) throws ValidationInputFileException{
         try{
          return Double.parseDouble(amount);
         }catch(Exception e){
-            System.out.println("probleme de convetion de string a double dans classe dollar");
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_CONVERSION);
         }
-        return 0;
     }
     
     public static String fromStringtoConformCashAmount(String amount){
