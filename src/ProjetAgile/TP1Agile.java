@@ -44,7 +44,6 @@ public class TP1Agile {
     public static void main(String[] args)
             throws Exception {
 
-        
         if (args.length == 2) {
 
             try {
