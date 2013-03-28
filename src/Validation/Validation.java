@@ -21,6 +21,7 @@
  */
 package Validation;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.text.SimpleDateFormat;
@@ -50,7 +51,7 @@ public class Validation {
             }
         }catch (JSONException e){
             //throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
-            throw new ValidationInputFileException(" l'element " + removeChar(e.getMessage()) + " contenu dans " + element + " est manquant dans le fichier JSON d'entrée");
+            throw new ValidationInputFileException(" l'element " + removeChar(e.getMessage()) + " est manquant dans le fichier JSON d'entrée");
         }
     }
     
@@ -132,8 +133,8 @@ public class Validation {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String messageError = ErrorMessage.MESSAGE_ERROR_DATE;
         if (type.compareTo("mois") == 0) {
-            dateFormat = new SimpleDateFormat("yyyy-MM");
             messageError = ErrorMessage.MESSAGE_ERROR_MONTH;
+            dateFormat = new SimpleDateFormat("yyyy-MM");
         }
         try {
             Date d = dateFormat.parse(laDate);
@@ -141,6 +142,8 @@ public class Validation {
             if (!(format.compareTo(laDate) == 0)) {
                 throw new ValidationInputFileException(messageError);
             }
+        }catch (ParseException e) {
+            throw new ValidationInputFileException(messageError);
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
         }
@@ -158,6 +161,8 @@ public class Validation {
             if (month.after(date) || month.before(date)) {
                 throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_DATE);
             }
+        } catch (ParseException e) {
+            throw new ValidationInputFileException(" L'ELEMENT " + removeChar(e.getMessage()) + " A UN FORMAT NON VALIDE");
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
         }
@@ -166,6 +171,9 @@ public class Validation {
     //verification du montant
     public static String checkMontant(String montant) 
             throws ValidationInputFileException {
+            if ( montant.length() <= 1 ) {
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTANT);
+            }
             montant = montant.replace(',', '.');
             checkMontantNumeric(montant.substring(0, montant.length() - 2));
             checkMontantSigneDollard(montant);
