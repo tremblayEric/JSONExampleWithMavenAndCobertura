@@ -26,6 +26,7 @@
  */
 package ProjetAgile;
 
+import Validation.ValidationInputFileException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Test;
@@ -47,7 +48,7 @@ public class DollarTest {
     }
 
     @Test
-    public void testStringToDouble() {
+    public void testStringToDouble() throws ValidationInputFileException {
         String amount = "100";
         double expResult = 100.0;
         double result = instance.stringToDouble(amount);
