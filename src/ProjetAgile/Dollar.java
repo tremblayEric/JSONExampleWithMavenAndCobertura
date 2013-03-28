@@ -1,4 +1,4 @@
-
+/**/
 package ProjetAgile;
 
 public  class Dollar {

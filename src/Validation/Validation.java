@@ -43,19 +43,12 @@ public class Validation {
                     valueIsNotEmpty(((JSONObject)reclamations.get(i)).getString("montant"),
                                      ErrorMessage.MESSAGE_ERROR_MONTANT);
                 }
-            }else if(element.compareTo("dossier") == 0 || element.compareTo("mois") == 0 ){
-                valueIsNotEmpty(folder.getString(element), ErrorMessage.MESSAGE_ERROR_FOLDER);
             }else{
-                throw new ValidationInputFileException(" l'element " + element + " n est pas un element valide dans le fichier JSON d'entrée");
+                valueIsNotEmpty(folder.getString(element), ErrorMessage.MESSAGE_ERROR_FOLDER);
             }
         }catch (JSONException e){
-            //throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
-            throw new ValidationInputFileException(" l'element " + removeChar(e.getMessage()) + " contenu dans " + element + " est manquant dans le fichier JSON d'entrée");
+            throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
         }
-    }
-    
-    private static String removeChar(String string){
-        return string.substring(string.indexOf("\"")+1 , string.lastIndexOf("\""));
     }
     
     private static void valueIsNotEmpty(String value, String error) throws ValidationInputFileException {
@@ -130,16 +123,14 @@ public class Validation {
     public static String checkDateIsValid(String laDate, String type) 
             throws ValidationInputFileException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String messageError = ErrorMessage.MESSAGE_ERROR_DATE;
         if (type.compareTo("mois") == 0) {
             dateFormat = new SimpleDateFormat("yyyy-MM");
-            messageError = ErrorMessage.MESSAGE_ERROR_MONTH;
         }
         try {
             Date d = dateFormat.parse(laDate);
             String format = dateFormat.format(d);
             if (!(format.compareTo(laDate) == 0)) {
-                throw new ValidationInputFileException(messageError);
+                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_DATE);
             }
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());

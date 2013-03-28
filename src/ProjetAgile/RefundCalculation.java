@@ -1,3 +1,4 @@
+/**/
 package ProjetAgile;
 
 import MockData.ContractList;

@@ -10,10 +10,9 @@ public class JSONFileWriter {
     
     
     
-    public static void writeJSONObbjectToFile( String path, JSONObject object){
+    public static void writeJSONObbjectToFile( JSONObject object){
         try{
-            //FileWriter file = new FileWriter("JSONFile/outputFile.json");
-            FileWriter file = new FileWriter(path);
+            FileWriter file = new FileWriter("JSONFile/outputFile.json");
             file.write(object.toString());
             file.flush();
             file.close();
