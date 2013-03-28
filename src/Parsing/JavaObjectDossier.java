@@ -26,7 +26,7 @@ public class JavaObjectDossier {
         try{
             this.mois = dateFormatMois.parse(mois);    
         }catch(Exception e){
-            System.out.println("Erreur avec le mois");
+            //System.out.println("Erreur avec le mois");
         }
     }
     public String getFolderNumber(){
