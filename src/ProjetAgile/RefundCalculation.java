@@ -30,8 +30,11 @@ public class RefundCalculation {
     public List<JavaObjectReclamation> getRefundList() {
        
         List<JavaObjectReclamation> allRefundList = new ArrayList<>();
-        List reclamations = monthlyFile.getFolderReclamationList();
         
+        for(int j = 0; j < familyMember.size(); ++ j){
+        
+        List reclamations = getFamlyMemberReclamationList((String)familyMember.get(j));
+        List tempRefunList = new ArrayList();
        for (int i = 0; i < reclamations.size(); ++i) { // est multiplié par 100 à cause de doubleMontantToInteger               
             JavaObjectReclamation reclamation = (JavaObjectReclamation)reclamations.get(i);
             
@@ -39,9 +42,15 @@ public class RefundCalculation {
                    int montant = reclamation.getMontant();
                    Date date = reclamation.getDate();
                
-           allRefundList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat,"A"))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
+           tempRefunList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat,"A"))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
         }
-        this.adjustRefundForMaximum(allRefundList);
+       adjustRefundForMaximum(tempRefunList);
+       for(int h = 0; h < tempRefunList.size(); ++h){
+           allRefundList.add((JavaObjectReclamation)tempRefunList.get(h));
+       }
+       
+        }
+        //this.adjustRefundForMaximum(allRefundList);
 
         return allRefundList;
     }
@@ -173,6 +182,22 @@ public class RefundCalculation {
            }
            
        }
+    }
+    
+    
+    private List getFamlyMemberReclamationList(String code){
+        
+        List reclamationMemberList = new ArrayList();
+        
+        List reclamations = monthlyFile.getFolderReclamationList();
+        
+        for(int i= 0; i < reclamations.size(); ++i){
+            if(((JavaObjectReclamation)reclamations.get(i)).getCode().compareTo(code) == 0){
+               reclamationMemberList.add(reclamations.get(i)); 
+            }
+        }
+        
+        return reclamationMemberList;
     }
     
 }
