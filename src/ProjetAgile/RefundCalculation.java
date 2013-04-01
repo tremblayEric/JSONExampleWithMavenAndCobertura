@@ -58,8 +58,18 @@ public class RefundCalculation {
         List careList = this.getCareList();
         List dateList = this.getDateFormatList();
         List<Integer> refundList = this.doCalculList();
+        List reclamations = monthlyFile.getFolderReclamationList();
+        
+        List amountList = getAmountList();
+        
         for (int i = 0; i < careList.size(); ++i) { // est multiplié par 100 à cause de doubleMontantToInteger               
-            allRefundList.add(new JavaObjectReclamation((String) careList.get(i),"", (Date) dateList.get(i), Integer.toString(refundList.get(i))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
+            JavaObjectReclamation reclamation = (JavaObjectReclamation)reclamations.get(i);
+            
+                   String soin =  reclamation.getSoin();
+                   int montant = reclamation.getMontant();
+                   Date date = reclamation.getDate();
+               
+           allRefundList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
         }
         this.adjustRefundForMaximum(allRefundList);
 
@@ -74,6 +84,7 @@ public class RefundCalculation {
                 int it = Integer.parseInt(amount);
                 String st = getCareList().get(i);
                 String st2 = getContractType();
+                
                 refundList.add(doCalcul(it, st, st2));
             }
         }
@@ -82,7 +93,6 @@ public class RefundCalculation {
 
     private Integer doCalcul(int valeur, String numeroSoin, String contrat) {
         int refund;
-
         refund = valeur * contractsList.getContractRatioByCareNumber(numeroSoin, contrat);
         refund = refund / 100;
         if (contractsList.getContractMaxValueByCareNumberExist(numeroSoin, contrat)
@@ -135,7 +145,7 @@ public class RefundCalculation {
     }
 
     private String getFolderContract() {
-        return monthlyFile.getFolderNumber().substring(1);
+        return monthlyFile.getFolderNumber().substring(0, 1);
     }
 
     private void adjustRefundForMaximum(List<JavaObjectReclamation> allRefundList) {
