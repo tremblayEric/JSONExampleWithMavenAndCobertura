@@ -80,6 +80,7 @@ public class JSONReclamationsParsing {
     private JavaObjectReclamation javaReclamationCreation(Object reclamation) throws ValidationInputFileException{
         JSONObject object = (JSONObject)reclamation;
         String soin = Validation.checkSoin(object.getString("soin"));
+        String code = object.getString("soin");//DDC3
         Date date = null;
         try{ 
             date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"),folder.getString("mois")).toString());
@@ -87,7 +88,7 @@ public class JSONReclamationsParsing {
             throw new ValidationInputFileException(e.getMessage());
         }
         String montant = Validation.checkMontant(object.getString("montant"));
-        return new JavaObjectReclamation(soin,date,montant);
+        return new JavaObjectReclamation(soin,code,date,montant);
     }
     
     private void displayReclamationList(){

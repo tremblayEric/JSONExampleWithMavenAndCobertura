@@ -10,12 +10,15 @@ import java.util.Date;
 public class JavaObjectReclamation {
     
     private String soin;
+    private String code;//DDC3
     private Date date;
     private int montant;
+   
     
     
-   public JavaObjectReclamation(String soin, Date date, String montant){
+   public JavaObjectReclamation(String soin, String code,Date date, String montant){
         this.soin = soin;
+        this.code = code;//DDC3
         this.date = date;
         
         try{
@@ -25,14 +28,19 @@ public class JavaObjectReclamation {
         }     
     }
    
-   public JavaObjectReclamation(String soin, Date date, int montant){
+   public JavaObjectReclamation(String soin,String code, Date date, int montant){
         this.soin = soin;
+        this.code = code;//DDC3
         this.date = date;
         this.montant = montant;   
     }
     
     public String getSoin(){
         return this.soin;
+    }
+    
+    public String getCode(){
+        return this.code;
     }
     
     public Date getDate(){
@@ -44,7 +52,7 @@ public class JavaObjectReclamation {
     }
     
     public String toString(){
-        return  "\tsoin: " + soin + "\n\t" + "Date: " + date.toString() + "\n\t" + 
+        return  "\tsoin: " + soin + "\n\t" +"\tcode " + code + "\n\t" + "Date: " + date.toString() + "\n\t" + 
                 "montant: " + montant + "\n";
     }
     
