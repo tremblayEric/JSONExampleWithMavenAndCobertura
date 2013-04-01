@@ -1,1 +1,21 @@
-{"dossier":"C160323","mois":"2013-03","remboursements":[{"soin":"175","code":"","date":"2013-03-02","montant":"90.0$"},{"soin":"175","code":"","date":"2013-03-05","montant":"90.0$"},{"soin":"175","code":"","date":"2013-03-07","montant":"20.0$"}],"total":"200.0$"}
+{
+    "dossier":"C160323",
+    "mois":"2013-03",
+    "remboursements":[{
+        "soin":"175",
+        "code":"",
+        "date":"2013-03-02",
+        "montant":"90.0$"
+    },{
+        "soin":"175",
+        "code":"",
+        "date":"2013-03-05",
+        "montant":"90.0$"
+    },{
+        "soin":"175",
+        "code":"",
+        "date":"2013-03-07",
+        "montant":"20.0$"
+    }],
+    "total":"200.0$"
+}
