@@ -113,16 +113,6 @@ public class RefundCalculation {
         return careList;
     }
 
-    private List<String> getDateList() {
-        List<String> dateList = new ArrayList<>();
-        List uneListe = this.getReclamationList();
-        for (int i = 0; i < uneListe.size(); ++i) {
-            JavaObjectReclamation uneReclamation = (JavaObjectReclamation) uneListe.get(i);
-            dateList.add(dateFormat.format(uneReclamation.getDate()));
-        }
-        return dateList;
-    }
-
     private List<Date> getDateFormatList() {
         List<Date> dateList = new ArrayList<>();
         List uneListe = this.getReclamationList();
