@@ -148,12 +148,6 @@ public class RefundCalculation {
         return monthlyFile.getFolderNumber().substring(1);
     }
 
-    private String getMonth() {
-        String month;
-        month = dateFormatMois.format(monthlyFile.getFolderDate());
-        return month;
-    }
-
     private void adjustRefundForMaximum(List<JavaObjectReclamation> allRefundList) {
 
         ContractList contractDetails = new ContractList();
