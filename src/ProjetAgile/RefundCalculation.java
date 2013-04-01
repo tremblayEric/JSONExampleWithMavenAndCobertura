@@ -17,11 +17,14 @@ public class RefundCalculation {
     private ContractList contractsList;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
+    private ArrayList familyMember;
 
     public RefundCalculation(JavaObjectDossier monthlyFile) {
         this.monthlyFile = monthlyFile;
         typeContrat = this.getFolderContract();
         contractsList = new ContractList();
+        this.familyMember = new ArrayList();
+        familyMemberRecuperation();
     }
 
     public List<JavaObjectReclamation> remboursement() {
@@ -276,6 +279,18 @@ public class RefundCalculation {
         return totalRefund;
     }
     
-    
+    private void familyMemberRecuperation(){
+        
+        List reclamations = monthlyFile.getFolderReclamationList();
+        String code = "";
+       for(int i = 0; i < reclamations.size(); ++i ){
+           code = ((JavaObjectReclamation)reclamations.get(i)).getCode();
+          
+           if(!familyMember.contains(code)){
+               familyMember.add(code);
+           }
+           
+       }
+    }
     
 }

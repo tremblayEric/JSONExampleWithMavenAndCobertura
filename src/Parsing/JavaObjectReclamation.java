@@ -52,7 +52,7 @@ public class JavaObjectReclamation {
     }
     
     public String toString(){
-        return  "\tsoin: " + soin + "\n\t" +"\tcode " + code + "\n\t" + "Date: " + date.toString() + "\n\t" + 
+        return  "\tsoin: " + soin + "\n\t" +"code " + code + "\n\t" + "Date: " + date.toString() + "\n\t" + 
                 "montant: " + montant + "\n";
     }
     
