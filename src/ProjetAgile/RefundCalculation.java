@@ -86,12 +86,6 @@ public class RefundCalculation {
         return refund;
     }
 
-    private String getContractType() {
-        String contractType = monthlyFile.getFolderNumber();
-        contractType = contractType.substring(0, 1);
-        return contractType;
-    }
-
     private List<JavaObjectReclamation> getReclamationList() {
         List uneListe = monthlyFile.getFolderReclamationList();
         return uneListe;
