@@ -55,6 +55,7 @@ public class JSONRefundsSerialization {
            
            JSONObject JSONRefund = new JSONObject();
            JSONRefund.accumulate("soin", refund.getSoin());
+           JSONRefund.accumulate("code", refund.getCode());
            JSONRefund.accumulate("date", dateFormatMois.format(refund.getDate()));
            JSONRefund.accumulate("montant", Dollar.fromIntegerToConformStringAmount(refund.getMontant()));
            //System.out.println(refund.getMontant());
