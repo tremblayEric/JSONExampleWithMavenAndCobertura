@@ -27,7 +27,8 @@ public class RefundCalculation {
         familyMemberRecuperation();
     }
 
-   public List<JavaObjectReclamation> getRefundList() {
+    public List<JavaObjectReclamation> getRefundList() {
+       
         List<JavaObjectReclamation> allRefundList = new ArrayList<>();
         List reclamations = monthlyFile.getFolderReclamationList();
         
@@ -38,16 +39,21 @@ public class RefundCalculation {
                    int montant = reclamation.getMontant();
                    Date date = reclamation.getDate();
                
-           allRefundList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
+           allRefundList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat,"A"))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
         }
         this.adjustRefundForMaximum(allRefundList);
 
         return allRefundList;
     }
 
-    private Integer doCalcul(int valeur, String numeroSoin, String contrat) {
+    private Integer doCalcul(int valeur, String numeroSoin, String contrat, String code) {
         int refund;
-        refund = valeur * contractsList.getContractRatioByCareNumber(numeroSoin, contrat);
+        int ratio = contractsList.getContractRatioByCareNumber(numeroSoin, contrat);
+        if((code.substring(0,1)).compareTo("H") == 0){
+            ratio /= 2;
+        }
+        
+        refund = valeur * ratio;
         refund = refund / 100;
         if (contractsList.getContractMaxValueByCareNumberExist(numeroSoin, contrat)
                 && refund > contractsList.getContractMaxValueByCareNumber(numeroSoin, contrat)) {
