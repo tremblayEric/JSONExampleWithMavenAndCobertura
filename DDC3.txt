@@ -1,0 +1,174 @@
+INF2015 – Développement de logiciels dans un environnement Agile 
+Projet de session – Hiver 2013 
+
+
+Demande de changement #3 
+
+
+Votre client vous demande de lui livrer ces fonctionnalités pour le 18 avril 2013, avant 17h30. La 
+date de livraison n'est pas négociable. 
+
+Le contenu de ce document s'ajoute à toutes les demandes précédentes. 
+
+Exigences fonctionnelles 
+
+Assurance familiale 
+
+Notre client offre maintenant des assurances familiales. Jusqu'à date, tous les contrats offerts étaient 
+des assurances individuelles. Dorénavant, un document JSON représentera toutes les réclamations 
+de soin de santé pour une famille pour un mois donné. 
+
+Une famille peut avoir la constitution suivante : 
+
+• 
+un adhérent : celui qui paye pour l'assurance; 
+• 
+un conjoint : le conjoint de l'adhérent; 
+• 
+un ou plusieurs enfants à charge : les enfants de l'adhérent ou du conjoint, vivants sous le 
+même toit que l'adhérent et le conjoint. 
+Pour chaque réclamation, un code sera ajouté pour identifier la personne dans la famille qui réclame 
+le remboursement. Par exemple : 
+
+{ 
+"dossier": "C160323",
+"mois": "2013-03",
+"reclamations": [
+
+
+{ 
+"soin": "175",
+"code": "A",
+"date": "2013-03-02",
+"montant": "100,00$"
+
+
+},
+
+
+{ 
+"soin": "175",
+"code": "C",
+"date": "2013-03-05",
+"montant": "100,00$"
+
+
+},
+
+
+{ 
+"soin": "175",
+"code": "E1",
+"date": "2013-03-07",
+"montant": "100,00$"
+
+
+}
+]
+} 
+
+
+
+Les codes possibles sont les suivants : 
+
+
+Code Signification 
+A L'adhérent. 
+C Le conjoint de l'adhérent. 
+
+Ex 
+Le code d'un enfant à charge, x étant un numéro séquentiel identifiant l'enfant en 
+question. Par exemple, pour une famille de 3 enfants, nous aurons les codes E1, E2 et 
+E3. 
+
+Les maximums mensuels ne sont pas calculés sur la somme des soins pour la famille, mais bien sur 
+la somme des soins de chaque individu dans la famille. Supposons une famille de 2 adultes et 2 
+enfants, chaque membre de la famille peut bénéficier d'un remboursement maximal mensuel de 
+250$ de frais de psychologie individuelle. Dans ce cas précis, si chaque membre de la famille atteint 
+son maximum mensuel en frais de psychologie individuelle, il y aurait un remboursement total de 
+1000$ en frais de psychologie. 
+
+Tous les maximums mensuels déjà définis sont toujours valides, nous ne changeons que la façon de 
+les appliquer. 
+
+Le code pour chaque réclamation doit également se retrouver dans le fichier de sortie. 
+
+{ 
+"dossier": "C160323",
+"mois": "2013-03",
+"remboursements": [
+
+
+{ 
+"soin": "175",
+"code": "A",
+"date": "2013-03-02",
+"montant": "90.00$"
+
+
+ },
+
+
+{ 
+"soin": "175",
+"code": "C",
+"date": "2013-03-05",
+"montant": "90.00$"
+
+
+ },
+
+
+{ 
+"soin": "175",
+"code": "E1",
+"date": "2013-03-07",
+"montant": "90.00$"
+
+
+ }
+],
+"total": "270.00$" 
+
+
+} 
+
+
+
+Autres personnes à charge 
+
+Dans certaines familles, il existe d'autres personnes à charge qui ne sont pas des enfants, par 
+exemple un parent en perte d'autonomie. Notre client rembourse également un certain montant pour 
+les soins de santé reliés à ces personnes. 
+
+Le code pour une autres personnes à charge est "Hx", où x est le numéro de la personne à charge, 
+comme c'est le cas pour les enfants. Par exemple, si une famille s'occupe d'un couple de personnes 
+âgées, nous aurons les codes H1 et H2. 
+
+Pour une autre personne à charge, on ne rembourse que la moitié de ce qui serait remboursé à 
+l'adhérent si c'était lui qui faisait cette réclamation. Autrement dit, si le pourcentage de 
+remboursement pour un soin en particulier serait de 90% pour l'adhérent, l'autre personne à charge 
+aurait un remboursement de 45%. Les maximums mensuels s'appliquent de la même façon que pour 
+les autres membres de la famille. 
+
+Exigences non fonctionnelles 
+
+Voici quelques contraintes à respecter qui touchent votre code : 
+
+• 
+Tout le nouveau code écrit pour cette DDC doit être rédigé selon la méthodologie Test-
+Driven Development. 
+• 
+Vous devez utiliser Maven dans votre projet pour gérer la construction du logiciel et pour 
+gérer les dépendances de votre projet. 
+• 
+Vous devez toujours respecter le «Single Responsibility Principle» au niveau des méthodes 
+de classe. 
+• 
+Chacune de vos classes doit également respecter le «Single Responsibility Principle» tel 
+qu'indiqué dans le chapitre 10 du livre «Coder proprement.» 
+• 
+Vous devez rédiger suffisamment de «bons» tests unitaires afin d'acquérir une couverture de 
+tests d'au moins 70% de tout votre projet. Vos tests doivent suivre les règles vues en classe et 
+le code de vos tests doit également être propre. 
+
