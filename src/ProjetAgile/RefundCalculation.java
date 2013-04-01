@@ -82,11 +82,6 @@ public class RefundCalculation {
         return refund;
     }
 
-    private List<JavaObjectReclamation> getReclamationList() {
-        List uneListe = monthlyFile.getFolderReclamationList();
-        return uneListe;
-    }
-
     private String getFolderContract() {
         return monthlyFile.getFolderNumber().substring(0, 1);
     }
