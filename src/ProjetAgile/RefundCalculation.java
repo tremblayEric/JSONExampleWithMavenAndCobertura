@@ -57,7 +57,6 @@ public class RefundCalculation {
         List<JavaObjectReclamation> allRefundList = new ArrayList<>();
         List careList = this.getCareList();
         List dateList = this.getDateFormatList();
-        List<Integer> refundList = this.doCalculList();
         List reclamations = monthlyFile.getFolderReclamationList();
         
         List amountList = getAmountList();
@@ -74,21 +73,6 @@ public class RefundCalculation {
         this.adjustRefundForMaximum(allRefundList);
 
         return allRefundList;
-    }
-
-    private List<Integer> doCalculList() {
-        List<Integer> refundList = new ArrayList<>();
-        if (getCareList().size() == getAmountList().size()) {
-            for (int i = 0; i < getCareList().size(); ++i) {
-                String amount = getAmountList().get(i);
-                int it = Integer.parseInt(amount);
-                String st = getCareList().get(i);
-                String st2 = getContractType();
-                
-                refundList.add(doCalcul(it, st, st2));
-            }
-        }
-        return refundList;
     }
 
     private Integer doCalcul(int valeur, String numeroSoin, String contrat) {
