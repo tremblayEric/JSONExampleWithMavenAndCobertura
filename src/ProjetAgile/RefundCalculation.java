@@ -243,20 +243,6 @@ public class RefundCalculation {
  
     }
 
-    private int addRefunds() {
-        int totalRefund = 0;
-        if (getCareList().size() == getAmountList().size()) {
-            for (int i = 0; i < getCareList().size(); ++i) {
-                String montant = getAmountList().get(i);
-                int it = Integer.parseInt(montant);
-                String st = getCareList().get(i);
-                String st2 = getContractType();
-                totalRefund += doCalcul(it, st, st2);
-            }
-        }
-        return totalRefund;
-    }
-    
     private void familyMemberRecuperation(){
         
         List reclamations = monthlyFile.getFolderReclamationList();
