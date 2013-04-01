@@ -27,33 +27,7 @@ public class RefundCalculation {
         familyMemberRecuperation();
     }
 
-    public List<JavaObjectReclamation> remboursement() {
-
-        List listeReclamations = new ArrayList();
-        for (int i = 0; i < monthlyFile.getFolderReclamationList().size(); ++i) {
-
-            int refund = 0;
-            JavaObjectReclamation reclamation = (JavaObjectReclamation) monthlyFile.getFolderReclamationList().get(i);
-
-            if (contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat) == -1) {
-                refund = (reclamation.getMontant() / 100);
-            } else {
-                if (reclamation.getMontant() > contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat)) {
-                    refund = contractsList.getContractMaxValueByCareNumber(reclamation.getSoin(), typeContrat);
-                } else {
-                    refund = reclamation.getMontant();
-                }
-            }
-            JavaObjectReclamation remboursement = new JavaObjectReclamation(reclamation.getSoin(),reclamation.getCode(), reclamation.getDate(), refund / 100 + "");
-            listeReclamations.add(remboursement);
-
-        }
-
-        return listeReclamations;
-
-    }
-
-    public List<JavaObjectReclamation> getRefundList() {
+   public List<JavaObjectReclamation> getRefundList() {
         List<JavaObjectReclamation> allRefundList = new ArrayList<>();
         List reclamations = monthlyFile.getFolderReclamationList();
         
