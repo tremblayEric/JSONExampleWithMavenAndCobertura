@@ -41,7 +41,7 @@ public class RefundCalculation {
                     refund = reclamation.getMontant();
                 }
             }
-            JavaObjectReclamation remboursement = new JavaObjectReclamation(reclamation.getSoin(), reclamation.getDate(), refund / 100 + "");
+            JavaObjectReclamation remboursement = new JavaObjectReclamation(reclamation.getSoin(),reclamation.getCode(), reclamation.getDate(), refund / 100 + "");
             listeReclamations.add(remboursement);
 
         }
@@ -56,7 +56,7 @@ public class RefundCalculation {
         List dateList = this.getDateFormatList();
         List<Integer> refundList = this.doCalculList();
         for (int i = 0; i < careList.size(); ++i) { // est multiplié par 100 à cause de doubleMontantToInteger               
-            allRefundList.add(new JavaObjectReclamation((String) careList.get(i), (Date) dateList.get(i), Integer.toString(refundList.get(i))));
+            allRefundList.add(new JavaObjectReclamation((String) careList.get(i),"", (Date) dateList.get(i), Integer.toString(refundList.get(i))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
         }
         this.adjustRefundForMaximum(allRefundList);
 
