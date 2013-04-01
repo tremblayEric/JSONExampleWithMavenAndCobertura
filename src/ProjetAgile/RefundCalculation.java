@@ -56,7 +56,6 @@ public class RefundCalculation {
     public List<JavaObjectReclamation> getRefundList() {
         List<JavaObjectReclamation> allRefundList = new ArrayList<>();
         List careList = this.getCareList();
-        List dateList = this.getDateFormatList();
         List reclamations = monthlyFile.getFolderReclamationList();
         
        for (int i = 0; i < careList.size(); ++i) { // est multiplié par 100 à cause de doubleMontantToInteger               
@@ -97,16 +96,6 @@ public class RefundCalculation {
             careList.add(uneReclamation.getSoin());
         }
         return careList;
-    }
-
-    private List<Date> getDateFormatList() {
-        List<Date> dateList = new ArrayList<>();
-        List uneListe = this.getReclamationList();
-        for (int i = 0; i < uneListe.size(); ++i) {
-            JavaObjectReclamation uneReclamation = (JavaObjectReclamation) uneListe.get(i);
-            dateList.add(uneReclamation.getDate());
-        }
-        return dateList;
     }
 
     private String getFolderContract() {
