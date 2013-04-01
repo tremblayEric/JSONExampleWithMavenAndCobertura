@@ -249,22 +249,6 @@ public class RefundCalculation {
  
     }
 
-    private List<String> findCareWithMax() {
-        List<String> careList = this.getCareList();
-        List<String> careMaxList = new ArrayList<>();
-        int maxValue;
-        String currentCare = "";
-        ContractList contractsList = new ContractList();
-        for (int i = 0; i < careList.size(); i++) {
-            maxValue = contractsList.getMaxValueByCareNumber(careList.get(i));
-            if (maxValue != -1 && !(currentCare.equals((String) careList.get(i)))) {
-                currentCare = careList.get(i);
-                careMaxList.add(careList.get(i));
-            }
-        }
-        return careMaxList;
-    }
-
     private int addRefunds() {
         int totalRefund = 0;
         if (getCareList().size() == getAmountList().size()) {
