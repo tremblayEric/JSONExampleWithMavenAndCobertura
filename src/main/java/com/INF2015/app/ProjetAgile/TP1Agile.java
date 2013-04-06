@@ -24,16 +24,18 @@
  * 
  * UQAM hiver 2013
  */
-package main.java.com.INF2015.app.ProjetAgile;
+package com.INF2015.app.ProjetAgile;
 
-import main.java.com.INF2015.app.Validation.ErrorMessage;
-import main.java.com.INF2015.app.Parsing.JSONReclamationsParsing;
-import main.java.com.INF2015.app.Parsing.JavaObjectDossier;
-import main.java.com.INF2015.app.ProjetAgile.RefundCalculation;
-import main.java.com.INF2015.app.Save.JSONRefundsSerialization;
+
+import com.INF2015.app.Parsing.JSONReclamationsParsing;
+import com.INF2015.app.Parsing.JavaObjectDossier;
+import com.INF2015.app.Parsing.JavaObjectDossier;
+import com.INF2015.app.ProjetAgile.RefundCalculation;
+import com.INF2015.app.Save.JSONRefundsSerialization;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import main.java.com.INF2015.app.Validation.ErrorMessage;
 
 public class TP1Agile {
 

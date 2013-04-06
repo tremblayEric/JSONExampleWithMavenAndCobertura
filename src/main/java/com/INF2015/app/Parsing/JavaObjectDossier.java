@@ -1,5 +1,5 @@
 
-package main.java.com.INF2015.app.Parsing;
+package com.INF2015.app.Parsing;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

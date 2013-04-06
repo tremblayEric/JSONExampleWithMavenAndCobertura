@@ -1,5 +1,5 @@
 /**/
-package main.java.com.INF2015.app.ProjetAgile;
+package com.INF2015.app.ProjetAgile;
 
 import main.java.com.INF2015.app.Validation.ErrorMessage;
 import main.java.com.INF2015.app.Validation.ValidationInputFileException;

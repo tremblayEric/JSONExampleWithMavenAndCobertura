@@ -1,14 +1,13 @@
 /**/
-package main.java.com.INF2015.app.ProjetAgile;
+package com.INF2015.app.ProjetAgile;
 
-import main.java.com.INF2015.app.MockData.ContractList;
-import main.java.com.INF2015.app.Parsing.JavaObjectDossier;
-import main.java.com.INF2015.app.Parsing.JavaObjectReclamation;
-
+import com.INF2015.app.Parsing.JavaObjectDossier;
+import com.INF2015.app.Parsing.JavaObjectReclamation;
 import java.util.ArrayList;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import com.INF2015.app.MockData.ContractList;
 
 public class RefundCalculation {
 

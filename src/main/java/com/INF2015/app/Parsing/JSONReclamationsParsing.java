@@ -25,7 +25,7 @@
  * Session d'hiver 2013
  */
 
-package main.java.com.INF2015.app.Parsing;
+package com.INF2015.app.Parsing;
 
 import main.java.com.INF2015.app.Validation.ErrorMessage;
 import main.java.com.INF2015.app.Validation.ValidationInputFileException;
@@ -35,6 +35,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import main.java.com.INF2015.app.Parsing.JSONFileReader;
+import com.INF2015.app.Parsing.JavaObjectDossier;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;

@@ -1,8 +1,9 @@
 
 /**/
-package main.java.com.INF2015.app.Parsing;
+package com.INF2015.app.Parsing;
 
-import main.java.com.INF2015.app.ProjetAgile.Dollar;
+import com.INF2015.app.ProjetAgile.Dollar;
+import com.INF2015.app.ProjetAgile.Dollar;
 import java.text.DecimalFormat;
 import java.util.Date;
 

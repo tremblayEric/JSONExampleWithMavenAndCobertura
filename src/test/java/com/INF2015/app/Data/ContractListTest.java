@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package test.java.com.INF2015.app.Data;
+package com.INF2015.app.Data;
 
-import main.java.com.INF2015.app.MockData.ContractList;
+import com.INF2015.app.MockData.ContractList;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;

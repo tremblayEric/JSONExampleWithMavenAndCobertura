@@ -25,13 +25,13 @@
  limitations under the License.
  * 
  */
-package main.java.com.INF2015.app.Save;
+package com.INF2015.app.Save;
 
-import main.java.com.INF2015.app.Parsing.JSONFileWriter;
-import main.java.com.INF2015.app.Parsing.JavaObjectReclamation;
-import main.java.com.INF2015.app.ProjetAgile.Dollar;
+import com.INF2015.app.Parsing.JavaObjectReclamation;
+import com.INF2015.app.ProjetAgile.Dollar;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import main.java.com.INF2015.app.Parsing.JSONFileWriter;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
