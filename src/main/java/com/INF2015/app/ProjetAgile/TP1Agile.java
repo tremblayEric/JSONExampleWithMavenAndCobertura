@@ -59,14 +59,14 @@ public class TP1Agile {
                 JSONRefundsSerialization.JSONRefundsSerialization("JSONFile/" + args[1], testDossier.getFolderNumber(), dateFormatMois.format(testDossier.getFolderDate()), uneListe);
 
             } catch (FileNotFoundException e) {
-                JSONRefundsSerialization.JSONRefundsSerializationError(args[1], ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
+                JSONRefundsSerialization.JSONRefundsSerializationError("JSONFile/" + args[1], ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
             } catch (Exception e) {
-                JSONRefundsSerialization.JSONRefundsSerializationError(args[1], e.getMessage());
+                JSONRefundsSerialization.JSONRefundsSerializationError("JSONFile/" + args[1], e.getMessage());
                 //System.out.println("plantage dans le main");
             }
 
         } else {
-            JSONRefundsSerialization.JSONRefundsSerializationError(args[1], ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
+            JSONRefundsSerialization.JSONRefundsSerializationError("JSONFile/" + args[1], ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
             //System.out.println("Des arguments de la ligne de commande sont manquants.");
         }
 

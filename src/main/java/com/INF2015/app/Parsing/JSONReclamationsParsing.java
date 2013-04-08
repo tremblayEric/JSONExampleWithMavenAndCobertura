@@ -28,8 +28,8 @@
 package com.INF2015.app.Parsing;
 
 import main.java.com.INF2015.app.Validation.ErrorMessage;
-import main.java.com.INF2015.app.Validation.ValidationInputFileException;
-import main.java.com.INF2015.app.Validation.Validation;
+import com.INF2015.app.Validation.ValidationInputFileException;
+import com.INF2015.app.Validation.Validation;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -82,7 +82,8 @@ public class JSONReclamationsParsing {
     private JavaObjectReclamation javaReclamationCreation(Object reclamation) throws ValidationInputFileException{
         JSONObject object = (JSONObject)reclamation;
         String soin = Validation.checkSoin(object.getString("soin"));
-        String code = object.getString("code");//DDC3
+        String code = Validation.checkCode(object.getString("code"));//DDC3
+        //String code = object.getString("code");//DDC3
         Date date = null;
         try{ 
             date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"),folder.getString("mois")).toString());

@@ -19,7 +19,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package main.java.com.INF2015.app.Validation;
+package com.INF2015.app.Validation;
 
 import main.java.com.INF2015.app.Validation.ErrorMessage;
 import java.text.ParseException;
@@ -78,6 +78,17 @@ public class Validation {
         }
         return soin.toString();
     }
+    
+    public static String checkCode(String code)
+            throws ValidationInputFileException {
+        if(code.length() == 1 && ( code.compareTo("A") == 0 || code.compareTo("C") == 0 ) ){        
+        }else if(code.length() == 2 && ( code.charAt(0) == 'E' || code.charAt(0) == 'H' ) && (code.charAt(0) >= 1 && code.charAt(0) <= 9 ) ){
+        }else{
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_CODE);
+        }
+        return code.toString();
+    }
+    
 
     public static List<String> validCareList2() {
         List<String> validCareList = new ArrayList();
@@ -196,4 +207,6 @@ public class Validation {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
         }
     }    
+
+    
 }
