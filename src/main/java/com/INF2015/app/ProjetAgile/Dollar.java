@@ -2,8 +2,9 @@
 package com.INF2015.app.ProjetAgile;
 
 import main.java.com.INF2015.app.Validation.ErrorMessage;
-import main.java.com.INF2015.app.Validation.ValidationInputFileException;
+import com.INF2015.app.Validation.ValidationInputFileException;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public  class Dollar {
     
@@ -24,11 +25,16 @@ public  class Dollar {
     }
     
     public static String fromIntegerToConformStringAmount(int amount){
-        return Double.toString(fromIntegerToDouble(amount)) + "$";
+        NumberFormat Myformat = NumberFormat.getInstance();
+        Myformat.setMinimumFractionDigits(2);       
+        Myformat.setMaximumFractionDigits(2);       
+        double nombre = fromIntegerToDouble(amount);
+        return (Myformat.format(nombre)).replace(',', '.') + "$";
+        //return Double.toString(fromIntegerToDouble(amount)) + "$";
     }
 
     protected static double  fromIntegerToDouble(int amount){
-        return ((double)amount)/10000;
+        return ((double)amount)/(double)(10000);
     }
     
     protected static String removeDolarSymbol(String amount){
