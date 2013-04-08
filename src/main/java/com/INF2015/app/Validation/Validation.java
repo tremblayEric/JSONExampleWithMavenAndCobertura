@@ -81,8 +81,11 @@ public class Validation {
     
     public static String checkCode(String code)
             throws ValidationInputFileException {
-        if(code.length() == 1 && ( code.compareTo("A") == 0 || code.compareTo("C") == 0 ) ){        
-        }else if(code.length() == 2 && ( code.charAt(0) == 'E' || code.charAt(0) == 'H' ) && (code.charAt(0) >= 1 && code.charAt(0) <= 9 ) ){
+        String nombre = code.substring(1);  
+        if(code.length() == 1 && ( code.compareTo("A") == 0 || code.compareTo("C") == 0 ) ){
+            
+        }else if(code.length() >= 2 && ( code.charAt(0) == 'E' || code.charAt(0) == 'H' )){
+            isInteger2(code.substring(1), ErrorMessage.MESSAGE_ERROR_CODE);
         }else{
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_CODE);
         }
