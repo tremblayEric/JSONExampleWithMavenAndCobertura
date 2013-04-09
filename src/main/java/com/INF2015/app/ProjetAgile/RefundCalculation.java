@@ -41,7 +41,8 @@ public class RefundCalculation {
                    int montant = reclamation.getMontant();
                    Date date = reclamation.getDate();
                
-           tempRefunList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat,"A"))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
+           //tempRefunList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat,"A"))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
+           tempRefunList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat,reclamation.getCode()))));
         }
        adjustRefundForMaximum(tempRefunList);
        for(int h = 0; h < tempRefunList.size(); ++h){
@@ -58,7 +59,7 @@ public class RefundCalculation {
         int refund;
         int ratio = contractsList.getContractRatioByCareNumber(numeroSoin, contrat);
         if((code.substring(0,1)).compareTo("H") == 0){
-            ratio /= 2;
+            ratio = ratio / 2;
         }
         
         refund = valeur * ratio;
