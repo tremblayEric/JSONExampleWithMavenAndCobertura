@@ -27,7 +27,7 @@
 
 package com.INF2015.app.Parsing;
 
-import main.java.com.INF2015.app.Validation.ErrorMessage;
+import com.INF2015.app.Validation.ErrorMessage;
 import com.INF2015.app.Validation.ValidationInputFileException;
 import com.INF2015.app.Validation.Validation;
 import java.io.IOException;

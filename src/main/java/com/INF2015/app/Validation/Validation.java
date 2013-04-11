@@ -21,7 +21,7 @@
  */
 package com.INF2015.app.Validation;
 
-import main.java.com.INF2015.app.Validation.ErrorMessage;
+import com.INF2015.app.Validation.ErrorMessage;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;

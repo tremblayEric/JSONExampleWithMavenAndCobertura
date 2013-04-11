@@ -22,7 +22,7 @@
  * 
  * 
  */
-package main.java.com.INF2015.app.Validation;
+package com.INF2015.app.Validation;
 
 public class ErrorMessage {
     public final static String MESSAGE_ERROR_LOADING_FILE = "LE FICHIER N'A PAS PU ETRE CHARGE EN MEMOIRE";

@@ -20,7 +20,7 @@
  limitations under the License.
  * 
  */
-package main.java.com.INF2015.app.Validation;
+package com.INF2015.app.Validation;
 
 public class ValidationInputFileException extends Exception {
 

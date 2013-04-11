@@ -35,7 +35,7 @@ import com.INF2015.app.Save.JSONRefundsSerialization;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import main.java.com.INF2015.app.Validation.ErrorMessage;
+import com.INF2015.app.Validation.ErrorMessage;
 
 public class TP1Agile {
 

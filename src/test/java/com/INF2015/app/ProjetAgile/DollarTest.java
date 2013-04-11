@@ -5,7 +5,7 @@
 package com.INF2015.app.ProjetAgile;
 
 
-import main.java.com.INF2015.app.Validation.ValidationInputFileException;
+import com.INF2015.app.Validation.ValidationInputFileException;
 import com.INF2015.app.ProjetAgile.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -52,7 +52,7 @@ public class DollarTest {
     @Test
     public void testFromIntegerToConformStringAmount() {
         int amount = 33000;
-        String expResult = "3.3$";
+        String expResult = "3.30$";
         String result = Dollar.fromIntegerToConformStringAmount(amount);
         assertEquals(expResult, result);
     }

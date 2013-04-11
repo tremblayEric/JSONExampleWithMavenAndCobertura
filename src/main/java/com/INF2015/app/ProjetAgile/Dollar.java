@@ -1,7 +1,7 @@
 /**/
 package com.INF2015.app.ProjetAgile;
 
-import main.java.com.INF2015.app.Validation.ErrorMessage;
+import com.INF2015.app.Validation.ErrorMessage;
 import com.INF2015.app.Validation.ValidationInputFileException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
