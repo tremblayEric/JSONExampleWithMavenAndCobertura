@@ -22,7 +22,7 @@
  * 
  * 
  */
-package main.java.com.INF2015.app.MockData;
+package com.INF2015.app.MockData;
 
 
 public class Contracts{

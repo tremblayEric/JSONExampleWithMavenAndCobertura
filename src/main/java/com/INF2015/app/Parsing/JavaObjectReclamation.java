@@ -3,8 +3,6 @@
 package com.INF2015.app.Parsing;
 
 import com.INF2015.app.ProjetAgile.Dollar;
-import com.INF2015.app.ProjetAgile.Dollar;
-import java.text.DecimalFormat;
 import java.util.Date;
 
 
@@ -52,6 +50,7 @@ public class JavaObjectReclamation {
         return this.montant;
     }
     
+    @Override
     public String toString(){
         return  "\tsoin: " + soin + "\n\t" +"code " + code + "\n\t" + "Date: " + date.toString() + "\n\t" + 
                 "montant: " + montant + "\n";

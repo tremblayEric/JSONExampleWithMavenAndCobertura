@@ -29,13 +29,11 @@ package com.INF2015.app.ProjetAgile;
 
 import com.INF2015.app.Parsing.JSONReclamationsParsing;
 import com.INF2015.app.Parsing.JavaObjectDossier;
-import com.INF2015.app.Parsing.JavaObjectDossier;
-import com.INF2015.app.ProjetAgile.RefundCalculation;
 import com.INF2015.app.Save.JSONRefundsSerialization;
+import com.INF2015.app.Validation.ErrorMessage;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import com.INF2015.app.Validation.ErrorMessage;
 
 public class TP1Agile {
 
@@ -53,7 +51,6 @@ public class TP1Agile {
                 /*Calculs*/
                 RefundCalculation calcul = new RefundCalculation(testDossier);
                 List uneListe = calcul.getRefundList();
-                //List uneListe = calcul.remboursement();
                 /*Serialisation des resultats*/
                 SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
                 JSONRefundsSerialization.JSONRefundsSerialization("JSONFile/" + args[1], testDossier.getFolderNumber(), dateFormatMois.format(testDossier.getFolderDate()), uneListe);
@@ -62,49 +59,11 @@ public class TP1Agile {
                 JSONRefundsSerialization.JSONRefundsSerializationError("JSONFile/" + args[1], ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
             } catch (Exception e) {
                 JSONRefundsSerialization.JSONRefundsSerializationError("JSONFile/" + args[1], e.getMessage());
-                //System.out.println("plantage dans le main");
             }
 
         } else {
             JSONRefundsSerialization.JSONRefundsSerializationError("JSONFile/" + args[1], ErrorMessage.MESSAGE_ERROR_INPUT_FILE);
-            //System.out.println("Des arguments de la ligne de commande sont manquants.");
         }
 
-        /*
-         System.out.println("Dossier # " + testDossier.getFolderNumber() + " en date du :  "+ testDossier.getFolderDate() +"\n" );
-         testDossier.displayReclamationList();
-         */
-
-        /*
-         for(int i = 0; i < testDossier.getFolderReclamationList().size(); ++i){
-            
-         List uneListe = testDossier.getFolderReclamationList();
-            
-         JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
-         System.out.println( "montant #" + i + ": " + uneReclamation.getMontant() );
-         }
-         */
-
-
-        /*
-         for(int i = 0; i < testDossier.getFolderReclamationList().size(); ++i){ 
-         JavaObjectReclamation uneReclamation = (JavaObjectReclamation)uneListe.get(i);
-         System.out.println( "\nDate2  refund #" + i + ": " + uneReclamation.getDate() );
-         System.out.println( "Soin2 #" + i + ": " + uneReclamation.getSoin() );           
-         System.out.println( "montant2 #" + i + ": " + uneReclamation.getMontant() ); 
-           
-         }   
-         */
-
-
-        /**
-         * *************
-         */
-        // System.out.println(" devrait egaler 6.21: " + Dollar.fromStringtoConformCashAmount("6,21"));
-        // System.out.println(" devrait egaler 10.29$: " + Dollar.fromIntegerToConformStringAmount(1029));
-        // Dollar.calculReclamation();
-        /**
-         * *****************************
-         */
     }
 }

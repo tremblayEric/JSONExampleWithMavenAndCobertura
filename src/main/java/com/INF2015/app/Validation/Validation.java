@@ -21,7 +21,6 @@
  */
 package com.INF2015.app.Validation;
 
-import com.INF2015.app.Validation.ErrorMessage;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +50,6 @@ public class Validation {
                 throw new ValidationInputFileException(" l'element " + element + " n est pas un element valide dans le fichier JSON d'entrée");
             }
         }catch (JSONException e){
-            //throw new ValidationInputFileException("l'element " + element + " est manquant ou incomplet dans le fichier Jason d entree");
             throw new ValidationInputFileException(" l'element " + removeChar(e.getMessage()) + " est manquant dans le fichier JSON d'entrée");
         }
     }
@@ -66,7 +64,7 @@ public class Validation {
         }     
     }
     
-        //verification des soins
+        
     public static String checkSoin( String soin ) 
             throws ValidationInputFileException {
         int i = 0;
@@ -95,8 +93,8 @@ public class Validation {
         List<String> validCareList = new ArrayList();
         validCareList.add("0");
         validCareList.add("100");
-        validCareList.add("150");//ajout du soins 150 a la validation
-        validCareList.add("175");//ajout du soins 175 a la validation
+        validCareList.add("150");
+        validCareList.add("175");
         validCareList.add("200");
         validCareList.add("400");
         validCareList.add("500");
@@ -127,7 +125,7 @@ public class Validation {
         }
     }    
 
-    //verification de la date
+    
     public static String checkDate( String date, String month ) 
             throws ValidationInputFileException {
         checkDateIsValid(date, "date");
@@ -135,7 +133,7 @@ public class Validation {
         return date;
     }
 
-    //verification du month
+    
     public static String checkMonth(String month) 
             throws ValidationInputFileException {
         return checkDateIsValid(month, "mois");
@@ -181,7 +179,7 @@ public class Validation {
         }
     }    
     
-    //verification du montant
+    
     public static String checkMontant(String montant) 
             throws ValidationInputFileException {
             if ( montant.length() <= 1 ) {

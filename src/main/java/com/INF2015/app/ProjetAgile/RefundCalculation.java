@@ -1,13 +1,13 @@
 /**/
 package com.INF2015.app.ProjetAgile;
 
+import com.INF2015.app.MockData.ContractList;
 import com.INF2015.app.Parsing.JavaObjectDossier;
 import com.INF2015.app.Parsing.JavaObjectReclamation;
-import java.util.ArrayList;
-import java.util.List;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import com.INF2015.app.MockData.ContractList;
+import java.util.List;
 
 public class RefundCalculation {
 
@@ -41,7 +41,6 @@ public class RefundCalculation {
                    int montant = reclamation.getMontant();
                    Date date = reclamation.getDate();
                
-           //tempRefunList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat,"A"))));//ATTENTION MODIFIER LORS DU REFACTORING, BEAUCOUP TROP DE LISTE UTILISEES, PREFERABLE D'Y ALLER PAR LES CLASSES.
            tempRefunList.add(new JavaObjectReclamation(soin,reclamation.getCode(), date, Integer.toString(doCalcul(montant,soin,typeContrat,reclamation.getCode()))));
         }
        adjustRefundForMaximum(tempRefunList);
@@ -50,7 +49,6 @@ public class RefundCalculation {
        }
        
         }
-        //this.adjustRefundForMaximum(allRefundList);
 
         return allRefundList;
     }

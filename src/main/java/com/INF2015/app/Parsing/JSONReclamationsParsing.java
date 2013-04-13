@@ -27,21 +27,13 @@
 
 package com.INF2015.app.Parsing;
 
-import com.INF2015.app.Validation.ErrorMessage;
 import com.INF2015.app.Validation.ValidationInputFileException;
 import com.INF2015.app.Validation.Validation;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import main.java.com.INF2015.app.Parsing.JSONFileReader;
-import com.INF2015.app.Parsing.JavaObjectDossier;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 public class JSONReclamationsParsing {
     
@@ -50,7 +42,6 @@ public class JSONReclamationsParsing {
     
     public JSONReclamationsParsing(String path) throws IOException, ValidationInputFileException{
         
-        //String JSONFileContent = JSONFileReader.loadFileIntoString("JSONFile/inputFile.json");
         String JSONFileContent = JSONFileReader.loadFileIntoString(path);
         folder = JSONObject.fromObject(JSONFileContent);
         Validation.checkElementsFolder(folder, "dossier");
@@ -83,7 +74,6 @@ public class JSONReclamationsParsing {
         JSONObject object = (JSONObject)reclamation;
         String soin = Validation.checkSoin(object.getString("soin"));
         String code = Validation.checkCode(object.getString("code"));//DDC3
-        //String code = object.getString("code");//DDC3
         Date date = null;
         try{ 
             date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"),folder.getString("mois")).toString());

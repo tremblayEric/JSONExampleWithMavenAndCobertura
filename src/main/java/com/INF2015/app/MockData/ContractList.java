@@ -27,7 +27,6 @@ package com.INF2015.app.MockData;
 //import com.INF2015.app.MockData.Care;
 import java.util.ArrayList;
 import java.util.List;
-import main.java.com.INF2015.app.MockData.Contracts;
 
 public class ContractList {
 
