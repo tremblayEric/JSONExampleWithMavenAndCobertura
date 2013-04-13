@@ -23,28 +23,4 @@ public class JSONRefundsSerializationTest {
     }
 
     
-    @Ignore
-    public void testJSONRefundsSerialization() {
-        System.out.println("JSONRefundsSerialization");
-        String path = "";
-        String folderNmber = "";
-        String folderDate = "";
-        List reclamationList = null;
-        JSONRefundsSerialization.JSONRefundsSerialization(path, folderNmber, folderDate, reclamationList);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of JSONRefundsSerializationError method, of class JSONRefundsSerialization.
-     */
-    @Ignore
-    public void testJSONRefundsSerializationError() {
-        System.out.println("JSONRefundsSerializationError");
-        String path = "";
-        String errorMessage = "";
-        JSONRefundsSerialization.JSONRefundsSerializationError(path, errorMessage);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 }
