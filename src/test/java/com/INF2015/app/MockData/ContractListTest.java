@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.INF2015.app.MockData;
 
 import com.INF2015.app.MockData.ContractList;
@@ -10,10 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 
-/**
- *
- * @author TeninBoré
- */
+
 public class ContractListTest {
     
     public ContractListTest() {
@@ -21,6 +15,7 @@ public class ContractListTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        
     }
 
     @AfterClass
@@ -69,7 +64,16 @@ public class ContractListTest {
         boolean expResult = true;
         boolean result = instance.getContractMaxValueByCareNumberExist(careNumber, contract);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
+    
+   
+  @Test
+  public void testGetCareMonthlyMaximumLimit(){
+      ContractList instance = new ContractList();
+      String careNumber = "100";
+      int expResult = 250;
+      int retour = instance.getCareMonthlyMaximumLimit(careNumber);
+      assertEquals(expResult,retour);
+  }
 }
