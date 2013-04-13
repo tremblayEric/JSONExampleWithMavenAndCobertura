@@ -1,17 +1,11 @@
 
 package com.INF2015.app.Validation;
 
-import org.junit.AfterClass;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
 
 public class ErrorMessageTest {
     
-    
-    
-
     @Test
     public void testErrorMEssage() {
         
