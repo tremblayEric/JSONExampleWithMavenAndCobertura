@@ -34,8 +34,24 @@ public class ContractListTest {
         int expResult = 25;
         int result = instance.getContractRatioByCareNumber(careNumber, contract);
         assertEquals(expResult, result);
+        contract = "A";
+        expResult = 35;
+        result = instance.getContractRatioByCareNumber(careNumber, contract);
+        assertEquals(expResult, result);
+        contract = "B";
+        expResult = 50;
+        result = instance.getContractRatioByCareNumber(careNumber, contract);
+        assertEquals(expResult, result);
+        contract = "C";
+        expResult = 95;
+        result = instance.getContractRatioByCareNumber(careNumber, contract);
+        assertEquals(expResult, result);
+        contract = "D";
+        expResult = 100;
+        result = instance.getContractRatioByCareNumber(careNumber, contract);
+        assertEquals(expResult, result);
         
-    }
+    }   
 
     /**
      * Test of getContractMaxValueByCareNumber method, of class ContractList.
@@ -48,6 +64,22 @@ public class ContractListTest {
         ContractList instance = new ContractList();
         int expResult = -1;
         int result = instance.getContractMaxValueByCareNumber(careNumber, contract);
+        assertEquals(expResult, result);
+        contract = "A";
+        expResult = -1;
+        result = instance.getContractMaxValueByCareNumber(careNumber, contract);
+        assertEquals(expResult, result);
+        contract = "B";
+        expResult = 40;
+        result = instance.getContractMaxValueByCareNumber(careNumber, contract);
+        assertEquals(expResult, result);
+        contract = "C";
+        expResult = -1;
+        result = instance.getContractMaxValueByCareNumber(careNumber, contract);
+        assertEquals(expResult, result);
+        contract = "D";
+        expResult = 85;
+        result = instance.getContractMaxValueByCareNumber(careNumber, contract);
         assertEquals(expResult, result);
         
     }
@@ -74,6 +106,10 @@ public class ContractListTest {
       String careNumber = "100";
       int expResult = 250;
       int retour = instance.getCareMonthlyMaximumLimit(careNumber);
+      assertEquals(expResult,retour);
+      String nonExistingCareNumber = "1000";
+      retour = instance.getCareMonthlyMaximumLimit(nonExistingCareNumber);
+      expResult = 0;
       assertEquals(expResult,retour);
   }
 }
