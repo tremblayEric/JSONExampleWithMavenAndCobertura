@@ -65,7 +65,7 @@ public class ValidationTest {
             assertEquals(e.getMessage(),ErrorMessage.MESSAGE_ERROR_CODE);
         }
         
-        code = "qwerty";
+        code = "";
         try{
             result = Validation.checkCode(code);
         }catch(Exception e){
@@ -87,53 +87,66 @@ public class ValidationTest {
     /**
      * Test of checkFolder method, of class Validation.
      */
-    @Ignore
+    @Test
     public void testCheckFolder() throws Exception {
-        System.out.println("checkFolder");
-        String numeroDossier = "";
-        String expResult = "";
-        String result = Validation.checkFolder(numeroDossier);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       String noDossier = "A234567";
+       String expresult = Validation.checkFolder(noDossier);
+       assertEquals(expresult,noDossier);
+       
+       noDossier = "G123456";
+       try{
+           Validation.checkFolder(noDossier);
+       }catch(Exception e){
+           assertEquals(e.getMessage(),ErrorMessage.MESSAGE_ERROR_FOLDER);
+       }
+       
+       noDossier = "Aqwerty";
+       try{
+          Validation.checkFolder(noDossier); 
+       }catch(Exception e){
+           assertEquals(e.getMessage(),ErrorMessage.MESSAGE_ERROR_FOLDER );
+       }
     }
 
     /**
      * Test of isInteger2 method, of class Validation.
      */
-    @Ignore
+    @Test
     public void testIsInteger2() throws Exception {
-        System.out.println("isInteger2");
-        String numero = "";
-        String message = "";
-        Validation.isInteger2(numero, message);
+        String isNotAnInteger= "a";
+        String expMessage = "ERROR";
+        try{
+            Validation.isInteger2(isNotAnInteger, expMessage);
+        }catch(Exception e){
+            assertEquals(expMessage,e.getMessage());
+        }
         
     }
 
     /**
      * Test of checkDate method, of class Validation.
      */
-    @Ignore
+    @Test
     public void testCheckDate() throws Exception {
-        System.out.println("checkDate");
-        String date = "";
-        String month = "";
-        String expResult = "";
-        String result = Validation.checkDate(date, month);
-        assertEquals(expResult, result);
+       
+        String date = "2013-03-02";
+        String month = "2013-03";
+        String expResult = Validation.checkDate(date, month);
         
+        assertEquals(expResult,date);
+        date = "invalide date";
+       
     }
 
     /**
      * Test of checkMonth method, of class Validation.
      */
-    @Ignore
+    @Test
     public void testCheckMonth() throws Exception {
-        System.out.println("checkMonth");
-        String month = "";
-        String expResult = "";
-        String result = Validation.checkMonth(month);
-        assertEquals(expResult, result);
+        String expResult = "2013-03";
+        String result = Validation.checkMonth(expResult);
+        
+        assertEquals(expResult,result);
         
     }
 
@@ -176,4 +189,6 @@ public class ValidationTest {
         assertEquals(expResult, result);
         
     }
+    
+    
 }
