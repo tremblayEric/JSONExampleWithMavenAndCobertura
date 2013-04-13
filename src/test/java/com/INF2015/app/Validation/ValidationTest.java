@@ -153,40 +153,78 @@ public class ValidationTest {
     /**
      * Test of checkDateIsValid method, of class Validation.
      */
-    @Ignore
+    @Test
     public void testCheckDateIsValid() throws Exception {
-        System.out.println("checkDateIsValid");
-        String laDate = "";
-        String type = "";
-        String expResult = "";
-        String result = Validation.checkDateIsValid(laDate, type);
-        assertEquals(expResult, result);
+        
+        String expResult = "2013-03-02";
+        String type = "date";
+        String result = Validation.checkDateIsValid(expResult, type);
+        
+        assertEquals(expResult,result);
+        
+        type= "invalidType";
+        expResult = "invalideDate";
+        try{
+            Validation.checkDateIsValid(expResult, type);
+        }catch(Exception e){
+            assertEquals(e.getMessage(),ErrorMessage.MESSAGE_ERROR_DATE);
+        }
         
     }
 
     /**
      * Test of checkDateMonthCoherence method, of class Validation.
      */
-    @Ignore
+    @Test
     public void testCheckDateMonthCoherence() throws Exception {
-        System.out.println("checkDateMonthCoherence");
-        String dateS = "";
-        String mois = "";
-        Validation.checkDateMonthCoherence(dateS, mois);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        String date = "2013-03-02";
+        String month = "2013-04";
+        
+        try{
+           Validation.checkDateMonthCoherence(date, month); 
+        }catch(Exception e){
+            assertEquals(e.getMessage(),ErrorMessage.MESSAGE_ERROR_DATE);
+        }
+        
     }
 
     /**
      * Test of checkMontant method, of class Validation.
      */
-    @Ignore
+    @Test
     public void testCheckMontant() throws Exception {
-        System.out.println("checkMontant");
-        String montant = "";
         String expResult = "";
-        String result = Validation.checkMontant(montant);
-        assertEquals(expResult, result);
+        String result = "";
+        String montant = "";
+        try{
+            Validation.checkMontant(montant);
+        }catch(Exception e){
+            assertEquals(e.getMessage(),ErrorMessage.MESSAGE_ERROR_MONTANT);
+        }
+        
+        montant = "19,99$";
+        expResult = "19.99$";
+        result = Validation.checkMontant(montant);
+        assertEquals(expResult,result);
+        
+        montant = "notADouble";
+        try{
+            Validation.checkMontant(montant);
+        }catch(Exception e){
+            assertEquals(e.getMessage(),ErrorMessage.MESSAGE_ERROR_MONTANT);
+        }
+        
+        montant = "19.99";
+        try{
+            Validation.checkMontant(montant);
+        }catch(Exception e){
+            assertEquals(e.getMessage(),ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
+        }
+        
+        
+        
+        
         
     }
     
