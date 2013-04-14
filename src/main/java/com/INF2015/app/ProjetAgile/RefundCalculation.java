@@ -76,7 +76,7 @@ public class RefundCalculation {
         return monthlyFile.getFolderNumber().substring(0, 1);
     }
 
-    private void adjustRefundForMaximum(List<JavaObjectReclamation> allRefundList) {
+    protected void adjustRefundForMaximum(List<JavaObjectReclamation> allRefundList) {
 
         List<Integer> totalList = Arrays.asList(0, 0, 0, 0, 0, 0);
 
@@ -87,7 +87,7 @@ public class RefundCalculation {
         }
     }
 
-    private void careFiltering(JavaObjectReclamation reclamation, List<Integer> totalList) {
+    protected void careFiltering(JavaObjectReclamation reclamation, List<Integer> totalList) {
 
         int result = 0;
 
@@ -104,7 +104,7 @@ public class RefundCalculation {
         }
     }
 
-    private void applyRefundToCare(JavaObjectReclamation reclamation,  List<Integer> totalList, int care) {
+    protected void applyRefundToCare(JavaObjectReclamation reclamation,  List<Integer> totalList, int care) {
 
         int result = refundAdjustment(reclamation, totalList.get(4), careMonthlyMaximumLimitList.get(care));
         if (result != -1) {
@@ -112,7 +112,7 @@ public class RefundCalculation {
         }
     }
 
-    private int refundAdjustment(JavaObjectReclamation reclamation, int total, int monthlyMax) {
+    protected int refundAdjustment(JavaObjectReclamation reclamation, int total, int monthlyMax) {
 
         int retour = -1;
         int montant = reclamation.getMontant() / 100;
@@ -128,7 +128,7 @@ public class RefundCalculation {
        return retour;
     }
 
-    private void familyMemberRecuperation() {
+    protected void familyMemberRecuperation() {
 
         List reclamations = monthlyFile.getFolderReclamationList();
         String code = "";
@@ -141,7 +141,7 @@ public class RefundCalculation {
         }
     }
 
-    private List getFamlyMemberReclamationList(String code) {
+    protected List getFamlyMemberReclamationList(String code) {
 
         List reclamationMemberList = new ArrayList();
         List reclamations = monthlyFile.getFolderReclamationList();

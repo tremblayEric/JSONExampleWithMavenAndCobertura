@@ -48,8 +48,9 @@ public class CareTest {
         instance = new Care(null, null, null, 0);
         contract = new Contracts();
         expectedCareNumber = "100";
-        expectedCareCategory = "OstÃ©opathie";
+        expectedCareCategory = "Osteopathie";
         monthlyMaxLimit = 200;
+        
         instance2 = new Care(expectedCareNumber, expectedCareCategory, contract, monthlyMaxLimit);
     }
 
@@ -91,10 +92,5 @@ public class CareTest {
         assertEquals(expResult, result);
     }
 
-    /*@Test
-     public void testToString() {
-     String expResult = "100 category = OstÃ©opathie contrat = A100323";
-     String result = instance2.toString();
-     assertEquals(expResult, result);
-     }*/
+   
 }

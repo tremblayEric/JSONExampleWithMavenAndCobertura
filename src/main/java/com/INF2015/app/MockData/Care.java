@@ -54,9 +54,5 @@ public class Care {
         return maxMonthlyRefund;
     }
 
-    @Override
-    public String toString() {
-        return careNumber + " category = " + careCategory + "contrat = "
-                + contracts;
-    }
+    
 }

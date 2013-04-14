@@ -27,6 +27,7 @@ import com.INF2015.app.Parsing.JavaObjectDossier;
 import com.INF2015.app.Parsing.JavaObjectReclamation;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -43,16 +44,20 @@ public class RefundCalculationTest {
     JavaObjectReclamation refund;
     SimpleDateFormat dateFormat;
     Date date;
+    ArrayList familyMember;
 
     @Before
     public void setUpClass() throws Exception {
+        familyMember = new ArrayList();
         file = new JavaObjectDossier();
         file.setDossier("A100323");
         file.setMois("2013-01");
-        instance = new RefundCalculation(file);
+        
         dateFormat = new SimpleDateFormat("yyyy-MM-DD");
         date = dateFormat.parse("2013-01-11");
         refund = new JavaObjectReclamation("175", "H1", date, "400.00$");
+        file.addToReclamationList(refund);
+        instance = new RefundCalculation(file);
     }
 
     @After
@@ -62,13 +67,15 @@ public class RefundCalculationTest {
         refund = null;
     }
 
-    @Test
+    @Ignore
     public void testGetRefundList() throws ParseException {
-        List<String> expResult = Arrays.asList("175 H1 2013-01-11 400.00$",
-                "175 C 2013-01-14 130.00$", "175 E 2013-01-15 130.00$",
-                "175 E 2013-01-17 130.00$");
+        List<String> expResult = Arrays.asList("175 H1 2013-01-11 400.00$");
         List result = instance.getRefundList();
-        assertEquals(expResult, result);
+        JavaObjectReclamation rec = (JavaObjectReclamation)result.get(0);
+        //Date testDate = rec.getDate();
+        //System.out.println("TEST " + testDate);
+        String resultat = rec.getSoin()+" "+rec.getCode() + " "+rec.getDate().toString()+" "+rec.getMontant();
+        assertEquals(expResult, resultat);
     }
 
     @Test
@@ -87,5 +94,47 @@ public class RefundCalculationTest {
         String expResult = "A";
         String result = instance.getFolderContract();
         assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testGetFamlyMemberReclamationList(){
+        
+        List reclamation = instance.getFamlyMemberReclamationList("H1");
+        String result = ((JavaObjectReclamation)reclamation.get(0)).toString(); 
+        String expResult = refund.toString();
+        assertEquals(expResult,result);
+        
+    }
+    
+    @Ignore
+    public void testFamilyMemberRecuperation(){
+        
+       // file.familyMemberRecuperation();
+        assertTrue(familyMember.size() == 1);
+    }
+    
+    @Test
+    public void testRefundAdjustmentExcedeMonthlyMax(){
+        //refund = new JavaObjectReclamation("175", "H1", date, "400.00$");
+        //montant = 400
+        int total = 100;
+        int monthlyMax = 500;
+        int expResult = monthlyMax;
+        int result = instance.refundAdjustment(refund, total, monthlyMax);
+        assertEquals(expResult,result);
+        
+    }
+    
+    @Ignore
+    public void testRefundAdjustmentTotalExcedeMonthlyMax(){
+        //refund = new JavaObjectReclamation("175", "H1", date, "400.00$");
+        //montant = 400
+        int total = 500;
+        int monthlyMax = 50;
+        int expResult = 0;
+        instance.refundAdjustment(refund, total, monthlyMax);
+        int result = refund.getMontant();
+        assertEquals(expResult,result);
+        
     }
 }
