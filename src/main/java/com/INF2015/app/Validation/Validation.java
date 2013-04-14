@@ -31,63 +31,61 @@ import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 
 public class Validation {
-    
-   public static void checkElementsFolder(JSONObject folder, String element) throws ValidationInputFileException{
-        try{
-            if(element.compareTo("reclamations") == 0){
+
+    public static void checkElementsFolder(JSONObject folder, String element) throws ValidationInputFileException {
+        try {
+            if (element.compareTo("reclamations") == 0) {
                 JSONArray reclamations = folder.getJSONArray(element);
-                for(int i = 0; i < reclamations.size();++i){
-                    valueIsNotEmpty(((JSONObject)reclamations.get(i)).getString("soin"), 
-                                     ErrorMessage.MESSAGE_ERROR_SOIN);
-                    valueIsNotEmpty(((JSONObject)reclamations.get(i)).getString("date"),
-                                     ErrorMessage.MESSAGE_ERROR_DATE);
-                    valueIsNotEmpty(((JSONObject)reclamations.get(i)).getString("montant"),
-                                     ErrorMessage.MESSAGE_ERROR_MONTANT);
+                for (int i = 0; i < reclamations.size(); ++i) {
+                    valueIsNotEmpty(((JSONObject) reclamations.get(i)).getString("soin"),
+                            ErrorMessage.MESSAGE_ERROR_SOIN);
+                    valueIsNotEmpty(((JSONObject) reclamations.get(i)).getString("date"),
+                            ErrorMessage.MESSAGE_ERROR_DATE);
+                    valueIsNotEmpty(((JSONObject) reclamations.get(i)).getString("montant"),
+                            ErrorMessage.MESSAGE_ERROR_MONTANT);
                 }
-            }else if(element.compareTo("dossier") == 0 || element.compareTo("mois") == 0 ){
+            } else if (element.compareTo("dossier") == 0 || element.compareTo("mois") == 0) {
                 valueIsNotEmpty(folder.getString(element), ErrorMessage.MESSAGE_ERROR_FOLDER);
-            }else{
+            } else {
                 throw new ValidationInputFileException(" l'element " + element + " n est pas un element valide dans le fichier JSON d'entrée");
             }
-        }catch (JSONException e){
+        } catch (JSONException e) {
             throw new ValidationInputFileException(" l'element " + removeChar(e.getMessage()) + " est manquant dans le fichier JSON d'entrée");
         }
     }
-    
-    protected static String removeChar(String string){
-        return string.substring(string.indexOf("\"")+1 , string.lastIndexOf("\""));
+
+    protected static String removeChar(String string) {
+        return string.substring(string.indexOf("\"") + 1, string.lastIndexOf("\""));
     }
-    
+
     protected static void valueIsNotEmpty(String value, String error) throws ValidationInputFileException {
-        if(value.isEmpty()){
+        if (value.isEmpty()) {
             throw new ValidationInputFileException(error);
-        }     
+        }
     }
-    
-        
-    public static String checkSoin( String soin ) 
+
+    public static String checkSoin(String soin)
             throws ValidationInputFileException {
         int i = 0;
         List<String> validCareList = validCareList2();
         isInteger2(soin, ErrorMessage.MESSAGE_ERROR_SOIN);
-        if (!validCareList.contains(soin) && !(Integer.parseInt(soin) >= 300 
+        if (!validCareList.contains(soin) && !(Integer.parseInt(soin) >= 300
                 && Integer.parseInt(soin) <= 399)) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SOIN);
         }
         return soin.toString();
     }
-    
+
     public static String checkCode(String code)
-            throws ValidationInputFileException {  
-        if(code.length() == 1 && ( code.compareTo("A") == 0 || code.compareTo("C") == 0 ) ){
-        }else if(code.length() >= 2 && ( code.charAt(0) == 'E' || code.charAt(0) == 'H' )){
+            throws ValidationInputFileException {
+        if (code.length() == 1 && (code.compareTo("A") == 0 || code.compareTo("C") == 0)) {
+        } else if (code.length() >= 2 && (code.charAt(0) == 'E' || code.charAt(0) == 'H')) {
             isInteger2(code.substring(1), ErrorMessage.MESSAGE_ERROR_CODE);
-        }else{
+        } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_CODE);
         }
         return code.toString();
     }
-    
 
     public static List<String> validCareList2() {
         List<String> validCareList = new ArrayList();
@@ -104,17 +102,17 @@ public class Validation {
     }
 
     //verification du dossier
-    public static String checkFolder(String numeroDossier) 
+    public static String checkFolder(String numeroDossier)
             throws ValidationInputFileException {
-        if (!(numeroDossier.length() == 7 && numeroDossier.charAt(0) >= 'A' 
+        if (!(numeroDossier.length() == 7 && numeroDossier.charAt(0) >= 'A'
                 && numeroDossier.charAt(0) <= 'E')) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
         isInteger2(numeroDossier.substring(1), ErrorMessage.MESSAGE_ERROR_FOLDER);
-        return numeroDossier;   
+        return numeroDossier;
     }
-    
-    public static void isInteger2(String numero, String message) 
+
+    public static void isInteger2(String numero, String message)
             throws ValidationInputFileException {
         int i = 0;
         while (i < numero.length()) {
@@ -123,23 +121,21 @@ public class Validation {
             }
             ++i;
         }
-    }    
+    }
 
-    
-    public static String checkDate( String date, String month ) 
+    public static String checkDate(String date, String month)
             throws ValidationInputFileException {
         checkDateIsValid(date, "date");
         checkDateMonthCoherence(date, month);
         return date;
     }
 
-    
-    public static String checkMonth(String month) 
+    public static String checkMonth(String month)
             throws ValidationInputFileException {
         return checkDateIsValid(month, "mois");
     }
-       
-    public static String checkDateIsValid(String laDate, String type) 
+
+    public static String checkDateIsValid(String laDate, String type)
             throws ValidationInputFileException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String messageError = ErrorMessage.MESSAGE_ERROR_DATE;
@@ -153,7 +149,7 @@ public class Validation {
             if (!(format.compareTo(laDate) == 0)) {
                 throw new ValidationInputFileException(messageError);
             }
-        }catch (ParseException e) {
+        } catch (ParseException e) {
             throw new ValidationInputFileException(messageError);
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
@@ -161,7 +157,7 @@ public class Validation {
         return laDate.toString();
     }
 
-    public static void checkDateMonthCoherence(String dateS, String mois) 
+    public static void checkDateMonthCoherence(String dateS, String mois)
             throws ValidationInputFileException {
         try {
             SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
@@ -177,35 +173,32 @@ public class Validation {
         } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
         }
-    }    
-    
-    
-    public static String checkMontant(String montant) 
-            throws ValidationInputFileException {
-            if ( montant.length() <= 1 ) {
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTANT);
-            }
-            montant = montant.replace(',', '.');
-            checkMontantNumeric(montant.substring(0, montant.length() - 2));
-            checkMontantSigneDollard(montant);
-            return montant;
     }
-    
-    private static String checkMontantNumeric(String montant) 
+
+    public static String checkMontant(String montant)
             throws ValidationInputFileException {
-            try{
-                Double.parseDouble(montant);
-            }catch(NumberFormatException e){
-                throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTANT);
-            }
-            return montant;
+        if (montant.length() <= 1) {
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTANT);
+        }
+        montant = montant.replace(',', '.');
+        checkMontantNumeric(montant.substring(0, montant.length() - 2));
+        checkMontantSigneDollard(montant);
+        return montant;
+    }
+
+    private static String checkMontantNumeric(String montant)
+            throws ValidationInputFileException {
+        try {
+            Double.parseDouble(montant);
+        } catch (NumberFormatException e) {
+            throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTANT);
+        }
+        return montant;
     }
 
     private static void checkMontantSigneDollard(String montant) throws ValidationInputFileException {
         if (montant.charAt(montant.length() - 1) != '$') {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
         }
-    }    
-
-    
+    }
 }

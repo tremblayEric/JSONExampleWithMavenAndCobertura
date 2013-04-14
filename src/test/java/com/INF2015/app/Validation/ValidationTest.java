@@ -230,7 +230,7 @@ public class ValidationTest {
 
     @Test
     public void testCheckMontantInvalid() throws Exception {
-        
+
         String montant = "";
         try {
             Validation.checkMontant(montant);
@@ -238,23 +238,22 @@ public class ValidationTest {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_MONTANT);
         }
     }
-    
-    
+
     @Test
     public void testCheckMontantValid() throws Exception {
-        
+
         String result = "";
-        
+
         String montant = "19,99$";
         String expResult = "19.99$";
         result = Validation.checkMontant(montant);
         assertEquals(expResult, result);
 
     }
-    
+
     @Test
     public void testCheckMontantNotDouble() throws Exception {
-        
+
         String montant = "notADouble";
         try {
             Validation.checkMontant(montant);
@@ -263,10 +262,10 @@ public class ValidationTest {
         }
 
     }
-    
+
     @Test
     public void testCheckMontantNoDollarSymbol() throws Exception {
-        
+
         String montant = "19.99";
         try {
             Validation.checkMontant(montant);
@@ -275,38 +274,37 @@ public class ValidationTest {
         }
 
     }
-    
+
     @Test
-    public void testRemoveChar(){
+    public void testRemoveChar() {
         String param = "\"123456\"";
         String expResult = "123456";
         String result = Validation.removeChar(param);
-        assertEquals(expResult,result);
+        assertEquals(expResult, result);
     }
-    
+
     @Test
-    public void testValueIsNotEmpty(){
-        
+    public void testValueIsNotEmpty() {
+
         String value = "NOTEMPTY";
-        
-        try{
+
+        try {
             Validation.valueIsNotEmpty(value, "");
-        }catch(Exception e){
+        } catch (Exception e) {
             //should not have any exception if valid
         }
         assertTrue(true);
     }
-    
+
     @Test
-    public void testValueIsNotEmptyButEmpty(){
-        
+    public void testValueIsNotEmptyButEmpty() {
+
         String value = "";
         String errorMessage = "ERROR";
-        try{
+        try {
             Validation.valueIsNotEmpty(value, errorMessage);
-        }catch(Exception e){
-            assertEquals(e.getMessage(),errorMessage);
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), errorMessage);
         }
     }
-     
 }

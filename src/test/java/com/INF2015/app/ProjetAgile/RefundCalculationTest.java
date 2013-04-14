@@ -1,11 +1,11 @@
 /* Copyright 2013
   
-  jpokou
-  pdarveau
-  sayonCisse
-  tremblayEric
+ jpokou
+ pdarveau
+ sayonCisse
+ tremblayEric
   
-  UQAM hiver 2013
+ UQAM hiver 2013
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,14 +36,14 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+public class RefundCalculationTest {
 
-public class RefundCalculationTest {   
     RefundCalculation instance;
     JavaObjectDossier file;
     JavaObjectReclamation refund;
     SimpleDateFormat dateFormat;
     Date date;
-        
+
     @Before
     public void setUpClass() throws Exception {
         file = new JavaObjectDossier();
@@ -52,7 +52,7 @@ public class RefundCalculationTest {
         instance = new RefundCalculation(file);
         dateFormat = new SimpleDateFormat("yyyy-MM-DD");
         date = dateFormat.parse("2013-01-11");
-        refund = new JavaObjectReclamation("175", "H1",date, "400.00$");
+        refund = new JavaObjectReclamation("175", "H1", date, "400.00$");
     }
 
     @After
@@ -64,16 +64,16 @@ public class RefundCalculationTest {
 
     @Test
     public void testGetRefundList() throws ParseException {
-        List<String>  expResult = Arrays.asList("175 H1 2013-01-11 400.00$",
-                "175 C 2013-01-14 130.00$", "175 E 2013-01-15 130.00$", 
+        List<String> expResult = Arrays.asList("175 H1 2013-01-11 400.00$",
+                "175 C 2013-01-14 130.00$", "175 E 2013-01-15 130.00$",
                 "175 E 2013-01-17 130.00$");
-        List result = instance.getRefundList();          
+        List result = instance.getRefundList();
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testDoCalcul() {
-        int valeur = 1/2;
+        int valeur = 1 / 2;
         String numeroSoin = "175";
         String code = "H1";
         String contract = "A100323";

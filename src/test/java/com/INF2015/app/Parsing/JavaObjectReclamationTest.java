@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  * @author Sayon CissÃ©
  */
 public class JavaObjectReclamationTest {
-    
+
     JavaObjectReclamation instance;
     JavaObjectDossier dossier;
     String soin;
@@ -22,9 +22,9 @@ public class JavaObjectReclamationTest {
     Date date;
     String montant;
     SimpleDateFormat dateFormat;
-    
+
     @Before
-    public void setUp() throws Exception{  
+    public void setUp() throws Exception {
         dossier = new JavaObjectDossier();
         dossier.setDossier("A100323");
         dossier.setMois("2013-01");
@@ -38,7 +38,7 @@ public class JavaObjectReclamationTest {
     }
 
     @After
-    public void tearDown() throws Exception{ 
+    public void tearDown() throws Exception {
         instance = null;
         soin = null;
         code = null;
@@ -54,7 +54,7 @@ public class JavaObjectReclamationTest {
         String result = instance.getSoin();
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testGetCode() {
         String expResult = "H1";

@@ -26,7 +26,6 @@
  */
 package com.INF2015.app.ProjetAgile;
 
-
 import com.INF2015.app.Parsing.JSONReclamationsParsing;
 import com.INF2015.app.Parsing.JavaObjectDossier;
 import com.INF2015.app.Save.JSONRefundsSerialization;
@@ -40,7 +39,7 @@ public class TP1Agile {
     public static void main(String[] args)
             throws Exception {
 
-        
+
         if (args.length == 2) {
 
             try {

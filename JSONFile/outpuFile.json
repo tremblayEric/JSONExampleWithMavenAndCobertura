@@ -1,1 +1,41 @@
-{"dossier":"C160323","mois":"2013-03","remboursements":[{"soin":"175","code":"A","date":"2013-03-02","montant":"200.00$"},{"soin":"175","code":"C","date":"2013-03-05","montant":"90.00$"},{"soin":"175","code":"E1","date":"2013-03-07","montant":"90.00$"},{"soin":"175","code":"H2","date":"2013-03-07","montant":"45.00$"},{"soin":"175","code":"H1","date":"2013-03-07","montant":"45.00$"},{"soin":"175","code":"E2","date":"2013-03-07","montant":"90.00$"},{"soin":"200","code":"E2","date":"2013-03-07","montant":"90.00$"}],"total":"650.00$"}
+{
+    "dossier":"C160323",
+    "mois":"2013-03",
+    "remboursements":[{
+        "soin":"175",
+        "code":"A",
+        "date":"2013-03-02",
+        "montant":"200.00$"
+    },{
+        "soin":"175",
+        "code":"C",
+        "date":"2013-03-05",
+        "montant":"90.00$"
+    },{
+        "soin":"175",
+        "code":"E1",
+        "date":"2013-03-07",
+        "montant":"90.00$"
+    },{
+        "soin":"175",
+        "code":"H2",
+        "date":"2013-03-07",
+        "montant":"45.00$"
+    },{
+        "soin":"175",
+        "code":"H1",
+        "date":"2013-03-07",
+        "montant":"45.00$"
+    },{
+        "soin":"175",
+        "code":"E2",
+        "date":"2013-03-07",
+        "montant":"90.00$"
+    },{
+        "soin":"200",
+        "code":"E2",
+        "date":"2013-03-07",
+        "montant":"90.00$"
+    }],
+    "total":"650.00$"
+}

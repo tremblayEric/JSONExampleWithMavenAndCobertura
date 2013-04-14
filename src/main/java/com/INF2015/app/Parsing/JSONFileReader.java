@@ -1,4 +1,3 @@
-
 package com.INF2015.app.Parsing;
 
 /*
@@ -17,7 +16,6 @@ package com.INF2015.app.Parsing;
  * limitations under the License.
  * 
  */
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,9 +29,4 @@ public class JSONFileReader {
         inputStream.read(fullSizeBuffer);
         return new String(fullSizeBuffer);
     }
-    
-    
-    
-    
-    
 }

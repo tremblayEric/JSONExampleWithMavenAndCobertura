@@ -24,7 +24,6 @@
  * 
  * UQAM hiver 2013
  */
-
 package com.INF2015.app.MockData;
 
 import org.junit.Test;
@@ -32,57 +31,56 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 
-
 /**
  *
  * @author Sayon cissé
  */
 public class CareTest {
-    
+
     Care instance, instance2;
     String careNumber, expectedCareNumber;
     String careCategory, expectedCareCategory;
     int monthlyMaxLimit;
     Contracts contract;
-           
+
     @Before
-    public void setUp() throws Exception{
-        instance = new Care(null, null, null, 0) ;
+    public void setUp() throws Exception {
+        instance = new Care(null, null, null, 0);
         contract = new Contracts();
         expectedCareNumber = "100";
-	expectedCareCategory = "OstÃ©opathie"; 
+        expectedCareCategory = "OstÃ©opathie";
         monthlyMaxLimit = 200;
         instance2 = new Care(expectedCareNumber, expectedCareCategory, contract, monthlyMaxLimit);
     }
-    
+
     @After
-    public void tearDown() throws Exception{
-	instance =  null;
-	careNumber = null;
-	careCategory = null;
-	contract = null; 
-        instance2 =  null;
-	expectedCareNumber = null;
-	expectedCareCategory = null;       
+    public void tearDown() throws Exception {
+        instance = null;
+        careNumber = null;
+        careCategory = null;
+        contract = null;
+        instance2 = null;
+        expectedCareNumber = null;
+        expectedCareCategory = null;
     }
-    
+
     @Test
-    public void testGetcareNumber() {  
-        assertNull(instance.getCareNumber()); 
-        assertEquals(expectedCareNumber, instance2.getCareNumber());   
-        assertFalse(instance.getCareNumber() != null);     
+    public void testGetcareNumber() {
+        assertNull(instance.getCareNumber());
+        assertEquals(expectedCareNumber, instance2.getCareNumber());
+        assertFalse(instance.getCareNumber() != null);
     }
-    
+
     @Test
     public void testGetCareCategorie() {
-        assertNull(instance.getCareCategorie()); 
+        assertNull(instance.getCareCategorie());
         assertEquals(expectedCareCategory, instance2.getCareCategorie());
-        assertFalse(instance.getCareCategorie() != null); 
+        assertFalse(instance.getCareCategorie() != null);
     }
 
     @Test
     public void testGetContract() {
-        assertNull(instance.getContract()); 
+        assertNull(instance.getContract());
         assertTrue(instance2.getContract() != null);
     }
 
@@ -94,9 +92,9 @@ public class CareTest {
     }
 
     /*@Test
-    public void testToString() {
-        String expResult = "100 category = OstÃ©opathie contrat = A100323";
-        String result = instance2.toString();
-        assertEquals(expResult, result);
-    }*/
+     public void testToString() {
+     String expResult = "100 category = OstÃ©opathie contrat = A100323";
+     String result = instance2.toString();
+     assertEquals(expResult, result);
+     }*/
 }

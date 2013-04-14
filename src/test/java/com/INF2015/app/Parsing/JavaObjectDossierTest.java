@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * @author Sayon CissÃ©
  */
 public class JavaObjectDossierTest {
-    
+
     JavaObjectReclamation reclamation;
     JavaObjectDossier instance;
     String soin;
@@ -28,9 +28,9 @@ public class JavaObjectDossierTest {
     Date date;
     String montant;
     SimpleDateFormat dateFormat;
-    
+
     @Before
-    public void setUp() throws Exception{  
+    public void setUp() throws Exception {
         instance = new JavaObjectDossier();
         instance.setDossier("A100323");
         instance.setMois("2013-01");
@@ -44,7 +44,7 @@ public class JavaObjectDossierTest {
     }
 
     @After
-    public void tearDown() throws Exception{ 
+    public void tearDown() throws Exception {
         instance = null;
         soin = null;
         code = null;
@@ -64,7 +64,7 @@ public class JavaObjectDossierTest {
     }
 
     @Test
-    public void testSetMois()  {
+    public void testSetMois() {
         SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
         String mois = "2013-01";
         instance.setMois(mois);
@@ -90,36 +90,36 @@ public class JavaObjectDossierTest {
     @Test
     public void testGetFolderReclamationList() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
-        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>(); 
+        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>();
         Date date = dateFormat.parse("2013-01-11");
-        JavaObjectReclamation reclamation1 = new JavaObjectReclamation("175","H1",date,"40000");
+        JavaObjectReclamation reclamation1 = new JavaObjectReclamation("175", "H1", date, "40000");
         expResult.add(reclamation1);
         instance.addToReclamationList(reclamation1);
-         
+
         date = dateFormat.parse("2013-01-14");
-        JavaObjectReclamation reclamation2 = new JavaObjectReclamation("175","C",date,"13000");
-        expResult.add(reclamation2); 
+        JavaObjectReclamation reclamation2 = new JavaObjectReclamation("175", "C", date, "13000");
+        expResult.add(reclamation2);
         instance.addToReclamationList(reclamation2);
-         
+
         date = dateFormat.parse("2013-01-15");
-        JavaObjectReclamation reclamation3 = new JavaObjectReclamation("175","E",date,"13000");
-        expResult.add(reclamation3); 
+        JavaObjectReclamation reclamation3 = new JavaObjectReclamation("175", "E", date, "13000");
+        expResult.add(reclamation3);
         instance.addToReclamationList(reclamation3);
 
         date = dateFormat.parse("2013-01-14");
-        JavaObjectReclamation reclamation4 = new JavaObjectReclamation("175","H1",date,"13000");
+        JavaObjectReclamation reclamation4 = new JavaObjectReclamation("175", "H1", date, "13000");
         expResult.add(reclamation4);
-        instance.addToReclamationList(reclamation4);                        
-        List result = instance.getFolderReclamationList();      
+        instance.addToReclamationList(reclamation4);
+        List result = instance.getFolderReclamationList();
         assertEquals(expResult, result);
     }
 
     @Test
     public void testAddToReclamationList() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
-        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>(); 
+        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>();
         Date date = dateFormat.parse("2013-01-11");
-        JavaObjectReclamation addReclamation1 = new JavaObjectReclamation("175","H1",date,"40000");
+        JavaObjectReclamation addReclamation1 = new JavaObjectReclamation("175", "H1", date, "40000");
         expResult.add(addReclamation1);
         instance.addToReclamationList(addReclamation1);
         List result = instance.getFolderReclamationList();
@@ -129,13 +129,13 @@ public class JavaObjectDossierTest {
     @Test
     public void testDisplayReclamationList() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
-        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>(); 
+        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>();
         Date date = dateFormat.parse("2013-01-11");
-        JavaObjectReclamation displayReclamation = new JavaObjectReclamation("175","H1",date,"40000");
+        JavaObjectReclamation displayReclamation = new JavaObjectReclamation("175", "H1", date, "40000");
         expResult.add(displayReclamation);
         instance.addToReclamationList(displayReclamation);
         instance.displayReclamationList();
         List result = instance.getFolderReclamationList();
         assertEquals(expResult, result);
-    }         
+    }
 }

@@ -24,7 +24,6 @@
  * UQAM
  * Session d'hiver 2013
  */
-
 package com.INF2015.app.Parsing;
 
 import com.INF2015.app.Validation.ValidationInputFileException;
@@ -36,57 +35,55 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class JSONReclamationsParsing {
-    
+
     private JavaObjectDossier javaDossier;
     private JSONObject folder;
-    
-    public JSONReclamationsParsing(String path) throws IOException, ValidationInputFileException{
-        
+
+    public JSONReclamationsParsing(String path) throws IOException, ValidationInputFileException {
+
         String JSONFileContent = JSONFileReader.loadFileIntoString(path);
         folder = JSONObject.fromObject(JSONFileContent);
         Validation.checkElementsFolder(folder, "dossier");
         Validation.checkElementsFolder(folder, "mois");
         Validation.checkElementsFolder(folder, "reclamations");
         javaDossierFabrication();
-        
+
     }
-    
-    public JavaObjectDossier getJavaObjectDossier(){
+
+    public JavaObjectDossier getJavaObjectDossier() {
         return this.javaDossier;
     }
-    
-    private void javaDossierFabrication() throws ValidationInputFileException{
+
+    private void javaDossierFabrication() throws ValidationInputFileException {
         javaDossier = new JavaObjectDossier();
         javaDossier.setDossier(Validation.checkFolder(folder.getString("dossier")));
         javaDossier.setMois(Validation.checkMonth(folder.getString("mois")));
         reclamationsFromJSONToJava();
     }
-    
-    private void reclamationsFromJSONToJava() throws ValidationInputFileException{
+
+    private void reclamationsFromJSONToJava() throws ValidationInputFileException {
         JSONArray reclamations = folder.getJSONArray("reclamations");
-        for(int i = 0; i < reclamations.size();++i){
+        for (int i = 0; i < reclamations.size(); ++i) {
             javaDossier.addToReclamationList(javaReclamationCreation(reclamations.get(i)));
         }
-        
+
     }
-    
-    private JavaObjectReclamation javaReclamationCreation(Object reclamation) throws ValidationInputFileException{
-        JSONObject object = (JSONObject)reclamation;
+
+    private JavaObjectReclamation javaReclamationCreation(Object reclamation) throws ValidationInputFileException {
+        JSONObject object = (JSONObject) reclamation;
         String soin = Validation.checkSoin(object.getString("soin"));
         String code = Validation.checkCode(object.getString("code"));//DDC3
         Date date = null;
-        try{ 
-            date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"),folder.getString("mois")).toString());
-        }catch (Exception e){
+        try {
+            date = (new SimpleDateFormat("yyyy-MM-dd")).parse(Validation.checkDate(object.getString("date"), folder.getString("mois")).toString());
+        } catch (Exception e) {
             throw new ValidationInputFileException(e.getMessage());
         }
         String montant = Validation.checkMontant(object.getString("montant"));
-        return new JavaObjectReclamation(soin,code,date,montant);
+        return new JavaObjectReclamation(soin, code, date, montant);
     }
-    
-    private void displayReclamationList(){
+
+    private void displayReclamationList() {
         javaDossier.displayReclamationList();
-    }    
-    
-       
+    }
 }

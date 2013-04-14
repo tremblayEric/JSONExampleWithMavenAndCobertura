@@ -1,11 +1,11 @@
 /* Copyright 2013
   
-  jpokou
-  pdarveau
-  sayonCisse
-  tremblayEric
+ jpokou
+ pdarveau
+ sayonCisse
+ tremblayEric
   
-  UQAM hiver 2013
+ UQAM hiver 2013
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ public class Care {
     private Contracts contracts;
     private int maxMonthlyRefund;//ajout iteration #3
 
-    public Care(String numeroSoin, String categorieSoin, Contracts contracts, int maxMonthlyRefund){
+    public Care(String numeroSoin, String categorieSoin, Contracts contracts, int maxMonthlyRefund) {
         this.careNumber = numeroSoin;
         this.careCategory = categorieSoin;
         this.contracts = contracts;
@@ -39,7 +39,7 @@ public class Care {
     }
 
     public String getCareNumber() {
-       return careNumber;
+        return careNumber;
     }
 
     public String getCareCategorie() {
@@ -49,14 +49,14 @@ public class Care {
     public Contracts getContract() {
         return contracts;
     }
-    
+
     public int getMonthlyMaxLimit() {
         return maxMonthlyRefund;
     }
-    
+
     @Override
-    public String toString(){
-        return careNumber + " category = " + careCategory + "contrat = "+
-                contracts;
+    public String toString() {
+        return careNumber + " category = " + careCategory + "contrat = "
+                + contracts;
     }
 }

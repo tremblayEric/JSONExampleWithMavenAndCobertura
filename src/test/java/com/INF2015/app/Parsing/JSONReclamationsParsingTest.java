@@ -14,14 +14,14 @@ import static org.junit.Assert.*;
  * @author eric et bendjina
  */
 public class JSONReclamationsParsingTest {
-    
+
     public JSONReclamationsParsingTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }

@@ -34,21 +34,20 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class DollarTest {
-    
+
     Dollar instance;
 
     @Before
-    public void setUp() throws Exception{   
+    public void setUp() throws Exception {
         instance = new Dollar();
     }
 
     @After
-    public void tearDown() throws Exception{ 
+    public void tearDown() throws Exception {
         instance = null;
     }
-    
+
     @Test
     public void testDoubleMontantToInteger() {
         double montant = 12.0;
@@ -84,7 +83,7 @@ public class DollarTest {
         String result = Dollar.fromIntegerToConformStringAmount(amount);
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testFromIntegerToConformStringAmount2() {
         int amount = 33000;
@@ -92,7 +91,7 @@ public class DollarTest {
         String result = Dollar.fromIntegerToConformStringAmount(amount);
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testFromIntegerToDouble() {
         int amount = 700;
@@ -101,7 +100,6 @@ public class DollarTest {
         assertEquals(expResult, result, 0.0);
     }
 
-    
     @Test
     public void testFromIntegerToDouble2() {
         int amount = 70000;
@@ -109,7 +107,7 @@ public class DollarTest {
         double result = Dollar.fromIntegerToDouble(amount);
         assertEquals(expResult, result, 0.0);
     }
-    
+
     @Test
     public void testRemoveDolarSymbol() {
         String amount = "150$";

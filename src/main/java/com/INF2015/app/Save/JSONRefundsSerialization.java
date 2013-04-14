@@ -35,45 +35,41 @@ import main.java.com.INF2015.app.Parsing.JSONFileWriter;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-
 public class JSONRefundsSerialization {
-    
-    
-    
-    public static void JSONRefundsSerialization(String path, String folderNmber, String folderDate, List reclamationList){
-        
+
+    public static void JSONRefundsSerialization(String path, String folderNmber, String folderDate, List reclamationList) {
+
         int total = 0;
         JSONObject folder = new JSONObject();
         folder.accumulate("dossier", folderNmber);
         folder.accumulate("mois", folderDate);
         JSONArray refunds = new JSONArray();
-        
-        SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM-dd");
-        
-        for(int i = 0; i < reclamationList.size(); ++i){ 
-           JavaObjectReclamation refund = (JavaObjectReclamation)reclamationList.get(i);
-           
-           JSONObject JSONRefund = new JSONObject();
-           JSONRefund.accumulate("soin", refund.getSoin());
-           JSONRefund.accumulate("code", refund.getCode());
-           JSONRefund.accumulate("date", dateFormatMois.format(refund.getDate()));
-           JSONRefund.accumulate("montant", Dollar.fromIntegerToConformStringAmount(refund.getMontant()));
 
-           total += refund.getMontant();
-           
-           refunds.add(JSONRefund);
+        SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (int i = 0; i < reclamationList.size(); ++i) {
+            JavaObjectReclamation refund = (JavaObjectReclamation) reclamationList.get(i);
+
+            JSONObject JSONRefund = new JSONObject();
+            JSONRefund.accumulate("soin", refund.getSoin());
+            JSONRefund.accumulate("code", refund.getCode());
+            JSONRefund.accumulate("date", dateFormatMois.format(refund.getDate()));
+            JSONRefund.accumulate("montant", Dollar.fromIntegerToConformStringAmount(refund.getMontant()));
+
+            total += refund.getMontant();
+
+            refunds.add(JSONRefund);
         }
-        
+
         folder.accumulate("remboursements", refunds);
         folder.accumulate("total", Dollar.fromIntegerToConformStringAmount(total));
-        
-        JSONFileWriter.writeJSONObbjectToFile(path,folder);
+
+        JSONFileWriter.writeJSONObbjectToFile(path, folder);
     }
 
-    public static void JSONRefundsSerializationError(String path, String errorMessage ){
+    public static void JSONRefundsSerializationError(String path, String errorMessage) {
         JSONObject folder = new JSONObject();
         folder.accumulate("Message", errorMessage);
-        JSONFileWriter.writeJSONObbjectToFile(path,folder);
+        JSONFileWriter.writeJSONObbjectToFile(path, folder);
     }
-     
 }

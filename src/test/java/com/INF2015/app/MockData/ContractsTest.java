@@ -24,27 +24,24 @@
  * 
  * UQAM hiver 2013
  */
-
 package com.INF2015.app.MockData;
 
 import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ContractsTest {
-    
+
     Contracts instanceContracts;
     int ratioA;
     int ratioB;
     int ratioC;
     int ratioD;
     int ratioE;
-    
     int exceptedRatioA;
     int exceptedRatioB;
     int exceptedRatioC;
     int exceptedRatioD;
     int exceptedRatioE;
-    
     boolean maxA;
     boolean maxB;
     boolean maxC;
@@ -55,7 +52,6 @@ public class ContractsTest {
     boolean exceptedMaxC;
     boolean exceptedMaxD;
     boolean exceptedMaxE;
-    
     int maxValueA;
     int maxValueB;
     int maxValueC;
@@ -68,39 +64,40 @@ public class ContractsTest {
     int exceptedMaxValueE;
 
     @Before
-    public void setUp() throws Exception{     
-        instanceContracts = new Contracts(); 
+    public void setUp() throws Exception {
+        instanceContracts = new Contracts();
         initializeMaxX();
-        initializeMaxValueX(); 
+        initializeMaxValueX();
         initializeRatio();
         instanceContracts.setRatio(ratioA, ratioB, ratioC, ratioD, ratioE);
         instanceContracts.setMax(maxA, maxB, maxC, maxD, maxE);
-        instanceContracts.setMaxValue(maxValueA, maxValueB, maxValueC, maxValueD, maxValueE);       
+        instanceContracts.setMaxValue(maxValueA, maxValueB, maxValueC, maxValueD, maxValueE);
     }
-    
+
     @After
-    public void tearDown() throws Exception{      
+    public void tearDown() throws Exception {
         instanceContracts = null;
         setRatioToZero();
         setMaxToZero();
-        setMaxValueToZero();    
+        setMaxValueToZero();
     }
 
-    public void initializeRatio() {                        
-        ratioA = 25/100;
-        ratioB = 5/10;
-        ratioC = 9/10;
+    public void initializeRatio() {
+        ratioA = 25 / 100;
+        ratioB = 5 / 10;
+        ratioC = 9 / 10;
         ratioD = 1;
-        ratioE = 15/100;  
+        ratioE = 15 / 100;
     }
-    public void initializeMaxX() {                        
+
+    public void initializeMaxX() {
         maxA = false;
         maxB = true;
         maxC = false;
         maxD = true;
         maxE = false;
     }
-   
+
     public void initializeMaxValueX() {
         maxValueA = -1;
         maxValueB = 40;
@@ -108,63 +105,66 @@ public class ContractsTest {
         maxValueD = 85;
         maxValueE = -1;
     }
-    public void setRatioToZero() {                        
+
+    public void setRatioToZero() {
         ratioA = 0;
         ratioB = 0;
         ratioC = 0;
         ratioD = 0;
         ratioE = 0;
     }
-    public void setMaxToZero() {                        
+
+    public void setMaxToZero() {
         maxA = false;
         maxB = false;
         maxC = false;
         maxD = false;
-        maxE = false; 
+        maxE = false;
     }
-    public void setMaxValueToZero() {                        
+
+    public void setMaxValueToZero() {
         maxValueA = 0;
         maxValueB = 0;
         maxValueC = 0;
         maxValueD = 0;
-        maxValueE = 0; 
+        maxValueE = 0;
     }
-    
+
     @Test
     public void testGetRatioA() {
-        exceptedRatioA = 25/100;
+        exceptedRatioA = 25 / 100;
         double resultGetRatioA = instanceContracts.getRatioA();
-        assertEquals(exceptedRatioA, resultGetRatioA, resultGetRatioA);  
+        assertEquals(exceptedRatioA, resultGetRatioA, resultGetRatioA);
     }
 
     @Test
     public void testGetRatioB() {
-        exceptedRatioB = 5/10;
+        exceptedRatioB = 5 / 10;
         double resultGetRatioB = instanceContracts.getRatioB();
-        assertEquals(exceptedRatioB, resultGetRatioB, 0.0);       
+        assertEquals(exceptedRatioB, resultGetRatioB, 0.0);
     }
 
     @Test
     public void testGetRatioC() {
-        exceptedRatioC = 9/10;      
+        exceptedRatioC = 9 / 10;
         double resultGetRatioC = instanceContracts.getRatioC();
-        assertEquals(exceptedRatioC, resultGetRatioC, 0.0);  
+        assertEquals(exceptedRatioC, resultGetRatioC, 0.0);
     }
 
     @Test
-    public void testGetRatioD() {       
-        exceptedRatioD = 1;  
+    public void testGetRatioD() {
+        exceptedRatioD = 1;
         double resultGetRatioD = instanceContracts.getRatioD();
-        assertEquals(exceptedRatioD, resultGetRatioD, 0.0);  
+        assertEquals(exceptedRatioD, resultGetRatioD, 0.0);
     }
 
     @Test
     public void testGetRatioE() {
-        exceptedRatioE = 15/100;       
+        exceptedRatioE = 15 / 100;
         double resultGetRatioE = instanceContracts.getRatioE();
-        assertEquals(exceptedRatioE, resultGetRatioE, 0.0);       
+        assertEquals(exceptedRatioE, resultGetRatioE, 0.0);
     }
-    
+
     @Test
     public void testGetmaxA() {
         exceptedMaxA = false;
@@ -175,14 +175,14 @@ public class ContractsTest {
 
     @Test
     public void testGetmaxB() {
-        exceptedMaxB = true; 
+        exceptedMaxB = true;
         boolean resultGetMaxB = instanceContracts.getMaxB();
         assertTrue(resultGetMaxB);
-        assertFalse(!resultGetMaxB);      
+        assertFalse(!resultGetMaxB);
     }
 
     @Test
-    public void testGetmaxC() {      
+    public void testGetmaxC() {
         exceptedMaxC = false;
         boolean resultGetMaxC = instanceContracts.getMaxC();
         assertTrue(!resultGetMaxC);
@@ -209,7 +209,7 @@ public class ContractsTest {
     public void testGetMavalueA() {
         exceptedMaxValueA = -1;
         double resultGetMavalueA = instanceContracts.getMaxValueA();
-        assertEquals(exceptedMaxValueA, resultGetMavalueA, 0.0);  
+        assertEquals(exceptedMaxValueA, resultGetMavalueA, 0.0);
     }
 
     @Test
@@ -235,7 +235,7 @@ public class ContractsTest {
 
     @Test
     public void testGetMavalueE() {
-        exceptedMaxValueE = -1; 
+        exceptedMaxValueE = -1;
         double resultGetMavalueE = instanceContracts.getMaxValueE();
         assertEquals(exceptedMaxValueE, resultGetMavalueE, 0.0);
     }

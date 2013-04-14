@@ -24,7 +24,6 @@
  * 
  * UQAM hiver 2013
  */
-
 package com.INF2015.app.MockData;
 
 import org.junit.AfterClass;
@@ -36,9 +35,8 @@ import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-
 public class ContractListTest {
-    
+
     List<Care> contractList;
     Contracts dentalContracts;
     Contracts naturoAcupContracts;
@@ -47,29 +45,29 @@ public class ContractListTest {
     int maxMonthlyRefundDent;
     int maxMonthlyRefundNat;
     ContractList instanceContractList;
-        
+
     @Before
-    public void setUp() throws Exception{           
-        contractList = new ArrayList<Care>();      
+    public void setUp() throws Exception {
+        contractList = new ArrayList<Care>();
         instanceContractList = new ContractList();
         Contracts dentalContracts = new Contracts();
-        dentalContracts.setRatio(0, 5/10, 9/10, 1, 6/10);
-        dentalContracts.setMax(false, false, false, false,false);
-        dentalContracts.setMaxValue(-1, -1, -1, -1,-1);
-        
+        dentalContracts.setRatio(0, 5 / 10, 9 / 10, 1, 6 / 10);
+        dentalContracts.setMax(false, false, false, false, false);
+        dentalContracts.setMaxValue(-1, -1, -1, -1, -1);
+
         Contracts naturoAcupContracts = new Contracts();
-        naturoAcupContracts.setRatio(0, 0, 9/10, 1, 25/100);
-        naturoAcupContracts.setMax(false, false, false, true,true);
+        naturoAcupContracts.setRatio(0, 0, 9 / 10, 1, 25 / 100);
+        naturoAcupContracts.setMax(false, false, false, true, true);
         naturoAcupContracts.setMaxValue(-1, -1, -1, 65, 15);
-        
+
         soinsDentaires = new Care("300", "Soins dentaires", dentalContracts, maxMonthlyRefundDent);
         NaturoAcupuncture = new Care("400", "Naturopathie, acuponcture",
-                naturoAcupContracts, maxMonthlyRefundNat);    
+                naturoAcupContracts, maxMonthlyRefundNat);
     }
-    
+
     @After
-    public void tearDown() throws Exception{ 
-        contractList = null;  
+    public void tearDown() throws Exception {
+        contractList = null;
         instanceContractList = null;
         dentalContracts = null;
         naturoAcupContracts = null;
@@ -79,20 +77,20 @@ public class ContractListTest {
 
     @Test
     public void testGetContractRatioByCareNumber() {
-        contractList.add(soinsDentaires);       
+        contractList.add(soinsDentaires);
         double expContractRatioByCareNumber = -1.0;
         String careNumber = contractList.get(0).getCareNumber();
-        String contract = contractList.get(0).getContract()+"";
+        String contract = contractList.get(0).getContract() + "";
         double result = instanceContractList.getContractRatioByCareNumber(careNumber, contract);
         assertEquals(expContractRatioByCareNumber, result, 0.0);
     }
 
     @Test
     public void testGetContractMaxValueByCareNumber() {
-        contractList.add(NaturoAcupuncture);   
+        contractList.add(NaturoAcupuncture);
         String careNumber = contractList.get(0).getCareNumber();
         System.out.println("CareNumber = " + careNumber);
-        String contract = contractList.get(0).getContract()+"";
+        String contract = contractList.get(0).getContract() + "";
         int expContractMaxValueByCareNumber = -1;
         int result = instanceContractList.getContractMaxValueByCareNumber(careNumber, contract);
         assertEquals(expContractMaxValueByCareNumber, result);
@@ -102,11 +100,11 @@ public class ContractListTest {
     public void testGetContractMaxValueByCareNumberExist() {
         contractList.add(NaturoAcupuncture);
         String careNumber = contractList.get(0).getCareNumber();
-        String contract = contractList.get(0).getContract()+"";
+        String contract = contractList.get(0).getContract() + "";
         boolean expContractMaxValueByCareNumberExist = false;
-        boolean result = instanceContractList.getContractMaxValueByCareNumberExist(careNumber, contract);       
+        boolean result = instanceContractList.getContractMaxValueByCareNumberExist(careNumber, contract);
         assertEquals(expContractMaxValueByCareNumberExist, result);
-        
+
     }
 
     @Test

@@ -15,14 +15,14 @@ import static org.junit.Assert.*;
  * @author eric et bendjina
  */
 public class JSONFileWriterTest {
-    
+
     public JSONFileWriterTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }

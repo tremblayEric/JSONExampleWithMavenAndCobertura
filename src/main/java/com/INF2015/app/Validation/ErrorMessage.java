@@ -1,11 +1,11 @@
 /* Copyright 2013
   
-  jpokou
-  pdarveau
-  sayonCisse
-  tremblayEric
+ jpokou
+ pdarveau
+ sayonCisse
+ tremblayEric
   
-  UQAM hiver 2013
+ UQAM hiver 2013
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 package com.INF2015.app.Validation;
 
 public class ErrorMessage {
+
     public final static String MESSAGE_ERROR_LOADING_FILE = "LE FICHIER N'A PAS PU ETRE CHARGE EN MEMOIRE";
     public final static String MESSAGE_ERROR_NUMERO_CLIENT = "LE NUMERO DE CLIENT ENTRE EST NON VALIDE";
     public final static String MESSAGE_ERROR_FOLDER = "LE DOSSIER ENTRE EST NON VALIDE";
@@ -43,6 +44,7 @@ public class ErrorMessage {
     public final static String MESSAGE_ERROR_ELEMENT_JSON_DATE_MISSING = "UN ELEMENT RECLAMATION NE CONTIENT PAS D'ELEMENT DATE";
     public final static String MESSAGE_ERROR_ELEMENT_JSON_MONTANT_MISSING = "UN ELEMENT RECLAMATION NE CONTIENT PAS D'ELEMENT MONTANT";
     public final static String MESSAGE_ERROR_CONVERSION = "PROBLEME DE CONVERSION DE STRING A DOUBLE DANS CLASSE DOLLARD";
-    public final static String MESSAGE_ERROR_CODE = "LE CODE ENTREE EST NON VALIDE";;
+    public final static String MESSAGE_ERROR_CODE = "LE CODE ENTREE EST NON VALIDE";
+;
 
 }

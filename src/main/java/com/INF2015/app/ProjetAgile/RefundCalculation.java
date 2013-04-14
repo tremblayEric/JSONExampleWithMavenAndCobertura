@@ -78,62 +78,62 @@ public class RefundCalculation {
 
         ContractList contractDetails = new ContractList();
         ArrayList<Integer> careMonthlyMaximumLimitList = contractDetails.getCareMonthlyMaxLimitArrayList();
-        List<Integer> totalList =Arrays.asList(0,0,0,0,0,0);
-        
+        List<Integer> totalList = Arrays.asList(0, 0, 0, 0, 0, 0);
+
         int result = 0;
 
         for (int i = 0; i < allRefundList.size(); ++i) {
 
             JavaObjectReclamation reclamation = allRefundList.get(i);
-            careFiltering( reclamation,totalList);
-            
+            careFiltering(reclamation, totalList);
+
         }
     }
-    
-    private void careFiltering(JavaObjectReclamation reclamation,List<Integer> totalList){
-        
+
+    private void careFiltering(JavaObjectReclamation reclamation, List<Integer> totalList) {
+
         ContractList contractDetails = new ContractList();
         ArrayList<Integer> careMonthlyMaximumLimitList = contractDetails.getCareMonthlyMaxLimitArrayList();
-        
+
         int result = 0;
-        
+
         if (reclamation.getSoin().compareTo("100") == 0) {
 
-                result = refundAdjustment(reclamation, totalList.get(0), careMonthlyMaximumLimitList.get(0));
-                if (result != -1) {
-                    totalList.set(0, result);
-                }
+            result = refundAdjustment(reclamation, totalList.get(0), careMonthlyMaximumLimitList.get(0));
+            if (result != -1) {
+                totalList.set(0, result);
+            }
 
-            } else if (reclamation.getSoin().compareTo("175") == 0) {
+        } else if (reclamation.getSoin().compareTo("175") == 0) {
 
-                result = refundAdjustment(reclamation, totalList.get(1), careMonthlyMaximumLimitList.get(1));
-                if (result != -1) {
-                    totalList.set(1, result);
-                }
+            result = refundAdjustment(reclamation, totalList.get(1), careMonthlyMaximumLimitList.get(1));
+            if (result != -1) {
+                totalList.set(1, result);
+            }
 
-            } else if (reclamation.getSoin().compareTo("200") == 0) {
+        } else if (reclamation.getSoin().compareTo("200") == 0) {
 
-                result = refundAdjustment(reclamation, totalList.get(2), careMonthlyMaximumLimitList.get(2));
-                if (result != -1) {
-                    totalList.set(2, result);
-                }
+            result = refundAdjustment(reclamation, totalList.get(2), careMonthlyMaximumLimitList.get(2));
+            if (result != -1) {
+                totalList.set(2, result);
+            }
 
-            } else if (reclamation.getSoin().compareTo("500") == 0) {
+        } else if (reclamation.getSoin().compareTo("500") == 0) {
 
-                result = refundAdjustment(reclamation, totalList.get(3), careMonthlyMaximumLimitList.get(3));
-                if (result != -1) {
-                    totalList.set(3, result);
-                }
+            result = refundAdjustment(reclamation, totalList.get(3), careMonthlyMaximumLimitList.get(3));
+            if (result != -1) {
+                totalList.set(3, result);
+            }
 
-            } else if (reclamation.getSoin().compareTo("600") == 0) {
+        } else if (reclamation.getSoin().compareTo("600") == 0) {
 
-                result = refundAdjustment(reclamation, totalList.get(4), careMonthlyMaximumLimitList.get(4));
-                if (result != -1) {
-                    totalList.set(4, result);
-                }
-        
+            result = refundAdjustment(reclamation, totalList.get(4), careMonthlyMaximumLimitList.get(4));
+            if (result != -1) {
+                totalList.set(4, result);
+            }
+
+        }
     }
-    } 
 
     private int refundAdjustment(JavaObjectReclamation reclamation, int total, int monthlyMax) {
 
