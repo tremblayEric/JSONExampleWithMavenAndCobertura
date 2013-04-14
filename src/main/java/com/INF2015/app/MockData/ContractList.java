@@ -24,7 +24,6 @@
  */
 package com.INF2015.app.MockData;
 
-//import com.INF2015.app.MockData.Care;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +103,7 @@ public class ContractList {
         return exist;
     }
 
-   public int getCareMonthlyMaximumLimit(String careNumber){
+    public int getCareMonthlyMaximumLimit(String careNumber){
         
         int i = 0;
         boolean founded = false;
@@ -119,6 +118,25 @@ public class ContractList {
         }
         
         return 0;
+    }
+    
+    public ArrayList getCareMonthlyMaxLimitArrayList(){
+        
+        ArrayList monthlyMaxLimitArrayLis = new ArrayList();
+        
+        int monthlyMaxOsteo = getCareMonthlyMaximumLimit("100") * 100;
+        int monthlyMaxGeneral = getCareMonthlyMaximumLimit("175") * 100;
+        int monthlyMaxPsycho = getCareMonthlyMaximumLimit("200") * 100;
+        int monthlyMaxChiro = getCareMonthlyMaximumLimit("500") * 100;
+        int monthlyMaxPhysio = getCareMonthlyMaximumLimit("600") * 100;
+        
+        monthlyMaxLimitArrayLis.add(monthlyMaxOsteo);
+        monthlyMaxLimitArrayLis.add(monthlyMaxGeneral);
+        monthlyMaxLimitArrayLis.add(monthlyMaxPsycho);
+        monthlyMaxLimitArrayLis.add(monthlyMaxChiro);
+        monthlyMaxLimitArrayLis.add(monthlyMaxPhysio);
+        
+        return monthlyMaxLimitArrayLis;
     }
        
     private String roundCareNumber(String careNumber){
