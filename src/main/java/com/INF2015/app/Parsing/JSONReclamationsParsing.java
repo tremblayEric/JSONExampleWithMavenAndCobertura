@@ -38,7 +38,8 @@ public class JSONReclamationsParsing {
 
     private JavaObjectDossier javaDossier;
     private JSONObject folder;
-
+    
+    
     public JSONReclamationsParsing(String path) throws IOException, ValidationInputFileException {
 
         String JSONFileContent = JSONFileReader.loadFileIntoString(path);

@@ -15,10 +15,7 @@ import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Sayon CissÃ©
- */
+
 public class JavaObjectDossierTest {
 
     JavaObjectReclamation reclamation;
@@ -71,6 +68,19 @@ public class JavaObjectDossierTest {
         Date date = instance.getFolderDate();
         String result = dateFormatMois.format(date);
         assertEquals(mois, result);
+    }
+    
+    @Test 
+    public void testSetMoisFailure(){
+        
+        String invalidMonth = "invalideMonth";
+        String expectedResult = "Erreur avec le mois";
+        
+        try{
+            instance.setMois(invalidMonth);
+        }catch(Exception e){
+            assertEquals(expectedResult,e.getMessage());
+        }
     }
 
     @Test
@@ -138,4 +148,6 @@ public class JavaObjectDossierTest {
         List result = instance.getFolderReclamationList();
         assertEquals(expResult, result);
     }
+    
+    
 }
