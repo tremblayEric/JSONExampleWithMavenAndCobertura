@@ -1,25 +1,13 @@
 package com.INF2015.app.Validation;
 
 import java.util.List;
-import net.sf.json.JSONObject;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ValidationTest {
 
-    public ValidationTest() {
-    }
-
-    @Ignore
-    public void testCheckElementsFolder() throws Exception {
-        System.out.println("checkElementsFolder");
-        JSONObject folder = null;
-        String element = "";
-        Validation.checkElementsFolder(folder, element);
-
-    }
-
+   
     @Test
     public void testCheckSoin() throws Exception {
 
@@ -80,46 +68,67 @@ public class ValidationTest {
     }
 
     @Test
-    public void testValidCareList2() {
+    public void testValidCareListCare0() {
 
-        boolean expResult = true;
-        boolean result = false;
-        List<String> validCareList = Validation.validCareList2();
+        String expResult = "0";
+        String result = Validation.validCareList2().get(0);
+        assertEquals(expResult,result);
 
-        for (int i = 0; i < validCareList.size(); ++i) {
-
-            switch (i) {
-                case 0:
-                    result = (validCareList.get(i).compareTo("0") == 0);
-                    break;
-                case 1:
-                    result = (validCareList.get(i).compareTo("100") == 0);
-                    break;
-                case 2:
-                    result = (validCareList.get(i).compareTo("150") == 0);
-                    break;
-                case 3:
-                    result = (validCareList.get(i).compareTo("175") == 0);
-                    break;
-                case 4:
-                    result = (validCareList.get(i).compareTo("200") == 0);
-                    break;
-                case 5:
-                    result = (validCareList.get(i).compareTo("400") == 0);
-                    break;
-                case 6:
-                    result = (validCareList.get(i).compareTo("500") == 0);
-                    break;
-                case 7:
-                    result = (validCareList.get(i).compareTo("600") == 0);
-                    break;
-                case 8:
-                    result = (validCareList.get(i).compareTo("700") == 0);
-                    break;
-            }
-        }
-        assertTrue(result);
-
+    }
+    
+    @Test
+    public void testValidCareListCare100() {
+        String expResult = "100";
+        String result = Validation.validCareList2().get(1);
+        assertEquals(expResult,result);
+    }
+    
+    @Test
+    public void testValidCareListCare150() {
+        String expResult = "150";
+        String result = Validation.validCareList2().get(2);
+        assertEquals(expResult,result);
+    }
+    
+    @Test
+    public void testValidCareListCare175() {
+        String expResult = "175";
+        String result = Validation.validCareList2().get(3);
+        assertEquals(expResult,result);
+    }
+    
+    @Test
+    public void testValidCareListCare200() {
+        String expResult = "200";
+        String result = Validation.validCareList2().get(4);
+        assertEquals(expResult,result);
+    }
+    
+    @Test
+    public void testValidCareListCare400() {
+        String expResult = "400";
+        String result = Validation.validCareList2().get(5);
+        assertEquals(expResult,result);
+    }
+    @Test
+    public void testValidCareListCare500() {
+        String expResult = "500";
+        String result = Validation.validCareList2().get(6);
+        assertEquals(expResult,result);
+    }
+    
+    @Test
+    public void testValidCareListCare600() {
+        String expResult = "600";
+        String result = Validation.validCareList2().get(7);
+        assertEquals(expResult,result);
+    }
+    
+    @Test
+    public void testValidCareListCare700() {
+        String expResult = "700";
+        String result = Validation.validCareList2().get(8);
+        assertEquals(expResult,result);
     }
 
     @Test
@@ -242,7 +251,7 @@ public class ValidationTest {
     @Test
     public void testCheckMontantValid() throws Exception {
 
-        String result = "";
+        String result;
 
         String montant = "19,99$";
         String expResult = "19.99$";

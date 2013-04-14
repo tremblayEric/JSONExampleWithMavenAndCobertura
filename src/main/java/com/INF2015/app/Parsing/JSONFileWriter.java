@@ -1,4 +1,4 @@
-package main.java.com.INF2015.app.Parsing;
+package com.INF2015.app.Parsing;
 
 import java.io.FileWriter;
 import java.io.IOException;

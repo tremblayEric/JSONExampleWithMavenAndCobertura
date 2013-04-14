@@ -24,12 +24,7 @@ public class JavaObjectReclamation {
         }
     }
 
-    public JavaObjectReclamation(String soin, String code, Date date, int montant) {
-        this.soin = soin;
-        this.code = code;//DDC3
-        this.date = date;
-        this.montant = montant;
-    }
+   
 
     public String getSoin() {
         return this.soin;

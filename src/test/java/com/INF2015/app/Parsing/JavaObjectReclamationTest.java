@@ -90,14 +90,5 @@ public class JavaObjectReclamationTest {
         }
     }
     
-    @Test 
-    public void JavaObjectReclamationConstructoIntegerAmount(){
-        int expecteResult = 0;
-        JavaObjectReclamation fake = new JavaObjectReclamation("","",null,0);
-        int result = fake.getMontant();
-        
-        assertEquals(expecteResult,result);
-        
-        
-    }
+    
 }

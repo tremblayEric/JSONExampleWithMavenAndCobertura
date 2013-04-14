@@ -1,19 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package main.java.com.INF2015.app.Parsing;
 
+import com.INF2015.app.Parsing.JSONFileWriter;
 import net.sf.json.JSONObject;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-/**
- *
- * @author eric et bendjina
- */
+
 public class JSONFileWriterTest {
 
     public JSONFileWriterTest() {
@@ -27,9 +22,6 @@ public class JSONFileWriterTest {
     public static void tearDownClass() {
     }
 
-    /**
-     * Test of writeJSONObbjectToFile method, of class JSONFileWriter.
-     */
     @Test
     public void testWriteJSONObbjectToFile() {
         System.out.println("writeJSONObbjectToFile");
