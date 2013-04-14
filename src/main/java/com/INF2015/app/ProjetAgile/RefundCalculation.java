@@ -6,6 +6,7 @@ import com.INF2015.app.Parsing.JavaObjectDossier;
 import com.INF2015.app.Parsing.JavaObjectReclamation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -76,67 +77,64 @@ public class RefundCalculation {
     private void adjustRefundForMaximum(List<JavaObjectReclamation> allRefundList) {
 
         ContractList contractDetails = new ContractList();
-        int monthlyMaxOsteo = contractDetails.getCareMonthlyMaximumLimit("100") * 100;
-        int monthlyMaxGeneral = contractDetails.getCareMonthlyMaximumLimit("175") * 100;
-        int monthlyMaxPsycho = contractDetails.getCareMonthlyMaximumLimit("200") * 100;
-        int monthlyMaxChiro = contractDetails.getCareMonthlyMaximumLimit("500") * 100;
-        int monthlyMaxPhysio = contractDetails.getCareMonthlyMaximumLimit("600") * 100;
-
-        int osteoTotal = 0;
-        int generalTotal = 0;
-        int psychoTotal = 0;
-        int chiroTotal = 0;
-        int physioTotal = 0;
-        int montant = 0;
-
+        ArrayList<Integer> careMonthlyMaximumLimitList = contractDetails.getCareMonthlyMaxLimitArrayList();
+        List<Integer> totalList =Arrays.asList(0,0,0,0,0,0);
+        
         int result = 0;
 
         for (int i = 0; i < allRefundList.size(); ++i) {
 
             JavaObjectReclamation reclamation = allRefundList.get(i);
+            careFiltering( reclamation,totalList);
+            
+        }
+    }
+    
+    private void careFiltering(JavaObjectReclamation reclamation,List<Integer> totalList){
+        
+        ContractList contractDetails = new ContractList();
+        ArrayList<Integer> careMonthlyMaximumLimitList = contractDetails.getCareMonthlyMaxLimitArrayList();
+        
+        int result = 0;
+        
+        if (reclamation.getSoin().compareTo("100") == 0) {
 
-            if (reclamation.getSoin().compareTo("100") == 0) {
-
-                result = refundAdjustment(reclamation, osteoTotal, monthlyMaxOsteo);
+                result = refundAdjustment(reclamation, totalList.get(0), careMonthlyMaximumLimitList.get(0));
                 if (result != -1) {
-                    osteoTotal = result;
+                    totalList.set(0, result);
                 }
 
             } else if (reclamation.getSoin().compareTo("175") == 0) {
 
-                result = refundAdjustment(reclamation, generalTotal, monthlyMaxGeneral);
+                result = refundAdjustment(reclamation, totalList.get(1), careMonthlyMaximumLimitList.get(1));
                 if (result != -1) {
-                    generalTotal = result;
+                    totalList.set(1, result);
                 }
 
             } else if (reclamation.getSoin().compareTo("200") == 0) {
 
-                result = refundAdjustment(reclamation, psychoTotal, monthlyMaxPsycho);
+                result = refundAdjustment(reclamation, totalList.get(2), careMonthlyMaximumLimitList.get(2));
                 if (result != -1) {
-                    psychoTotal = result;
+                    totalList.set(2, result);
                 }
 
             } else if (reclamation.getSoin().compareTo("500") == 0) {
 
-                result = refundAdjustment(reclamation, chiroTotal, monthlyMaxChiro);
+                result = refundAdjustment(reclamation, totalList.get(3), careMonthlyMaximumLimitList.get(3));
                 if (result != -1) {
-                    chiroTotal = result;
+                    totalList.set(3, result);
                 }
-
 
             } else if (reclamation.getSoin().compareTo("600") == 0) {
 
-                result = refundAdjustment(reclamation, physioTotal, monthlyMaxPhysio);
+                result = refundAdjustment(reclamation, totalList.get(4), careMonthlyMaximumLimitList.get(4));
                 if (result != -1) {
-                    physioTotal = result;
+                    totalList.set(4, result);
                 }
-
-            }
-        }
+        
     }
+    } 
 
-     
-    
     private int refundAdjustment(JavaObjectReclamation reclamation, int total, int monthlyMax) {
 
         int retour = -1;

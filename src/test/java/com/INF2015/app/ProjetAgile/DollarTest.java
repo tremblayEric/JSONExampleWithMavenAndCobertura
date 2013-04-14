@@ -26,16 +26,13 @@
  */
 package com.INF2015.app.ProjetAgile;
 
-import com.INF2015.app.ProjetAgile.Dollar;
 import com.INF2015.app.Validation.ValidationInputFileException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.Test;
 
 
 public class DollarTest {

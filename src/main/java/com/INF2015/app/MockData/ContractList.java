@@ -122,7 +122,7 @@ public class ContractList {
     
     public ArrayList getCareMonthlyMaxLimitArrayList(){
         
-        ArrayList monthlyMaxLimitArrayLis = new ArrayList();
+        ArrayList<Integer> monthlyMaxLimitArrayLis = new ArrayList();
         
         int monthlyMaxOsteo = getCareMonthlyMaximumLimit("100") * 100;
         int monthlyMaxGeneral = getCareMonthlyMaximumLimit("175") * 100;
