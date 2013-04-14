@@ -27,19 +27,16 @@ import com.INF2015.app.Parsing.JavaObjectDossier;
 import com.INF2015.app.Parsing.JavaObjectReclamation;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- *
- * @author Sayon CissÃƒÆ’Ã‚Â©
- */
+
 public class RefundCalculationTest {   
     RefundCalculation instance;
     JavaObjectDossier file;
@@ -65,16 +62,14 @@ public class RefundCalculationTest {
         refund = null;
     }
 
-    /*@Test
+    @Test
     public void testGetRefundList() throws ParseException {
         List<String>  expResult = Arrays.asList("175 H1 2013-01-11 400.00$",
                 "175 C 2013-01-14 130.00$", "175 E 2013-01-15 130.00$", 
                 "175 E 2013-01-17 130.00$");
-        List result = instance.getRefundList();
-                        
-        List result = instance.getRefundList();      
+        List result = instance.getRefundList();          
         assertEquals(expResult, result);
-    }*/
+    }
     
     @Test
     public void testDoCalcul() {
