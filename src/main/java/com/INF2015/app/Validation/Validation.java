@@ -22,10 +22,10 @@
 package com.INF2015.app.Validation;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
@@ -54,11 +54,11 @@ public class Validation {
         }
     }
     
-    private static String removeChar(String string){
+    protected static String removeChar(String string){
         return string.substring(string.indexOf("\"")+1 , string.lastIndexOf("\""));
     }
     
-    private static void valueIsNotEmpty(String value, String error) throws ValidationInputFileException {
+    protected static void valueIsNotEmpty(String value, String error) throws ValidationInputFileException {
         if(value.isEmpty()){
             throw new ValidationInputFileException(error);
         }     
