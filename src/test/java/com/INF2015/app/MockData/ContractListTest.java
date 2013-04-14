@@ -26,10 +26,6 @@
  */
 package com.INF2015.app.MockData;
 
-import org.junit.AfterClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.*;
@@ -38,10 +34,6 @@ import static org.junit.Assert.*;
 public class ContractListTest {
 
     List<Care> contractList;
-    Contracts dentalContracts;
-    Contracts naturoAcupContracts;
-    Care soinsDentaires;
-    Care NaturoAcupuncture;
     int maxMonthlyRefundDent;
     int maxMonthlyRefundNat;
     ContractList instanceContractList;
@@ -50,68 +42,177 @@ public class ContractListTest {
     public void setUp() throws Exception {
         contractList = new ArrayList<Care>();
         instanceContractList = new ContractList();
-        Contracts dentalContracts = new Contracts();
-        dentalContracts.setRatio(0, 5 / 10, 9 / 10, 1, 6 / 10);
-        dentalContracts.setMax(false, false, false, false, false);
-        dentalContracts.setMaxValue(-1, -1, -1, -1, -1);
-
-        Contracts naturoAcupContracts = new Contracts();
-        naturoAcupContracts.setRatio(0, 0, 9 / 10, 1, 25 / 100);
-        naturoAcupContracts.setMax(false, false, false, true, true);
-        naturoAcupContracts.setMaxValue(-1, -1, -1, 65, 15);
-
-        soinsDentaires = new Care("300", "Soins dentaires", dentalContracts, maxMonthlyRefundDent);
-        NaturoAcupuncture = new Care("400", "Naturopathie, acuponcture",
-                naturoAcupContracts, maxMonthlyRefundNat);
     }
 
     @After
     public void tearDown() throws Exception {
         contractList = null;
         instanceContractList = null;
-        dentalContracts = null;
-        naturoAcupContracts = null;
-        soinsDentaires = null;
-        NaturoAcupuncture = null;
     }
 
     @Test
-    public void testGetContractRatioByCareNumber() {
-        contractList.add(soinsDentaires);
-        double expContractRatioByCareNumber = -1.0;
-        String careNumber = contractList.get(0).getCareNumber();
-        String contract = contractList.get(0).getContract() + "";
-        double result = instanceContractList.getContractRatioByCareNumber(careNumber, contract);
-        assertEquals(expContractRatioByCareNumber, result, 0.0);
+    public void testGetContractRatioByCareNumberContractA() {
+        int expContractRatioByCareNumber = 35;
+        int result = instanceContractList.getContractRatioByCareNumber("100", "A");
+        assertEquals(expContractRatioByCareNumber, result);
+    }
+    
+    @Test
+    public void testGetContractRatioByCareNumberContractB() {
+        int expContractRatioByCareNumber = 50;
+        int result = instanceContractList.getContractRatioByCareNumber("100", "B");
+        assertEquals(expContractRatioByCareNumber, result);
+    }
+    
+    @Test
+    public void testGetContractRatioByCareNumberContractC() {
+        int expContractRatioByCareNumber = 95;
+        int result = instanceContractList.getContractRatioByCareNumber("100", "C");
+        assertEquals(expContractRatioByCareNumber, result);
+    }
+    
+    @Test
+    public void testGetContractRatioByCareNumberContractD() {
+        int expContractRatioByCareNumber = 100;
+        int result = instanceContractList.getContractRatioByCareNumber("100", "D");
+        assertEquals(expContractRatioByCareNumber, result);
+    }
+    
+    @Test
+    public void testGetContractRatioByCareNumberContractE() {
+        int expContractRatioByCareNumber = 25;
+        int result = instanceContractList.getContractRatioByCareNumber("100", "E");
+        assertEquals(expContractRatioByCareNumber, result);
     }
 
     @Test
-    public void testGetContractMaxValueByCareNumber() {
-        contractList.add(NaturoAcupuncture);
-        String careNumber = contractList.get(0).getCareNumber();
-        System.out.println("CareNumber = " + careNumber);
-        String contract = contractList.get(0).getContract() + "";
+    public void testGetContractMaxValueByCareNumberContractA() {
+        
         int expContractMaxValueByCareNumber = -1;
-        int result = instanceContractList.getContractMaxValueByCareNumber(careNumber, contract);
+        int result = instanceContractList.getContractMaxValueByCareNumber("100", "A");
+        assertEquals(expContractMaxValueByCareNumber, result);
+    }
+    
+    @Test
+    public void testGetContractMaxValueByCareNumberContractB() {
+        
+        int expContractMaxValueByCareNumber = 5000;
+        int result = instanceContractList.getContractMaxValueByCareNumber("100", "B");
+        assertEquals(expContractMaxValueByCareNumber, result);
+    }
+    
+    @Test
+    public void testGetContractMaxValueByCareNumberContractC() {
+        
+        int expContractMaxValueByCareNumber = -1;
+        int result = instanceContractList.getContractMaxValueByCareNumber("100", "C");
+        assertEquals(expContractMaxValueByCareNumber, result);
+    }
+    
+    @Test
+    public void testGetContractMaxValueByCareNumberContractD() {
+        
+        int expContractMaxValueByCareNumber = 7500;
+        int result = instanceContractList.getContractMaxValueByCareNumber("100", "D");
+        assertEquals(expContractMaxValueByCareNumber, result);
+    }
+    
+    @Test
+    public void testGetContractMaxValueByCareNumberContractE() {
+        
+        int expContractMaxValueByCareNumber = -1;
+        int result = instanceContractList.getContractMaxValueByCareNumber("100", "E");
         assertEquals(expContractMaxValueByCareNumber, result);
     }
 
     @Test
     public void testGetContractMaxValueByCareNumberExist() {
-        contractList.add(NaturoAcupuncture);
-        String careNumber = contractList.get(0).getCareNumber();
-        String contract = contractList.get(0).getContract() + "";
+        
         boolean expContractMaxValueByCareNumberExist = false;
-        boolean result = instanceContractList.getContractMaxValueByCareNumberExist(careNumber, contract);
+        boolean result = instanceContractList.getContractMaxValueByCareNumberExist("100", "A");
         assertEquals(expContractMaxValueByCareNumberExist, result);
-
-    }
+}
 
     @Test
-    public void testGetCareMonthlyMaximumLimit() {
+    public void testGetCareMonthlyMaximumLimitExist() {
         String careNumber = "300";
         int expResult = -1;
         int result = instanceContractList.getCareMonthlyMaximumLimit(careNumber);
         assertEquals(expResult, result);
     }
+    
+     @Test
+    public void testGetCareMonthlyMaximumLimitNotExist() {
+        String careNumber = "1200";
+        int expResult = 0;
+        int result = instanceContractList.getCareMonthlyMaximumLimit(careNumber);
+        assertEquals(expResult, result);
+    }
+     
+     @Test
+     public void testRoundCareNumber(){
+         String expRestult = "300";
+         String result = instanceContractList.roundCareNumber("319");
+         assertEquals(expRestult,result);
+     }
+     
+     @Test
+     public void testMassoContract(){
+         Contracts masso=  instanceContractList.massoContract();
+         assertNotNull(masso);
+     }
+     
+     @Test
+     public void testOsteoContract(){
+         Contracts osteo=  instanceContractList.osteoContract();
+         assertNotNull(osteo);
+     }
+     
+     @Test
+     public void testKinesitherapieContract(){
+         Contracts kine=  instanceContractList.kinesitherapieContract();
+         assertNotNull(kine);
+     }
+     
+     @Test
+     public void testPrivateGeneralMedecineContract(){
+         Contracts general=  instanceContractList.privateGeneralMedecineContract();
+         assertNotNull(general);
+     }
+     
+     @Test
+     public void testPsychoContract(){
+         Contracts psycho=  instanceContractList.psychoContract();
+         assertNotNull(psycho);
+     }
+     
+     @Test
+     public void testDentalContract(){
+         Contracts dental=  instanceContractList.dentalContract();
+         assertNotNull(dental);
+     }
+     
+     @Test
+     public void testNaturoAcupContract(){
+         Contracts naturo=  instanceContractList.naturoAcupContract();
+         assertNotNull(naturo);
+     }
+     
+     @Test
+     public void testChiroContract(){
+         Contracts masso=  instanceContractList.massoContract();
+         assertNotNull(masso);
+     }
+     
+     @Test
+     public void testPhysioContract(){
+         Contracts physio=  instanceContractList.physioContract();
+         assertNotNull(physio);
+     }
+     
+     @Test
+     public void testOrthoErgoContract(){
+         Contracts ortho=  instanceContractList.orthoErgoContract();
+         assertNotNull(ortho);
+     }
 }

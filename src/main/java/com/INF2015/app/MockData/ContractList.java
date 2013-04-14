@@ -139,7 +139,7 @@ public class ContractList {
         return monthlyMaxLimitArrayLis;
     }
 
-    private String roundCareNumber(String careNumber) {
+    protected String roundCareNumber(String careNumber) {
         String tempCare = careNumber;
         if (careNumber.charAt(0) == '3') {
             tempCare = "300";
@@ -147,7 +147,7 @@ public class ContractList {
         return tempCare;
     }
 
-    private Contracts massoContract() {
+    protected Contracts massoContract() {
         Contracts massoContract = new Contracts();
         massoContract.setRatio(25, 50, 90, 100, 15);
         massoContract.setMax(false, true, false, true, false);
@@ -155,7 +155,7 @@ public class ContractList {
         return massoContract;
     }
 
-    private Contracts osteoContract() {
+    protected Contracts osteoContract() {
         Contracts osteoContract = new Contracts();
         osteoContract.setRatio(35, 50, 95, 100, 25);
         osteoContract.setMax(false, true, false, true, false);
@@ -163,7 +163,7 @@ public class ContractList {
         return osteoContract;
     }
 
-    private Contracts kinesitherapieContract() {
+    protected Contracts kinesitherapieContract() {
         Contracts kinesitherapieContract = new Contracts();
         kinesitherapieContract.setRatio(0, 0, 85, 100, 15);
         kinesitherapieContract.setMax(false, false, false, true, false);
@@ -171,7 +171,7 @@ public class ContractList {
         return kinesitherapieContract;
     }
 
-    private Contracts privateGeneralMedecineContract() {
+    protected Contracts privateGeneralMedecineContract() {
         Contracts privateGeneralMedecineContract = new Contracts();
         privateGeneralMedecineContract.setRatio(50, 75, 90, 95, 25);
         privateGeneralMedecineContract.setMax(false, false, false, false, true);
@@ -179,7 +179,7 @@ public class ContractList {
         return privateGeneralMedecineContract;
     }
 
-    private Contracts psychoContract() {
+    protected Contracts psychoContract() {
         Contracts psychoContract = new Contracts();
         psychoContract.setRatio(25, 100, 90, 100, 12);
         psychoContract.setMax(false, false, false, true, false);
@@ -187,7 +187,7 @@ public class ContractList {
         return psychoContract;
     }
 
-    private Contracts dentalContract() {
+    protected Contracts dentalContract() {
         Contracts dentalContract = new Contracts();
         dentalContract.setRatio(0, 50, 90, 100, 60);
         dentalContract.setMax(false, false, false, false, false);
@@ -195,7 +195,7 @@ public class ContractList {
         return dentalContract;
     }
 
-    private Contracts naturoAcupContract() {
+    protected Contracts naturoAcupContract() {
         Contracts naturoAcupContract = new Contracts();
         naturoAcupContract.setRatio(0, 0, 90, 100, 25);
         naturoAcupContract.setMax(false, false, false, true, true);
@@ -203,7 +203,7 @@ public class ContractList {
         return naturoAcupContract;
     }
 
-    private Contracts chiroContract() {
+    protected Contracts chiroContract() {
         Contracts chiroContract = new Contracts();
         chiroContract.setRatio(25, 50, 90, 100, 30);
         chiroContract.setMax(false, true, false, false, true);
@@ -211,7 +211,7 @@ public class ContractList {
         return chiroContract;
     }
 
-    private Contracts physioContract() {
+    protected Contracts physioContract() {
         Contracts physioContract = new Contracts();
         physioContract.setRatio(40, 100, 75, 100, 15);
         physioContract.setMax(false, false, false, true, false);
@@ -219,7 +219,7 @@ public class ContractList {
         return physioContract;
     }
 
-    private Contracts orthoErgoContract() {
+    protected Contracts orthoErgoContract() {
         Contracts orthoErgoContract = new Contracts();
         orthoErgoContract.setRatio(0, 70, 90, 100, 22);
         orthoErgoContract.setMax(false, false, false, true, false);
