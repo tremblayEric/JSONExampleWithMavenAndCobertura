@@ -4,120 +4,138 @@
  */
 package com.INF2015.app.Parsing;
 
+import com.INF2015.app.ProjetAgile.Dollar;
+import com.INF2015.app.ProjetAgile.RefundCalculation;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author eric et bendjina
+ * @author Sayon CissÃ©
  */
 public class JavaObjectDossierTest {
     
-    public JavaObjectDossierTest() {
-    }
+    JavaObjectReclamation reclamation;
+    JavaObjectDossier instance;
+    String soin;
+    String code;
+    Date date;
+    String montant;
+    SimpleDateFormat dateFormat;
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
+    @Before
+    public void setUp() throws Exception{  
+        instance = new JavaObjectDossier();
+        instance.setDossier("A100323");
+        instance.setMois("2013-01");
+        soin = "175";
+        code = "H1";
+        montant = "400.00$";
+        String mois = "2013-01";
+        instance.setMois(mois);
+        date = instance.getFolderDate();
+        reclamation = new JavaObjectReclamation(soin, code, date, montant);
     }
 
-    /**
-     * Test of setDossier method, of class JavaObjectDossier.
-     */
+    @After
+    public void tearDown() throws Exception{ 
+        instance = null;
+        soin = null;
+        code = null;
+        montant = null;
+        dateFormat = null;
+        date = null;
+        reclamation = null;
+    }
+
     @Test
     public void testSetDossier() {
-        System.out.println("setDossier");
-        String dossier = "";
-        JavaObjectDossier instance = new JavaObjectDossier();
+        String dossier = "A100323";
         instance.setDossier(dossier);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String result = instance.getFolderNumber();
+        assertEquals(dossier, result);
+
     }
 
-    /**
-     * Test of setMois method, of class JavaObjectDossier.
-     */
     @Test
-    public void testSetMois() {
-        System.out.println("setMois");
-        String mois = "";
-        JavaObjectDossier instance = new JavaObjectDossier();
+    public void testSetMois()  {
+        SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
+        String mois = "2013-01";
         instance.setMois(mois);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Date date = instance.getFolderDate();
+        String result = dateFormatMois.format(date);
+        assertEquals(mois, result);
     }
 
-    /**
-     * Test of getFolderNumber method, of class JavaObjectDossier.
-     */
     @Test
     public void testGetFolderNumber() {
-        System.out.println("getFolderNumber");
-        JavaObjectDossier instance = new JavaObjectDossier();
-        String expResult = "";
+        String expResult = "A100323";
         String result = instance.getFolderNumber();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getFolderDate method, of class JavaObjectDossier.
-     */
     @Test
     public void testGetFolderDate() {
-        System.out.println("getFolderDate");
-        JavaObjectDossier instance = new JavaObjectDossier();
-        Date expResult = null;
+        Date expResult = date;
         Date result = instance.getFolderDate();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getFolderReclamationList method, of class JavaObjectDossier.
-     */
     @Test
-    public void testGetFolderReclamationList() {
-        System.out.println("getFolderReclamationList");
-        JavaObjectDossier instance = new JavaObjectDossier();
-        List expResult = null;
+    public void testGetFolderReclamationList() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>(); 
+        Date date = dateFormat.parse("2013-01-11");
+        JavaObjectReclamation reclamation1 = new JavaObjectReclamation("175","H1",date,"40000");
+        expResult.add(reclamation1);
+        instance.addToReclamationList(reclamation1);
+         
+        date = dateFormat.parse("2013-01-14");
+        JavaObjectReclamation reclamation2 = new JavaObjectReclamation("175","C",date,"13000");
+        expResult.add(reclamation2); 
+        instance.addToReclamationList(reclamation2);
+         
+        date = dateFormat.parse("2013-01-15");
+        JavaObjectReclamation reclamation3 = new JavaObjectReclamation("175","E",date,"13000");
+        expResult.add(reclamation3); 
+        instance.addToReclamationList(reclamation3);
+
+        date = dateFormat.parse("2013-01-14");
+        JavaObjectReclamation reclamation4 = new JavaObjectReclamation("175","H1",date,"13000");
+        expResult.add(reclamation4);
+        instance.addToReclamationList(reclamation4);                        
+        List result = instance.getFolderReclamationList();      
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testAddToReclamationList() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>(); 
+        Date date = dateFormat.parse("2013-01-11");
+        JavaObjectReclamation addReclamation1 = new JavaObjectReclamation("175","H1",date,"40000");
+        expResult.add(addReclamation1);
+        instance.addToReclamationList(addReclamation1);
         List result = instance.getFolderReclamationList();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of addToReclamationList method, of class JavaObjectDossier.
-     */
     @Test
-    public void testAddToReclamationList() {
-        System.out.println("addToReclamationList");
-        JavaObjectReclamation reclamation = null;
-        JavaObjectDossier instance = new JavaObjectDossier();
-        instance.addToReclamationList(reclamation);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of displayReclamationList method, of class JavaObjectDossier.
-     */
-    @Test
-    public void testDisplayReclamationList() {
-        System.out.println("displayReclamationList");
-        JavaObjectDossier instance = new JavaObjectDossier();
+    public void testDisplayReclamationList() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+        List<JavaObjectReclamation> expResult = new ArrayList<JavaObjectReclamation>(); 
+        Date date = dateFormat.parse("2013-01-11");
+        JavaObjectReclamation displayReclamation = new JavaObjectReclamation("175","H1",date,"40000");
+        expResult.add(displayReclamation);
+        instance.addToReclamationList(displayReclamation);
         instance.displayReclamationList();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        List result = instance.getFolderReclamationList();
+        assertEquals(expResult, result);
+    }         
 }

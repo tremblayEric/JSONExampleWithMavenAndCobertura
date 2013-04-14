@@ -53,7 +53,7 @@ public class RefundCalculation {
         return allRefundList;
     }
 
-    private Integer doCalcul(int valeur, String numeroSoin, String contrat, String code) {
+    protected Integer doCalcul(int valeur, String numeroSoin, String contrat, String code) {
         int refund;
         int ratio = contractsList.getContractRatioByCareNumber(numeroSoin, contrat);
         if((code.substring(0,1)).compareTo("H") == 0){
@@ -69,7 +69,7 @@ public class RefundCalculation {
         return refund;
     }
 
-    private String getFolderContract() {
+    protected String getFolderContract() {
         return monthlyFile.getFolderNumber().substring(0, 1);
     }
 

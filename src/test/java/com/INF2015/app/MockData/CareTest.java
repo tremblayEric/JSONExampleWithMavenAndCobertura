@@ -1,90 +1,102 @@
+/* Copyright 2011 Jacques Berger
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ * 
+ * ModifiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© dans le cadre du cours : 
+ * Programmation dans un environnement agile INF2015 
+ * TP1
+ * 
+ * Par:
+ * jpokou
+ * pdarveau
+ * sayonCisse
+ * tremblayEric
+ * 
+ * UQAM hiver 2013
+ */
 
 package com.INF2015.app.MockData;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
 
 
+/**
+ *
+ * @author Sayon cissé
+ */
 public class CareTest {
     
-    public CareTest() {
+    Care instance, instance2;
+    String careNumber, expectedCareNumber;
+    String careCategory, expectedCareCategory;
+    int monthlyMaxLimit;
+    Contracts contract;
+           
+    @Before
+    public void setUp() throws Exception{
+        instance = new Care(null, null, null, 0) ;
+        contract = new Contracts();
+        expectedCareNumber = "100";
+	expectedCareCategory = "OstÃ©opathie"; 
+        monthlyMaxLimit = 200;
+        instance2 = new Care(expectedCareNumber, expectedCareCategory, contract, monthlyMaxLimit);
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-       
+    @After
+    public void tearDown() throws Exception{
+	instance =  null;
+	careNumber = null;
+	careCategory = null;
+	contract = null; 
+        instance2 =  null;
+	expectedCareNumber = null;
+	expectedCareCategory = null;       
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-   
     @Test
-    public void testGetCareNumber() {
-        System.out.println("getCareNumber");
-        Care instance = new Care("100", null, null,0);
-        String expResult = "100";
-        String result = instance.getCareNumber();
-        assertEquals(expResult, result);
-       
+    public void testGetcareNumber() {  
+        assertNull(instance.getCareNumber()); 
+        assertEquals(expectedCareNumber, instance2.getCareNumber());   
+        assertFalse(instance.getCareNumber() != null);     
     }
-
-    /**
-     * Test of getCareCategorie method, of class Care.
-     */
+    
     @Test
     public void testGetCareCategorie() {
-        System.out.println("getCareCategorie");
-        Care instance = null;
-        String expResult = "";
-        String result = instance.getCareCategorie();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNull(instance.getCareCategorie()); 
+        assertEquals(expectedCareCategory, instance2.getCareCategorie());
+        assertFalse(instance.getCareCategorie() != null); 
     }
 
-    /**
-     * Test of getContract method, of class Care.
-     */
     @Test
     public void testGetContract() {
-        System.out.println("getContract");
-        Care instance = null;
-        Contracts expResult = null;
-        Contracts result = instance.getContract();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNull(instance.getContract()); 
+        assertTrue(instance2.getContract() != null);
     }
 
-    /**
-     * Test of getMonthlyMaxLimit method, of class Care.
-     */
     @Test
     public void testGetMonthlyMaxLimit() {
-        System.out.println("getMonthlyMaxLimit");
-        Care instance = null;
-        int expResult = 0;
-        int result = instance.getMonthlyMaxLimit();
+        int expResult = 200;
+        int result = instance2.getMonthlyMaxLimit();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of toString method, of class Care.
-     */
-    @Test
+    /*@Test
     public void testToString() {
-        System.out.println("toString");
-        Care instance = null;
-        String expResult = "";
-        String result = instance.toString();
+        String expResult = "100 category = OstÃ©opathie contrat = A100323";
+        String result = instance2.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    }*/
 }

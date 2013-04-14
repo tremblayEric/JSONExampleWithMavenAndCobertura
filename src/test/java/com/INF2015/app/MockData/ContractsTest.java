@@ -1,289 +1,242 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Copyright 2011 Jacques Berger
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ * 
+ * ModifiÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© dans le cadre du cours : 
+ * Programmation dans un environnement agile INF2015 
+ * TP1
+ * 
+ * Par:
+ * jpokou
+ * pdarveau
+ * sayonCisse
+ * tremblayEric
+ * 
+ * UQAM hiver 2013
  */
+
 package com.INF2015.app.MockData;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author eric et bendjina
- */
 public class ContractsTest {
     
-    public ContractsTest() {
+    Contracts instanceContracts;
+    int ratioA;
+    int ratioB;
+    int ratioC;
+    int ratioD;
+    int ratioE;
+    
+    int exceptedRatioA;
+    int exceptedRatioB;
+    int exceptedRatioC;
+    int exceptedRatioD;
+    int exceptedRatioE;
+    
+    boolean maxA;
+    boolean maxB;
+    boolean maxC;
+    boolean maxD;
+    boolean maxE;
+    boolean exceptedMaxA;
+    boolean exceptedMaxB;
+    boolean exceptedMaxC;
+    boolean exceptedMaxD;
+    boolean exceptedMaxE;
+    
+    int maxValueA;
+    int maxValueB;
+    int maxValueC;
+    int maxValueD;
+    int maxValueE;
+    int exceptedMaxValueA;
+    int exceptedMaxValueB;
+    int exceptedMaxValueC;
+    int exceptedMaxValueD;
+    int exceptedMaxValueE;
+
+    @Before
+    public void setUp() throws Exception{     
+        instanceContracts = new Contracts(); 
+        initializeMaxX();
+        initializeMaxValueX(); 
+        initializeRatio();
+        instanceContracts.setRatio(ratioA, ratioB, ratioC, ratioD, ratioE);
+        instanceContracts.setMax(maxA, maxB, maxC, maxD, maxE);
+        instanceContracts.setMaxValue(maxValueA, maxValueB, maxValueC, maxValueD, maxValueE);       
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    @After
+    public void tearDown() throws Exception{      
+        instanceContracts = null;
+        setRatioToZero();
+        setMaxToZero();
+        setMaxValueToZero();    
+    }
+
+    public void initializeRatio() {                        
+        ratioA = 25/100;
+        ratioB = 5/10;
+        ratioC = 9/10;
+        ratioD = 1;
+        ratioE = 15/100;  
+    }
+    public void initializeMaxX() {                        
+        maxA = false;
+        maxB = true;
+        maxC = false;
+        maxD = true;
+        maxE = false;
+    }
+   
+    public void initializeMaxValueX() {
+        maxValueA = -1;
+        maxValueB = 40;
+        maxValueC = -1;
+        maxValueD = 85;
+        maxValueE = -1;
+    }
+    public void setRatioToZero() {                        
+        ratioA = 0;
+        ratioB = 0;
+        ratioC = 0;
+        ratioD = 0;
+        ratioE = 0;
+    }
+    public void setMaxToZero() {                        
+        maxA = false;
+        maxB = false;
+        maxC = false;
+        maxD = false;
+        maxE = false; 
+    }
+    public void setMaxValueToZero() {                        
+        maxValueA = 0;
+        maxValueB = 0;
+        maxValueC = 0;
+        maxValueD = 0;
+        maxValueE = 0; 
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    /**
-     * Test of setRatio method, of class Contracts.
-     */
-    @Test
-    public void testSetRatio() {
-        System.out.println("setRatio");
-        int ratioA = 0;
-        int ratioB = 0;
-        int ratioC = 0;
-        int ratioD = 0;
-        int ratioE = 0;
-        Contracts instance = new Contracts();
-        instance.setRatio(ratioA, ratioB, ratioC, ratioD, ratioE);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setMax method, of class Contracts.
-     */
-    @Test
-    public void testSetMax() {
-        System.out.println("setMax");
-        boolean maxA = false;
-        boolean maxB = false;
-        boolean maxC = false;
-        boolean maxD = false;
-        boolean maxE = false;
-        Contracts instance = new Contracts();
-        instance.setMax(maxA, maxB, maxC, maxD, maxE);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setMaxValue method, of class Contracts.
-     */
-    @Test
-    public void testSetMaxValue() {
-        System.out.println("setMaxValue");
-        int maxValueA = 0;
-        int maxValueB = 0;
-        int maxValueC = 0;
-        int maxValueD = 0;
-        int maxValueE = 0;
-        Contracts instance = new Contracts();
-        instance.setMaxValue(maxValueA, maxValueB, maxValueC, maxValueD, maxValueE);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getRatioA method, of class Contracts.
-     */
     @Test
     public void testGetRatioA() {
-        System.out.println("getRatioA");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getRatioA();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        exceptedRatioA = 25/100;
+        double resultGetRatioA = instanceContracts.getRatioA();
+        assertEquals(exceptedRatioA, resultGetRatioA, resultGetRatioA);  
     }
 
-    /**
-     * Test of getRatioB method, of class Contracts.
-     */
     @Test
     public void testGetRatioB() {
-        System.out.println("getRatioB");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getRatioB();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        exceptedRatioB = 5/10;
+        double resultGetRatioB = instanceContracts.getRatioB();
+        assertEquals(exceptedRatioB, resultGetRatioB, 0.0);       
     }
 
-    /**
-     * Test of getRatioC method, of class Contracts.
-     */
     @Test
     public void testGetRatioC() {
-        System.out.println("getRatioC");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getRatioC();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        exceptedRatioC = 9/10;      
+        double resultGetRatioC = instanceContracts.getRatioC();
+        assertEquals(exceptedRatioC, resultGetRatioC, 0.0);  
     }
 
-    /**
-     * Test of getRatioD method, of class Contracts.
-     */
     @Test
-    public void testGetRatioD() {
-        System.out.println("getRatioD");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getRatioD();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetRatioD() {       
+        exceptedRatioD = 1;  
+        double resultGetRatioD = instanceContracts.getRatioD();
+        assertEquals(exceptedRatioD, resultGetRatioD, 0.0);  
     }
 
-    /**
-     * Test of getRatioE method, of class Contracts.
-     */
     @Test
     public void testGetRatioE() {
-        System.out.println("getRatioE");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getRatioE();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        exceptedRatioE = 15/100;       
+        double resultGetRatioE = instanceContracts.getRatioE();
+        assertEquals(exceptedRatioE, resultGetRatioE, 0.0);       
+    }
+    
+    @Test
+    public void testGetmaxA() {
+        exceptedMaxA = false;
+        boolean resultGetMaxA = instanceContracts.getMaxA();
+        assertTrue(!resultGetMaxA);
+        assertFalse(resultGetMaxA);
     }
 
-    /**
-     * Test of getMaxA method, of class Contracts.
-     */
     @Test
-    public void testGetMaxA() {
-        System.out.println("getMaxA");
-        Contracts instance = new Contracts();
-        boolean expResult = false;
-        boolean result = instance.getMaxA();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetmaxB() {
+        exceptedMaxB = true; 
+        boolean resultGetMaxB = instanceContracts.getMaxB();
+        assertTrue(resultGetMaxB);
+        assertFalse(!resultGetMaxB);      
     }
 
-    /**
-     * Test of getMaxB method, of class Contracts.
-     */
     @Test
-    public void testGetMaxB() {
-        System.out.println("getMaxB");
-        Contracts instance = new Contracts();
-        boolean expResult = false;
-        boolean result = instance.getMaxB();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetmaxC() {      
+        exceptedMaxC = false;
+        boolean resultGetMaxC = instanceContracts.getMaxC();
+        assertTrue(!resultGetMaxC);
+        assertFalse(resultGetMaxC);
     }
 
-    /**
-     * Test of getMaxC method, of class Contracts.
-     */
     @Test
-    public void testGetMaxC() {
-        System.out.println("getMaxC");
-        Contracts instance = new Contracts();
-        boolean expResult = false;
-        boolean result = instance.getMaxC();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetmaxD() {
+        exceptedMaxD = true;
+        boolean resultGetMaxD = instanceContracts.getMaxD();
+        assertTrue(resultGetMaxD);
+        assertFalse(!resultGetMaxD);
     }
 
-    /**
-     * Test of getMaxD method, of class Contracts.
-     */
     @Test
-    public void testGetMaxD() {
-        System.out.println("getMaxD");
-        Contracts instance = new Contracts();
-        boolean expResult = false;
-        boolean result = instance.getMaxD();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetmaxE() {
+        exceptedMaxE = false;
+        boolean resultGetMaxE = instanceContracts.getMaxE();
+        assertTrue(!resultGetMaxE);
+        assertFalse(resultGetMaxE);
     }
 
-    /**
-     * Test of getMaxE method, of class Contracts.
-     */
     @Test
-    public void testGetMaxE() {
-        System.out.println("getMaxE");
-        Contracts instance = new Contracts();
-        boolean expResult = false;
-        boolean result = instance.getMaxE();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetMavalueA() {
+        exceptedMaxValueA = -1;
+        double resultGetMavalueA = instanceContracts.getMaxValueA();
+        assertEquals(exceptedMaxValueA, resultGetMavalueA, 0.0);  
     }
 
-    /**
-     * Test of getMaxValueA method, of class Contracts.
-     */
     @Test
-    public void testGetMaxValueA() {
-        System.out.println("getMaxValueA");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getMaxValueA();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetMavalueB() {
+        exceptedMaxValueB = 40;
+        double resultGetMavalueB = instanceContracts.getMaxValueB();
+        assertEquals(exceptedMaxValueB, resultGetMavalueB, 0.0);
     }
 
-    /**
-     * Test of getMaxValueB method, of class Contracts.
-     */
     @Test
-    public void testGetMaxValueB() {
-        System.out.println("getMaxValueB");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getMaxValueB();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetMavalueC() {
+        exceptedMaxValueC = -1;
+        double resultGetMavalueC = instanceContracts.getMaxValueC();
+        assertEquals(exceptedMaxValueC, resultGetMavalueC, 0.0);
     }
 
-    /**
-     * Test of getMaxValueC method, of class Contracts.
-     */
     @Test
-    public void testGetMaxValueC() {
-        System.out.println("getMaxValueC");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getMaxValueC();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetMavalueD() {
+        exceptedMaxValueD = 85;
+        double resultGetMavalueD = instanceContracts.getMaxValueD();
+        assertEquals(exceptedMaxValueD, resultGetMavalueD, 0.0);
     }
 
-    /**
-     * Test of getMaxValueD method, of class Contracts.
-     */
     @Test
-    public void testGetMaxValueD() {
-        System.out.println("getMaxValueD");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getMaxValueD();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getMaxValueE method, of class Contracts.
-     */
-    @Test
-    public void testGetMaxValueE() {
-        System.out.println("getMaxValueE");
-        Contracts instance = new Contracts();
-        int expResult = 0;
-        int result = instance.getMaxValueE();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetMavalueE() {
+        exceptedMaxValueE = -1; 
+        double resultGetMavalueE = instanceContracts.getMaxValueE();
+        assertEquals(exceptedMaxValueE, resultGetMavalueE, 0.0);
     }
 }

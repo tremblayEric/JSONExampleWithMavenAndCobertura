@@ -4,109 +4,85 @@
  */
 package com.INF2015.app.Parsing;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author eric et bendjina
+ * @author Sayon CissÃ©
  */
 public class JavaObjectReclamationTest {
     
-    public JavaObjectReclamationTest() {
-    }
+    JavaObjectReclamation instance;
+    JavaObjectDossier dossier;
+    String soin;
+    String code;
+    Date date;
+    String montant;
+    SimpleDateFormat dateFormat;
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
+    @Before
+    public void setUp() throws Exception{  
+        dossier = new JavaObjectDossier();
+        dossier.setDossier("A100323");
+        dossier.setMois("2013-01");
+        soin = "175";
+        code = "H1";
+        montant = "400.00$";
+        String mois = "2013-01";
+        dossier.setMois(mois);
+        date = dossier.getFolderDate();
+        instance = new JavaObjectReclamation(soin, code, date, montant);
     }
 
-    /**
-     * Test of getSoin method, of class JavaObjectReclamation.
-     */
+    @After
+    public void tearDown() throws Exception{ 
+        instance = null;
+        soin = null;
+        code = null;
+        montant = null;
+        dateFormat = null;
+        date = null;
+        dossier = null;
+    }
+
     @Test
     public void testGetSoin() {
-        System.out.println("getSoin");
-        JavaObjectReclamation instance = null;
-        String expResult = "";
+        String expResult = "175";
         String result = instance.getSoin();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getCode method, of class JavaObjectReclamation.
-     */
+    
     @Test
     public void testGetCode() {
-        System.out.println("getCode");
-        JavaObjectReclamation instance = null;
-        String expResult = "";
+        String expResult = "H1";
         String result = instance.getCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getDate method, of class JavaObjectReclamation.
-     */
     @Test
     public void testGetDate() {
-        System.out.println("getDate");
-        JavaObjectReclamation instance = null;
-        Date expResult = null;
-        Date result = instance.getDate();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM-DD");
+        String mois = "2013-01-01";
+        Date date = instance.getDate();
+        String result = dateFormatMois.format(date);
+        assertEquals(mois, result);
     }
 
-    /**
-     * Test of getMontant method, of class JavaObjectReclamation.
-     */
     @Test
     public void testGetMontant() {
-        System.out.println("getMontant");
-        JavaObjectReclamation instance = null;
-        int expResult = 0;
+        int expResult = 40000;
         int result = instance.getMontant();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of toString method, of class JavaObjectReclamation.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        JavaObjectReclamation instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setMontant method, of class JavaObjectReclamation.
-     */
     @Test
     public void testSetMontant() {
-        System.out.println("setMontant");
-        int montant = 0;
-        JavaObjectReclamation instance = null;
+        int montant = 400000;
         instance.setMontant(montant);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int result = instance.getMontant();
+        assertEquals(montant, result);
     }
 }
