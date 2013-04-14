@@ -88,84 +88,72 @@ public class RefundCalculation {
         int chiroTotal = 0;
         int physioTotal = 0;
         int montant = 0;
+        
+        int result = 0;
 
         for (int i = 0; i < allRefundList.size(); ++i) {
 
             JavaObjectReclamation reclamation = allRefundList.get(i);
 
             if (reclamation.getSoin().compareTo("100") == 0) {
-                  montant = reclamation.getMontant() / 100;
-
-                if ((montant + osteoTotal) >= monthlyMaxOsteo) {
-                    reclamation.setMontant((monthlyMaxOsteo - osteoTotal) * 100);
-                    osteoTotal = monthlyMaxOsteo;
-                } else if (osteoTotal >= monthlyMaxOsteo) {
-
-                    reclamation.setMontant(0);
-                } else {
-
-                    osteoTotal += montant;
-                }
                 
+               result = refundAdjustment( reclamation,  osteoTotal,  monthlyMaxOsteo); 
+               if(result != -1){
+                   osteoTotal = result;
+               }
 
             } else if (reclamation.getSoin().compareTo("175") == 0) {
                 
-                montant = reclamation.getMontant() / 100;
-
-                if ((montant + generalTotal) >= monthlyMaxGeneral) {
-                    reclamation.setMontant((monthlyMaxGeneral - generalTotal) * 100);
-                    generalTotal = monthlyMaxGeneral;
-                } else if (generalTotal >= monthlyMaxGeneral) {
-
-                    reclamation.setMontant(0);
-                } else {
-
-                    generalTotal += montant;
-                }
+               result = refundAdjustment( reclamation,  generalTotal,  monthlyMaxGeneral); 
+               if(result != -1){
+                   generalTotal = result;
+               }
                 
             } else if (reclamation.getSoin().compareTo("200") == 0) {
                 
-                montant = reclamation.getMontant() / 100;
-
-                if ((montant + psychoTotal) >= monthlyMaxPsycho) {
-                    reclamation.setMontant((monthlyMaxPsycho - psychoTotal) * 100);
-                    psychoTotal = monthlyMaxPsycho;
-                } else if (psychoTotal >= monthlyMaxPsycho) {
-                    reclamation.setMontant(0);
-                } else {
-                    psychoTotal += montant;
-                }
+               result = refundAdjustment( reclamation,  psychoTotal,  monthlyMaxPsycho); 
+               if(result != -1){
+                   psychoTotal = result;
+               }
+                
             } else if (reclamation.getSoin().compareTo("500") == 0) {
-                montant = reclamation.getMontant() / 100;
-
-                if ((montant + chiroTotal) >= monthlyMaxChiro) {
-                    reclamation.setMontant((monthlyMaxChiro - chiroTotal) * 100);
-                    chiroTotal = monthlyMaxChiro;
-                } else if (chiroTotal >= monthlyMaxChiro) {
-
-                    reclamation.setMontant(0);
-                } else {
-
-                    chiroTotal += montant;
-                }
+                
+               result = refundAdjustment( reclamation,  chiroTotal,  monthlyMaxChiro); 
+               if(result != -1){
+                   chiroTotal = result;
+               }
+                
+                
             } else if (reclamation.getSoin().compareTo("600") == 0) {
-               montant = reclamation.getMontant() / 100;
-
-                if ((montant + physioTotal) >= monthlyMaxPhysio) {
-                    reclamation.setMontant((monthlyMaxPhysio - physioTotal) * 100);
-                    physioTotal = monthlyMaxPhysio;
-                } else if (physioTotal >= monthlyMaxPhysio) {
-
-                    reclamation.setMontant(0);
-                } else {
-
-                    physioTotal += montant;
-                }
+                
+               result = refundAdjustment( reclamation,  physioTotal,  monthlyMaxPhysio); 
+               if(result != -1){
+                   physioTotal = result;
+               }
+              
             }
 
         }
 
  
+    }
+    
+    private int refundAdjustment(JavaObjectReclamation reclamation, int total, int monthlyMax){
+        
+        int retour = -1;
+        int montant = reclamation.getMontant() / 100;
+        
+        if ((montant + total) >= monthlyMax) {
+                    reclamation.setMontant((monthlyMax - total) * 100);
+                    retour = monthlyMax;
+                } else if (total >= monthlyMax) {
+                    reclamation.setMontant(0);
+                } else {
+                    retour =  montant + total;
+                }
+        
+        
+        return retour;
     }
 
     private void familyMemberRecuperation(){
