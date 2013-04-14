@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.INF2015.app.Parsing;
 
 import java.text.SimpleDateFormat;
@@ -9,10 +6,7 @@ import java.util.Date;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Sayon CissÃ©
- */
+
 public class JavaObjectReclamationTest {
 
     JavaObjectReclamation instance;
@@ -84,5 +78,26 @@ public class JavaObjectReclamationTest {
         instance.setMontant(montant);
         int result = instance.getMontant();
         assertEquals(montant, result);
+    }
+    
+    @Test 
+    public void JavaObjectReclamationConstructorAmountError(){
+        String expectedMessage = "plantage de conversion de string en double";
+        try{
+        JavaObjectReclamation result = new JavaObjectReclamation("","",null,"notADouble");
+        }catch(Exception e){
+            assertEquals(expectedMessage,e.getMessage());
+        }
+    }
+    
+    @Test 
+    public void JavaObjectReclamationConstructoIntegerAmount(){
+        int expecteResult = 0;
+        JavaObjectReclamation fake = new JavaObjectReclamation("","",null,0);
+        int result = fake.getMontant();
+        
+        assertEquals(expecteResult,result);
+        
+        
     }
 }
