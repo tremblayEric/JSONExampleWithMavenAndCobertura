@@ -68,19 +68,19 @@ public class RefundCalculationTest {
     public void testGetRefundList() throws ParseException {
         List<String> expResult = Arrays.asList("175 H1 2013-01-11 400.00$");
         List result = instance.getRefundList();
-        JavaObjectReclamation rec = (JavaObjectReclamation)result.get(0);
-        String resultat = rec.getCare()+" "+rec.getCode() + " "+rec.getDate().toString()+" "+rec.getAmount();
+        JavaObjectReclamation reclamation = (JavaObjectReclamation)result.get(0);
+        String resultat = reclamation.getCare()+" "+reclamation.getCode() + " "+reclamation.getDate().toString()+" "+reclamation.getAmount();
         assertEquals(expResult, resultat);
     }
 
     @Test
     public void testDoCalcul() {
-        int valeur = 1 / 2;
-        String numeroSoin = "175";
+        int value = 1 / 2;
+        String careNumber = "175";
         String code = "H1";
         String contract = "A100323";
         int expResult = 0;
-        int result = instance.doCalcul(valeur, numeroSoin, contract, code);
+        int result = instance.doCalcul(value, careNumber, contract, code);
         assertEquals(expResult, result);
     }
 
@@ -103,9 +103,7 @@ public class RefundCalculationTest {
     
     @Ignore
     public void testFamilyMemberRecuperation(){
-        
-       // file.familyMemberRecuperation();
-        assertTrue(familyMember.size() == 1);
+       assertTrue(familyMember.size() == 1);
     }
     
     @Test
