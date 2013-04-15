@@ -55,14 +55,14 @@ public class JSONReclamationsParsing {
         return this.javaDossier;
     }
 
-    private void javaDossierFabrication() throws ValidationInputFileException {
+    protected void javaDossierFabrication() throws ValidationInputFileException {
         javaDossier = new JavaObjectDossier();
         javaDossier.setDossier(Validation.checkFolder(folder.getString("dossier")));
         javaDossier.setMois(Validation.checkMonth(folder.getString("mois")));
         reclamationsFromJSONToJava();
     }
 
-    private void reclamationsFromJSONToJava() throws ValidationInputFileException {
+    protected void reclamationsFromJSONToJava() throws ValidationInputFileException {
         JSONArray reclamations = folder.getJSONArray("reclamations");
         for (int i = 0; i < reclamations.size(); ++i) {
             javaDossier.addToReclamationList(javaReclamationCreation(reclamations.get(i)));
@@ -70,7 +70,7 @@ public class JSONReclamationsParsing {
 
     }
 
-    private JavaObjectReclamation javaReclamationCreation(Object reclamation) throws ValidationInputFileException {
+    protected JavaObjectReclamation javaReclamationCreation(Object reclamation) throws ValidationInputFileException {
         JSONObject object = (JSONObject) reclamation;
         String soin = Validation.checkSoin(object.getString("soin"));
         String code = Validation.checkCode(object.getString("code"));//DDC3
@@ -84,7 +84,7 @@ public class JSONReclamationsParsing {
         return new JavaObjectReclamation(soin, code, date, montant);
     }
 
-    private void displayReclamationList() {
+    protected void displayReclamationList() {
         javaDossier.displayReclamationList();
     }
 }
