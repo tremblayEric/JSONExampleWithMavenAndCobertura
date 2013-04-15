@@ -27,13 +27,13 @@ public class ValidationTest {
 
    
     @Test
-    public void testCheckSoin() throws Exception {
+    public void testCareValidation() throws Exception {
 
-        String soin = "0";
-        String validCare = Validation.careValidation(soin);
-        soin = "666";
+        String care = "0";
+        String validCare = Validation.careValidation(care);
+        care = "666";
         try {
-            Validation.careValidation(soin);
+            Validation.careValidation(care);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_SOIN);
         }
@@ -152,19 +152,19 @@ public class ValidationTest {
     @Test
     public void testCheckFolderValid() throws Exception {
 
-        String noDossier = "A234567";
-        String expresult = Validation.folderNumberValidation(noDossier);
-        assertEquals(expresult, noDossier);
+        String folderNumber = "A234567";
+        String expresult = Validation.folderNumberValidation(folderNumber);
+        assertEquals(expresult, folderNumber);
 
     }
 
     @Test
     public void testCheckFolderInvalidContract() throws Exception {
 
-        String noDossier = "G123456";
+        String folderNumber = "G123456";
 
         try {
-            Validation.folderNumberValidation(noDossier);
+            Validation.folderNumberValidation(folderNumber);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
@@ -174,17 +174,17 @@ public class ValidationTest {
     @Test
     public void testCheckFolderInvalNumberId() throws Exception {
 
-        String noDossier = "Aqwerty";
+        String folderNumber = "Aqwerty";
 
         try {
-            Validation.folderNumberValidation(noDossier);
+            Validation.folderNumberValidation(folderNumber);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
     }
 
     @Test
-    public void testIsInteger2() throws Exception {
+    public void testIsInteger() throws Exception {
         String isNotAnInteger = "a";
         String expMessage = "ERROR";
         try {
@@ -195,7 +195,7 @@ public class ValidationTest {
     }
 
     @Test
-    public void testCheckDate() throws Exception {
+    public void testDateValidation() throws Exception {
         String date = "2013-03-02";
         String month = "2013-03";
         String expResult = Validation.dateValidation(date, month);
@@ -203,7 +203,7 @@ public class ValidationTest {
     }
 
     @Test
-    public void testCheckMonth() throws Exception {
+    public void testMonthValidation() throws Exception {
         String expResult = "2013-03";
         String result = Validation.monthValidation(expResult);
         assertEquals(expResult, result);
@@ -258,9 +258,9 @@ public class ValidationTest {
     @Test
     public void testCheckMontantInvalid() throws Exception {
 
-        String montant = "";
+        String amount = "";
         try {
-            Validation.amountValidation(montant);
+            Validation.amountValidation(amount);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_MONTANT);
         }
@@ -271,9 +271,9 @@ public class ValidationTest {
 
         String result;
 
-        String montant = "19,99$";
+        String amount = "19,99$";
         String expResult = "19.99$";
-        result = Validation.amountValidation(montant);
+        result = Validation.amountValidation(amount);
         assertEquals(expResult, result);
 
     }
@@ -281,9 +281,9 @@ public class ValidationTest {
     @Test
     public void testCheckMontantNotDouble() throws Exception {
 
-        String montant = "notADouble";
+        String amount = "notADouble";
         try {
-            Validation.amountValidation(montant);
+            Validation.amountValidation(amount);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_MONTANT);
         }
@@ -293,9 +293,9 @@ public class ValidationTest {
     @Test
     public void testCheckMontantNoDollarSymbol() throws Exception {
 
-        String montant = "19.99";
+        String amount = "19.99";
         try {
-            Validation.amountValidation(montant);
+            Validation.amountValidation(amount);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
         }
