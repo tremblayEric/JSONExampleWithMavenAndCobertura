@@ -25,8 +25,8 @@ import java.text.NumberFormat;
 
 public class Dollar {
 
-    public static int doubleAmountToInteger(double montant) {
-        return (int) (Math.ceil(montant * 100));
+    public static int doubleAmountToInteger(double amount) {
+        return (int) (Math.ceil(amount * 100));
     }
 
     public static double stringToDouble(String amount) throws ValidationInputFileException {
