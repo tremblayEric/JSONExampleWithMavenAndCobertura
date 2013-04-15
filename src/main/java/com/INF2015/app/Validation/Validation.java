@@ -186,7 +186,7 @@ public class Validation {
         return montant;
     }
 
-    private static String checkMontantNumeric(String montant)
+    protected static String checkMontantNumeric(String montant)
             throws ValidationInputFileException {
         try {
             Double.parseDouble(montant);
@@ -196,7 +196,7 @@ public class Validation {
         return montant;
     }
 
-    private static void checkMontantSigneDollard(String montant) throws ValidationInputFileException {
+    protected static void checkMontantSigneDollard(String montant) throws ValidationInputFileException {
         if (montant.charAt(montant.length() - 1) != '$') {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
         }
