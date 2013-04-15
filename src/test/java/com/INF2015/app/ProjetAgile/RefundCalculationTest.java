@@ -71,7 +71,7 @@ public class RefundCalculationTest {
         JavaObjectReclamation rec = (JavaObjectReclamation)result.get(0);
         //Date testDate = rec.getDate();
         //System.out.println("TEST " + testDate);
-        String resultat = rec.getSoin()+" "+rec.getCode() + " "+rec.getDate().toString()+" "+rec.getMontant();
+        String resultat = rec.getCare()+" "+rec.getCode() + " "+rec.getDate().toString()+" "+rec.getAmount();
         assertEquals(expResult, resultat);
     }
 
@@ -130,7 +130,7 @@ public class RefundCalculationTest {
         int monthlyMax = 50;
         int expResult = 0;
         instance.refundAdjustment(refund, total, monthlyMax);
-        int result = refund.getMontant();
+        int result = refund.getAmount();
         assertEquals(expResult,result);
         
     }

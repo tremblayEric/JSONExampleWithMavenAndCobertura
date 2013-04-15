@@ -64,7 +64,7 @@ public class JavaObjectReclamationTest {
     @Test
     public void testGetSoin() {
         String expResult = "175";
-        String result = instance.getSoin();
+        String result = instance.getCare();
         assertEquals(expResult, result);
     }
 
@@ -87,15 +87,15 @@ public class JavaObjectReclamationTest {
     @Test
     public void testGetMontant() {
         int expResult = 40000;
-        int result = instance.getMontant();
+        int result = instance.getAmount();
         assertEquals(expResult, result);
     }
 
     @Test
     public void testSetMontant() {
         int montant = 400000;
-        instance.setMontant(montant);
-        int result = instance.getMontant();
+        instance.setAmount(montant);
+        int result = instance.getAmount();
         assertEquals(montant, result);
     }
     

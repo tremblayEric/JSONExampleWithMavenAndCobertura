@@ -58,8 +58,8 @@ public class RefundCalculation {
             for (int i = 0; i < reclamations.size(); ++i) {                
                 JavaObjectReclamation reclamation = (JavaObjectReclamation) reclamations.get(i);
 
-                String care = reclamation.getSoin();
-                int amount = reclamation.getMontant();
+                String care = reclamation.getCare();
+                int amount = reclamation.getAmount();
                 Date date = reclamation.getDate();
 
                 tempRefunList.add(new JavaObjectReclamation(care, reclamation.getCode(), date, Integer.toString(doCalcul(amount, care, contractType, reclamation.getCode()))));
@@ -109,15 +109,15 @@ public class RefundCalculation {
 
         int result = 0;
 
-        if (reclamation.getSoin().compareTo("100") == 0) {
+        if (reclamation.getCare().compareTo("100") == 0) {
             applyRefundToCare(reclamation,  totalList, 0);
-        } else if (reclamation.getSoin().compareTo("175") == 0) {
+        } else if (reclamation.getCare().compareTo("175") == 0) {
             applyRefundToCare(reclamation,  totalList, 1);
-        } else if (reclamation.getSoin().compareTo("200") == 0) {
+        } else if (reclamation.getCare().compareTo("200") == 0) {
             applyRefundToCare(reclamation,  totalList, 2);
-        } else if (reclamation.getSoin().compareTo("500") == 0) {
+        } else if (reclamation.getCare().compareTo("500") == 0) {
             applyRefundToCare(reclamation, totalList, 3);
-        } else if (reclamation.getSoin().compareTo("600") == 0) {
+        } else if (reclamation.getCare().compareTo("600") == 0) {
             applyRefundToCare(reclamation,  totalList, 4);
         }
     }
@@ -133,13 +133,13 @@ public class RefundCalculation {
     protected int refundAdjustment(JavaObjectReclamation reclamation, int total, int monthlyMax) {
 
         int adjustedRefund = -1;
-        int amount = reclamation.getMontant() / 100;
+        int amount = reclamation.getAmount() / 100;
 
         if ((amount + total) >= monthlyMax) {
-            reclamation.setMontant((monthlyMax - total) * 100);
+            reclamation.setAmount((monthlyMax - total) * 100);
             adjustedRefund = monthlyMax;
         } else if (total >= monthlyMax) {
-            reclamation.setMontant(0);
+            reclamation.setAmount(0);
         } else {
             adjustedRefund = amount + total;
         }

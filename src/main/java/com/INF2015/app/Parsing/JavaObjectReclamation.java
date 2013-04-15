@@ -24,18 +24,18 @@ import java.util.Date;
 
 public class JavaObjectReclamation {
 
-    private String soin;
+    private String care;
     private String code;//DDC3
     private Date date;
-    private int montant;
+    private int amount;
 
-    public JavaObjectReclamation(String soin, String code, Date date, String montant) {
-        this.soin = soin;
+    public JavaObjectReclamation(String care, String code, Date date, String amount) {
+        this.care = care;
         this.code = code;//DDC3
         this.date = date;
 
         try {
-            this.montant = Dollar.doubleAmountToInteger(Dollar.stringToDouble(Dollar.fromStringtoConformCashAmount(montant)));
+            this.amount = Dollar.doubleAmountToInteger(Dollar.stringToDouble(Dollar.fromStringtoConformCashAmount(amount)));
         } catch (Exception e) {
             System.out.println("plantage de conversion de string en double");
         }
@@ -43,8 +43,8 @@ public class JavaObjectReclamation {
 
    
 
-    public String getSoin() {
-        return this.soin;
+    public String getCare() {
+        return this.care;
     }
 
     public String getCode() {
@@ -55,17 +55,17 @@ public class JavaObjectReclamation {
         return this.date;
     }
 
-    public int getMontant() {
-        return this.montant;
+    public int getAmount() {
+        return this.amount;
     }
 
     @Override
     public String toString() {
-        return "\tsoin: " + soin + "\n\t" + "code " + code + "\n\t" + "Date: " + date.toString() + "\n\t"
-                + "montant: " + montant + "\n";
+        return "\tsoin: " + care + "\n\t" + "code " + code + "\n\t" + "Date: " + date.toString() + "\n\t"
+                + "montant: " + amount + "\n";
     }
 
-    public void setMontant(int montant) {
-        this.montant = montant;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

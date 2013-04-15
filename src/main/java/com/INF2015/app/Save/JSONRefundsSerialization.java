@@ -50,12 +50,12 @@ public class JSONRefundsSerialization {
             JavaObjectReclamation refund = (JavaObjectReclamation) reclamationList.get(i);
 
             JSONObject JSONRefund = new JSONObject();
-            JSONRefund.accumulate("soin", refund.getSoin());
+            JSONRefund.accumulate("soin", refund.getCare());
             JSONRefund.accumulate("code", refund.getCode());
             JSONRefund.accumulate("date", dateFormatMois.format(refund.getDate()));
-            JSONRefund.accumulate("montant", Dollar.fromIntegerToConformStringAmount(refund.getMontant()));
+            JSONRefund.accumulate("montant", Dollar.fromIntegerToConformStringAmount(refund.getAmount()));
 
-            total += refund.getMontant();
+            total += refund.getAmount();
 
             refunds.add(JSONRefund);
         }
