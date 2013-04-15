@@ -108,8 +108,6 @@ public class RefundCalculationTest {
     
     @Test
     public void testRefundAdjustmentExcedeMonthlyMax(){
-        //refund = new JavaObjectReclamation("175", "H1", date, "400.00$");
-        //montant = 400
         int total = 100;
         int monthlyMax = 500;
         int expResult = monthlyMax;
@@ -120,8 +118,6 @@ public class RefundCalculationTest {
     
     @Ignore
     public void testRefundAdjustmentTotalExcedeMonthlyMax(){
-        //refund = new JavaObjectReclamation("175", "H1", date, "400.00$");
-        //montant = 400
         int total = 500;
         int monthlyMax = 50;
         int expResult = 0;
