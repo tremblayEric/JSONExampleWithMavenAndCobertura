@@ -20,7 +20,7 @@ package com.INF2015.app.ProjetAgile;
  limitations under the License.
  */
 import com.INF2015.app.MockData.ContractList;
-import com.INF2015.app.Parsing.JavaObjectDossier;
+import com.INF2015.app.Parsing.JavaObjectFolder;
 import com.INF2015.app.Parsing.JavaObjectReclamation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import java.util.List;
 
 public class RefundCalculation {
 
-    private JavaObjectDossier monthlyFile;
+    private JavaObjectFolder monthlyFile;
     private String contractType;
     private ContractList contractsList;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -38,7 +38,7 @@ public class RefundCalculation {
     private ArrayList familyMember;
     private ArrayList<Integer> careMonthlyMaximumLimitList;
 
-    public RefundCalculation(JavaObjectDossier monthlyFile) {
+    public RefundCalculation(JavaObjectFolder monthlyFile) {
         this.monthlyFile = monthlyFile;
         contractType = this.getFolderContract();
         contractsList = new ContractList();

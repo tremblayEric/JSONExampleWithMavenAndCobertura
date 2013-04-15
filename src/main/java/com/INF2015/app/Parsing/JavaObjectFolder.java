@@ -24,14 +24,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class JavaObjectDossier {
+public class JavaObjectFolder {
 
     SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
     private String dossier;
     private Date mois;
     private List reclamationsList;
 
-    public JavaObjectDossier() {
+    public JavaObjectFolder() {
         this.dossier = "";
         this.reclamationsList = new ArrayList();
     }

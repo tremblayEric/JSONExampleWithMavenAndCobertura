@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
 public class JavaObjectReclamationTest {
 
     JavaObjectReclamation instance;
-    JavaObjectDossier dossier;
+    JavaObjectFolder dossier;
     String soin;
     String code;
     Date date;
@@ -38,7 +38,7 @@ public class JavaObjectReclamationTest {
 
     @Before
     public void setUp() throws Exception {
-        dossier = new JavaObjectDossier();
+        dossier = new JavaObjectFolder();
         dossier.setDossier("A100323");
         dossier.setMois("2013-01");
         soin = "175";

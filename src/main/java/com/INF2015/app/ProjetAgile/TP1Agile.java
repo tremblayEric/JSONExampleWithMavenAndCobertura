@@ -27,7 +27,7 @@
 package com.INF2015.app.ProjetAgile;
 
 import com.INF2015.app.Parsing.JSONReclamationsParsing;
-import com.INF2015.app.Parsing.JavaObjectDossier;
+import com.INF2015.app.Parsing.JavaObjectFolder;
 import com.INF2015.app.Save.JSONRefundsSerialization;
 import com.INF2015.app.Validation.ErrorMessage;
 import java.io.FileNotFoundException;
@@ -46,7 +46,7 @@ public class TP1Agile {
                 /*parsing du document en entre*/
                 JSONReclamationsParsing parsedFile = new JSONReclamationsParsing("JSONFile/" + args[0]);
                 /*recuperation des donnees pour les calculs*/
-                JavaObjectDossier testDossier = parsedFile.getJavaObjectDossier();
+                JavaObjectFolder testDossier = parsedFile.getJavaObjectDossier();
                 /*Calculs*/
                 RefundCalculation calcul = new RefundCalculation(testDossier);
                 List uneListe = calcul.getRefundList();

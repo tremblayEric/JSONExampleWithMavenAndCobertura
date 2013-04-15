@@ -36,7 +36,7 @@ import net.sf.json.JSONObject;
 
 public class JSONReclamationsParsing {
 
-    private JavaObjectDossier javaDossier;
+    private JavaObjectFolder javaDossier;
     private JSONObject folder;
     
     
@@ -51,12 +51,12 @@ public class JSONReclamationsParsing {
 
     }
 
-    public JavaObjectDossier getJavaObjectDossier() {
+    public JavaObjectFolder getJavaObjectDossier() {
         return this.javaDossier;
     }
 
     protected void javaDossierFabrication() throws ValidationInputFileException {
-        javaDossier = new JavaObjectDossier();
+        javaDossier = new JavaObjectFolder();
         javaDossier.setDossier(Validation.folderNumberValidation(folder.getString("dossier")));
         javaDossier.setMois(Validation.monthValidation(folder.getString("mois")));
         reclamationsFromJSONToJava();

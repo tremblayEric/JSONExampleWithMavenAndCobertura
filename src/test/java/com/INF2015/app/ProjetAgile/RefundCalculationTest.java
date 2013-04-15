@@ -20,7 +20,7 @@
  */
 package com.INF2015.app.ProjetAgile;
 
-import com.INF2015.app.Parsing.JavaObjectDossier;
+import com.INF2015.app.Parsing.JavaObjectFolder;
 import com.INF2015.app.Parsing.JavaObjectReclamation;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,7 +37,7 @@ import org.junit.Test;
 public class RefundCalculationTest {
 
     RefundCalculation instance;
-    JavaObjectDossier file;
+    JavaObjectFolder file;
     JavaObjectReclamation refund;
     SimpleDateFormat dateFormat;
     Date date;
@@ -46,7 +46,7 @@ public class RefundCalculationTest {
     @Before
     public void setUpClass() throws Exception {
         familyMember = new ArrayList();
-        file = new JavaObjectDossier();
+        file = new JavaObjectFolder();
         file.setDossier("A100323");
         file.setMois("2013-01");
         
