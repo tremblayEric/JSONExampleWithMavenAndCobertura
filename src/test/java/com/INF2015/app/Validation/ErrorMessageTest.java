@@ -1,3 +1,23 @@
+/* Copyright 2013
+ jpokou
+ pdarveau
+ sayonCisse
+ tremblayEric
+  
+ UQAM hiver 2013
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
 package com.INF2015.app.Validation;
 
 import static org.junit.Assert.*;
@@ -26,7 +46,7 @@ public class ErrorMessageTest {
         final String MESSAGE_ERROR_ELEMENT_JSON_DATE_MISSING = "UN ELEMENT RECLAMATION NE CONTIENT PAS D'ELEMENT DATE";
         final String MESSAGE_ERROR_ELEMENT_JSON_MONTANT_MISSING = "UN ELEMENT RECLAMATION NE CONTIENT PAS D'ELEMENT MONTANT";
         final String MESSAGE_ERROR_CONVERSION = "PROBLEME DE CONVERSION DE STRING A DOUBLE DANS CLASSE DOLLARD";
-        final String MESSAGE_ERROR_CODE = "LE CODE ENTREE EST NON VALIDE";;
+        final String MESSAGE_ERROR_CODE = "LE CODE ENTREE EST NON VALIDE";
 
 
         assertEquals(ErrorMessage.MESSAGE_ERROR_LOADING_FILE, MESSAGE_ERROR_LOADING_FILE);

@@ -1,4 +1,10 @@
-/* Copyright 2011 Jacques Berger
+/* Copyright 2013
+ jpokou
+ pdarveau
+ sayonCisse
+ tremblayEric
+  
+ UQAM hiver 2013
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -11,18 +17,6 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- * 
- * ModifiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© dans le cadre du cours : 
- * Programmation dans un environnement agile INF2015 
- * TP1
- * 
- * Par:
- * jpokou
- * pdarveau
- * sayonCisse
- * tremblayEric
- * 
- * UQAM hiver 2013
  */
 package com.INF2015.app.MockData;
 
@@ -31,10 +25,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 
-/**
- *
- * @author Sayon cissé
- */
+
 public class CareTest {
 
     Care instance, instance2;
