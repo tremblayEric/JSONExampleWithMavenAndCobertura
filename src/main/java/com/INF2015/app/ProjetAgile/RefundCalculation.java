@@ -78,12 +78,16 @@ public class RefundCalculation {
     protected Integer doCalcul(int value, String careNumber, String contract, String code) {
         int refund;
         int ratio = contractsList.getContractRatioByCareNumber(careNumber, contract);
-        if ((code.substring(0, 1)).compareTo("H") == 0) {
-            ratio = ratio / 2;
-        }
+
 
         refund = value * ratio;
         refund = refund / 100;
+        if ((code.substring(0, 1)).compareTo("H") == 0) {
+
+            refund = refund / 2;
+
+        }
+
         if (contractsList.getContractMaxValueByCareNumberExist(careNumber, contract)
                 && refund > contractsList.getContractMaxValueByCareNumber(careNumber, contract)) {
             refund = contractsList.getContractMaxValueByCareNumber(careNumber, contract);
