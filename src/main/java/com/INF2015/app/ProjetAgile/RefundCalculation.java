@@ -55,7 +55,7 @@ public class RefundCalculation {
 
             List reclamations = getFamlyMemberReclamationList((String) familyMember.get(j));
             List tempRefunList = new ArrayList();
-            for (int i = 0; i < reclamations.size(); ++i) { // est multiplié par 100 à cause de doubleMontantToInteger               
+            for (int i = 0; i < reclamations.size(); ++i) {                
                 JavaObjectReclamation reclamation = (JavaObjectReclamation) reclamations.get(i);
 
                 String soin = reclamation.getSoin();
