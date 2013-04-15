@@ -40,7 +40,7 @@ public class JavaObjectFolder {
         this.folder = folder;
     }
 
-    public void setMois(String month) {
+    public void setMonth(String month) {
         try {
             this.month = monthDateFormat.parse(month);
         } catch (Exception e) {

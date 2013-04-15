@@ -40,12 +40,12 @@ public class JavaObjectReclamationTest {
     public void setUp() throws Exception {
         dossier = new JavaObjectFolder();
         dossier.setFolder("A100323");
-        dossier.setMois("2013-01");
+        dossier.setMonth("2013-01");
         soin = "175";
         code = "H1";
         montant = "400.00$";
         String mois = "2013-01";
-        dossier.setMois(mois);
+        dossier.setMonth(mois);
         date = dossier.getFolderDate();
         instance = new JavaObjectReclamation(soin, code, date, montant);
     }

@@ -48,7 +48,7 @@ public class RefundCalculationTest {
         familyMember = new ArrayList();
         file = new JavaObjectFolder();
         file.setFolder("A100323");
-        file.setMois("2013-01");
+        file.setMonth("2013-01");
         
         dateFormat = new SimpleDateFormat("yyyy-MM-DD");
         date = dateFormat.parse("2013-01-11");

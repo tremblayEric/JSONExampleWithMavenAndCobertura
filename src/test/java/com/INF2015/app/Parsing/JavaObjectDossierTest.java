@@ -33,64 +33,64 @@ public class JavaObjectDossierTest {
 
     JavaObjectReclamation reclamation;
     JavaObjectFolder instance;
-    String soin;
+    String care;
     String code;
     Date date;
-    String montant;
+    String amount;
     SimpleDateFormat dateFormat;
 
     @Before
     public void setUp() throws Exception {
         instance = new JavaObjectFolder();
         instance.setFolder("A100323");
-        instance.setMois("2013-01");
-        soin = "175";
+        instance.setMonth("2013-01");
+        care = "175";
         code = "H1";
-        montant = "400.00$";
+        amount = "400.00$";
         String mois = "2013-01";
-        instance.setMois(mois);
+        instance.setMonth(mois);
         date = instance.getFolderDate();
-        reclamation = new JavaObjectReclamation(soin, code, date, montant);
+        reclamation = new JavaObjectReclamation(care, code, date, amount);
     }
 
     @After
     public void tearDown() throws Exception {
         instance = null;
-        soin = null;
+        care = null;
         code = null;
-        montant = null;
+        amount = null;
         dateFormat = null;
         date = null;
         reclamation = null;
     }
 
     @Test
-    public void testSetDossier() {
-        String dossier = "A100323";
-        instance.setFolder(dossier);
+    public void testSetFolder() {
+        String folder = "A100323";
+        instance.setFolder(folder);
         String result = instance.getFolderNumber();
-        assertEquals(dossier, result);
+        assertEquals(folder, result);
 
     }
 
     @Test
-    public void testSetMois() {
+    public void testSetMonth() {
         SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
-        String mois = "2013-01";
-        instance.setMois(mois);
+        String month = "2013-01";
+        instance.setMonth(month);
         Date date = instance.getFolderDate();
         String result = dateFormatMois.format(date);
-        assertEquals(mois, result);
+        assertEquals(month, result);
     }
     
     @Test 
-    public void testSetMoisFailure(){
+    public void testSetMonthFailure(){
         
         String invalidMonth = "invalideMonth";
         String expectedResult = "Erreur avec le mois";
         
         try{
-            instance.setMois(invalidMonth);
+            instance.setMonth(invalidMonth);
         }catch(Exception e){
             assertEquals(expectedResult,e.getMessage());
         }
