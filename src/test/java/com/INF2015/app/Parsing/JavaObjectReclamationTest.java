@@ -39,7 +39,7 @@ public class JavaObjectReclamationTest {
     @Before
     public void setUp() throws Exception {
         dossier = new JavaObjectFolder();
-        dossier.setDossier("A100323");
+        dossier.setFolder("A100323");
         dossier.setMois("2013-01");
         soin = "175";
         code = "H1";

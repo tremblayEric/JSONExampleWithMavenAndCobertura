@@ -47,7 +47,7 @@ public class RefundCalculationTest {
     public void setUpClass() throws Exception {
         familyMember = new ArrayList();
         file = new JavaObjectFolder();
-        file.setDossier("A100323");
+        file.setFolder("A100323");
         file.setMois("2013-01");
         
         dateFormat = new SimpleDateFormat("yyyy-MM-DD");

@@ -57,7 +57,7 @@ public class JSONReclamationsParsing {
 
     protected void javaDossierFabrication() throws ValidationInputFileException {
         javaDossier = new JavaObjectFolder();
-        javaDossier.setDossier(Validation.folderNumberValidation(folder.getString("dossier")));
+        javaDossier.setFolder(Validation.folderNumberValidation(folder.getString("dossier")));
         javaDossier.setMois(Validation.monthValidation(folder.getString("mois")));
         reclamationsFromJSONToJava();
     }

@@ -42,7 +42,7 @@ public class JavaObjectDossierTest {
     @Before
     public void setUp() throws Exception {
         instance = new JavaObjectFolder();
-        instance.setDossier("A100323");
+        instance.setFolder("A100323");
         instance.setMois("2013-01");
         soin = "175";
         code = "H1";
@@ -67,7 +67,7 @@ public class JavaObjectDossierTest {
     @Test
     public void testSetDossier() {
         String dossier = "A100323";
-        instance.setDossier(dossier);
+        instance.setFolder(dossier);
         String result = instance.getFolderNumber();
         assertEquals(dossier, result);
 

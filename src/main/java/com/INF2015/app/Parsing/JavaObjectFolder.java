@@ -26,34 +26,34 @@ import java.util.List;
 
 public class JavaObjectFolder {
 
-    SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
-    private String dossier;
-    private Date mois;
+    SimpleDateFormat monthDateFormat = new SimpleDateFormat("yyyy-MM");
+    private String folder;
+    private Date month;
     private List reclamationsList;
 
     public JavaObjectFolder() {
-        this.dossier = "";
+        this.folder = "";
         this.reclamationsList = new ArrayList();
     }
 
-    public void setDossier(String dossier) {
-        this.dossier = dossier;
+    public void setFolder(String folder) {
+        this.folder = folder;
     }
 
-    public void setMois(String mois) {
+    public void setMois(String month) {
         try {
-            this.mois = dateFormatMois.parse(mois);
+            this.month = monthDateFormat.parse(month);
         } catch (Exception e) {
             System.out.println("Erreur avec le mois");
         }
     }
 
     public String getFolderNumber() {
-        return this.dossier;
+        return this.folder;
     }
 
     public Date getFolderDate() {
-        return this.mois;
+        return this.month;
     }
 
     public List getFolderReclamationList() {
