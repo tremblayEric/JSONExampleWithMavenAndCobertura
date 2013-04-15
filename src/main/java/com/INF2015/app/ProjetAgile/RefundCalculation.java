@@ -131,7 +131,7 @@ public class RefundCalculation {
     protected void familyMemberRecuperation() {
 
         List reclamations = monthlyFile.getFolderReclamationList();
-        String code = "";
+        String code;
         for (int i = 0; i < reclamations.size(); ++i) {
             code = ((JavaObjectReclamation) reclamations.get(i)).getCode();
 
