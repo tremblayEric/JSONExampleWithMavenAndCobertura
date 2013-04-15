@@ -119,20 +119,6 @@ public class JavaObjectDossierTest {
         expResult.add(reclamation1);
         instance.addToReclamationList(reclamation1);
 
-        date = dateFormat.parse("2013-01-14");
-        JavaObjectReclamation reclamation2 = new JavaObjectReclamation("175", "C", date, "13000");
-        expResult.add(reclamation2);
-        instance.addToReclamationList(reclamation2);
-
-        date = dateFormat.parse("2013-01-15");
-        JavaObjectReclamation reclamation3 = new JavaObjectReclamation("175", "E", date, "13000");
-        expResult.add(reclamation3);
-        instance.addToReclamationList(reclamation3);
-
-        date = dateFormat.parse("2013-01-14");
-        JavaObjectReclamation reclamation4 = new JavaObjectReclamation("175", "H1", date, "13000");
-        expResult.add(reclamation4);
-        instance.addToReclamationList(reclamation4);
         List result = instance.getFolderReclamationList();
         assertEquals(expResult, result);
     }
