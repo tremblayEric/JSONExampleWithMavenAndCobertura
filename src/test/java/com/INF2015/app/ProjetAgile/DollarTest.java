@@ -46,7 +46,7 @@ public class DollarTest {
     public void testDoubleMontantToInteger() {
         double montant = 12.0;
         int expResult = 1200;
-        int result = Dollar.doubleMontantToInteger(montant);
+        int result = Dollar.doubleAmountToInteger(montant);
         assertEquals(expResult, result);
     }
 
