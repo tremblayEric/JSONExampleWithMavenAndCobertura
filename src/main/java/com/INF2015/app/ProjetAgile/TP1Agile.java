@@ -44,9 +44,9 @@ public class TP1Agile {
 
             try {
                 /*parsing du document en entre*/
-                JSONReclamationsParsing test = new JSONReclamationsParsing("JSONFile/" + args[0]);
+                JSONReclamationsParsing parsedFile = new JSONReclamationsParsing("JSONFile/" + args[0]);
                 /*recuperation des donnees pour les calculs*/
-                JavaObjectDossier testDossier = test.getJavaObjectDossier();
+                JavaObjectDossier testDossier = parsedFile.getJavaObjectDossier();
                 /*Calculs*/
                 RefundCalculation calcul = new RefundCalculation(testDossier);
                 List uneListe = calcul.getRefundList();
