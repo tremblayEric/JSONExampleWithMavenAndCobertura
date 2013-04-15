@@ -29,40 +29,40 @@ import static org.junit.Assert.*;
 public class JavaObjectReclamationTest {
 
     JavaObjectReclamation instance;
-    JavaObjectFolder dossier;
-    String soin;
+    JavaObjectFolder folder;
+    String care;
     String code;
     Date date;
-    String montant;
+    String amount;
     SimpleDateFormat dateFormat;
 
     @Before
     public void setUp() throws Exception {
-        dossier = new JavaObjectFolder();
-        dossier.setFolder("A100323");
-        dossier.setMonth("2013-01");
-        soin = "175";
+        folder = new JavaObjectFolder();
+        folder.setFolder("A100323");
+        folder.setMonth("2013-01");
+        care = "175";
         code = "H1";
-        montant = "400.00$";
-        String mois = "2013-01";
-        dossier.setMonth(mois);
-        date = dossier.getFolderDate();
-        instance = new JavaObjectReclamation(soin, code, date, montant);
+        amount = "400.00$";
+        String month = "2013-01";
+        folder.setMonth(month);
+        date = folder.getFolderDate();
+        instance = new JavaObjectReclamation(care, code, date, amount);
     }
 
     @After
     public void tearDown() throws Exception {
         instance = null;
-        soin = null;
+        care = null;
         code = null;
-        montant = null;
+        amount = null;
         dateFormat = null;
         date = null;
-        dossier = null;
+        folder = null;
     }
 
     @Test
-    public void testGetSoin() {
+    public void testGetCare() {
         String expResult = "175";
         String result = instance.getCare();
         assertEquals(expResult, result);
@@ -85,18 +85,18 @@ public class JavaObjectReclamationTest {
     }
 
     @Test
-    public void testGetMontant() {
+    public void testGetAmount() {
         int expResult = 40000;
         int result = instance.getAmount();
         assertEquals(expResult, result);
     }
 
     @Test
-    public void testSetMontant() {
-        int montant = 400000;
-        instance.setAmount(montant);
+    public void testSetAmount() {
+        int amount = 400000;
+        instance.setAmount(amount);
         int result = instance.getAmount();
-        assertEquals(montant, result);
+        assertEquals(amount, result);
     }
     
     @Test 
