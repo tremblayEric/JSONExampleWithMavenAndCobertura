@@ -31,16 +31,16 @@ import java.util.List;
 public class RefundCalculation {
 
     private JavaObjectDossier monthlyFile;
-    private String typeContrat;
+    private String contractType;
     private ContractList contractsList;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private SimpleDateFormat dateFormatMois = new SimpleDateFormat("yyyy-MM");
+    private SimpleDateFormat monthDateFormat = new SimpleDateFormat("yyyy-MM");
     private ArrayList familyMember;
     private ArrayList<Integer> careMonthlyMaximumLimitList;
 
     public RefundCalculation(JavaObjectDossier monthlyFile) {
         this.monthlyFile = monthlyFile;
-        typeContrat = this.getFolderContract();
+        contractType = this.getFolderContract();
         contractsList = new ContractList();
         this.familyMember = new ArrayList();
         familyMemberRecuperation();
@@ -58,11 +58,11 @@ public class RefundCalculation {
             for (int i = 0; i < reclamations.size(); ++i) {                
                 JavaObjectReclamation reclamation = (JavaObjectReclamation) reclamations.get(i);
 
-                String soin = reclamation.getSoin();
-                int montant = reclamation.getMontant();
+                String care = reclamation.getSoin();
+                int amount = reclamation.getMontant();
                 Date date = reclamation.getDate();
 
-                tempRefunList.add(new JavaObjectReclamation(soin, reclamation.getCode(), date, Integer.toString(doCalcul(montant, soin, typeContrat, reclamation.getCode()))));
+                tempRefunList.add(new JavaObjectReclamation(care, reclamation.getCode(), date, Integer.toString(doCalcul(amount, care, contractType, reclamation.getCode()))));
             }
             adjustRefundForMaximum(tempRefunList);
             for (int h = 0; h < tempRefunList.size(); ++h) {
@@ -74,18 +74,18 @@ public class RefundCalculation {
         return allRefundList;
     }
 
-    protected Integer doCalcul(int valeur, String numeroSoin, String contrat, String code) {
+    protected Integer doCalcul(int value, String careNumber, String contract, String code) {
         int refund;
-        int ratio = contractsList.getContractRatioByCareNumber(numeroSoin, contrat);
+        int ratio = contractsList.getContractRatioByCareNumber(careNumber, contract);
         if ((code.substring(0, 1)).compareTo("H") == 0) {
             ratio = ratio / 2;
         }
 
-        refund = valeur * ratio;
+        refund = value * ratio;
         refund = refund / 100;
-        if (contractsList.getContractMaxValueByCareNumberExist(numeroSoin, contrat)
-                && refund > contractsList.getContractMaxValueByCareNumber(numeroSoin, contrat)) {
-            refund = contractsList.getContractMaxValueByCareNumber(numeroSoin, contrat);
+        if (contractsList.getContractMaxValueByCareNumberExist(careNumber, contract)
+                && refund > contractsList.getContractMaxValueByCareNumber(careNumber, contract)) {
+            refund = contractsList.getContractMaxValueByCareNumber(careNumber, contract);
         }
         return refund;
     }
@@ -94,13 +94,13 @@ public class RefundCalculation {
         return monthlyFile.getFolderNumber().substring(0, 1);
     }
 
-    protected void adjustRefundForMaximum(List<JavaObjectReclamation> allRefundList) {
+    protected void adjustRefundForMaximum(List<JavaObjectReclamation> refundsList) {
 
         List<Integer> totalList = Arrays.asList(0, 0, 0, 0, 0, 0);
 
-        for (int i = 0; i < allRefundList.size(); ++i) {
+        for (int i = 0; i < refundsList.size(); ++i) {
 
-            JavaObjectReclamation reclamation = allRefundList.get(i);
+            JavaObjectReclamation reclamation = refundsList.get(i);
             careFiltering(reclamation, totalList);
         }
     }
@@ -132,18 +132,18 @@ public class RefundCalculation {
 
     protected int refundAdjustment(JavaObjectReclamation reclamation, int total, int monthlyMax) {
 
-        int retour = -1;
-        int montant = reclamation.getMontant() / 100;
+        int adjustedRefund = -1;
+        int amount = reclamation.getMontant() / 100;
 
-        if ((montant + total) >= monthlyMax) {
+        if ((amount + total) >= monthlyMax) {
             reclamation.setMontant((monthlyMax - total) * 100);
-            retour = monthlyMax;
+            adjustedRefund = monthlyMax;
         } else if (total >= monthlyMax) {
             reclamation.setMontant(0);
         } else {
-            retour = montant + total;
+            adjustedRefund = amount + total;
         }
-       return retour;
+       return adjustedRefund;
     }
 
     protected void familyMemberRecuperation() {
