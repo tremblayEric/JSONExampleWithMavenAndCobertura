@@ -69,8 +69,6 @@ public class RefundCalculationTest {
         List<String> expResult = Arrays.asList("175 H1 2013-01-11 400.00$");
         List result = instance.getRefundList();
         JavaObjectReclamation rec = (JavaObjectReclamation)result.get(0);
-        //Date testDate = rec.getDate();
-        //System.out.println("TEST " + testDate);
         String resultat = rec.getCare()+" "+rec.getCode() + " "+rec.getDate().toString()+" "+rec.getAmount();
         assertEquals(expResult, resultat);
     }
