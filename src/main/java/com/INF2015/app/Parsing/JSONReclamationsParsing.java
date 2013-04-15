@@ -26,8 +26,8 @@
  */
 package com.INF2015.app.Parsing;
 
-import com.INF2015.app.Validation.ValidationInputFileException;
 import com.INF2015.app.Validation.Validation;
+import com.INF2015.app.Validation.ValidationInputFileException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
