@@ -64,30 +64,30 @@ public class Validation {
         }
     }
 
-    public static String checkSoin(String soin)
+    public static String careValidation(String care)
             throws ValidationInputFileException {
         int i = 0;
-        List<String> validCareList = validCareList2();
-        isInteger2(soin, ErrorMessage.MESSAGE_ERROR_SOIN);
-        if (!validCareList.contains(soin) && !(Integer.parseInt(soin) >= 300
-                && Integer.parseInt(soin) <= 399)) {
+        List<String> validCareList = careListValidation();
+        isInteger(care, ErrorMessage.MESSAGE_ERROR_SOIN);
+        if (!validCareList.contains(care) && !(Integer.parseInt(care) >= 300
+                && Integer.parseInt(care) <= 399)) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SOIN);
         }
-        return soin.toString();
+        return care.toString();
     }
 
-    public static String checkCode(String code)
+    public static String codeValidation(String code)
             throws ValidationInputFileException {
         if (code.length() == 1 && (code.compareTo("A") == 0 || code.compareTo("C") == 0)) {
         } else if (code.length() >= 2 && (code.charAt(0) == 'E' || code.charAt(0) == 'H')) {
-            isInteger2(code.substring(1), ErrorMessage.MESSAGE_ERROR_CODE);
+            isInteger(code.substring(1), ErrorMessage.MESSAGE_ERROR_CODE);
         } else {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_CODE);
         }
         return code.toString();
     }
 
-    public static List<String> validCareList2() {
+    public static List<String> careListValidation() {
         List<String> validCareList = new ArrayList();
         validCareList.add("0");
         validCareList.add("100");
@@ -101,18 +101,17 @@ public class Validation {
         return validCareList;
     }
 
-    //verification du dossier
-    public static String checkFolder(String numeroDossier)
+   public static String folderNumberValidation(String fileNumber)
             throws ValidationInputFileException {
-        if (!(numeroDossier.length() == 7 && numeroDossier.charAt(0) >= 'A'
-                && numeroDossier.charAt(0) <= 'E')) {
+        if (!(fileNumber.length() == 7 && fileNumber.charAt(0) >= 'A'
+                && fileNumber.charAt(0) <= 'E')) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
-        isInteger2(numeroDossier.substring(1), ErrorMessage.MESSAGE_ERROR_FOLDER);
-        return numeroDossier;
+        isInteger(fileNumber.substring(1), ErrorMessage.MESSAGE_ERROR_FOLDER);
+        return fileNumber;
     }
 
-    public static void isInteger2(String numero, String message)
+    public static void isInteger(String numero, String message)
             throws ValidationInputFileException {
         int i = 0;
         while (i < numero.length()) {
@@ -123,14 +122,14 @@ public class Validation {
         }
     }
 
-    public static String checkDate(String date, String month)
+    public static String dateValidation(String date, String month)
             throws ValidationInputFileException {
         checkDateIsValid(date, "date");
         checkDateMonthCoherence(date, month);
         return date;
     }
 
-    public static String checkMonth(String month)
+    public static String monthValidation(String month)
             throws ValidationInputFileException {
         return checkDateIsValid(month, "mois");
     }
@@ -175,15 +174,15 @@ public class Validation {
         }
     }
 
-    public static String checkMontant(String montant)
+    public static String amountValidation(String amount)
             throws ValidationInputFileException {
-        if (montant.length() <= 1) {
+        if (amount.length() <= 1) {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_MONTANT);
         }
-        montant = montant.replace(',', '.');
-        checkMontantNumeric(montant.substring(0, montant.length() - 2));
-        checkMontantSigneDollard(montant);
-        return montant;
+        amount = amount.replace(',', '.');
+        checkMontantNumeric(amount.substring(0, amount.length() - 2));
+        dollardSymbolValidation(amount);
+        return amount;
     }
 
     protected static String checkMontantNumeric(String montant)
@@ -196,7 +195,7 @@ public class Validation {
         return montant;
     }
 
-    protected static void checkMontantSigneDollard(String montant) throws ValidationInputFileException {
+    protected static void dollardSymbolValidation(String montant) throws ValidationInputFileException {
         if (montant.charAt(montant.length() - 1) != '$') {
             throw new ValidationInputFileException(ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
         }

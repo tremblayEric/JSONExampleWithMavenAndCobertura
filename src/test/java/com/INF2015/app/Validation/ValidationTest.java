@@ -30,10 +30,10 @@ public class ValidationTest {
     public void testCheckSoin() throws Exception {
 
         String soin = "0";
-        String validCare = Validation.checkSoin(soin);
+        String validCare = Validation.careValidation(soin);
         soin = "666";
         try {
-            Validation.checkSoin(soin);
+            Validation.careValidation(soin);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_SOIN);
         }
@@ -43,7 +43,7 @@ public class ValidationTest {
     public void testCheckCodeAValid() throws Exception {
 
         String code = "A";
-        String result = Validation.checkCode(code);
+        String result = Validation.codeValidation(code);
         assertEquals(code, result);
 
     }
@@ -52,7 +52,7 @@ public class ValidationTest {
     public void testCheckCodeE1Valid() throws Exception {
 
         String code = "E1";
-        String result = Validation.checkCode(code);
+        String result = Validation.codeValidation(code);
         assertEquals(code, result);
 
     }
@@ -64,7 +64,7 @@ public class ValidationTest {
         String result = "";
 
         try {
-            result = Validation.checkCode(code);
+            result = Validation.codeValidation(code);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_CODE);
         }
@@ -78,7 +78,7 @@ public class ValidationTest {
         String result = "";
 
         try {
-            result = Validation.checkCode(code);
+            result = Validation.codeValidation(code);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_CODE);
         }
@@ -89,7 +89,7 @@ public class ValidationTest {
     public void testValidCareListCare0() {
 
         String expResult = "0";
-        String result = Validation.validCareList2().get(0);
+        String result = Validation.careListValidation().get(0);
         assertEquals(expResult,result);
 
     }
@@ -97,55 +97,55 @@ public class ValidationTest {
     @Test
     public void testValidCareListCare100() {
         String expResult = "100";
-        String result = Validation.validCareList2().get(1);
+        String result = Validation.careListValidation().get(1);
         assertEquals(expResult,result);
     }
     
     @Test
     public void testValidCareListCare150() {
         String expResult = "150";
-        String result = Validation.validCareList2().get(2);
+        String result = Validation.careListValidation().get(2);
         assertEquals(expResult,result);
     }
     
     @Test
     public void testValidCareListCare175() {
         String expResult = "175";
-        String result = Validation.validCareList2().get(3);
+        String result = Validation.careListValidation().get(3);
         assertEquals(expResult,result);
     }
     
     @Test
     public void testValidCareListCare200() {
         String expResult = "200";
-        String result = Validation.validCareList2().get(4);
+        String result = Validation.careListValidation().get(4);
         assertEquals(expResult,result);
     }
     
     @Test
     public void testValidCareListCare400() {
         String expResult = "400";
-        String result = Validation.validCareList2().get(5);
+        String result = Validation.careListValidation().get(5);
         assertEquals(expResult,result);
     }
     @Test
     public void testValidCareListCare500() {
         String expResult = "500";
-        String result = Validation.validCareList2().get(6);
+        String result = Validation.careListValidation().get(6);
         assertEquals(expResult,result);
     }
     
     @Test
     public void testValidCareListCare600() {
         String expResult = "600";
-        String result = Validation.validCareList2().get(7);
+        String result = Validation.careListValidation().get(7);
         assertEquals(expResult,result);
     }
     
     @Test
     public void testValidCareListCare700() {
         String expResult = "700";
-        String result = Validation.validCareList2().get(8);
+        String result = Validation.careListValidation().get(8);
         assertEquals(expResult,result);
     }
 
@@ -153,7 +153,7 @@ public class ValidationTest {
     public void testCheckFolderValid() throws Exception {
 
         String noDossier = "A234567";
-        String expresult = Validation.checkFolder(noDossier);
+        String expresult = Validation.folderNumberValidation(noDossier);
         assertEquals(expresult, noDossier);
 
     }
@@ -164,7 +164,7 @@ public class ValidationTest {
         String noDossier = "G123456";
 
         try {
-            Validation.checkFolder(noDossier);
+            Validation.folderNumberValidation(noDossier);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
@@ -177,7 +177,7 @@ public class ValidationTest {
         String noDossier = "Aqwerty";
 
         try {
-            Validation.checkFolder(noDossier);
+            Validation.folderNumberValidation(noDossier);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_FOLDER);
         }
@@ -188,7 +188,7 @@ public class ValidationTest {
         String isNotAnInteger = "a";
         String expMessage = "ERROR";
         try {
-            Validation.isInteger2(isNotAnInteger, expMessage);
+            Validation.isInteger(isNotAnInteger, expMessage);
         } catch (Exception e) {
             assertEquals(expMessage, e.getMessage());
         }
@@ -198,14 +198,14 @@ public class ValidationTest {
     public void testCheckDate() throws Exception {
         String date = "2013-03-02";
         String month = "2013-03";
-        String expResult = Validation.checkDate(date, month);
+        String expResult = Validation.dateValidation(date, month);
         assertEquals(expResult, date);
     }
 
     @Test
     public void testCheckMonth() throws Exception {
         String expResult = "2013-03";
-        String result = Validation.checkMonth(expResult);
+        String result = Validation.monthValidation(expResult);
         assertEquals(expResult, result);
     }
 
@@ -260,7 +260,7 @@ public class ValidationTest {
 
         String montant = "";
         try {
-            Validation.checkMontant(montant);
+            Validation.amountValidation(montant);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_MONTANT);
         }
@@ -273,7 +273,7 @@ public class ValidationTest {
 
         String montant = "19,99$";
         String expResult = "19.99$";
-        result = Validation.checkMontant(montant);
+        result = Validation.amountValidation(montant);
         assertEquals(expResult, result);
 
     }
@@ -283,7 +283,7 @@ public class ValidationTest {
 
         String montant = "notADouble";
         try {
-            Validation.checkMontant(montant);
+            Validation.amountValidation(montant);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_MONTANT);
         }
@@ -295,7 +295,7 @@ public class ValidationTest {
 
         String montant = "19.99";
         try {
-            Validation.checkMontant(montant);
+            Validation.amountValidation(montant);
         } catch (Exception e) {
             assertEquals(e.getMessage(), ErrorMessage.MESSAGE_ERROR_SIGNE_DOLLAR);
         }
