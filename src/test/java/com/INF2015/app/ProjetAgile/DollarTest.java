@@ -44,9 +44,9 @@ public class DollarTest {
 
     @Test
     public void testDoubleMontantToInteger() {
-        double montant = 12.0;
+        double amount = 12.0;
         int expResult = 1200;
-        int result = Dollar.doubleAmountToInteger(montant);
+        int result = Dollar.doubleAmountToInteger(amount);
         assertEquals(expResult, result);
     }
 
@@ -71,7 +71,7 @@ public class DollarTest {
     }
 
     @Test
-    public void testFromIntegerToConformStringAmount() {
+    public void testFromIntegerToConformStringAmountPenny() {
         int amount = 7777;
         String expResult = "0.78$";
         String result = Dollar.fromIntegerToConformStringAmount(amount);
@@ -79,7 +79,7 @@ public class DollarTest {
     }
 
     @Test
-    public void testFromIntegerToConformStringAmount2() {
+    public void testFromIntegerToConformStringAmountBuck() {
         int amount = 33000;
         String expResult = "3.30$";
         String result = Dollar.fromIntegerToConformStringAmount(amount);
@@ -87,7 +87,7 @@ public class DollarTest {
     }
 
     @Test
-    public void testFromIntegerToDouble() {
+    public void testFromIntegerToDoublePenny() {
         int amount = 700;
         double expResult = 0.07;
         double result = Dollar.fromIntegerToDouble(amount);
@@ -95,7 +95,7 @@ public class DollarTest {
     }
 
     @Test
-    public void testFromIntegerToDouble2() {
+    public void testFromIntegerToDoubleBuck() {
         int amount = 70000;
         double expResult = 7.0;
         double result = Dollar.fromIntegerToDouble(amount);
