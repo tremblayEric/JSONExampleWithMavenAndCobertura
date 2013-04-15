@@ -19,6 +19,7 @@ package com.INF2015.app.ProjetAgile;
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+
 import com.INF2015.app.MockData.ContractList;
 import com.INF2015.app.Parsing.JavaObjectFolder;
 import com.INF2015.app.Parsing.JavaObjectReclamation;
@@ -55,7 +56,7 @@ public class RefundCalculation {
 
             List reclamations = getFamlyMemberReclamationList((String) familyMember.get(j));
             List tempRefunList = new ArrayList();
-            for (int i = 0; i < reclamations.size(); ++i) {                
+            for (int i = 0; i < reclamations.size(); ++i) {
                 JavaObjectReclamation reclamation = (JavaObjectReclamation) reclamations.get(i);
 
                 String care = reclamation.getCare();
@@ -110,21 +111,21 @@ public class RefundCalculation {
         int result = 0;
 
         if (reclamation.getCare().compareTo("100") == 0) {
-            applyRefundToCare(reclamation,  totalList, 0);
+            applyRefundToCare(reclamation, totalList, 0);
         } else if (reclamation.getCare().compareTo("175") == 0) {
-            applyRefundToCare(reclamation,  totalList, 1);
+            applyRefundToCare(reclamation, totalList, 1);
         } else if (reclamation.getCare().compareTo("200") == 0) {
-            applyRefundToCare(reclamation,  totalList, 2);
+            applyRefundToCare(reclamation, totalList, 2);
         } else if (reclamation.getCare().compareTo("500") == 0) {
             applyRefundToCare(reclamation, totalList, 3);
         } else if (reclamation.getCare().compareTo("600") == 0) {
-            applyRefundToCare(reclamation,  totalList, 4);
+            applyRefundToCare(reclamation, totalList, 4);
         }
     }
 
-    protected void applyRefundToCare(JavaObjectReclamation reclamation,  List<Integer> totalList, int care) {
+    protected void applyRefundToCare(JavaObjectReclamation reclamation, List<Integer> totalList, int care) {
 
-        int result = refundAdjustment(reclamation, totalList.get(4), careMonthlyMaximumLimitList.get(care));
+        int result = refundAdjustment(reclamation, totalList.get(care), careMonthlyMaximumLimitList.get(care));
         if (result != -1) {
             totalList.set(care, result);
         }
@@ -143,7 +144,7 @@ public class RefundCalculation {
         } else {
             adjustedRefund = amount + total;
         }
-       return adjustedRefund;
+        return adjustedRefund;
     }
 
     protected void familyMemberRecuperation() {

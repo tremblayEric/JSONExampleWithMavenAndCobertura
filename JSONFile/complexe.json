@@ -3,13 +3,13 @@
     "mois": "2013-03",
     "reclamations": [
     {
-        "soin": "0",
+        "soin": "100",
         "code": "A",
         "date": "2013-03-02",
         "montant": "1,00$"
     },
     {
-        "soin": "400",
+        "soin": "100",
         "code": "A",
         "date": "2013-03-02",
         "montant": "100,00$"
