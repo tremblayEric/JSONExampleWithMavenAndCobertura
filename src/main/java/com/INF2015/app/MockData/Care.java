@@ -29,7 +29,7 @@ public class Care {
     private String careNumber;
     private String careCategory;
     private Contracts contracts;
-    private int maxMonthlyRefund;//ajout iteration #3
+    private int maxMonthlyRefund;
 
     public Care(String numeroSoin, String categorieSoin, Contracts contracts, int maxMonthlyRefund) {
         this.careNumber = numeroSoin;
