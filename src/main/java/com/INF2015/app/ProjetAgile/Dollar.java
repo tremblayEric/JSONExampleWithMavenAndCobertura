@@ -45,8 +45,8 @@ public class Dollar {
         NumberFormat Myformat = NumberFormat.getInstance();
         Myformat.setMinimumFractionDigits(2);
         Myformat.setMaximumFractionDigits(2);
-        double nombre = fromIntegerToDouble(amount);
-        return (Myformat.format(nombre)).replace(',', '.') + "$";
+        double number = fromIntegerToDouble(amount);
+        return (Myformat.format(number)).replace(',', '.') + "$";
     }
 
     protected static double fromIntegerToDouble(int amount) {
